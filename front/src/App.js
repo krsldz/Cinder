@@ -1,8 +1,13 @@
 import './App.css';
+import ButtonsForCard from '../src/components/ButtonsForCard/ButtonsForCard'
 
 function App() {
   return (
-    <h1>CINDER</h1>
+    <div className="App">
+      <h1>CINDER</h1>
+      <ButtonsForCard />
+    </div>
+
   );
 }
 
