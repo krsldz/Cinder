@@ -1,18 +1,19 @@
+import MainPage from "./components/MainPage/MainPage";
+import AppBar from "./components/AppBar/AppBar";
 
-import './App.css';
-import Questionnaire from './components/Questionnaire/Questionnaire';
-// import Newtext from './components/newtext/Newtext';
-import CheckboxLabels from './components/Test'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
-    <>
-    <h1>CINDER</h1>
-    {/* <Newtext/> */}
-
-{/* <CheckboxLabels/> */}
-    <Questionnaire/>
-    </>
+    <Router>
+      <AppBar />
+      <Switch>
+        <Route exact path="/" component={MainPage} />
+        {/* <Route exact path="/registration" component={Registration} /> */}
+        {/* <Route exact path="/login" component={Login}/> */}
+        {/* <Route exact path="/profile" component={Profiler} /> */}
+      </Switch>
+    </Router>
   );
 }
 
