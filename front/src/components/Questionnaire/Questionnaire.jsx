@@ -14,6 +14,11 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { Link } from 'react-router-dom';
 import Radio from '@material-ui/core/Radio';
 import { useState, useEffect } from "react";
+import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Checkbox from '@material-ui/core/Checkbox';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
 const showcard = ['ya molodec', 'ya konec' , 'ya merzavec'];
 const showcard2 = ['ya krasavec', 'ya sdelal', 'ya sdelal eeeeeeeeeeee']
 const showcard3 = ['mi druz', 'vse klevo', 'vse ochen']
@@ -148,7 +153,11 @@ const secondShow = () => {
                 <br />
                 <RadioGroup aria-label="Variant" name="Variant" value={value} onChange={handleChange} >
                   {showcard.map((item) =>
-                    <FormControlLabel value={item} control={<Radio />} label={item} />)}
+                    <FormControlLabel
+                    value={item}
+                    control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} name="checkedH" />}
+                    label={item}
+                  />)}
                 </RadioGroup>
               </Typography>
             </CardContent>
