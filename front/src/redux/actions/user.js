@@ -14,9 +14,8 @@ export const setUser = (user) => ({
   payload: user
 })
 
-export const signUp = (payload) => async (dispatch) => {
-  console.log(payload);
-  const response = await fetch(endPoints.signUp(), {
+export const signUp = (payload, history) => async (dispatch) => {
+  const response = await fetch('http://localhost:8080/api/v1/auth/signup', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -24,14 +23,16 @@ export const signUp = (payload) => async (dispatch) => {
     credentials: 'include',
     body: JSON.stringify(payload)
   })
-  if (response.status === 200) {
     const user = await response.json()
-    dispatch(setUser(user))
+    if (user) {
+      dispatch(setUser(user))
+      history.replace('/');
+    }
+    history.replace('/signup');
   }
-}
 
 export const signIn = (payload, history, from) => async (dispatch) => {
-  const response = await fetch(endPoints.signIn(), {
+  const response = await fetch('http://localhost:8080/api/v1/auth/signin', {
     method: "POST",
     headers: {
       'Content-Type': 'application/json'
@@ -49,21 +50,11 @@ export const signIn = (payload, history, from) => async (dispatch) => {
 }
 
 export const signOut = () => async (dispatch) => {
-  const response = await fetch(endPoints.signOut(), {
+  const response = await fetch('http://localhost:8080/api/v1/auth/signout', {
     credentials: 'include'
   })
-  if (response.status === 200) {
+  if (response.ok) {
     dispatch(deleteUser())
-  }
-}
-
-export const checkAuth = () => async (dispatch) => {
-  const response = await fetch(endPoints.checkAuth(), {
-    credentials: 'include'
-  })
-  if (response.status === 200) {
-    const user = await response.json()
-    dispatch(setUser(user))
   }
 }
 

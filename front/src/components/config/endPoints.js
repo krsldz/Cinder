@@ -8,3 +8,4 @@ export const checkAuth = () => `${host}/api/v1/auth/check`
 export const getAllUsers = () => `${host}/api/v1/users`
 export const editUser = (id) => `${host}/api/v1/users/${id}`
 export const getUser = (id) => `${host}/api/v1/users/${id}`
+// 'http://localhost:8080/api/v1/auth/signup'

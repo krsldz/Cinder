@@ -9,7 +9,7 @@ import {signUp} from '../../redux/actions/user'
 
 export default function RegisterForm() {
 
-  // let history = useHistory();
+  let history = useHistory();
   const dispatch = useDispatch();
 
   const [userSignUp, setUserSignUp] = useState({
@@ -23,14 +23,12 @@ export default function RegisterForm() {
   }
 
 
-
   const submitHandler = (e) => {
     e.preventDefault()
     let payload = Object.entries(userSignUp).filter((el) => el[1] ? el[1].trim() : el[1])
-    console.log(payload);
     if (payload.length) {
       payload = Object.fromEntries(payload)
-      dispatch(signUp(payload)) 
+      dispatch(signUp(payload, history)) 
     }
   } 
 
@@ -72,7 +70,7 @@ export default function RegisterForm() {
           variant="outlined"
         />
       </div>
-      <Button variant="outlined" color="primary">Продолжить</Button>
+      <Button type="submit" variant="outlined" color="primary">Продолжить</Button>
     </form>
   );
 }
