@@ -5,9 +5,10 @@ const User = require('../models/user');
 const router = Router();
 
 router.post('/signup', async (req, res) => {
-  const { userName, password, email } = req.body
+  console.log(req.body);
+  const { username, password, email } = req.body
 
-  if (userName && password && email) {
+  if (username && password && email) {
     try {
       const hashPassword = await bcrypt.hash(password, 11)
       const newUser = await User.create({
