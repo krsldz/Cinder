@@ -1,6 +1,6 @@
 /* Добавить черный цвет фона для верхней навигации */
 .topnav {
-  background-color: #333;
+  background-color: #564F6F;
   overflow: hidden;
 }
 
@@ -22,6 +22,6 @@
 
 /* Добавить цвет для активной/текущей ссылки */
 .topnav a.active {
-  background-color: #67186e;
+  background-color: #802BB1;
   color: white;
 }
