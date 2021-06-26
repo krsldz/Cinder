@@ -2,8 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import RegisterForm from "../RegisterForm/RegisterForm";
-import Link from "@material-ui/core/Link";
+import {Link} from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router";
@@ -86,7 +85,7 @@ export default function AuthForm() {
       <div>Еще нет учетной записи?</div>
 
       <div>
-        <Link href="#"> Зарегистрируйтесь </Link>
+        <Link to="/register"> Зарегистрируйтесь </Link>
       </div>
     </div>
   );

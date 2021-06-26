@@ -17,16 +17,9 @@ import { useState, useEffect } from "react";
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Checkbox from '@material-ui/core/Checkbox';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import axios from 'axios';
 axios.defaults.withCredentials = true
-const showcard = ['ya molodec', 'ya konec' , 'ya merzavec'];
-const showcard2 = ['ya krasavec', 'ya sdelal', 'ya sdelal eeeeeeeeeeee']
-const showcard3 = ['mi druz', 'vse klevo', 'vse ochen']
-const vopros = 'ya vopros';
-const vopros2 = 'ya vopros2';
-const vopros3 = 'ya vopros5';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -97,7 +90,7 @@ export default function SpringModal() {
   const [show, setShow] = useState(false);
   const [second, setSecond] = useState(true);
   const [base, setBase] = useState({});
-
+console.log(base);
 console.log(base.genre);
 
   useEffect(() => {
@@ -170,7 +163,7 @@ console.log(base.genre);
                       <p>Жанр</p>
                       <br />
                       <RadioGroup aria-label="Variant" name="Variant" value={value} onChange={handleChange} >
-                        {base.genre.map((item) =>
+                        {base?.genre?.map((item) =>
                           <FormControlLabel
                             value={item}
                             control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} name="checkedH" />}
@@ -193,7 +186,7 @@ console.log(base.genre);
                       <p>Настроение</p>
                       <br />
                       <RadioGroup aria-label="Variant" name="Variant" value={value} onChange={handleChange} >
-                        {base.mood.map((item) =>
+                        {base?.mood?.map((item) =>
                           <FormControlLabel value={item} control={<Radio />} label={item} />)}
                       </RadioGroup>
                     </Typography>
@@ -214,7 +207,7 @@ console.log(base.genre);
                     <p> С кем?</p>
                     <br />
                     <RadioGroup aria-label="Variant" name="Variant" value={value} onChange={handleChange} >
-                      {base.withWhom.map((item) =>
+                      {base?.withWhom?.map((item) =>
                         <FormControlLabel value={item} control={<Radio />} label={item} />)}
                     </RadioGroup>
                   </Typography>
