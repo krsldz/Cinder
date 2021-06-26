@@ -3,7 +3,7 @@ import AppBar from "./components/AppBar/AppBar";
 import AuthForm from './components/AuthForm/AuthForm'
 import Signout from './components/Signout/Signout';
 import Questionnaire from './components/Questionnaire/Questionnaire';
-
+import ButtonsForCard from "./components/ButtonsForCard/ButtonsForCard";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
@@ -20,6 +20,7 @@ function App() {
         <Route exact path="/logout" component={Signout}/>
         <Route exact path="/test" component={Questionnaire} />
         {/* <Route exact path="/profile" component={Profiler} /> */}
+        <Route exact path="/game" component={ButtonsForCard} />
       </Switch>
     </Router>
     </>

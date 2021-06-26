@@ -1,11 +1,11 @@
 import "./MainPage.css";
 import CardForMain from "../CardForMain/CardForMain";
-import CardSolo from "../Card/Card";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
 import SpringModal from '../Questionnaire/Questionnaire'
 import ShareButton from "../ShareButton/ShareButton";
-import ButtonsForCard from "../ButtonsForCard/ButtonsForCard";
 import LikedFilmsList from '../LikedFilmsList/LikedFilmsList';
+import ButtonsForCard from "../ButtonsForCard/ButtonsForCard";
+import { Link } from "react-router-dom";
 
 export default function MainPage() {
   return (
@@ -25,21 +25,15 @@ export default function MainPage() {
         </div>
       </div>
       <div className="buttonDiv">
-        <button className="animated-button"> ВЫБРАТЬ ФИЛЬМ</button>
+        <Link to="/game">
+          <button className="animated-button"> ВЫБРАТЬ ФИЛЬМ</button>
+        </Link>
       </div>
         <hr />
         <ShareButton/>
       <footer>
         <SvgIconsColor />
       </footer>
-      <hr />
-        <LikedFilmsList/>
-      <div>
-        <CardSolo />
-      </div>
-      <div>
-        <SpringModal />
-      </div>
     </div>
   );
 }
