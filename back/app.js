@@ -10,7 +10,12 @@ const morgan = require('morgan');
 const PORT = 8080;
 const DB_CONNECT = 'mongodb://localhost:27017/cinder';
 
+
+const testRouter = require('./routers/test');
 const authRouter = require('./routers/auth');
+
+
+
 
 const app = express();
 
@@ -37,6 +42,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1', testRouter);
 
 app.listen(PORT, () => {
   console.log('server started!');

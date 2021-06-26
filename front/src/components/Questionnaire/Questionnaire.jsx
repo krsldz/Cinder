@@ -17,14 +17,10 @@ import { useState, useEffect } from "react";
 import Favorite from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import Checkbox from '@material-ui/core/Checkbox';
-import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@material-ui/icons/CheckBox';
-const showcard = ['ya molodec', 'ya konec' , 'ya merzavec'];
-const showcard2 = ['ya krasavec', 'ya sdelal', 'ya sdelal eeeeeeeeeeee']
-const showcard3 = ['mi druz', 'vse klevo', 'vse ochen']
-const vopros = 'ya vopros';
-const vopros2 = 'ya vopros2';
-const vopros3 = 'ya vopros5';
+import axios from 'axios';
+axios.defaults.withCredentials = true
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
+    minWidth: 125,
     border: '1px solid #000',
     boxShadow: theme.shadows[1],
     padding: theme.spacing(2, 4, 3),
@@ -88,10 +85,24 @@ Fade.propTypes = {
 export default function SpringModal() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
- const [value, setValue] = useState();
- const [showsecond, setShowsecond] = useState(false);
- const [show, setShow] = useState(false);
+  const [value, setValue] = useState();
+  const [showsecond, setShowsecond] = useState(false);
+  const [show, setShow] = useState(false);
   const [second, setSecond] = useState(true);
+  const [base, setBase] = useState({});
+console.log(base);
+console.log(base.genre);
+
+  useEffect(() => {
+  axios.get("http://localhost:8080/api/v1/test")
+      .then(res => setBase(res.data))
+
+        
+      
+  }
+    , []);
+
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -102,20 +113,20 @@ export default function SpringModal() {
   const handleChange = (event) => {
     setValue(event.target.value);
   };
-console.log(value);
+  console.log(value);
 
-const handlesetShow =() =>{
-  setShowsecond(true)
+  const handlesetShow = () => {
+    setShowsecond(true)
 
-}
-const handleShow =() =>{
-  setShow(true)
+  }
+  const handleShow = () => {
+    setShow(true)
 
-}
-const secondShow = () => {
-  setSecond(false);
- 
-}
+  }
+  const secondShow = () => {
+    setSecond(false);
+
+  }
 
 
 
@@ -130,7 +141,7 @@ const secondShow = () => {
         className={classes.modal}
         open={open}
         onClose={handleClose}
-       
+
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -142,96 +153,79 @@ const secondShow = () => {
             <h2 id="spring-modal-title">Пройти тест</h2>
             <div>
 
-{ second ? <div>
-  {show ? (<Card className={classes.root}>
-            <CardContent>
-              <Typography className={classes.title} color="textSecondary" gutterBottom>
-                Вопрос
+              {second ? <div>
+                {show ? (<Card className={classes.root}>
+                  <CardContent>
+                    <Typography className={classes.title} color="textSecondary" gutterBottom>
+                      Вопрос
               </Typography>
-              <Typography variant="body2" component="p">
-                {vopros} --- eto
-                <br />
-                <RadioGroup aria-label="Variant" name="Variant" value={value} onChange={handleChange} >
-                  {showcard.map((item) =>
-                    <FormControlLabel
-                    value={item}
-                    control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} name="checkedH" />}
-                    label={item}
-                  />)}
-                </RadioGroup>
-              </Typography>
-            </CardContent>
-            <CardActions >
-              <Button size="small" variant="contained" color="primary" onClick={secondShow} >Отправить ответ</Button>
-              </CardActions>
-          
-          
-          </Card>) : (     <Card className={classes.root}>
-            <CardContent>
-              <Typography className={classes.title} color="textSecondary" gutterBottom>
-                Вопрос
-              </Typography>
-              <Typography variant="body2" component="p">
-                {vopros2} ---
-                <br />
-                <RadioGroup aria-label="Variant" name="Variant" value={value} onChange={handleChange} >
-                  {showcard2.map((item) =>
-                    <FormControlLabel value={item} control={<Radio />} label={item} />)}
-                </RadioGroup>
-              </Typography>
-            </CardContent>
-           <CardActions >
-              <Button size="small" variant="contained" color="primary" onClick={handleShow} >Отправить ответ</Button>
-              </CardActions>
-      
-          </Card>)
-                   } 
+                    <Typography variant="body2" component="p">
+                      <p>Жанр</p>
+                      <br />
+                      <RadioGroup aria-label="Variant" name="Variant" value={value} onChange={handleChange} >
+                        {base?.genre?.map((item) =>
+                          <FormControlLabel
+                            value={item}
+                            control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} name="checkedH" />}
+                            label={item}
+                          />)}
+                      </RadioGroup>
+                    </Typography>
+                  </CardContent>
+                  <CardActions >
+                    <Button size="small" variant="contained" color="primary" onClick={secondShow} >Отправить ответ</Button>
+                  </CardActions>
 
-</div> : <div> <Card className={classes.root}>
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Вопрос
-        </Typography>
-        <Typography variant="body2" component="p">
-          {vopros3}
-          <br />
-          <RadioGroup aria-label="Variant" name="Variant" value={value} onChange={handleChange} >
-            {showcard3.map((item) =>
-              <FormControlLabel value={item} control={<Radio />} label={item} />)}
-          </RadioGroup>
-        </Typography>
-      </CardContent>
-      <CardActions >
-        <Button size="small" variant="contained" color="primary" onClick={handleClose} >Отправить ответ</Button>
-        </CardActions>
-    </Card></div>
-  
 
-}
-      
-         
-    </div>
-       
-    
-    
-    {/* <Card className={classes.root}>
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Вопрос
+                </Card>) : (<Card className={classes.root}>
+                  <CardContent>
+                    <Typography className={classes.title} color="textSecondary" gutterBottom>
+                      Вопрос
+              </Typography>
+                    <Typography variant="body2" component="p">
+                      <p>Настроение</p>
+                      <br />
+                      <RadioGroup aria-label="Variant" name="Variant" value={value} onChange={handleChange} >
+                        {base?.mood?.map((item) =>
+                          <FormControlLabel value={item} control={<Radio />} label={item} />)}
+                      </RadioGroup>
+                    </Typography>
+                  </CardContent>
+                  <CardActions >
+                    <Button size="small" variant="contained" color="primary" onClick={handleShow} >Отправить ответ</Button>
+                  </CardActions>
+
+                </Card>)
+                }
+
+              </div> : <div> <Card className={classes.root}>
+                <CardContent>
+                  <Typography className={classes.title} color="textSecondary" gutterBottom>
+                    Вопрос
         </Typography>
-        <Typography variant="body2" component="p">
-          {vopros}
-          <br />
-          <RadioGroup aria-label="Variant" name="Variant" value={value} onChange={handleChange} >
-            {showcard.map((item) =>
-              <FormControlLabel value={item} control={<Radio />} label={item} />)}
-          </RadioGroup>
-        </Typography>
-      </CardContent>
-      <CardActions >
-        <Button size="small" variant="contained" color="primary" onClick={handleClose} >Отправить ответ</Button>
-        </CardActions>
-    </Card> */}
+                  <Typography variant="body2" component="p">
+                    <p> С кем?</p>
+                    <br />
+                    <RadioGroup aria-label="Variant" name="Variant" value={value} onChange={handleChange} >
+                      {base?.withWhom?.map((item) =>
+                        <FormControlLabel value={item} control={<Radio />} label={item} />)}
+                    </RadioGroup>
+                  </Typography>
+                </CardContent>
+                <CardActions >
+                  <Button size="small" variant="contained" color="primary" onClick={handleClose} >Отправить ответ</Button>
+                </CardActions>
+              </Card></div>
+
+
+              }
+
+
+            </div>
+
+
+
+     
           </div>
         </Fade>
       </Modal>

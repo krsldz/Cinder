@@ -52,22 +52,5 @@ export default function AppBar() {
           </div>
         </div>
     </nav>
-
-
-      /* <a onClick={() => historyHandler("/")} class="active">
-        Cinder
-      </a>
-      <a a onClick={() => historyHandler("register")} class="">
-        Регистрация
-      </a>
-      <a onClick={() => historyHandler("login")} class="">
-        Login
-      </a>
-      {/* <a a onClick={() => historyHandler("logout")} class="">
-      Logout <SignOut />
-      </a> */
-      // <a a onClick={() => historyHandler("profile")} class="">
-      //   Профиль
-      // </a> */}
   );
 }
