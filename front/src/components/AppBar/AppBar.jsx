@@ -23,6 +23,9 @@ export default function AppBar() {
     if (value === "logout") {
       history.push("/logout");
     }
+    if(value==='profile'){
+      history.push('/profile');
+    }
   };
   
 
