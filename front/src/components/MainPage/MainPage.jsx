@@ -2,6 +2,7 @@ import "./MainPage.css";
 import CardForMain from "../CardForMain/CardForMain";
 import CardSolo from "../Card/Card";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
+import ButtonsForCard from "../ButtonsForCard/ButtonsForCard"
 
 export default function MainPage() {
   return (
@@ -29,6 +30,10 @@ export default function MainPage() {
       </footer>
       <div>
         <CardSolo />
+      </div>
+      <br/>
+      <div>
+        <ButtonsForCard />
       </div>
     </div>
   );
