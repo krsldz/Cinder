@@ -1,10 +1,13 @@
 import React from 'react';
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from '@material-ui/core/styles';
 import {Box, Card, CardMedia} from '@material-ui/core'
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
+import CardSolo from "../Card/Card"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +29,29 @@ function ButtonsForCard () {
 
 const classes = useStyles()
 
+// const allFilms = useSelector(state => state.films)
+
+// const [likeEvent, setLikeEvent] = useState('')
+// const [dislikeEvent, setDislikeEvent] = useState('')
+// const [dontKnowEvent, setKnowEvent] = useState('')
+// const [superLikeEvent, setsuperLike] = useState('')
+
+// const dislikeHandler = (id) => {
+  
+// }
+
+// const dontKnowHandler = (id) => {
+  
+// }
+
+// const likeHandler = (id) => {
+  
+// }
+
+// const superLikeHandler = (id) => {
+  
+// }
+
 return (
   <>
   <div className={classes.root}>
@@ -40,15 +66,14 @@ return (
          
         </Grid>
         <Grid item xs={6}>
-          <Paper className={classes.paper}><CardMedia
-        className={classes.media}
-        image="https://lumiere-a.akamaihd.net/v1/images/p_cruella_disneyplus_21093_6184d4aa.jpeg"
-        title="Paella dish"
-      /></Paper>
+          <Paper className={classes.paper}>
+            <CardSolo/>
+          </Paper>
         </Grid>
 
         <Grid item xs>
-          <Paper className={classes.paper}> <Button variant="contained" color="primary">Like</Button>
+          <Paper className={classes.paper}> <Button variant="contained" color="primary">
+            Like</Button>
           <br/>
           <Button variant="contained" color="secondary">SuperLike</Button>
           </Paper>
