@@ -3,6 +3,7 @@ import CardForMain from "../CardForMain/CardForMain";
 import CardSolo from "../Card/Card";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
 import SpringModal from '../Questionnaire/Questionnaire'
+import ShareButton from "../ShareButton/ShareButton";
 
 export default function MainPage() {
   return (
@@ -25,6 +26,7 @@ export default function MainPage() {
         <button className="animated-button"> ВЫБРАТЬ ФИЛЬМ</button>
       </div>
         <hr />
+        <ShareButton/>
       <footer>
         <SvgIconsColor />
       </footer>

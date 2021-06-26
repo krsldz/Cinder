@@ -4,11 +4,13 @@ import AuthForm from './components/AuthForm/AuthForm'
 import Signout from './components/Signout/Signout';
 import Questionnaire from './components/Questionnaire/Questionnaire';
 
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 
 function App() {
   return (
+    <>
     <Router>
       <AppBar />
       <Switch>
@@ -20,6 +22,7 @@ function App() {
         {/* <Route exact path="/profile" component={Profiler} /> */}
       </Switch>
     </Router>
+    </>
   );
 }
 
