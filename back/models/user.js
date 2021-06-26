@@ -11,11 +11,24 @@ const usersSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
     required: true,
   },
+  profileFotos:{
+    type: String,
+  },
+  birthday:{
+   type: String,
+  },
+  sex:{
+
+    type: String,
+  },
+  
+
 });
 
 module.exports = mongoose.model('users', usersSchema);
