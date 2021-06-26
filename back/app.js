@@ -6,11 +6,17 @@ const User = require('./models/user');
 const { connect } = require('mongoose');
 const cors = require('cors');
 const morgan = require('morgan');
+const fileUpload = require('express-fileupload');
 
 const PORT = 8080;
 const DB_CONNECT = 'mongodb://localhost:27017/cinder';
 
+
+const testRouter = require('./routers/test');
 const authRouter = require('./routers/auth');
+const fotosRouter = require('./routers/foto');
+
+
 
 const app = express();
 
@@ -26,7 +32,7 @@ app.use(
     },
     store: MongoStore.create({ mongoUrl: DB_CONNECT }),
   })
-);
+)
 
 app.use(morgan('dev'));
 app.use(cors({
@@ -35,8 +41,11 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(fileUpload())
 
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1', testRouter);
+app.use('/api/v1', fotosRouter);
 
 app.listen(PORT, () => {
   console.log('server started!');
