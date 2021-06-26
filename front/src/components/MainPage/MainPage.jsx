@@ -24,6 +24,7 @@ export default function MainPage() {
         <button className="animated-button"> ВЫБРАТЬ ФИЛЬМ</button>
       </div>
 
+        <hr/>
       <footer>
         <SvgIconsColor />
       </footer>
