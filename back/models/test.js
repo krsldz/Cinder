@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const { Schema, model } = require('mongoose');
-// const options = {
-//   useNewUrlParser: true,
-//   useFindAndModify: false,
-//   useCreateIndex: true,
-//   useUnifiedTopology: true,
-//   poolSize: 10,
-//   bufferMaxEntries: 0
-// }
+const options = {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+  useUnifiedTopology: true,
+  poolSize: 10,
+  bufferMaxEntries: 0
+}
 
 const testSchema = new Schema({
   genre: Array,
