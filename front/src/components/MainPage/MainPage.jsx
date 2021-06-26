@@ -4,7 +4,8 @@ import CardSolo from "../Card/Card";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
 import SpringModal from '../Questionnaire/Questionnaire'
 import ShareButton from "../ShareButton/ShareButton";
-import ButtonsForCard from "../ButtonsForCard/ButtonsForCard"
+import ButtonsForCard from "../ButtonsForCard/ButtonsForCard";
+import LikedFilmsList from '../LikedFilmsList/LikedFilmsList';
 
 export default function MainPage() {
   return (
@@ -31,6 +32,8 @@ export default function MainPage() {
       <footer>
         <SvgIconsColor />
       </footer>
+      <hr />
+        <LikedFilmsList/>
       <div>
         <CardSolo />
       </div>
