@@ -1,8 +1,8 @@
 import "./MainPage.css";
 import CardForMain from "../CardForMain/CardForMain";
-import CardSolo from "../Card/Card";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
-import ButtonsForCard from "../ButtonsForCard/ButtonsForCard"
+import ButtonsForCard from "../ButtonsForCard/ButtonsForCard";
+import { Link } from "react-router-dom";
 
 export default function MainPage() {
   return (
@@ -22,20 +22,17 @@ export default function MainPage() {
         </div>
       </div>
       <div className="buttonDiv">
-        <button className="animated-button"> ВЫБРАТЬ ФИЛЬМ</button>
+        <Link to="/game">
+          <button className="animated-button"> ВЫБРАТЬ ФИЛЬМ</button>
+        </Link>
       </div>
 
-        <hr/>
+      <hr />
       <footer>
         <SvgIconsColor />
       </footer>
-      <div>
-        <CardSolo />
-      </div>
-      <br/>
-      <div>
-        <ButtonsForCard />
-      </div>
+
+
     </div>
   );
 }
