@@ -12,10 +12,11 @@ function App() {
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route exact path="/register" component={RegisterForm} />
-        <Route exact path="/login" component={AuthForm}/>
+        <Route exact path="/login" component={AuthForm} />
         {/* <Route exact path="/profile" component={Profiler} /> */}
       </Switch>
     </Router>
+
   );
 }
 
