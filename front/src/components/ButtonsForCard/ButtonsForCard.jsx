@@ -1,13 +1,10 @@
-import React from 'react';
+import React from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { makeStyles } from '@material-ui/core/styles';
-import {Box, Card, CardMedia} from '@material-ui/core'
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import Avatar from '@material-ui/core/Avatar';
-import CardSolo from "../Card/Card"
+import { makeStyles } from "@material-ui/core/styles";
+import CardSolo from "../Card/Card";
+import "./ButtonsForCard.css";
+import SvgIconsColor from "../FooterIcons/FooterIcons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,75 +12,75 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: "56.25%", // 16:9
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.text.secondary,
+  },
+  button: {
+    background: `url(${"/front/src/images/22222.jpeg"})`,
+    backgroundColor: "hotpink",
   },
 }));
 
+function ButtonsForCard() {
+  const classes = useStyles();
 
-function ButtonsForCard () {
+  // const allFilms = useSelector(state => state.films)
 
-const classes = useStyles()
+  // const [likeEvent, setLikeEvent] = useState('')
+  // const [dislikeEvent, setDislikeEvent] = useState('')
+  // const [dontKnowEvent, setKnowEvent] = useState('')
+  // const [superLikeEvent, setsuperLike] = useState('')
 
-// const allFilms = useSelector(state => state.films)
+  // const dislikeHandler = (id) => {
 
-// const [likeEvent, setLikeEvent] = useState('')
-// const [dislikeEvent, setDislikeEvent] = useState('')
-// const [dontKnowEvent, setKnowEvent] = useState('')
-// const [superLikeEvent, setsuperLike] = useState('')
+  // }
 
-// const dislikeHandler = (id) => {
-  
-// }
+  // const dontKnowHandler = (id) => {
 
-// const dontKnowHandler = (id) => {
-  
-// }
+  // }
 
-// const likeHandler = (id) => {
-  
-// }
+  // const likeHandler = (id) => {
 
-// const superLikeHandler = (id) => {
-  
-// }
+  // }
 
-return (
-  <>
-  <div className={classes.root}>
-      
-      <Grid container spacing={3}>
-        <Grid item xs>
-          <Paper className={classes.paper}>
-          <Button variant="contained">Dislike</Button>
-          <br/>
-          <Button variant="contained" color="primary">I don't know</Button>
-          </Paper>
-         
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>
-            <CardSolo/>
-          </Paper>
-        </Grid>
+  // const superLikeHandler = (id) => {
 
-        <Grid item xs>
-          <Paper className={classes.paper}> <Button variant="contained" color="primary">
-            Like</Button>
-          <br/>
-          <Button variant="contained" color="secondary">SuperLike</Button>
-          </Paper>
-         
-        </Grid>
-      </Grid>
-    </div>
-  </>
-  
-)
+  // }
+
+  return (
+    <>
+      <div>
+        <div className="divWithButtons">
+          <div className="divBut">
+            <img className="swing" src="https://img.icons8.com/ios/100/000000/thumbs-down.png" />
+            <img className="swing" src="https://img.icons8.com/ios/100/000000/question-mark--v1.png" />
+          </div>
+
+          <div className="boxGame">
+            <CardSolo />
+          </div>
+
+          <div className="divBut">
+            <img className="swing" src="https://img.icons8.com/ios/100/000000/thumb-up--v1.png" />
+            <img className="swing" src="https://img.icons8.com/windows/100/000000/filled-heart.png" />
+          </div>
+        </div>
+        <hr />
+        <footer>
+          <SvgIconsColor />
+          <div>
+            <a href="https://icons8.com/icon/aId5rVASLwDE/сердечко-с-заливкой">
+              icon by Icons8
+            </a>
+          </div>
+        </footer>
+      </div>
+    </>
+  );
 }
 
-export default ButtonsForCard
+export default ButtonsForCard;

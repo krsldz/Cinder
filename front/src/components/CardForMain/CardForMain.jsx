@@ -8,19 +8,17 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
-
 const useStyles = makeStyles({
   root: {
     width: "100%",
     color: "purple",
+    borderRadius: "5%",
   },
-});
 
+});
 
 export default function ImgMediaCard() {
   const classes = useStyles();
-
-
 
   return (
     <Card className={classes.root}>
