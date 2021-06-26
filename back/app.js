@@ -15,6 +15,8 @@ const testRouter = require('./routers/test');
 const authRouter = require('./routers/auth');
 
 
+
+
 const app = express();
 
 app.use(
@@ -36,7 +38,6 @@ app.use(cors({
   origin: true,
   credentials: true,
 }));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
