@@ -8,15 +8,15 @@ export default function MainPage() {
   return (
     <div>
       <div className="wrapper">
-        <div className="box box1">
+        <div className="box box1" id="1">
           <CardForMain />
           <span>Для просмотра с половинкой</span>
         </div>
-        <div className="box box2">
+        <div className="box box2" id="2">
           <CardForMain />
           <span>Для просмотра с мамой</span>
         </div>
-        <div className="box box3">
+        <div className="box box3" id="3">
           <CardForMain />
           <span>Для просмотра с семьей</span>
         </div>
@@ -24,7 +24,8 @@ export default function MainPage() {
       <div className="buttonDiv">
         <button className="animated-button"> ВЫБРАТЬ ФИЛЬМ</button>
       </div>
-        <hr />
+
+        <hr/>
       <footer>
         <SvgIconsColor />
       </footer>
