@@ -7,23 +7,22 @@ import ButtonsForCard from "./components/ButtonsForCard/ButtonsForCard";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
+import Profile from "./components/Profile/Profile";
+
 
 function App() {
   return (
-    <>
-    <Router>
-      <AppBar />
-      <Switch>
-        <Route exact path="/" component={MainPage} />
-        <Route exact path="/register" component={RegisterForm} />
-        <Route exact path="/login" component={AuthForm}/>
-        <Route exact path="/logout" component={Signout}/>
-        <Route exact path="/test" component={Questionnaire} />
-        {/* <Route exact path="/profile" component={Profiler} /> */}
-        <Route exact path="/game" component={ButtonsForCard} />
-      </Switch>
-    </Router>
-    </>
+    <Profile/>
+    // <Router>
+    //   <AppBar />
+    //   <Switch>
+    //     <Route exact path="/" component={MainPage} />
+    //     <Route exact path="/register" component={RegisterForm} />
+    //     <Route exact path="/login" component={AuthForm} />
+    //     {/* <Route exact path="/profile" component={Profiler} /> */}
+    //   </Switch>
+    // </Router>
+
   );
 }
 
