@@ -19,9 +19,12 @@ function onDropHandler(e) {
   e.preventDefault();
   let files =[...e.dataTransfer.files];
   const formData = new FormData();
+  console.log(files);
+  console.log(formData);
   formData.append('file', files[0]);
+  
   axios.post('http://localhost:8080/api/v1/fotos', formData)
-
+  setDrag(false)
 
 }
 
