@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
-import {signUp} from '../../redux/actions/user'
+import { signUp } from '../../redux/actions/user'
 
 export default function RegisterForm() {
 
@@ -19,7 +19,7 @@ export default function RegisterForm() {
   })
 
   const changeHandler = (e) => {
-    setUserSignUp(prev => ({...prev, [e.target.name]: e.target.value}))
+    setUserSignUp(prev => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
 
@@ -28,9 +28,9 @@ export default function RegisterForm() {
     let payload = Object.entries(userSignUp).filter((el) => el[1] ? el[1].trim() : el[1])
     if (payload.length) {
       payload = Object.fromEntries(payload)
-      dispatch(signUp(payload, history)) 
+      dispatch(signUp(payload, history))
     }
-  } 
+  }
 
   const classes = useStyles();
 
@@ -41,7 +41,9 @@ export default function RegisterForm() {
       <h4>Зарегистрируйтесь, чтобы выбрать фильм на вечер и не только</h4>
       <div>
         <TextField
+          required
           onChange={changeHandler}
+          type="text"
           name="username"
           id="outlined-textarea"
           label="Ваше имя"
@@ -51,8 +53,10 @@ export default function RegisterForm() {
       </div>
       <div>
         <TextField
+          required
           onChange={changeHandler}
           id="outlined-textarea"
+          type="email"
           name="email"
           value={userSignUp.email}
           label="Электронная почта"
@@ -62,8 +66,10 @@ export default function RegisterForm() {
       </div>
       <div>
         <TextField
+          required
           onChange={changeHandler}
           id="outlined-textarea"
+          type="password"
           name="password"
           label="Пароль"
           multiline

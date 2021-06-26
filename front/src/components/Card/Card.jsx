@@ -22,7 +22,7 @@ export default function CardSolo() {
       <CardActionArea>
         <CardMedia
           component="img"
-          alt="fucking card"
+          alt="card"
           height="440"
           image="/static/images/cards/contemplative-reptile.jpg"
           title="Contemplative Reptile"

@@ -1,13 +1,4 @@
 import { DELETE_USER, SET_USER } from "../types"
-import * as endPoints from '../../components/config/endPoints'
-
-export const getUserFromServer = (id) => async (dispatch) => {
-  const response = await fetch(endPoints.getUser(id), { credentials: 'include' })
-  if (response.status === 200) {
-    const currentUser = await response.json()
-    dispatch(setUser(currentUser))
-  }
-}
 
 export const setUser = (user) => ({
   type: SET_USER,
@@ -26,9 +17,10 @@ export const signUp = (payload, history) => async (dispatch) => {
     const user = await response.json()
     if (user) {
       dispatch(setUser(user))
-      history.replace('/');
+      history.replace('/test');
+    } else {
+      history.replace('/register');
     }
-    history.replace('/signup');
   }
 
 export const signIn = (payload, history, from) => async (dispatch) => {
