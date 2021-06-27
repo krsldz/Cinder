@@ -10,7 +10,7 @@ const options = {
 }
 
 const DB_HOST = 'localhost' // ТО ГДЕ НАХОДИТСЯ
-const DB_NAME = 'CINDER' // название базы данных
+const DB_NAME = 'cinder' // название базы данных
 const DB_PORT = 27017 // по умолчанию
 
 // ЭТО АДРЕС ПОДКЛЮЧЕНИЯ К СЕРВЕРУ
