@@ -6,10 +6,14 @@ import {Link} from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import { signIn, redirectToGoogle } from "../../redux/actions/user";
+import { signIn } from "../../redux/actions/user";
 import "../RegisterForm/RegisterForm";
 import GoogleButton from 'react-google-button';
 
+const redirectToGoogle = async () => {
+  const googleURL = 'http://localhost:8080/auth/google'
+  const newWindow = window.open(googleURL, "_blank", "width=500, height=600")
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +25,16 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AuthForm() {
+  // const fetchAuth = async () => {
+  //   const response = await axios.get('http://localhost:8080/auth/user', {withCredentials: true}).catch((err) => {
+  //      console.log(err);
+  //   });
+  //   if (response.data) {
+  //     console.log('User', response.data);
+  //   }
+  // }
+
+  
   const classes = useStyles();
   const [userSignIn, setUserSignIn] = useState({
     email: "",
@@ -84,7 +98,7 @@ export default function AuthForm() {
           Продолжить
         </Button>
         <div>
-        <Link to="/login/google"><GoogleButton onClick={redirectToGoogle} type="light" label='Войти через Google' /></Link>
+        <Link to="/google"><GoogleButton onClick={redirectToGoogle} type="light" label='Войти через Google' /></Link>
         </div>
       </form>
       <div>Еще нет учетной записи?</div>

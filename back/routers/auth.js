@@ -36,7 +36,7 @@ router.post('/signin', async (req, res) => {
           id: currentUser._id,
           name: currentUser.name,
         }
-        return res.json({ _id: currentUser._id, name: currentUser.userName })
+        return res.json({ _id: currentUser._id, name: currentUser.username })
       }
       return res.sendStatus(401)
     } catch (error) {
