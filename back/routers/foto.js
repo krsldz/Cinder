@@ -1,39 +1,39 @@
-const { Router } = require('express');
-const fs = require('fs');
-const { upload } = require('../controllers/uploaders');
-const User = require('../models/user');
+// const { Router } = require('express');
+// const fs = require('fs');
+// const { upload } = require('../controllers/uploaders');
+// const User = require('../models/user');
 
-async function addToDb(files, userId) {
-  const user = await User.findById(userId);
-  for (let i = 0; i < files.length; i++) {
-    const filename = files[i].filename;
-    const image = await Images.create({ filename });
-    user.gallery?.unshift(image);
-    await user.save();
-  }
-}
-
-
-
-const router = Router();
+// async function addToDb(files, userId) {
+//   const user = await User.findById(userId);
+//   for (let i = 0; i < files.length; i++) {
+//     const filename = files[i].filename;
+//     const image = await Images.create({ filename });
+//     user.gallery?.unshift(image);
+//     await user.save();
+//   }
+// }
 
 
-router.post('/fotos', async (req, res)=>{
-  console.log(req.files);
+
+// const router = Router();
+
+
+// router.post('/fotos', async (req, res)=>{
+//   console.log(req.files);
  
 
   
-})
+// })
 
 
-module.exports = router;
+// module.exports = router;
 
 
 
 const { Router } = require('express');
 const fs = require('fs');
-const deleteFileCallback = require('../controllers/deleteFile');
-const Images = require('../db/images');
+const deleteFileCallback = require('../controlers/uploaders');
+const Images = require('../models/');
 const User = require('../db/user');
 const { upload } = require('../controllers/uploaders');
 const protection = require('../controllers/protection');

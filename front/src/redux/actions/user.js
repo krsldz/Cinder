@@ -53,3 +53,8 @@ export const signOut = () => async (dispatch) => {
 export const deleteUser = () => ({
   type: DELETE_USER
 })
+
+export const redirectToGoogle = () => async () => {
+  const googleURL = 'http://localhost:8080/google'
+  const newWindow = window.open(googleURL, "_blank", "width=500, height=600")
+}
