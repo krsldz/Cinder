@@ -1,10 +1,14 @@
 const multer = require('multer');
+
 const storage = multer.diskStorage({
-  destination: './public/uploads/',
+  destination: function (req,file,cb) {
+    cb(null,'../uploads/');
+  },
+   
   filename: function (req, file, cb) {
     cb(
       null,
-      file.fieldname + '-' + Date.now() + Math.random().toString(36).substr(2, 5) + path.extname(file.originalname)
+      '-' + Date.now() + Math.random().toString(36).substr(2, 5) + path.extname(file.originalname)
     );
   },
 });
@@ -15,7 +19,7 @@ const upload = multer({
   fileFilter: function (req, file, cb) {
     checkFileType(file, cb);
   },
-}).any('file');
+}).single('filename');
 function checkFileType(file, cb) {
   // console.log(file);
   const fileTypes = /jpeg|jpg|png|gif/;

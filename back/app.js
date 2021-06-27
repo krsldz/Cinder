@@ -9,6 +9,8 @@ const cors = require('cors');
 const morgan = require('morgan');
 const fileUpload = require('express-fileupload');
 require ('./passport-setup');
+const multer = require('multer');
+const storage = require('./controlers/uploaders')
 
 const PORT = 8080;
 const DB_CONNECT = 'mongodb://localhost:27017/cinder';
@@ -17,7 +19,6 @@ const DB_CONNECT = 'mongodb://localhost:27017/cinder';
 const testRouter = require('./routers/test');
 const authRouter = require('./routers/auth');
 const fotosRouter = require('./routers/foto');
-
 
 
 const app = express();
@@ -45,6 +46,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload())
+app.use('/uploads', express.static('uploads'))
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1', testRouter);
@@ -62,7 +64,7 @@ app.get('/google/callback',
   app.use(passport.initialize());
   app.use(passport.session());
 
-
+ 
 app.listen(PORT, () => {
   console.log('server started!');
   connect(
