@@ -5,6 +5,7 @@ const MongoStore = require('connect-mongo');
 const path = require('path');
 const User = require('./models/user');
 const { connect } = require('mongoose');
+require('dotenv').config();
 const cors = require('cors');
 const morgan = require('morgan');
 const fileUpload = require('express-fileupload');
@@ -12,8 +13,8 @@ require ('./passport-setup');
 const multer = require('multer');
 const storage = require('./controlers/uploaders')
 
-const PORT = 8080;
-const DB_CONNECT = 'mongodb://localhost:27017/cinder';
+const PORT = process.env.PORT ?? 8080;
+const DB_CONNECT = process.env.DB_CONNECT;
 
 
 const testRouter = require('./routers/test');
