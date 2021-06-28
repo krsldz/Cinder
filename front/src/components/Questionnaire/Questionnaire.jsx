@@ -1,47 +1,47 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import { useSpring, animated } from 'react-spring'; // web.cjs is required for IE 11 supportъ
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import { useSpring, animated } from "react-spring"; // web.cjs is required for IE 11 supportъ
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import FormGroup from '@material-ui/core/FormGroup';
 import Typography from '@material-ui/core/Typography';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { Link } from 'react-router-dom';
-import Radio from '@material-ui/core/Radio';
+import { Link } from "react-router-dom";
+import Radio from "@material-ui/core/Radio";
 import { useState, useEffect } from "react";
-import Favorite from '@material-ui/icons/Favorite';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-import Checkbox from '@material-ui/core/Checkbox';
-import axios from 'axios';
-axios.defaults.withCredentials = true
-
-
+import Favorite from "@material-ui/icons/Favorite";
+import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
+import Checkbox from "@material-ui/core/Checkbox";
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 125,
+    minWidth: 500,
   },
   modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
     minWidth: 125,
-    border: '1px solid #000',
+    border: "5px solid #802bb1",
+    borderRadius: "5px",
     boxShadow: theme.shadows[1],
     padding: theme.spacing(2, 4, 3),
   },
   bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)",
   },
   title: {
     fontSize: 10,
@@ -84,24 +84,24 @@ Fade.propTypes = {
 
 export default function SpringModal() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = useState();
-  const [showsecond, setShowsecond] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState({
+    jenre: [],
+    withWhom: '',
+    mood: ''
+  });
+  const [userJenre, setUserJenre] = useState([])
   const [show, setShow] = useState(false);
   const [second, setSecond] = useState(true);
   const [base, setBase] = useState({});
-console.log(base);
-console.log(base.genre);
+  console.log(base);
+  // console.log(base.genre);
 
   useEffect(() => {
-  axios.get("http://localhost:8080/api/v1/test")
-      .then(res => setBase(res.data))
-
-        
-      
-  }
-    , []);
-
+    axios
+      .get("http://localhost:8080/api/v1/test")
+      .then((res) => setBase(res.data));
+  }, []);
 
   const handleOpen = () => {
     setOpen(true);
@@ -109,25 +109,43 @@ console.log(base.genre);
 
   const handleClose = () => {
     setOpen(false);
+    setShow(false);
+    setSecond(true);
+    axios.post('http://localhost:8080/api/v1/compilation', value)
+    setUserJenre({});
+    setValue({
+      jenre: [],
+    withWhom: '',
+    mood: ''
+    })
+
+
   };
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  const handleChange = (e) => {
+  
+    setValue((prev) => ({ ...prev, [e.target.name]: e.target.value  }));
+    setValue((prev)=>({...prev, jenre: userJenre}));
   };
   console.log(value);
 
-  const handlesetShow = () => {
-    setShowsecond(true)
-
-  }
   const handleShow = () => {
-    setShow(true)
-
-  }
+    setShow(true);
+  };
   const secondShow = () => {
     setSecond(false);
 
   }
+  const handleJenre = (e) => {
+    console.log(e);
+    setUserJenre((prev)=>[...prev, e.target.value]);
+    
 
+    
+  }
+
+  
+
+  console.log(userJenre);
 
 
   return (
@@ -141,7 +159,6 @@ console.log(base.genre);
         className={classes.modal}
         open={open}
         onClose={handleClose}
-
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -162,13 +179,20 @@ console.log(base.genre);
                     <Typography variant="body2" component="p">
                       <p>Жанр</p>
                       <br />
-                      <RadioGroup aria-label="Variant" name="Variant" value={value} onChange={handleChange} >
+                      <RadioGroup aria-label="Variant"  onChange={handleJenre} >
                         {base?.genre?.map((item) =>
+                        <FormGroup row>
                           <FormControlLabel
+
+                         onChange={handleJenre}
                             value={item}
                             control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} name="checkedH" />}
                             label={item}
-                          />)}
+                            
+                          />
+                           </FormGroup>
+                          )}
+                         
                       </RadioGroup>
                     </Typography>
                   </CardContent>
@@ -185,9 +209,13 @@ console.log(base.genre);
                     <Typography variant="body2" component="p">
                       <p>Настроение</p>
                       <br />
-                      <RadioGroup aria-label="Variant" name="Variant" value={value} onChange={handleChange} >
+                      <RadioGroup aria-label="Variant" name="mood" onChange={handleChange} >
                         {base?.mood?.map((item) =>
-                          <FormControlLabel value={item} control={<Radio />} label={item} />)}
+                        <FormGroup row>
+                          <FormControlLabel
+                           value={item}
+                            control={<Radio />} label={item} />
+                          </FormGroup>)}
                       </RadioGroup>
                     </Typography>
                   </CardContent>
@@ -206,9 +234,11 @@ console.log(base.genre);
                   <Typography variant="body2" component="p">
                     <p> С кем?</p>
                     <br />
-                    <RadioGroup aria-label="Variant" name="Variant" value={value} onChange={handleChange} >
+                    <RadioGroup aria-label="Variant" name="withWhom"  onChange={handleChange} >
                       {base?.withWhom?.map((item) =>
-                        <FormControlLabel value={item} control={<Radio />} label={item} />)}
+                      <FormGroup row>
+                        <FormControlLabel value={item} control={<Radio />} label={item} />
+                        </FormGroup>)}
                     </RadioGroup>
                   </Typography>
                 </CardContent>
@@ -222,10 +252,6 @@ console.log(base.genre);
 
 
             </div>
-
-
-
-     
           </div>
         </Fade>
       </Modal>

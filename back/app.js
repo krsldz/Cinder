@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const passport = require ('passport');
 const MongoStore = require('connect-mongo');
 const path = require('path');
 const User = require('./models/user');
@@ -8,6 +9,7 @@ require('dotenv').config();
 const cors = require('cors');
 const morgan = require('morgan');
 const fileUpload = require('express-fileupload');
+require ('./passport-setup');
 const multer = require('multer');
 const storage = require('./controlers/uploaders')
 
@@ -18,6 +20,7 @@ const DB_CONNECT = process.env.DB_CONNECT;
 const testRouter = require('./routers/test');
 const authRouter = require('./routers/auth');
 const fotosRouter = require('./routers/foto');
+const compilationRouter = require('./routers/compilation');
 
 
 const app = express();
@@ -46,9 +49,11 @@ app.use(
   app.use(fileUpload())
   app.use('/uploads', express.static('uploads'))
   
+
   app.use('/api/v1/auth', authRouter);
   app.use('/api/v1', testRouter);
   app.use('/api/v1', fotosRouter);
+  app.use('/api/v1', compilationRouter);
   
  
 app.listen(PORT, () => {

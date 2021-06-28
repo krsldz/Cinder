@@ -1,9 +1,18 @@
-import { DELETE_USER, SET_USER } from "../types"
+import { DELETE_USER, SET_USER, UPDATE_USER } from "../types"
 
 export const setUser = (user) => ({
   type: SET_USER,
   payload: user
 })
+
+// export const updateUser = (user) =>({
+//   type: UPDATE_USER,
+//   payload: user
+// })
+
+// export const updateUser =(payload, history) => async(dispatch) => {
+//   response = awai
+// }
 
 export const signUp = (payload, history) => async (dispatch) => {
   const response = await fetch('http://localhost:8080/api/v1/auth/signup', {
@@ -53,3 +62,8 @@ export const signOut = () => async (dispatch) => {
 export const deleteUser = () => ({
   type: DELETE_USER
 })
+
+export const redirectToGoogle = () => async () => {
+  const googleURL = 'http://localhost:8080/google'
+  const newWindow = window.open(googleURL, "_blank", "width=500, height=600")
+}
