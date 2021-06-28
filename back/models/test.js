@@ -60,14 +60,15 @@ async function  asnwersFabric(){
  }
  await Test.create(tests)
 }
+
 function dbConnect(){
-  mongoose.connect('mongodb://localhost:27017/cinder', options, (err)=>{
+  mongoose.connect(process.env.DB_CONNECT, options, (err)=>{
     if(err) return console.log(err)
     console.log('success connected to mongo');
     asnwersFabric()
   })
 }
-dbConnect()
+// dbConnect()
 
 
 module.exports = Test;
