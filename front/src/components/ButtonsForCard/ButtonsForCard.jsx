@@ -29,30 +29,59 @@ const useStyles = makeStyles((theme) => ({
 function ButtonsForCard() {
   const classes = useStyles();
   
-  let films = useSelector(state => state.films)
 
-  // const allFilms = useSelector(state => state.films)
 
-  // const [likeEvent, setLikeEvent] = useState('')
-  // const [dislikeEvent, setDislikeEvent] = useState('')
-  // const [dontKnowEvent, setKnowEvent] = useState('')
-  // const [superLikeEvent, setsuperLike] = useState('')
+  let allFilms = useSelector(state => state.films)
 
-  // const dislikeHandler = (id) => {
+  const [likeEvent, setLikeEvent] = useState([])
+  const [superLikeEvent, setsuperLike] = useState([])
 
-  // }
+  function removeItemOnce(arr, value) {
+    let index = arr.indexOf(value);
+    if (index > -1) {
+      arr.splice(index, 1);
+    }
+    return arr;
+  }
 
-  // const dontKnowHandler = (id) => {
+  const dislikeHandler = (id) => {
+    let dislikeFilm = allFilms.filter(film=>film.id===id );
+    allFilms = removeItemOnce(allFilms, dislikeFilm);
 
-  // }
 
-  // const likeHandler = (id) => {
+   
 
-  // }
+  }
 
-  // const superLikeHandler = (id) => {
+  const dontKnowHandler = (id) => {
+   let dontKnowFilm = allFilms.filter(film=>film.id===id );
+  allFilms = removeItemOnce(allFilms, dontKnowFilm);
+  allFilms.push(dontKnowFilm);
 
-  // }
+
+
+
+
+  }
+
+  const likeHandler = (id) => {
+    let likeFilm = allFilms.filter(film=>film.id==id);
+    allFilms = removeItemOnce(allFilms, likeFilm);
+    setLikeEvent(prev=>[...prev, likeFilm ])
+    
+
+
+  }
+
+  const superLikeHandler = (id) => {
+
+    let superLikeFilm = allFilms.filter(film=>film.id==id);
+    allFilms = removeItemOnce(allFilms, superLikeFilm);
+
+
+    setsuperLike(prev=>[...prev, superLikeFilm])
+
+  }
 
   return (
     <>
@@ -60,6 +89,8 @@ function ButtonsForCard() {
         <div className="divWithButtons">
           <div className="divBut">
             <img
+     
+
               className="swing"
               src="https://img.icons8.com/ios/100/000000/thumbs-down.png"
             />
@@ -75,6 +106,8 @@ function ButtonsForCard() {
 
           <div className="divBut">
             <img
+                //  onClick={likeHandler}
+                
               className="swing"
               src="https://img.icons8.com/ios/100/000000/thumb-up--v1.png"
             />
@@ -87,10 +120,13 @@ function ButtonsForCard() {
         <hr />
         <footer>
           <SvgIconsColor />
-          <div>
-            <a href="https://icons8.com/icon/aId5rVASLwDE/сердечко-с-заливкой">
+          <div >
+           
+            <a href="https://icons8.com/icon/aId5rVASLwDE/сердечко-с-заливкой" >
               icon by Icons8
             </a>
+
+          
           </div>
         </footer>
       </div>
