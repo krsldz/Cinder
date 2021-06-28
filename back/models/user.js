@@ -7,16 +7,30 @@ const usersSchema = new mongoose.Schema({
   },
   userLastName: {
     type: String,
-    required: true,
   },
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
     required: true,
   },
+  profileFotos:{
+    type: String,
+  },
+  birthday:{
+   type: String,
+  },
+  sex:{
+
+    type: String,
+  },
+  nickname:{
+    type: String,
+  },
+
 });
 
 module.exports = mongoose.model('users', usersSchema);
