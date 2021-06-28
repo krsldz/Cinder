@@ -6,6 +6,7 @@ import CardSolo from "../Card/Card";
 import "./ButtonsForCard.css";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -27,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
 
 function ButtonsForCard() {
   const classes = useStyles();
+  
+  let films = useSelector(state => state.films)
 
   const likeFilms = useSelector(state => state.likefilms)
   const superLikeFilms = useSelector(state => state.superlikefilms)
@@ -103,6 +106,7 @@ function ButtonsForCard() {
           </div>
         </footer>
       </div>
+      <div><h3>Подборка для юзера:</h3> {films.map(film => <CardSolo id={film.idKP} />)}</div>
     </>
   );
 }

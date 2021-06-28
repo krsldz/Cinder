@@ -22,10 +22,15 @@
     "fs": "*",
     "moment": "^2.29.1",
     "mongoose": "^5.12.14",
+    "mongoose-findorcreate": "^3.0.0",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
     "passport": "^0.4.1",
     "passport-google-oauth": "^2.0.0",
+<<<<<<< HEAD
+=======
+    "passport-google-oauth20": "^2.0.0",
+>>>>>>> b806bba0cbcdf1c1e503c2b86f23ba294e75e8f8
     "path": "^0.12.7",
     "pipeline": "^0.1.3",
     "router": "^1.3.5"

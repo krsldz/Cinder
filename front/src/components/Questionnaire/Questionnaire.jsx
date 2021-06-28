@@ -19,11 +19,13 @@ import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import Checkbox from "@material-ui/core/Checkbox";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import {initFilmsAC} from '../../redux/actions/filmsCreator';
 axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 500,
+    // maxHeight: "300px",
   },
   modal: {
     display: "flex",
@@ -31,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   root: {
-    minWidth: 500,
     fontSize: 30,
     backgroundColor: "#4c494c",
     color: "white",
@@ -40,6 +41,8 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "#564f6f",
     minWidth: 125,
+    maxWidth: 700,
+    minHeight: 300,
     border: "3px solid #802bb1",
     borderRadius: "10px",
     // boxShadow: theme.shadows[1],
@@ -47,20 +50,20 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
-  // bullet: {
-  //   display: "inline-block",
-  //   margin: "0 2px",
-  //   transform: "scale(0.8)",
-  // },
+
   title: {
     fontSize: 20,
     color: "white",
+    textAlign: "center",
   },
   pos: {
     marginBottom: 2,
   },
   button: {
+    margin: "0 auto",
     backgroundColor: "#564f6f",
   },
 }));
@@ -108,6 +111,8 @@ export default function SpringModal() {
   const [show, setShow] = useState(false);
   const [second, setSecond] = useState(true);
   const [base, setBase] = useState({});
+  const [allUserFilms, setAllUserFilms] = useState([])
+  const dispatch = useDispatch();
   console.log(base);
   // console.log(base.genre);
 
@@ -125,19 +130,23 @@ export default function SpringModal() {
     setOpen(false);
     setShow(false);
     setSecond(true);
-    axios.post("http://localhost:8080/api/v1/compilation", value);
+   dispatch(initFilmsAC(value))
+    // axios.post('http://localhost:8080/api/v1/compilation', value).then(res=>setAllUserFilms(res.data))
     setUserJenre({});
     setValue({
       jenre: [],
-      withWhom: "",
-      mood: "",
-    });
+    withWhom: '',
+    mood: ''
+    })
   };
+
   const handleChange = (e) => {
-    setValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    setValue((prev) => ({ ...prev, jenre: userJenre }));
+  
+    setValue((prev) => ({ ...prev, [e.target.name]: e.target.value  }));
+    setValue((prev)=>({...prev, jenre: userJenre}));
+
   };
-  console.log(value);
+  // console.log(value);
 
   const handleShow = () => {
     setShow(true);
@@ -171,7 +180,10 @@ export default function SpringModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="spring-modal-title">Пройти тест</h2>
+            <h2 id="spring-modal-title">
+              {" "}
+              Выберете для себя важные параметры  фильма{" "}
+            </h2>
             <div>
               {second ? (
                 <div>
@@ -183,14 +195,14 @@ export default function SpringModal() {
                           color="textSecondary"
                           gutterBottom
                         >
-                          Вопрос
+                          Жанр
                         </Typography>
                         <Typography variant="body2" component="p">
-                          <p>Жанр</p>
                           <br />
                           <RadioGroup
                             aria-label="Variant"
                             onChange={handleJenre}
+                            className={classes.content}
                           >
                             {base?.genre?.map((item) => (
                               <FormGroup row>
@@ -218,7 +230,7 @@ export default function SpringModal() {
                           onClick={secondShow}
                           className={classes.button}
                         >
-                          Отправить ответ
+                          Далее
                         </Button>
                       </CardActions>
                     </Card>
@@ -233,12 +245,12 @@ export default function SpringModal() {
                           Вопрос
                         </Typography>
                         <Typography variant="body2" component="p">
-                          <p>Настроение</p>
                           <br />
                           <RadioGroup
                             aria-label="Variant"
                             name="mood"
                             onChange={handleChange}
+                            className={classes.content}
                           >
                             {base?.mood?.map((item) => (
                               <FormGroup row>
@@ -259,7 +271,7 @@ export default function SpringModal() {
                           onClick={handleShow}
                           className={classes.button}
                         >
-                          Отправить ответ
+                          Далее
                         </Button>
                       </CardActions>
                     </Card>
@@ -278,12 +290,12 @@ export default function SpringModal() {
                         Вопрос
                       </Typography>
                       <Typography variant="body2" component="p">
-                        <p> С кем?</p>
                         <br />
                         <RadioGroup
                           aria-label="Variant"
                           name="withWhom"
                           onChange={handleChange}
+                          className={classes.content}
                         >
                           {base?.withWhom?.map((item) => (
                             <FormGroup row>
@@ -306,7 +318,7 @@ export default function SpringModal() {
                           onClick={handleClose}
                           className={classes.button}
                         >
-                          Отправить ответ
+                          Подобрать фильмы
                         </Button>
                       </Link>
                     </CardActions>
@@ -317,6 +329,7 @@ export default function SpringModal() {
           </div>
         </Fade>
       </Modal>
+    
     </div>
   );
 }
