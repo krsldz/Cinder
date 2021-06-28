@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const passport = require ('passport');
 const MongoStore = require('connect-mongo');
 const path = require('path');
 const User = require('./models/user');
@@ -7,6 +8,7 @@ const { connect } = require('mongoose');
 const cors = require('cors');
 const morgan = require('morgan');
 const fileUpload = require('express-fileupload');
+require ('./passport-setup');
 const multer = require('multer');
 const storage = require('./controlers/uploaders')
 
