@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+require('dotenv').config();
 const options = {
   useNewUrlParser: true, // говорим mongoose, что строка подключения будет в новом формате (новый формат должен обязательно содеражт порт)
   useFindAndModify: false, // заставляем методы findOneAndUpdate() и findOneAndRemove() использовать нативный (т.е предоставленный самой mongodb) метод findOneAndUpdate() вместо findAndModify()
@@ -14,10 +15,12 @@ const DB_NAME = 'cinder' // название базы данных
 const DB_PORT = 27017 // по умолчанию
 
 // ЭТО АДРЕС ПОДКЛЮЧЕНИЯ К СЕРВЕРУ
-const dbConnectionURL = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`
+// const dbConnectionURL = `mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`
+const DB_CONNECT = process.env.DB_CONNECT;
+console.log(DB_CONNECT);
 // mongodb://localhost:27017/p1w3d3
 
 module.exports = {
-  dbConnectionURL,
+  DB_CONNECT,
   options,
 }
