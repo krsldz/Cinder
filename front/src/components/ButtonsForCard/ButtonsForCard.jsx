@@ -31,28 +31,40 @@ function ButtonsForCard() {
   
   let films = useSelector(state => state.films)
 
-  // const allFilms = useSelector(state => state.films)
+  const likeFilms = useSelector(state => state.likefilms)
+  const superLikeFilms = useSelector(state => state.superlikefilms)
+  const allFilms = useSelector(state => state.allFilms)
 
-  // const [likeEvent, setLikeEvent] = useState('')
+  const [likeEvent, setLikeEvent] = useState(likeFilms)
   // const [dislikeEvent, setDislikeEvent] = useState('')
   // const [dontKnowEvent, setKnowEvent] = useState('')
-  // const [superLikeEvent, setsuperLike] = useState('')
+  const [superLikeEvent, setSuperLike] = useState(superLikeFilms)
 
-  // const dislikeHandler = (id) => {
+  const dislikeHandler = (id) => {
+    const currFilm = allFilms.filter((film) => film.id === id)
+    const indexCurrFilm = allFilms.indexOf(currFilm);
+    if (indexCurrFilm > -1) {
+      allFilms.splice(indexCurrFilm, 1);
+    }
+  }
 
-  // }
+  const dontKnowHandler = (id) => {
+    const currFilm = allFilms.filter((film) => film.id === id)
+    const indexCurrFilm = allFilms.indexOf(currFilm);
+    if (indexCurrFilm > -1) {
+      allFilms.splice(indexCurrFilm, 1).push(indexCurrFilm);
+    }
+  }
 
-  // const dontKnowHandler = (id) => {
+  const likeHandler = (id) => {
+    const currFilm = allFilms.filter((film) => film.id === id)
+    setLikeEvent(prev => [...prev, currFilm])
+  }
 
-  // }
-
-  // const likeHandler = (id) => {
-
-  // }
-
-  // const superLikeHandler = (id) => {
-
-  // }
+  const superLikeHandler = (id) => {
+    const currFilm = allFilms.filter((film) => film.id === id)
+    setSuperLike(currFilm)
+  }
 
   return (
     <>
