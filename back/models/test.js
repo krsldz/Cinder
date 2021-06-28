@@ -60,6 +60,7 @@ async function  asnwersFabric(){
  }
  await Test.create(tests)
 }
+
 function dbConnect(){
   mongoose.connect(process.env.DB_CONNECT, options, (err)=>{
     if(err) return console.log(err)
@@ -67,7 +68,7 @@ function dbConnect(){
     asnwersFabric()
   })
 }
-dbConnect()
+// dbConnect()
 
 
 module.exports = Test;
