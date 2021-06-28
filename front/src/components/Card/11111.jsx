@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import axios from "axios";
-import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -21,19 +20,17 @@ const useStyles = makeStyles({
 export default function CardSolo() {
   const classes = useStyles();
 
-  const [infoAboutMovie, setInfoAboutMovie] = useState({});
+  const [infoAboutMovie, setInfoAboutMovie] = useState({})
   const movieInfo = (id) => {
-    fetch(
-      `https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`
-    )
-      .then((res) => res.json())
-      .then((data) => setInfoAboutMovie(data));
+    fetch(`https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`)
+    .then(res => res.json()).then(data => setInfoAboutMovie(data))
     //const currMovie = response.json()
     //return currMovie
-  };
-  useEffect(() => {
-    movieInfo(1143242);
-  }, []);
+  }
+ useEffect(() => {
+  movieInfo(1143242)
+ }, [])
+ 
 
   return (
     <div className="card">
@@ -45,16 +42,16 @@ export default function CardSolo() {
               alt="fucking card"
               height="100%"
               image={infoAboutMovie?.poster}
-              title="Contemplative Reptile"
+            title="Contemplative Reptile"
             />
 
             <div className="dws-text">
               <h2 gutterBottom variant="h5" component="h2">
-                {infoAboutMovie?.title}
+              {infoAboutMovie?.title} 
               </h2>
               <hr />
               <p variant="body2" component="p">
-                {infoAboutMovie?.description}
+              {infoAboutMovie?.description}
               </p>
             </div>
           </CardActionArea>
