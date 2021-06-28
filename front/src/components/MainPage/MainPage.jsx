@@ -27,13 +27,10 @@ export default function MainPage() {
         </div>
       </div>
       <div className="buttonDiv">
-        <Link to="/game">
-          <button className="animated-button"> Пройти тест </button>
-        </Link>
         <SpringModal />
       </div>
       <hr />
-      <ShareButton />
+
       <footer>
         <SvgIconsColor />
       </footer>

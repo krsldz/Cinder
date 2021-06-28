@@ -26,7 +26,10 @@ const usersSchema = new mongoose.Schema({
   },
   googleId:{
     type: String,
-  }
+  },
+  nickname:{
+    type: String,
+  },
 
 });
 

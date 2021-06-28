@@ -1,9 +1,18 @@
-import { DELETE_USER, SET_USER } from "../types"
+import { DELETE_USER, SET_USER, UPDATE_USER } from "../types"
 
 export const setUser = (user) => ({
   type: SET_USER,
   payload: user
 })
+
+// export const updateUser = (user) =>({
+//   type: UPDATE_USER,
+//   payload: user
+// })
+
+// export const updateUser =(payload, history) => async(dispatch) => {
+//   response = awai
+// }
 
 export const signUp = (payload, history) => async (dispatch) => {
   const response = await fetch('http://localhost:8080/api/v1/auth/signup', {

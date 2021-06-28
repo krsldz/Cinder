@@ -5,6 +5,7 @@ const MongoStore = require('connect-mongo');
 const path = require('path');
 const User = require('./models/user');
 const { connect } = require('mongoose');
+require('dotenv').config();
 const cors = require('cors');
 const morgan = require('morgan');
 const fileUpload = require('express-fileupload');
@@ -12,13 +13,14 @@ const multer = require('multer');
 const storage = require('./controlers/uploaders')
 require('./passport-setup');
 
-const PORT = 8080;
-const DB_CONNECT = 'mongodb://localhost:27017/cinder';
+const PORT = process.env.PORT ?? 8080;
+const DB_CONNECT = process.env.DB_CONNECT;
 
 
 const testRouter = require('./routers/test');
 const authRouter = require('./routers/auth');
-
+const fotosRouter = require('./routers/foto');
+const compilationRouter = require('./routers/compilation');
 
 
 const app = express();
@@ -51,7 +53,8 @@ app.use('/uploads', express.static('uploads'))
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1', testRouter);
-
+app.use('/api/v1', fotosRouter);
+app.use('/api/v1', compilationRouter);
 
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -76,9 +79,8 @@ app.get('/auth/user', (req, res) => {
   console.log(req.user);
   res.json(req.user)
 })
-
-
-
+  
+ 
 app.listen(PORT, () => {
   console.log('server started!');
   connect(
