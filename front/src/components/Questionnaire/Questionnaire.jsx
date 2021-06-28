@@ -8,10 +8,10 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
-import FormGroup from '@material-ui/core/FormGroup';
-import Typography from '@material-ui/core/Typography';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormGroup from "@material-ui/core/FormGroup";
+import Typography from "@material-ui/core/Typography";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 import { Link } from "react-router-dom";
 import Radio from "@material-ui/core/Radio";
 import { useState, useEffect } from "react";
@@ -25,31 +25,46 @@ axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minWidth: 500,
+    // maxHeight: "300px",
   },
   modal: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
   },
+  root: {
+    fontSize: 30,
+    backgroundColor: "#4c494c",
+    color: "white",
+    border: "1px solid #802bb1",
+  },
   paper: {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "#564f6f",
     minWidth: 125,
-    border: "5px solid #802bb1",
-    borderRadius: "5px",
-    boxShadow: theme.shadows[1],
+    maxWidth: 700,
+    minHeight: 300,
+    border: "3px solid #802bb1",
+    borderRadius: "10px",
+    // boxShadow: theme.shadows[1],
     padding: theme.spacing(2, 4, 3),
   },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
+  content: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
   },
+
   title: {
-    fontSize: 10,
+    fontSize: 20,
+    color: "white",
+    textAlign: "center",
   },
   pos: {
     marginBottom: 2,
+  },
+  button: {
+    margin: "0 auto",
+    backgroundColor: "#564f6f",
   },
 }));
 
@@ -89,10 +104,10 @@ export default function SpringModal() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState({
     jenre: [],
-    withWhom: '',
-    mood: ''
+    withWhom: "",
+    mood: "",
   });
-  const [userJenre, setUserJenre] = useState([])
+  const [userJenre, setUserJenre] = useState([]);
   const [show, setShow] = useState(false);
   const [second, setSecond] = useState(true);
   const [base, setBase] = useState({});
@@ -131,32 +146,25 @@ export default function SpringModal() {
     setValue((prev)=>({...prev, jenre: userJenre}));
 
   };
-  console.log(value);
+  // console.log(value);
 
   const handleShow = () => {
     setShow(true);
   };
   const secondShow = () => {
     setSecond(false);
-
-  }
+  };
   const handleJenre = (e) => {
     console.log(e);
-    setUserJenre((prev)=>[...prev, e.target.value]);
-    
-
-    
-  }
-
-  
+    setUserJenre((prev) => [...prev, e.target.value]);
+  };
 
   console.log(userJenre);
 
-
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        Тест
+      <button type="button" className="animated-button" onClick={handleOpen}>
+        Выбрать фильм
       </button>
       <Modal
         aria-labelledby="spring-modal-title"
@@ -172,90 +180,151 @@ export default function SpringModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="spring-modal-title">Пройти тест</h2>
+            <h2 id="spring-modal-title">
+              {" "}
+              Выберете для себя важные параметры  фильма{" "}
+            </h2>
             <div>
-
-              {second ? <div>
-                {show ? (<Card className={classes.root}>
-                  <CardContent>
-                    <Typography className={classes.title} color="textSecondary" gutterBottom>
-                      Вопрос
-              </Typography>
-                    <Typography variant="body2" component="p">
-                      <p>Жанр</p>
-                      <br />
-                      <RadioGroup aria-label="Variant"  onChange={handleJenre} >
-                        {base?.genre?.map((item) =>
-                        <FormGroup row>
-                          <FormControlLabel
-
-                         onChange={handleJenre}
-                            value={item}
-                            control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} name="checkedH" />}
-                            label={item}
-                            
-                          />
-                           </FormGroup>
-                          )}
-                         
-                      </RadioGroup>
-                    </Typography>
-                  </CardContent>
-                  <CardActions >
-                    <Button size="small" variant="contained" color="primary" onClick={secondShow} >Отправить ответ</Button>
-                  </CardActions>
-
-
-                </Card>) : (<Card className={classes.root}>
-                  <CardContent>
-                    <Typography className={classes.title} color="textSecondary" gutterBottom>
-                      Вопрос
-              </Typography>
-                    <Typography variant="body2" component="p">
-                      <p>Настроение</p>
-                      <br />
-                      <RadioGroup aria-label="Variant" name="mood" onChange={handleChange} >
-                        {base?.mood?.map((item) =>
-                        <FormGroup row>
-                          <FormControlLabel
-                           value={item}
-                            control={<Radio />} label={item} />
-                          </FormGroup>)}
-                      </RadioGroup>
-                    </Typography>
-                  </CardContent>
-                  <CardActions >
-                    <Button size="small" variant="contained" color="primary" onClick={handleShow} >Отправить ответ</Button>
-                  </CardActions>
-
-                </Card>)
-                }
-
-              </div> : <div> <Card className={classes.root}>
-                <CardContent>
-                  <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    Вопрос
-        </Typography>
-                  <Typography variant="body2" component="p">
-                    <p> С кем?</p>
-                    <br />
-                    <RadioGroup aria-label="Variant" name="withWhom"  onChange={handleChange} >
-                      {base?.withWhom?.map((item) =>
-                      <FormGroup row>
-                        <FormControlLabel value={item} control={<Radio />} label={item} />
-                        </FormGroup>)}
-                    </RadioGroup>
-                  </Typography>
-                </CardContent>
-                <CardActions >
-                  <Button size="small" variant="contained" color="primary" onClick={handleClose} >Отправить ответ</Button>
-                </CardActions>
-              </Card></div>
-
-
-              }
-
-
+              {second ? (
+                <div>
+                  {show ? (
+                    <Card className={classes.root}>
+                      <CardContent>
+                        <Typography
+                          className={classes.title}
+                          color="textSecondary"
+                          gutterBottom
+                        >
+                          Жанр
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                          <br />
+                          <RadioGroup
+                            aria-label="Variant"
+                            onChange={handleJenre}
+                            className={classes.content}
+                          >
+                            {base?.genre?.map((item) => (
+                              <FormGroup row>
+                                <FormControlLabel
+                                  onChange={handleJenre}
+                                  value={item}
+                                  control={
+                                    <Checkbox
+                                      icon={<FavoriteBorder />}
+                                      checkedIcon={<Favorite />}
+                                      name="checkedH"
+                                    />
+                                  }
+                                  label={item}
+                                />
+                              </FormGroup>
+                            ))}
+                          </RadioGroup>
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        <Button
+                          size="small"
+                          variant="contained"
+                          onClick={secondShow}
+                          className={classes.button}
+                        >
+                          Далее
+                        </Button>
+                      </CardActions>
+                    </Card>
+                  ) : (
+                    <Card className={classes.root}>
+                      <CardContent>
+                        <Typography
+                          className={classes.title}
+                          color="textSecondary"
+                          gutterBottom
+                        >
+                          Вопрос
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                          <br />
+                          <RadioGroup
+                            aria-label="Variant"
+                            name="mood"
+                            onChange={handleChange}
+                            className={classes.content}
+                          >
+                            {base?.mood?.map((item) => (
+                              <FormGroup row>
+                                <FormControlLabel
+                                  value={item}
+                                  control={<Radio />}
+                                  label={item}
+                                />
+                              </FormGroup>
+                            ))}
+                          </RadioGroup>
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        <Button
+                          size="small"
+                          variant="contained"
+                          onClick={handleShow}
+                          className={classes.button}
+                        >
+                          Далее
+                        </Button>
+                      </CardActions>
+                    </Card>
+                  )}
+                </div>
+              ) : (
+                <div>
+                  {" "}
+                  <Card className={classes.root}>
+                    <CardContent>
+                      <Typography
+                        className={classes.title}
+                        color="textSecondary"
+                        gutterBottom
+                      >
+                        Вопрос
+                      </Typography>
+                      <Typography variant="body2" component="p">
+                        <br />
+                        <RadioGroup
+                          aria-label="Variant"
+                          name="withWhom"
+                          onChange={handleChange}
+                          className={classes.content}
+                        >
+                          {base?.withWhom?.map((item) => (
+                            <FormGroup row>
+                              <FormControlLabel
+                                value={item}
+                                control={<Radio />}
+                                label={item}
+                              />
+                            </FormGroup>
+                          ))}
+                        </RadioGroup>
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Link to="/game" className="link">
+                        <Button
+                          size="small"
+                          variant="contained"
+                          // color="primary"
+                          onClick={handleClose}
+                          className={classes.button}
+                        >
+                          Подобрать фильмы
+                        </Button>
+                      </Link>
+                    </CardActions>
+                  </Card>
+                </div>
+              )}
             </div>
           </div>
         </Fade>

@@ -32,10 +32,13 @@ export default function CardSolo({id}) {
 
 
 
-  const [infoAboutMovie, setInfoAboutMovie] = useState({})
+  const [infoAboutMovie, setInfoAboutMovie] = useState({});
   const movieInfo = (id) => {
-    fetch(`https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`)
-    .then(res => res.json()).then(data => setInfoAboutMovie(data))
+    fetch(
+      `https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`
+    )
+      .then((res) => res.json())
+      .then((data) => setInfoAboutMovie(data));
     //const currMovie = response.json()
     //return currMovie
   }
@@ -47,38 +50,35 @@ export default function CardSolo({id}) {
 
   return (
     <div className="card">
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            alt="fucking card"
-            height="100%"
-            image={infoAboutMovie?.poster}
-            title="Contemplative Reptile"
-          />
-          <CardContent>
-            <Typography
-              gutterBottom
-              variant="h5"
-              className={classes.text}
-              component="h2"
-            >
-              {infoAboutMovie?.title} 
-            </Typography>
-            <Typography variant="body2" className={classes.text} component="p">
-             {infoAboutMovie?.description}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" className={classes.text}>
-            Трейлер
-          </Button>
-          <Button size="small" align="rigth" className={classes.text}>
-            Комментарии
-          </Button>
-        </CardActions>
-      </Card>
+      <div className="dws-wrapper">
+        <a>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              alt="fucking card"
+              height="100%"
+              image={infoAboutMovie?.poster}
+              title="Contemplative Reptile"
+            />
+
+            <div className="dws-text">
+              <h2 gutterBottom variant="h5" component="h2">
+                {infoAboutMovie?.title}
+              </h2>
+              <hr />
+              <p variant="body2" component="p">
+                {infoAboutMovie?.description}
+              </p>
+            </div>
+          </CardActionArea>
+        </a>
+      </div>
+      <Button size="small" marginRight="10px" className={classes.border}>
+        Трейлер
+      </Button>
+      <Button size="small" align="rigth" className={classes.border}>
+        Комментарии
+      </Button>
     </div>
   );
 }

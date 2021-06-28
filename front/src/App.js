@@ -7,12 +7,7 @@ import ButtonsForCard from "./components/ButtonsForCard/ButtonsForCard";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import Profile from './components/Profile/Profile';
-
-
-
-
-
-
+import LoginSuccess from './components/LoginSuccess/LoginSuccess';
 function App() {
   return (
     <>
@@ -24,10 +19,13 @@ function App() {
         <Route exact path="/register" component={RegisterForm} />
         <Route exact path="/login" component={AuthForm}/>
         <Route exact path="/logout" component={Signout}/>
+        {/* <Route exact path="/test" component={Questionnaire} /> */}
+        {/* <Route exact path="/login/google" component={Googlebutton} /> */}
         <Route exact path="/login/google" />
         {/* <Route exact path="/profile" component={Profiler} /> */}
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/game" component={ButtonsForCard} />
+        <Route exact path="/login/success" component={LoginSuccess} />
       </Switch>
     </Router>
     </>
