@@ -63,7 +63,13 @@ export const deleteUser = () => ({
   type: DELETE_USER
 })
 
-export const redirectToGoogle = () => async () => {
-  const googleURL = 'http://localhost:8080/google'
-  const newWindow = window.open(googleURL, "_blank", "width=500, height=600")
-}
+
+  // const fetchAuthUser = async () => {
+  //   const response = await axios
+  //     .get("http://localhost:5000/api/v1/auth/user", { withCredentials: true })
+  //     .catch((err) => {
+  //       console.log("Not properly authenticated");
+  //       dispatch(setIsAuthenticated(false));
+  //       dispatch(setAuthUser(null));
+  //       history.push("/login/error");
+  //     });

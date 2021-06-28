@@ -202,6 +202,7 @@ export default function Profile() {
             </Button>
           </FormControl>
         </form>
+        <ShareButton />
       </div>
       <TabPanel />
     </div>

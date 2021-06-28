@@ -7,7 +7,9 @@ import LikedFilmsList from "../LikedFilmsList/LikedFilmsList";
 import ButtonsForCard from "../ButtonsForCard/ButtonsForCard";
 import { Link } from "react-router-dom";
 
+
 export default function MainPage() {
+
   return (
     <div>
       <div className="wrapper">

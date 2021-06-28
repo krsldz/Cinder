@@ -1,6 +1,6 @@
 const express = require('express');
 const session = require('express-session');
-const passport = require ('passport');
+const passport = require('passport');
 const MongoStore = require('connect-mongo');
 const path = require('path');
 const User = require('./models/user');
@@ -9,9 +9,9 @@ require('dotenv').config();
 const cors = require('cors');
 const morgan = require('morgan');
 const fileUpload = require('express-fileupload');
-require ('./passport-setup');
 const multer = require('multer');
 const storage = require('./controlers/uploaders')
+require('./passport-setup');
 
 const PORT = process.env.PORT ?? 8080;
 const DB_CONNECT = process.env.DB_CONNECT;
@@ -37,23 +37,48 @@ app.use(
     },
     store: MongoStore.create({ mongoUrl: DB_CONNECT }),
   })
-  )
-  
-  app.use(morgan('dev'));
-  app.use(cors({
-    origin: true,
-    credentials: true,
-  }));
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
-  app.use(fileUpload())
-  app.use('/uploads', express.static('uploads'))
-  
+)
+app.use(passport.initialize());
+app.use(passport.session());
 
-  app.use('/api/v1/auth', authRouter);
-  app.use('/api/v1', testRouter);
-  app.use('/api/v1', fotosRouter);
-  app.use('/api/v1', compilationRouter);
+app.use(morgan('dev'));
+app.use(cors({
+  origin: true,
+  credentials: true,
+}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(fileUpload())
+app.use('/uploads', express.static('uploads'))
+
+app.use('/api/v1/auth', authRouter);
+app.use('/api/v1', testRouter);
+app.use('/api/v1', fotosRouter);
+app.use('/api/v1', compilationRouter);
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+app.get('/auth/google/callback',
+  passport.authenticate('google', { successRedirect: 'http://localhost:3000/login/success', failureRedirect: 'http://localhost:3000/login' }),
+  function (req, res) {
+    console.log(req.user);
+    res.send(req.user);
+  });
+
+
+// isUserAuthenticated = (req, res, next) => {
+//   if (req.user) {
+//     next();
+//   } else {
+//     res.status(401).send("You must login first!");
+//   }
+// };
+
+app.get('/auth/user', (req, res) => {
+  console.log(req.user);
+  res.json(req.user)
+})
   
  
 app.listen(PORT, () => {

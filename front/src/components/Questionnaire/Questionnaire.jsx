@@ -109,7 +109,7 @@ export default function SpringModal() {
   const [show, setShow] = useState(false);
   const [second, setSecond] = useState(true);
   const [base, setBase] = useState({});
-  console.log(base);
+  // console.log(base);
   // console.log(base.genre);
 
   useEffect(() => {
@@ -138,7 +138,7 @@ export default function SpringModal() {
     setValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     setValue((prev) => ({ ...prev, jenre: userJenre }));
   };
-  console.log(value);
+  // console.log(value);
 
   const handleShow = () => {
     setShow(true);
