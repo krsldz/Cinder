@@ -1,42 +1,4 @@
-const { Router } = require('express');
-const fs = require('fs');
-const { upload } = require('../controlers/uploaders');
-const User = require('../models/user');
-const Images = require('../models/images');
-const router = Router();
 
-async function addToDb(file, userId) {
-  const user = await User.findById(userId);
-  // console.log(file);
-    const filename = file.filename;
-    const image = await Images.create({ filename });
-    user.profileFotos?.unshift(image);
-    await user.save();
-  }
-
-
-
-
-
-
-router.post('/fotos', async (req, res)=>{
-let {file} = req.files;
-console.log(file);
-  upload(req, res, (err) => {
-          // console.log(req.files);
-       console.log(file);
-             addToDb(file, req.session?.user?._id);
-        
-          
-        });
-})
- 
-
-  
-// })
-
-
-module.exports = router;
 
 
 
