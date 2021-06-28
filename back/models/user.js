@@ -27,7 +27,9 @@ const usersSchema = new mongoose.Schema({
 
     type: String,
   },
-  
+  nickname:{
+    type: String,
+  },
 
 });
 
