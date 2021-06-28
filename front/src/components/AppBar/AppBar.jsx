@@ -15,20 +15,14 @@ export default function AppBar() {
           <div className="">
             {user ? (
               <>
-                <span className="">
-                  <NavLink exact to="/logout" className="">
-                    Выйти
-                  </NavLink>
-                </span>
-
-                <h3 className="nav-item">
+                <span className="right">
                   <NavLink exact to="/profile" className="">
                     Личный кабинет
                   </NavLink>
-                </h3>
-                <span className="nav-item">
-                  <NavLink exact to="/test" className="">
-                    Тест
+                </span>
+                <span className="right">
+                  <NavLink exact to="/logout" className="">
+                    Выйти
                   </NavLink>
                 </span>
               </>

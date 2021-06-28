@@ -6,8 +6,10 @@ import {Link} from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import { signIn } from "../../redux/actions/user";
+import { signIn, redirectToGoogle } from "../../redux/actions/user";
 import "../RegisterForm/RegisterForm";
+import GoogleButton from 'react-google-button';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -81,9 +83,11 @@ export default function AuthForm() {
         <Button type="submit" variant="outlined" color="primary">
           Продолжить
         </Button>
+        <div>
+        <Link to="/login/google"><GoogleButton onClick={redirectToGoogle} type="light" label='Войти через Google' /></Link>
+        </div>
       </form>
       <div>Еще нет учетной записи?</div>
-
       <div>
         <Link to="/register"> Зарегистрируйтесь </Link>
       </div>
