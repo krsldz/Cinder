@@ -8,6 +8,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { useSelector, useDispatch } from "react-redux";
 import "./Card.css";
 const useStyles = makeStyles({
   border: {
@@ -18,8 +19,18 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CardSolo() {
+export default function CardSolo({id}) {
   const classes = useStyles();
+  const [films, setFilms] = useState([]);
+  let movies= useSelector(state=>state.films);
+  console.log(movies);
+  console.log(id)
+  useEffect(()=>{
+    axios.get('http://localhost:8080/api/v1/compilation').then(res=>setFilms(res.data))
+  },[]) 
+
+
+
 
   const [infoAboutMovie, setInfoAboutMovie] = useState({});
   const movieInfo = (id) => {
@@ -30,10 +41,12 @@ export default function CardSolo() {
       .then((data) => setInfoAboutMovie(data));
     //const currMovie = response.json()
     //return currMovie
-  };
-  useEffect(() => {
-    movieInfo(1143242);
-  }, []);
+  }
+ useEffect(() => {
+  movieInfo(id)
+ }, [])
+ 
+
 
   return (
     <div className="card">

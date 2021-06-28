@@ -19,6 +19,8 @@ import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import Checkbox from "@material-ui/core/Checkbox";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import {initFilmsAC} from '../../redux/actions/filmsCreator';
 axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
@@ -109,7 +111,9 @@ export default function SpringModal() {
   const [show, setShow] = useState(false);
   const [second, setSecond] = useState(true);
   const [base, setBase] = useState({});
-  // console.log(base);
+  const [allUserFilms, setAllUserFilms] = useState([])
+  const dispatch = useDispatch();
+  console.log(base);
   // console.log(base.genre);
 
   useEffect(() => {
@@ -126,17 +130,21 @@ export default function SpringModal() {
     setOpen(false);
     setShow(false);
     setSecond(true);
-    axios.post("http://localhost:8080/api/v1/compilation", value);
+   dispatch(initFilmsAC(value))
+    // axios.post('http://localhost:8080/api/v1/compilation', value).then(res=>setAllUserFilms(res.data))
     setUserJenre({});
     setValue({
       jenre: [],
-      withWhom: "",
-      mood: "",
-    });
+    withWhom: '',
+    mood: ''
+    })
   };
+
   const handleChange = (e) => {
-    setValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    setValue((prev) => ({ ...prev, jenre: userJenre }));
+  
+    setValue((prev) => ({ ...prev, [e.target.name]: e.target.value  }));
+    setValue((prev)=>({...prev, jenre: userJenre}));
+
   };
   // console.log(value);
 
@@ -321,6 +329,7 @@ export default function SpringModal() {
           </div>
         </Fade>
       </Modal>
+    
     </div>
   );
 }
