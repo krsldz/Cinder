@@ -53,3 +53,13 @@ export const signOut = () => async (dispatch) => {
 export const deleteUser = () => ({
   type: DELETE_USER
 })
+
+export const fetchAuth = () => async (dispatch) => {
+    const response = await fetch('http://localhost:8080/auth/user', {
+      credentials: 'include'
+    })
+    const user = await response.json();
+    if (user) {
+      dispatch(setUser(user))
+    }
+  }

@@ -61,7 +61,15 @@ app.get('/auth/google/callback',
     res.redirect('http://localhost:3000/');
   });
 
-app.get('auth/user', (req, res) => {
+  isUserAuthenticated = (req, res, next) => {
+    if (req.user) {
+      next();
+    } else {
+      res.status(401).send("You must login first!");
+    }
+  };
+
+app.get('auth/user', isUserAuthenticated, (req, res) => {
   res.json (req.user)
 })
 

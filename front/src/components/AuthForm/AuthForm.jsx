@@ -6,14 +6,10 @@ import {Link} from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import { signIn } from "../../redux/actions/user";
+import { signIn, fetchAuth } from "../../redux/actions/user";
 import "../RegisterForm/RegisterForm";
 import GoogleButton from 'react-google-button';
 
-const redirectToGoogle = async () => {
-  const googleURL = 'http://localhost:8080/auth/google'
-  const newWindow = window.open(googleURL, "_blank", "width=500, height=600")
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,15 +21,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AuthForm() {
-  // const fetchAuth = async () => {
-  //   const response = await axios.get('http://localhost:8080/auth/user', {withCredentials: true}).catch((err) => {
-  //      console.log(err);
-  //   });
-  //   if (response.data) {
-  //     console.log('User', response.data);
-  //   }
-  // }
-
   
   const classes = useStyles();
   const [userSignIn, setUserSignIn] = useState({
@@ -51,6 +38,23 @@ export default function AuthForm() {
   };
 
   const dispatch = useDispatch();
+
+  const [user, setUser] = useState({});
+
+  const redirectToGoogle = async () => {
+    let timer;
+    const googleURL = 'http://localhost:8080/auth/google'
+    const newWindow = window.open(googleURL, "_blank", "width=500, height=600")
+    if (newWindow) {
+      timer = setInterval(() => {
+        if (newWindow.closed) {
+          dispatch(fetchAuth(user))
+        } if (timer) {
+          clearInterval(timer)
+        }
+      }, 500)
+    }
+  }
 
   const submitHandler = (e) => {
     e.preventDefault();

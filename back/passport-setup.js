@@ -20,7 +20,7 @@ passport.use(new GoogleStrategy({
   passReqToCallback: true
 },
   async function (req, accessToken, refreshToken, profile, cb) {
-    console.log(profile)
+    // console.log(profile)
     const defaultUser = {
       username: profile.name.givenName,
       email: profile.emails[0].value,
