@@ -1,11 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import React from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import ScrollBar from "../SrollBar/ScrollBar";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -36,7 +37,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `nav-tab-${index}`,
-    'aria-controls': `nav-tabpanel-${index}`,
+    "aria-controls": `nav-tabpanel-${index}`,
   };
 }
 
@@ -55,7 +56,10 @@ function LinkTab(props) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "#2D283E",
+  },
+  bar: {
+    backgroundColor: "#802bb1",
   },
 }));
 
@@ -65,38 +69,37 @@ export default function LikedFilmsList() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
-    setInitValue(true)
+    setInitValue(true);
     setValue(newValue);
   };
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.bar}>
         <Tabs
           variant="fullWidth"
           value={value}
           onChange={handleChange}
           aria-label="nav tabs example"
         >
-          <LinkTab label="Буду смотреть"/>
-          <LinkTab label="Решу потом"/>
-          <LinkTab label="Просмотренное"/>
+          <LinkTab label="Буду смотреть" />
+          <LinkTab label="Решу потом" />
+          <LinkTab label="Просмотренное" />
         </Tabs>
       </AppBar>
-      {initValue ? 
-      <>
-      <TabPanel value={value} index={0}>
-        Page One
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Page Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Page Three
-      </TabPanel>
-      </>
-      : null
-      }
+      {initValue ? (
+        <>
+          <TabPanel value={value} index={0}>
+            <ScrollBar />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            Page Two
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            Page Three
+          </TabPanel>
+        </>
+      ) : null}
     </div>
   );
 }

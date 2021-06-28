@@ -28,7 +28,7 @@ export default function MainPage() {
         <SpringModal />
       </div>
       <hr />
-      <ShareButton />
+
       <footer>
         <SvgIconsColor />
       </footer>
