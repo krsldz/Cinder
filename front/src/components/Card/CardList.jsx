@@ -7,16 +7,16 @@ import Card from './Card'
 function CardsList() {
 
   const dispatch = useDispatch()
+  const userFilms = useSelector(state => state.userfilms)
 
 
   useEffect(() => {
-    dispatch(initFilmsAC(films))
+    dispatch(initFilmsAC(userFilms))
   }, [dispatch])
 
-  const films = useSelector(state => state.films)
 
   return (
-    <div><h3>Подборка для юзера:</h3> {films.map(film => <Card />)}</div>
+    <div><h3>Подборка для юзера:</h3> {userFilms.map(film => <Card />)}</div>
   )
 }
 
