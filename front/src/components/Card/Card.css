@@ -25,10 +25,10 @@
   transition: 0.5s ease;
 }
 .dws-text h2 {
-  font-size: 70px;
+  font-size: 40px;
 }
 .dws-text p {
-  font-size: 25px;
+  font-size: 14px;
 }
 .dws-wrapper a:before,
 .dws-wrapper a:after {
