@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1, 1, 0, 0),
   },
+  text: {
+    color: "red",
+  },
 }));
 const GreenCheckbox = withStyles({
   root: {
@@ -153,6 +156,7 @@ export default function Profile() {
                 label="Электронная почта"
                 multiline
                 variant="outlined"
+                className={classes.text}
               />
             </div>
             <div>
