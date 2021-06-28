@@ -17,6 +17,7 @@ const DB_CONNECT = 'mongodb://localhost:27017/cinder';
 const testRouter = require('./routers/test');
 const authRouter = require('./routers/auth');
 const fotosRouter = require('./routers/foto');
+const compilationRouter = require('./routers/compilation');
 
 
 const app = express();
@@ -45,9 +46,11 @@ app.use(
   app.use(fileUpload())
   app.use('/uploads', express.static('uploads'))
   
+
   app.use('/api/v1/auth', authRouter);
   app.use('/api/v1', testRouter);
   app.use('/api/v1', fotosRouter);
+  app.use('/api/v1', compilationRouter);
   
  
 app.listen(PORT, () => {
