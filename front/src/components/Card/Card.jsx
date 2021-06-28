@@ -10,11 +10,11 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import "./Card.css";
 const useStyles = makeStyles({
-  root: {
-    maxWidth: 400,
-  },
-  text: {
-    color: "#67186e;",
+  border: {
+    border: "1px solid black",
+    color: "black;",
+    marginTop: "2px",
+    padding: "4px",
   },
 });
 
