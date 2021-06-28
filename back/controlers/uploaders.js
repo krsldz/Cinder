@@ -1,28 +1,21 @@
 const multer = require('multer');
+const moment = require('moment');
+const path = require('path');
+
 
 const storage = multer.diskStorage({
-  destination: function (req,file,cb) {
-    cb(null,'../uploads/');
+  destination(req,file, cb){
+    cb(null,'./uploads/')
   },
-   
-  filename: function (req, file, cb) {
-    cb(
-      null,
-      '-' + Date.now() + Math.random().toString(36).substr(2, 5) + path.extname(file.originalname)
-    );
-  },
-});
-const path = require('path');
-const upload = multer({
-  storage,
-  limits: { fileSize: 1024 * 1024 * 100 },
-  fileFilter: function (req, file, cb) {
-    checkFileType(file, cb);
-  },
-}).single('filename');
-function checkFileType(file, cb) {
-  // console.log(file);
+  filename(req,file,cb){
+    const date = moment().format('DDMMYYYY-HHmmss_SSS')
+    cb(null,`${date}-${file.originalname}`)
+  }
+})
+
+const fileFilter =()=>{
   const fileTypes = /jpeg|jpg|png|gif/;
+  
   const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
   const mimetype = fileTypes.test(file.mimetype);
   if (mimetype && extname) {
@@ -30,5 +23,11 @@ function checkFileType(file, cb) {
   } else {
     cb('Error: Images Only!');
   }
+
 }
-module.exports = { upload, checkFileType };
+const limits ={
+  fileSize:1024*1024*100
+}
+
+let upload = multer({ storage,fileFilter, limits})
+module.exports = upload;
