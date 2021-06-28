@@ -2,11 +2,11 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import { signIn, fetchAuth } from "../../redux/actions/user";
+import { signIn, setUser } from "../../redux/actions/user";
 import "../RegisterForm/RegisterForm";
 import GoogleButton from 'react-google-button';
 
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AuthForm() {
-  
+
   const classes = useStyles();
   const [userSignIn, setUserSignIn] = useState({
     email: "",
@@ -39,22 +39,6 @@ export default function AuthForm() {
 
   const dispatch = useDispatch();
 
-  const [user, setUser] = useState({});
-
-  const redirectToGoogle = async () => {
-    let timer;
-    const googleURL = 'http://localhost:8080/auth/google'
-    const newWindow = window.open(googleURL, "_blank", "width=500, height=600")
-    if (newWindow) {
-      timer = setInterval(() => {
-        if (newWindow.closed) {
-          dispatch(fetchAuth(user))
-        } if (timer) {
-          clearInterval(timer)
-        }
-      }, 500)
-    }
-  }
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -102,7 +86,7 @@ export default function AuthForm() {
           Продолжить
         </Button>
         <div>
-        <Link to="/google"><GoogleButton onClick={redirectToGoogle} type="light" label='Войти через Google' /></Link>
+          <a href="http://localhost:8080/auth/google"><GoogleButton type="light" label='Войти через Google' /></a>
         </div>
       </form>
       <div>Еще нет учетной записи?</div>

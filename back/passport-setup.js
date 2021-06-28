@@ -1,16 +1,16 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('./models/user');
-var findOrCreate = require('mongoose-findorcreate')
 
 passport.serializeUser(function (user, done) {
-  done(null, user.id);
+  done(null, user);
 });
 
 passport.deserializeUser(async function (id, done) {
   await User.findById(id, function (err, user) {
     done(err, user);
   });
+    // done(null, user);
 });
 
 passport.use(new GoogleStrategy({
@@ -21,12 +21,6 @@ passport.use(new GoogleStrategy({
 },
   async function (req, accessToken, refreshToken, profile, cb) {
     // console.log(profile)
-    const defaultUser = {
-      username: profile.name.givenName,
-      email: profile.emails[0].value,
-      profileFotos: profile.photos[0].value,
-      googleId: profile.id
-    }
     const user = await User.findOne({ googleId: profile.id })
     if (user) {
       req.session.user = {
@@ -34,7 +28,7 @@ passport.use(new GoogleStrategy({
         name: user.name,
       }
       // return res.json({ _id: user._id, name: user.username })
-      return cb(null, user && user[0])
+      return cb(null, user)
     } else {
       const user = await User.create({
         username: profile.name.givenName,
@@ -47,7 +41,8 @@ passport.use(new GoogleStrategy({
         name: user.name,
       }
       // return res.json({ _id: user._id, name: user.username })
-      return cb(null, user && user[0])
+      return cb(null, user)
+
     }
   }
 

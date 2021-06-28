@@ -2,7 +2,6 @@ import MainPage from "./components/MainPage/MainPage";
 import AppBar from "./components/AppBar/AppBar";
 import AuthForm from './components/AuthForm/AuthForm'
 import Signout from './components/Signout/Signout';
-import Questionnaire from './components/Questionnaire/Questionnaire';
 import ButtonsForCard from "./components/ButtonsForCard/ButtonsForCard";
 // import Googlebutton from './components/GoogleButton/GoogleButton';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -19,8 +18,9 @@ function App() {
         <Route exact path="/register" component={RegisterForm} />
         <Route exact path="/login" component={AuthForm}/>
         <Route exact path="/logout" component={Signout}/>
-        <Route exact path="/test" component={Questionnaire} />
+        {/* <Route exact path="/test" component={Questionnaire} /> */}
         {/* <Route exact path="/login/google" component={Googlebutton} /> */}
+        <Route exact path="/login/google" />
         {/* <Route exact path="/profile" component={Profiler} /> */}
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/game" component={ButtonsForCard} />

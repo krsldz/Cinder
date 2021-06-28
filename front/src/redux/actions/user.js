@@ -54,12 +54,13 @@ export const deleteUser = () => ({
   type: DELETE_USER
 })
 
-export const fetchAuth = () => async (dispatch) => {
-    const response = await fetch('http://localhost:8080/auth/user', {
-      credentials: 'include'
-    })
-    const user = await response.json();
-    if (user) {
-      dispatch(setUser(user))
-    }
-  }
+
+  // const fetchAuthUser = async () => {
+  //   const response = await axios
+  //     .get("http://localhost:5000/api/v1/auth/user", { withCredentials: true })
+  //     .catch((err) => {
+  //       console.log("Not properly authenticated");
+  //       dispatch(setIsAuthenticated(false));
+  //       dispatch(setAuthUser(null));
+  //       history.push("/login/error");
+  //     });

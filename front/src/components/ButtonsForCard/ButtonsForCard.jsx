@@ -56,8 +56,14 @@ function ButtonsForCard() {
       <div>
         <div className="divWithButtons">
           <div className="divBut">
-            <img className="swing" src="https://img.icons8.com/ios/100/000000/thumbs-down.png" />
-            <img className="swing" src="https://img.icons8.com/ios/100/000000/question-mark--v1.png" />
+            <img
+              className="swing"
+              src="https://img.icons8.com/ios/100/000000/thumbs-down.png"
+            />
+            <img
+              className="swing"
+              src="https://img.icons8.com/ios/100/000000/question-mark--v1.png"
+            />
           </div>
 
           <div className="boxGame">
@@ -65,8 +71,14 @@ function ButtonsForCard() {
           </div>
 
           <div className="divBut">
-            <img className="swing" src="https://img.icons8.com/ios/100/000000/thumb-up--v1.png" />
-            <img className="swing" src="https://img.icons8.com/windows/100/000000/filled-heart.png" />
+            <img
+              className="swing"
+              src="https://img.icons8.com/ios/100/000000/thumb-up--v1.png"
+            />
+            <img
+              className="swing"
+              src="https://img.icons8.com/windows/100/000000/filled-heart.png"
+            />
           </div>
         </div>
         <hr />

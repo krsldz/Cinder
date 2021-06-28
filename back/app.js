@@ -18,7 +18,7 @@ const DB_CONNECT = 'mongodb://localhost:27017/cinder';
 
 const testRouter = require('./routers/test');
 const authRouter = require('./routers/auth');
-const fotosRouter = require('./routers/foto');
+
 
 
 const app = express();
@@ -36,7 +36,8 @@ app.use(
     store: MongoStore.create({ mongoUrl: DB_CONNECT }),
   })
 )
-
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(morgan('dev'));
 app.use(cors({
@@ -50,31 +51,32 @@ app.use('/uploads', express.static('uploads'))
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1', testRouter);
-app.use('/api/v1', fotosRouter);
+
 
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: 'http://localhost:3000/login', successRedirect: 'http://localhost:3000/login/success' }),
+  passport.authenticate('google', { successRedirect: 'http://localhost:3000/login/success', failureRedirect: 'http://localhost:3000/login' }),
   function (req, res) {
-    res.redirect('http://localhost:3000/');
+    console.log(req.user);
+    res.send(req.user);
   });
 
-  isUserAuthenticated = (req, res, next) => {
-    if (req.user) {
-      next();
-    } else {
-      res.status(401).send("You must login first!");
-    }
-  };
 
-app.get('auth/user', isUserAuthenticated, (req, res) => {
-  res.json (req.user)
+// isUserAuthenticated = (req, res, next) => {
+//   if (req.user) {
+//     next();
+//   } else {
+//     res.status(401).send("You must login first!");
+//   }
+// };
+
+app.get('/auth/user', (req, res) => {
+  console.log(req.user);
+  res.json(req.user)
 })
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 
 app.listen(PORT, () => {

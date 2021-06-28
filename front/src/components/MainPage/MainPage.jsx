@@ -1,13 +1,15 @@
 import "./MainPage.css";
 import CardForMain from "../CardForMain/CardForMain";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
-import SpringModal from '../Questionnaire/Questionnaire'
+import SpringModal from "../Questionnaire/Questionnaire";
 import ShareButton from "../ShareButton/ShareButton";
-import LikedFilmsList from '../LikedFilmsList/LikedFilmsList';
+import LikedFilmsList from "../LikedFilmsList/LikedFilmsList";
 import ButtonsForCard from "../ButtonsForCard/ButtonsForCard";
 import { Link } from "react-router-dom";
 
+
 export default function MainPage() {
+
   return (
     <div>
       <div className="wrapper">
@@ -26,11 +28,12 @@ export default function MainPage() {
       </div>
       <div className="buttonDiv">
         <Link to="/game">
-          <button className="animated-button"> ВЫБРАТЬ ФИЛЬМ</button>
+          <button className="animated-button"> Пройти тест </button>
         </Link>
+        <SpringModal />
       </div>
-        <hr />
-        <ShareButton/>
+      <hr />
+      <ShareButton />
       <footer>
         <SvgIconsColor />
       </footer>
