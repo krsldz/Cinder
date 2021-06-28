@@ -20,14 +20,12 @@ passport.use(new GoogleStrategy({
   passReqToCallback: true
 },
   async function (req, accessToken, refreshToken, profile, cb) {
-    // console.log(profile)
     const user = await User.findOne({ googleId: profile.id })
     if (user) {
       req.session.user = {
         id: user._id,
         name: user.name,
       }
-      // return res.json({ _id: user._id, name: user.username })
       return cb(null, user)
     } else {
       const user = await User.create({
@@ -40,7 +38,6 @@ passport.use(new GoogleStrategy({
         id: user._id,
         name: user.name,
       }
-      // return res.json({ _id: user._id, name: user.username })
       return cb(null, user)
 
     }

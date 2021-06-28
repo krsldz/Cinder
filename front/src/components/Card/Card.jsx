@@ -23,8 +23,6 @@ export default function CardSolo({id}) {
   const classes = useStyles();
   const [films, setFilms] = useState([]);
   let movies= useSelector(state=>state.films);
-  console.log(movies);
-  console.log(id)
   useEffect(()=>{
     axios.get('http://localhost:8080/api/v1/compilation').then(res=>setFilms(res.data))
   },[]) 

@@ -62,7 +62,6 @@ app.get('/auth/google',
 app.get('/auth/google/callback',
   passport.authenticate('google', { successRedirect: 'http://localhost:3000/login/success', failureRedirect: 'http://localhost:3000/login' }),
   function (req, res) {
-    console.log(req.user);
     res.send(req.user);
   });
 
@@ -82,7 +81,6 @@ app.get('/auth/user', (req, res) => {
   
  
 app.listen(PORT, () => {
-  console.log('server started!');
   connect(
     DB_CONNECT,
     { useNewUrlParser: true, useUnifiedTopology: true },

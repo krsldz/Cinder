@@ -5,16 +5,13 @@ const User = require('../models/user');
 
 
 router.get('/test', async (req, res)=>{
-  // console.log('sasasasasasasa');
   const test = await Test.findOne();
-  // console.log(test);
    res.json(test);
 
   
 })
 
 router.post('/userupdate', async (req,res)=>{
-  console.log(req.body);
 let {id, username, userLastName, date, email,  nickname, sex} = req.body;
 let userName = await User.findByIdAndUpdate(id, {username:username}, );
 let userLast = await User.findByIdAndUpdate(id, {userLastName:userLastName}, );

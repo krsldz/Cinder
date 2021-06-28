@@ -35,7 +35,7 @@ export default function RegisterForm() {
 
   const classes = useStyles();
 
-  // console.log(userSignUp);
+
 
   return (
     <div className="divReg">

@@ -94,7 +94,7 @@ function ButtonsForCard() {
           </div>
         </footer>
       </div>
-      <div><h3>Подборка для юзера:</h3> {films.map(film => <CardSolo id={film.idKP} />)}</div>
+      <div><h3>Подборка для юзера:</h3> {films?.map(film => <CardSolo id={film.idKP} />)}</div>
     </>
   );
 }

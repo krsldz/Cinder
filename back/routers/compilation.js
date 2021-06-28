@@ -15,6 +15,7 @@ router.post('/compilation', async(req,res,next)=>{
   
   
   const films = await Films.find();
+  console.log(req.body);
   
 //let {jenre, withWhom, mood} = req.body;
  let firstFilter = films.filter((el)=> el.withWom.includes(req.body.withWhom) )

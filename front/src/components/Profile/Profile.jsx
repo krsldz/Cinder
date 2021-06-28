@@ -56,7 +56,7 @@ export default function Profile() {
     sex: "",
     id: user._id,
   });
-  console.log(userUpdate);
+ 
 
   const [drag, setDrag] = useState(false);
 
@@ -74,8 +74,6 @@ export default function Profile() {
     e.preventDefault();
     let files = [...e.dataTransfer.files];
     const formData = new FormData();
-    console.log(files);
-    console.log(formData);
     formData.append("file", files[0]);
 
     axios.post("http://localhost:8080/api/v1/fotos", formData);

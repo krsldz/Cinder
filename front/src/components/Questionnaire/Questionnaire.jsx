@@ -111,9 +111,8 @@ export default function SpringModal() {
   const [show, setShow] = useState(false);
   const [second, setSecond] = useState(true);
   const [base, setBase] = useState({});
-  const [allUserFilms, setAllUserFilms] = useState([])
+  
   const dispatch = useDispatch();
-  console.log(base);
   // console.log(base.genre);
 
   useEffect(() => {
@@ -130,6 +129,7 @@ export default function SpringModal() {
     setOpen(false);
     setShow(false);
     setSecond(true);
+    console.log(value);
    dispatch(initFilmsAC(value))
     // axios.post('http://localhost:8080/api/v1/compilation', value).then(res=>setAllUserFilms(res.data))
     setUserJenre({});
@@ -146,7 +146,7 @@ export default function SpringModal() {
     setValue((prev)=>({...prev, jenre: userJenre}));
 
   };
-  // console.log(value);
+
 
   const handleShow = () => {
     setShow(true);
@@ -155,11 +155,8 @@ export default function SpringModal() {
     setSecond(false);
   };
   const handleJenre = (e) => {
-    console.log(e);
     setUserJenre((prev) => [...prev, e.target.value]);
   };
-
-  console.log(userJenre);
 
   return (
     <div>
