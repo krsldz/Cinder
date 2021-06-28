@@ -8,6 +8,7 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
+import FormGroup from "@material-ui/core/FormGroup";
 import Typography from "@material-ui/core/Typography";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -21,6 +22,9 @@ import axios from "axios";
 axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    minWidth: 500,
+  },
   modal: {
     display: "flex",
     alignItems: "center",
@@ -94,9 +98,13 @@ Fade.propTypes = {
 
 export default function SpringModal() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = useState();
-  const [showsecond, setShowsecond] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState({
+    jenre: [],
+    withWhom: "",
+    mood: "",
+  });
+  const [userJenre, setUserJenre] = useState([]);
   const [show, setShow] = useState(false);
   const [second, setSecond] = useState(true);
   const [base, setBase] = useState({});
@@ -115,140 +123,59 @@ export default function SpringModal() {
 
   const handleClose = () => {
     setOpen(false);
+    setShow(false);
+    setSecond(true);
+    axios.post("http://localhost:8080/api/v1/compilation", value);
+    setUserJenre({});
+    setValue({
+      jenre: [],
+      withWhom: "",
+      mood: "",
+    });
   };
-  const handleChange = (event) => {
-    setValue(event.target.value);
+  const handleChange = (e) => {
+    setValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setValue((prev) => ({ ...prev, jenre: userJenre }));
   };
   console.log(value);
 
-  const handlesetShow = () => {
-    setShowsecond(true);
-  };
   const handleShow = () => {
     setShow(true);
   };
   const secondShow = () => {
     setSecond(false);
   };
+  const handleJenre = (e) => {
+    console.log(e);
+    setUserJenre((prev) => [...prev, e.target.value]);
+  };
+
+  console.log(userJenre);
 
   return (
     <div>
       <button type="button" className="animated-button" onClick={handleOpen}>
         Выбрать фильм
       </button>
-      <div>
-        <Modal
-          aria-labelledby="spring-modal-title"
-          aria-describedby="spring-modal-description"
-          className={classes.modal}
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          <Fade in={open}>
-            <div className={classes.paper}>
-              <h2 id="spring-modal-title">Пройти тест</h2>
-              <div>
-                {second ? (
-                  <div>
-                    {show ? (
-                      <Card className={classes.root}>
-                        <CardContent>
-                          <Typography
-                            className={classes.title}
-                            color="textSecondary"
-                            gutterBottom
-                          >
-                            Вопрос
-                          </Typography>
-                          <Typography variant="body2" component="p">
-                            <p>Жанр</p>
-                            <br />
-                            <RadioGroup
-                              aria-label="Variant"
-                              name="Variant"
-                              value={value}
-                              onChange={handleChange}
-                            >
-                              {base?.genre?.map((item) => (
-                                <FormControlLabel
-                                  value={item}
-                                  control={
-                                    <Checkbox
-                                      icon={<FavoriteBorder />}
-                                      checkedIcon={<Favorite />}
-                                      name="checkedH"
-                                    />
-                                  }
-                                  label={item}
-                                />
-                              ))}
-                            </RadioGroup>
-                          </Typography>
-                        </CardContent>
-                        <CardActions>
-                          <Button
-                            size="small"
-                            variant="contained"
-                            // color="red"
-                            onClick={secondShow}
-                            className={classes.button}
-                          >
-                            Отправить ответ
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    ) : (
-                      <Card className={classes.root}>
-                        <CardContent>
-                          <Typography
-                            className={classes.title}
-                            color="textSecondary"
-                            gutterBottom
-                          >
-                            Вопрос
-                          </Typography>
-                          <Typography variant="body2" component="p">
-                            <p>Настроение</p>
-                            <br />
-                            <RadioGroup
-                              aria-label="Variant"
-                              name="Variant"
-                              value={value}
-                              onChange={handleChange}
-                              className={classes.content}
-                            >
-                              {base?.mood?.map((item) => (
-                                <FormControlLabel
-                                  value={item}
-                                  control={<Radio />}
-                                  label={item}
-                                />
-                              ))}
-                            </RadioGroup>
-                          </Typography>
-                        </CardContent>
-                        <CardActions>
-                          <Button
-                            size="small"
-                            variant="contained"
-                            // color="primary"
-                            onClick={handleShow}
-                            className={classes.button}
-                          >
-                            Отправить ответ
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    )}
-                  </div>
-                ) : (
-                  <div>
-                    {" "}
+      <Modal
+        aria-labelledby="spring-modal-title"
+        aria-describedby="spring-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <div className={classes.paper}>
+            <h2 id="spring-modal-title">Пройти тест</h2>
+            <div>
+              {second ? (
+                <div>
+                  {show ? (
                     <Card className={classes.root}>
                       <CardContent>
                         <Typography
@@ -259,45 +186,137 @@ export default function SpringModal() {
                           Вопрос
                         </Typography>
                         <Typography variant="body2" component="p">
-                          <p> С кем?</p>
+                          <p>Жанр</p>
                           <br />
                           <RadioGroup
                             aria-label="Variant"
-                            name="Variant"
-                            value={value}
-                            onChange={handleChange}
+                            onChange={handleJenre}
                           >
-                            {base?.withWhom?.map((item) => (
-                              <FormControlLabel
-                                value={item}
-                                control={<Radio />}
-                                label={item}
-                              />
+                            {base?.genre?.map((item) => (
+                              <FormGroup row>
+                                <FormControlLabel
+                                  onChange={handleJenre}
+                                  value={item}
+                                  control={
+                                    <Checkbox
+                                      icon={<FavoriteBorder />}
+                                      checkedIcon={<Favorite />}
+                                      name="checkedH"
+                                    />
+                                  }
+                                  label={item}
+                                />
+                              </FormGroup>
                             ))}
                           </RadioGroup>
                         </Typography>
                       </CardContent>
                       <CardActions>
-                        <Link to="/game" className="link">
-                          <Button
-                            size="small"
-                            variant="contained"
-                            // color="primary"
-                            onClick={handleClose}
-                            className={classes.button}
-                          >
-                            Отправить ответ
-                          </Button>
-                        </Link>
+                        <Button
+                          size="small"
+                          variant="contained"
+                          onClick={secondShow}
+                          className={classes.button}
+                        >
+                          Отправить ответ
+                        </Button>
                       </CardActions>
                     </Card>
-                  </div>
-                )}
-              </div>
+                  ) : (
+                    <Card className={classes.root}>
+                      <CardContent>
+                        <Typography
+                          className={classes.title}
+                          color="textSecondary"
+                          gutterBottom
+                        >
+                          Вопрос
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                          <p>Настроение</p>
+                          <br />
+                          <RadioGroup
+                            aria-label="Variant"
+                            name="mood"
+                            onChange={handleChange}
+                          >
+                            {base?.mood?.map((item) => (
+                              <FormGroup row>
+                                <FormControlLabel
+                                  value={item}
+                                  control={<Radio />}
+                                  label={item}
+                                />
+                              </FormGroup>
+                            ))}
+                          </RadioGroup>
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        <Button
+                          size="small"
+                          variant="contained"
+                          onClick={handleShow}
+                          className={classes.button}
+                        >
+                          Отправить ответ
+                        </Button>
+                      </CardActions>
+                    </Card>
+                  )}
+                </div>
+              ) : (
+                <div>
+                  {" "}
+                  <Card className={classes.root}>
+                    <CardContent>
+                      <Typography
+                        className={classes.title}
+                        color="textSecondary"
+                        gutterBottom
+                      >
+                        Вопрос
+                      </Typography>
+                      <Typography variant="body2" component="p">
+                        <p> С кем?</p>
+                        <br />
+                        <RadioGroup
+                          aria-label="Variant"
+                          name="withWhom"
+                          onChange={handleChange}
+                        >
+                          {base?.withWhom?.map((item) => (
+                            <FormGroup row>
+                              <FormControlLabel
+                                value={item}
+                                control={<Radio />}
+                                label={item}
+                              />
+                            </FormGroup>
+                          ))}
+                        </RadioGroup>
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Link to="/game" className="link">
+                        <Button
+                          size="small"
+                          variant="contained"
+                          // color="primary"
+                          onClick={handleClose}
+                          className={classes.button}
+                        >
+                          Отправить ответ
+                        </Button>
+                      </Link>
+                    </CardActions>
+                  </Card>
+                </div>
+              )}
             </div>
-          </Fade>
-        </Modal>
-      </div>
+          </div>
+        </Fade>
+      </Modal>
     </div>
   );
 }
