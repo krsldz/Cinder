@@ -5,7 +5,14 @@ const Films = require('../models/film')
 
 const router = Router();
 
-router.post('/compilation', async(req,res)=>{
+router.get('/compilation', (req,res,next)=>{
+
+})
+
+
+router.post('/compilation', async(req,res,next)=>{
+
+  
   
   const films = await Films.find();
   
@@ -20,7 +27,9 @@ router.post('/compilation', async(req,res)=>{
      return third;
     }
   }
-console.log(thirdFilter(req.body.jenre, secondFilter));
+ let result = thirdFilter(req.body.jenre, secondFilter);
+
+res.json(result)
  
 })
 
