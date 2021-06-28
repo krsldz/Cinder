@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
-const { dbConnectionURL, options } = require('./config')
+const { DB_CONNECT, options } = require('./config')
 
 function connect() {
-  mongoose.connect(dbConnectionURL, options, (err) => {
+  mongoose.connect(DB_CONNECT, options, (err) => {
     if (err) console.log('ERROR WITH DB')
 
     console.log('Connect to DB')
