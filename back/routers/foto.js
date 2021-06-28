@@ -1,42 +1,17 @@
-const { Router } = require('express');
-const fs = require('fs');
-const { upload } = require('../controllers/uploaders');
-const User = require('../models/user');
-
-async function addToDb(files, userId) {
-  const user = await User.findById(userId);
-  for (let i = 0; i < files.length; i++) {
-    const filename = files[i].filename;
-    const image = await Images.create({ filename });
-    user.gallery?.unshift(image);
-    await user.save();
-  }
-}
-
-
-
+const { Router } = require("express");
+const fs = require("fs");
+const { upload } = require("../controlers/uploaders");
+const User = require("../models/user");
 const router = Router();
 
-
-router.post('/fotos', async (req, res)=>{
+router.post("/fotos", async (req, res) => {
   console.log(req.files);
- 
+});
 
-  
-})
+const deleteFileCallback = require("../controllers/deleteFile");
+const Images = require("../db/images");
 
-
-module.exports = router;
-
-
-
-const { Router } = require('express');
-const fs = require('fs');
-const deleteFileCallback = require('../controllers/deleteFile');
-const Images = require('../db/images');
-const User = require('../db/user');
-const { upload } = require('../controllers/uploaders');
-const protection = require('../controllers/protection');
+const protection = require("../controllers/protection");
 async function addToDb(files, userId) {
   const user = await User.findById(userId);
   for (let i = 0; i < files.length; i++) {
@@ -46,26 +21,25 @@ async function addToDb(files, userId) {
     await user.save();
   }
 }
-const router = Router();
 router
-  .route('/')
+  .route("/")
   .get(protection, async (req, res) => {
     const user = await User.findById(req.session?.user?._id).populate(
-      'gallery'
+      "gallery"
     );
     // console.log(user);
     const userImages = user.gallery.map((el) => el.filename);
-    res.render('profile', { userImages });
+    res.render("profile", { userImages });
   })
   .post(protection, (req, res) => {
     upload(req, res, (err) => {
       // console.log(req.files);
       if (err) {
-        return res.render('profile', { msg: err });
+        return res.render("profile", { msg: err });
       } else {
         if (!req.files) {
-          return res.render('profile', {
-            msg: 'Error: No File Selected!',
+          return res.render("profile", {
+            msg: "Error: No File Selected!",
           });
         }
         addToDb(req.files, req.session?.user?._id);
@@ -76,7 +50,7 @@ router
   .delete(protection, async (req, res) => {
     try {
       let user = await User.findById(req.session?.user?._id).populate(
-        'gallery'
+        "gallery"
       );
       const img = req.body.filename;
       // console.log(req.body);
