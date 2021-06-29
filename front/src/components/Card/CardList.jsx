@@ -11,6 +11,7 @@ function CardsList() {
 
   
 
+<<<<<<< HEAD
 
 
   // useEffect(() => {
@@ -23,6 +24,15 @@ function CardsList() {
 
   return (
     <div><h3>Подборка для юзера:</h3> {films.map(film => <CardSolo id={film.idKP} />)}</div>
+=======
+  useEffect(() => {
+    dispatch(initFilmsAC(userFilms))
+  }, [dispatch])
+
+
+  return (
+    <div><h3>Подборка для юзера:</h3> {userFilms.map(film => <Card />)}</div>
+>>>>>>> c1d18f988621cc01cc888ead10d83ac616fe03fe
   )
 }
 
