@@ -2,10 +2,11 @@ import "./MainPage.css";
 import CardForMain from "../CardForMain/CardForMain";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
 import SpringModal from "../Questionnaire/Questionnaire";
-import ShareButton from "../ShareButton/ShareButton";
-import LikedFilmsList from "../LikedFilmsList/LikedFilmsList";
-import ButtonsForCard from "../ButtonsForCard/ButtonsForCard";
-import { Link } from "react-router-dom";
+// import ShareButton from "../ShareButton/ShareButton";
+// import LikedFilmsList from "../LikedFilmsList/LikedFilmsList";
+// import ButtonsForCard from "../ButtonsForCard/ButtonsForCard";
+// import { Link } from "react-router-dom";
+// import Loader from '../Loader/Loader';
 
 
 export default function MainPage() {
@@ -30,7 +31,6 @@ export default function MainPage() {
         <SpringModal />
       </div>
       <hr />
-
       <footer>
         <SvgIconsColor />
       </footer>

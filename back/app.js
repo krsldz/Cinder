@@ -66,16 +66,15 @@ app.get('/auth/google/callback',
   });
 
 
-// isUserAuthenticated = (req, res, next) => {
-//   if (req.user) {
-//     next();
-//   } else {
-//     res.status(401).send("You must login first!");
-//   }
-// };
+isUserAuthenticated = (req, res, next) => {
+  if (req.user) {
+    next();
+  } else {
+    res.status(401).send("Войдите или зарегистрируйтесь");
+  }
+};
 
-app.get('/auth/user', (req, res) => {
-  console.log(req.user);
+app.get('/auth/user', isUserAuthenticated, (req, res) => {
   res.json(req.user)
 })
   
