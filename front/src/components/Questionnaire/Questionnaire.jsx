@@ -195,7 +195,7 @@ export default function SpringModal() {
                           color="textSecondary"
                           gutterBottom
                         >
-                          Жанр
+                          Ваше настроение?
                         </Typography>
                         <Typography variant="body2" component="p">
                           <br />
@@ -204,21 +204,14 @@ export default function SpringModal() {
                             onChange={handleJenre}
                             className={classes.content}
                           >
-                            {base?.genre?.map((item) => (
-                              <FormGroup row>
-                                <FormControlLabel
-                                  onChange={handleJenre}
-                                  value={item}
-                                  control={
-                                    <Checkbox
-                                      icon={<FavoriteBorder />}
-                                      checkedIcon={<Favorite />}
-                                      name="checkedH"
-                                    />
-                                  }
-                                  label={item}
-                                />
-                              </FormGroup>
+                            {base?.mood?.map((item) => (
+                             <FormGroup row>
+                             <FormControlLabel
+                               value={item}
+                               control={<Radio />}
+                               label={item}
+                             />
+                             </FormGroup>
                             ))}
                           </RadioGroup>
                         </Typography>
@@ -242,7 +235,7 @@ export default function SpringModal() {
                           color="textSecondary"
                           gutterBottom
                         >
-                          Вопрос
+                          С кем будете смотреть?
                         </Typography>
                         <Typography variant="body2" component="p">
                           <br />
@@ -252,7 +245,7 @@ export default function SpringModal() {
                             onChange={handleChange}
                             className={classes.content}
                           >
-                            {base?.mood?.map((item) => (
+                            {base?.withWhom?.map((item) => (
                               <FormGroup row>
                                 <FormControlLabel
                                   value={item}
@@ -287,7 +280,7 @@ export default function SpringModal() {
                         color="textSecondary"
                         gutterBottom
                       >
-                        Вопрос
+                        Жанр
                       </Typography>
                       <Typography variant="body2" component="p">
                         <br />
@@ -297,15 +290,22 @@ export default function SpringModal() {
                           onChange={handleChange}
                           className={classes.content}
                         >
-                          {base?.withWhom?.map((item) => (
-                            <FormGroup row>
-                              <FormControlLabel
-                                value={item}
-                                control={<Radio />}
-                                label={item}
-                              />
-                            </FormGroup>
-                          ))}
+                          {base?.genre?.map((item) => (
+                              <FormGroup row>
+                                <FormControlLabel
+                                  onChange={handleJenre}
+                                  value={item}
+                                  control={
+                                    <Checkbox
+                                      icon={<FavoriteBorder />}
+                                      checkedIcon={<Favorite />}
+                                      name="checkedH"
+                                    />
+                                  }
+                                  label={item}
+                                />
+                              </FormGroup>
+                            ))}
                         </RadioGroup>
                       </Typography>
                     </CardContent>
@@ -333,3 +333,8 @@ export default function SpringModal() {
     </div>
   );
 }
+
+
+
+
+
