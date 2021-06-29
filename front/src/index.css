@@ -1,9 +1,13 @@
 body {
   margin: 0;
-    background-color: #2D283E;
+    
     color: #D1D7E0;
     font-family: 'Libre Baskerville', serif;
 }
+
+ html {
+  background-color: #2D283E;
+ }
 
 
 
