@@ -7,6 +7,8 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import ScrollBar from "../SrollBar/ScrollBar";
+import ScrollBar2 from "../SrollBar/ScrollBar2";
+import ScrollBarViewed from "../SrollBar/ScrollBarViewed";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -57,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: "#2D283E",
+
   },
   bar: {
     backgroundColor: "#802bb1",
@@ -65,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LikedFilmsList() {
   const classes = useStyles();
-  const [initValue, setInitValue] = React.useState(false);
+  const [initValue, setInitValue] = React.useState(true);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -93,10 +96,10 @@ export default function LikedFilmsList() {
             <ScrollBar />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            Page Two
+            <ScrollBar2 />
           </TabPanel>
           <TabPanel value={value} index={2}>
-            Page Three
+            <ScrollBarViewed />
           </TabPanel>
         </>
       ) : null}
