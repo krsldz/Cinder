@@ -1,26 +1,26 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import { useSpring, animated } from "react-spring"; // web.cjs is required for IE 11 supportъ
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import FormGroup from "@material-ui/core/FormGroup";
-import Typography from "@material-ui/core/Typography";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { Link } from "react-router-dom";
-import Radio from "@material-ui/core/Radio";
-import { useState, useEffect } from "react";
-import Favorite from "@material-ui/icons/Favorite";
-import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
-import Checkbox from "@material-ui/core/Checkbox";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import {initFilmsAC} from '../../redux/actions/filmsCreator';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import { useSpring, animated } from 'react-spring'; // web.cjs is required for IE 11 supportъ
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import FormGroup from '@material-ui/core/FormGroup';
+import Typography from '@material-ui/core/Typography';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { Link } from 'react-router-dom';
+import Radio from '@material-ui/core/Radio';
+import { useState, useEffect } from 'react';
+import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
+import Checkbox from '@material-ui/core/Checkbox';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { initFilmsAC } from '../../redux/actions/filmsCreator';
 axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
@@ -28,43 +28,43 @@ const useStyles = makeStyles((theme) => ({
     // maxHeight: "300px",
   },
   modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   root: {
     fontSize: 30,
-    backgroundColor: "#4c494c",
-    color: "white",
-    border: "1px solid #802bb1",
+    backgroundColor: '#4c494c',
+    color: 'white',
+    border: '1px solid #802bb1',
   },
   paper: {
-    backgroundColor: "#564f6f",
+    backgroundColor: '#564f6f',
     minWidth: 125,
     maxWidth: 700,
     minHeight: 300,
-    border: "3px solid #802bb1",
-    borderRadius: "10px",
+    border: '3px solid #802bb1',
+    borderRadius: '10px',
     // boxShadow: theme.shadows[1],
     padding: theme.spacing(2, 4, 3),
   },
   content: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
   },
 
   title: {
     fontSize: 20,
-    color: "white",
-    textAlign: "center",
+    color: 'white',
+    textAlign: 'center',
   },
   pos: {
     marginBottom: 2,
   },
   button: {
-    margin: "0 auto",
-    backgroundColor: "#564f6f",
+    margin: '0 auto',
+    backgroundColor: '#564f6f',
   },
 }));
 
@@ -104,21 +104,21 @@ export default function SpringModal() {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState({
     jenre: [],
-    withWhom: "",
-    mood: "",
+    withWhom: '',
+    mood: '',
   });
   const [userJenre, setUserJenre] = useState([]);
   const [show, setShow] = useState(false);
   const [second, setSecond] = useState(true);
   const [base, setBase] = useState({});
-  const [allUserFilms, setAllUserFilms] = useState([])
+  const [allUserFilms, setAllUserFilms] = useState([]);
   const dispatch = useDispatch();
   console.log(base);
   // console.log(base.genre);
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/v1/test")
+      .get('http://localhost:8080/api/v1/test')
       .then((res) => setBase(res.data));
   }, []);
 
@@ -130,21 +130,19 @@ export default function SpringModal() {
     setOpen(false);
     setShow(false);
     setSecond(true);
-   dispatch(initFilmsAC(value))
+    dispatch(initFilmsAC(value));
     // axios.post('http://localhost:8080/api/v1/compilation', value).then(res=>setAllUserFilms(res.data))
     setUserJenre({});
     setValue({
       jenre: [],
-    withWhom: '',
-    mood: ''
-    })
+      withWhom: '',
+      mood: '',
+    });
   };
 
   const handleChange = (e) => {
-  
-    setValue((prev) => ({ ...prev, [e.target.name]: e.target.value  }));
-    setValue((prev)=>({...prev, jenre: userJenre}));
-
+    setValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setValue((prev) => ({ ...prev, jenre: userJenre }));
   };
   // console.log(value);
 
@@ -163,12 +161,12 @@ export default function SpringModal() {
 
   return (
     <div>
-      <button type="button" className="animated-button" onClick={handleOpen}>
+      <button type='button' className='animated-button' onClick={handleOpen}>
         Выбрать фильм
       </button>
       <Modal
-        aria-labelledby="spring-modal-title"
-        aria-describedby="spring-modal-description"
+        aria-labelledby='spring-modal-title'
+        aria-describedby='spring-modal-description'
         className={classes.modal}
         open={open}
         onClose={handleClose}
@@ -180,9 +178,9 @@ export default function SpringModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="spring-modal-title">
-              {" "}
-              Выберете для себя важные параметры  фильма{" "}
+            <h2 id='spring-modal-title'>
+              {' '}
+              Выберете для себя важные параметры фильма{' '}
             </h2>
             <div>
               {second ? (
@@ -192,15 +190,15 @@ export default function SpringModal() {
                       <CardContent>
                         <Typography
                           className={classes.title}
-                          color="textSecondary"
+                          color='textSecondary'
                           gutterBottom
                         >
                           Жанр
                         </Typography>
-                        <Typography variant="body2" component="p">
+                        <Typography variant='body2' component='p'>
                           <br />
                           <RadioGroup
-                            aria-label="Variant"
+                            aria-label='Variant'
                             onChange={handleJenre}
                             className={classes.content}
                           >
@@ -213,7 +211,7 @@ export default function SpringModal() {
                                     <Checkbox
                                       icon={<FavoriteBorder />}
                                       checkedIcon={<Favorite />}
-                                      name="checkedH"
+                                      name='checkedH'
                                     />
                                   }
                                   label={item}
@@ -225,8 +223,8 @@ export default function SpringModal() {
                       </CardContent>
                       <CardActions>
                         <Button
-                          size="small"
-                          variant="contained"
+                          size='small'
+                          variant='contained'
                           onClick={secondShow}
                           className={classes.button}
                         >
@@ -239,16 +237,16 @@ export default function SpringModal() {
                       <CardContent>
                         <Typography
                           className={classes.title}
-                          color="textSecondary"
+                          color='textSecondary'
                           gutterBottom
                         >
                           Вопрос
                         </Typography>
-                        <Typography variant="body2" component="p">
+                        <Typography variant='body2' component='p'>
                           <br />
                           <RadioGroup
-                            aria-label="Variant"
-                            name="mood"
+                            aria-label='Variant'
+                            name='mood'
                             onChange={handleChange}
                             className={classes.content}
                           >
@@ -266,8 +264,8 @@ export default function SpringModal() {
                       </CardContent>
                       <CardActions>
                         <Button
-                          size="small"
-                          variant="contained"
+                          size='small'
+                          variant='contained'
                           onClick={handleShow}
                           className={classes.button}
                         >
@@ -279,21 +277,21 @@ export default function SpringModal() {
                 </div>
               ) : (
                 <div>
-                  {" "}
+                  {' '}
                   <Card className={classes.root}>
                     <CardContent>
                       <Typography
                         className={classes.title}
-                        color="textSecondary"
+                        color='textSecondary'
                         gutterBottom
                       >
                         Вопрос
                       </Typography>
-                      <Typography variant="body2" component="p">
+                      <Typography variant='body2' component='p'>
                         <br />
                         <RadioGroup
-                          aria-label="Variant"
-                          name="withWhom"
+                          aria-label='Variant'
+                          name='withWhom'
                           onChange={handleChange}
                           className={classes.content}
                         >
@@ -310,10 +308,10 @@ export default function SpringModal() {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Link to="/game" className="link">
+                      <Link to='/game' className='link'>
                         <Button
-                          size="small"
-                          variant="contained"
+                          size='small'
+                          variant='contained'
                           // color="primary"
                           onClick={handleClose}
                           className={classes.button}
@@ -329,7 +327,6 @@ export default function SpringModal() {
           </div>
         </Fade>
       </Modal>
-    
     </div>
   );
 }
