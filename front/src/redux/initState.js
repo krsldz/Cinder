@@ -1,5 +1,7 @@
 const initState = {
   user: null,
+  films: [],
+  
 }
 
 const getInitState = () => {

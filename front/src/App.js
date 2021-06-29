@@ -13,6 +13,7 @@ function App() {
     <>
     <Router>
       <AppBar />
+      
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route exact path="/register" component={RegisterForm} />
