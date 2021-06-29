@@ -104,11 +104,11 @@ const onCardLeftScreen = (myIdentifier) => {
      
 
               className="swing"
-              src="https://img.icons8.com/ios/100/000000/thumbs-down.png"
+              src="https://img.icons8.com/ios/100/000000/thumbs-down.png" alt=""
             />
             <img
               className="swing"
-              src="https://img.icons8.com/ios/100/000000/question-mark--v1.png"
+              src="https://img.icons8.com/ios/100/000000/question-mark--v1.png" alt=""
             />
           </div>
 
@@ -121,11 +121,11 @@ const onCardLeftScreen = (myIdentifier) => {
                 //  onClick={likeHandler}
                 
               className="swing"
-              src="https://img.icons8.com/ios/100/000000/thumb-up--v1.png"
+              src="https://img.icons8.com/ios/100/000000/thumb-up--v1.png" alt=""
             />
             <img
               className="swing"
-              src="https://img.icons8.com/windows/100/000000/filled-heart.png"
+              src="https://img.icons8.com/windows/100/000000/filled-heart.png" alt=""
             />
           </div>
         </div>
