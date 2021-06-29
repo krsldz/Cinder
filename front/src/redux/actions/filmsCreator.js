@@ -1,5 +1,6 @@
 import { INIT_FILMS } from "../types";
 import axios from 'axios';
+import {enableLoader, disableLoader} from './loader';
 axios.defaults.withCredentials = true;
 
 export const setAllUserFilms = (films) =>{
@@ -10,6 +11,7 @@ export const setAllUserFilms = (films) =>{
 }
 // thunk чтобы показывать юзеру подборку его фильмов после прохождения теста
 export const initFilmsAC = (value) => async (dispatch) => {
+  dispatch(enableLoader())
   try {
   const response = await axios.post('http://localhost:8080/api/v1/compilation', value);
  
@@ -17,4 +19,5 @@ export const initFilmsAC = (value) => async (dispatch) => {
   } catch (error) {
     console.log(error)
   }
+  dispatch(disableLoader())
 };

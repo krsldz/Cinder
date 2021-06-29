@@ -1,4 +1,5 @@
-import { DELETE_USER, SET_USER, UPDATE_USER } from "../types"
+import { DELETE_USER, SET_USER, UPDATE_USER } from "../types";
+import {enableLoader, disableLoader} from './loader';
 
 export const setUser = (user) => ({
   type: SET_USER,
@@ -15,6 +16,7 @@ export const setUser = (user) => ({
 // }
 
 export const signUp = (payload, history) => async (dispatch) => {
+  dispatch(enableLoader())
   const response = await fetch('http://localhost:8080/api/v1/auth/signup', {
     method: "POST",
     headers: {
@@ -23,16 +25,23 @@ export const signUp = (payload, history) => async (dispatch) => {
     credentials: 'include',
     body: JSON.stringify(payload)
   })
-    const user = await response.json()
-    if (user) {
-      dispatch(setUser(user))
-      history.replace('/test');
+  if (response.status === 400) {
+    alert('Вы уже зарегистрированы, войдите')
+  }
+    if (response.status === 200) {
+      const user = await response.json()
+      if (user) {
+        dispatch(setUser(user))
+        history.replace('/');
+      }
     } else {
       history.replace('/register');
     }
-  }
+    dispatch(disableLoader())
+}
 
 export const signIn = (payload, history, from) => async (dispatch) => {
+  dispatch(enableLoader())
   const response = await fetch('http://localhost:8080/api/v1/auth/signin', {
     method: "POST",
     headers: {
@@ -45,9 +54,14 @@ export const signIn = (payload, history, from) => async (dispatch) => {
     const user = await response.json()
     dispatch(setUser(user))
     history.replace(from);
-  } else {
-    history.replace('/signin')
-  }
+    // history.push('/');
+  } if (response.status === 401 || response.status === 401) {
+    alert('Неверно введены данные, попробуйте снова')
+  } 
+  // else {
+  //   history.replace('/signin')
+  // }
+  dispatch(disableLoader())
 }
 
 export const signOut = () => async (dispatch) => {
@@ -63,13 +77,12 @@ export const deleteUser = () => ({
   type: DELETE_USER
 })
 
-
-  // const fetchAuthUser = async () => {
-  //   const response = await axios
-  //     .get("http://localhost:5000/api/v1/auth/user", { withCredentials: true })
-  //     .catch((err) => {
-  //       console.log("Not properly authenticated");
-  //       dispatch(setIsAuthenticated(false));
-  //       dispatch(setAuthUser(null));
-  //       history.push("/login/error");
-  //     });
+export const getUserFromServer = (id) => async (dispatch) => {
+  dispatch(enableLoader())
+  const response = await fetch('http://localhost:8080/api/v1/auth/user', {credentials: 'include'})
+  if (response.status === 200) {
+    const currentUser = await response.json()
+    dispatch(setUser(currentUser))
+  }
+  dispatch(disableLoader())
+} 

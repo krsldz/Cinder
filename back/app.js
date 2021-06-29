@@ -62,27 +62,24 @@ app.get('/auth/google',
 app.get('/auth/google/callback',
   passport.authenticate('google', { successRedirect: 'http://localhost:3000/login/success', failureRedirect: 'http://localhost:3000/login' }),
   function (req, res) {
-    console.log(req.user);
     res.send(req.user);
   });
 
 
-// isUserAuthenticated = (req, res, next) => {
-//   if (req.user) {
-//     next();
-//   } else {
-//     res.status(401).send("You must login first!");
-//   }
-// };
+isUserAuthenticated = (req, res, next) => {
+  if (req.user) {
+    next();
+  } else {
+    res.status(401).send("Войдите или зарегистрируйтесь");
+  }
+};
 
-app.get('/auth/user', (req, res) => {
-  console.log(req.user);
+app.get('/auth/user', isUserAuthenticated, (req, res) => {
   res.json(req.user)
 })
   
  
 app.listen(PORT, () => {
-  console.log('server started!');
   connect(
     DB_CONNECT,
     { useNewUrlParser: true, useUnifiedTopology: true },

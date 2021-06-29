@@ -54,7 +54,7 @@ export default function NewText (){
   const [show, setShow] = useState(false);
   const [second, setSecond] = useState(true);
   const [value, setValue] = useState();
-  console.log(show);
+
 
   const handleShow =() =>{
     setShow(true)

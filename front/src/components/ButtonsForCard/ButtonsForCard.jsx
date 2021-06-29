@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CardSolo from "../Card/Card";
 import "./ButtonsForCard.css";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
+import TinderCard from 'react-tinder-card';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +36,14 @@ function ButtonsForCard() {
 
   const [likeEvent, setLikeEvent] = useState([])
   const [superLikeEvent, setsuperLike] = useState([])
+
+  const onSwipe = (direction) => {
+  console.log('You swiped: ' + direction)
+}
+
+const onCardLeftScreen = (myIdentifier) => {
+  console.log(myIdentifier + ' left the screen')
+}
 
   function removeItemOnce(arr, value) {
     let index = arr.indexOf(value);
@@ -92,11 +101,11 @@ function ButtonsForCard() {
      
 
               className="swing"
-              src="https://img.icons8.com/ios/100/000000/thumbs-down.png"
+              src="https://img.icons8.com/ios/100/000000/thumbs-down.png" alt=""
             />
             <img
               className="swing"
-              src="https://img.icons8.com/ios/100/000000/question-mark--v1.png"
+              src="https://img.icons8.com/ios/100/000000/question-mark--v1.png" alt=""
             />
           </div>
 
@@ -109,11 +118,11 @@ function ButtonsForCard() {
                 //  onClick={likeHandler}
                 
               className="swing"
-              src="https://img.icons8.com/ios/100/000000/thumb-up--v1.png"
+              src="https://img.icons8.com/ios/100/000000/thumb-up--v1.png" alt=""
             />
             <img
               className="swing"
-              src="https://img.icons8.com/windows/100/000000/filled-heart.png"
+              src="https://img.icons8.com/windows/100/000000/filled-heart.png" alt=""
             />
           </div>
         </div>
@@ -130,7 +139,7 @@ function ButtonsForCard() {
           </div>
         </footer>
       </div>
-      <div><h3>Подборка для юзера:</h3> {allFilms.map(film => <CardSolo id={film.idKP} />)}</div>
+      <div><h3>Подборка для юзера:</h3> {allFilms?.map(film => <CardSolo id={film.idKP} />)}</div>
     </>
   );
 }

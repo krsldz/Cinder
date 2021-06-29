@@ -59,4 +59,10 @@ router.get('/signout', async (req, res) => {
   })
 });
 
+router.get('/user', async (req, res) => {
+  const { id } = req.params
+  const currentUser = await User.findById(id)
+    res.json(currentUser)
+});
+
 module.exports = router;

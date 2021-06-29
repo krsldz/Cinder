@@ -1,11 +1,28 @@
+.devider {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+h1,
+h4,
+h5 {
+  color: white;
+}
+h5 {
+  color: #9331cc;
+}
+
 .wrapper {
-  display: grid;
+  /* display: grid;
   padding-top: 40px;
   padding-right: 200px;
   padding-left: 200px;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-rows: minmax(400px, auto);
-  grid-gap: 40px;
+  grid-template-columns: 1fr 1fr 1fr; */
+  /* grid-auto-rows: minmax(500px, auto); */
+  /* grid-gap: 40px; */
+  max-width: 550px;
+  max-height: 600px;
+  margin-bottom: 20px;
 }
 
 .box {
@@ -21,14 +38,14 @@
   text-indent: 0px;
   cursor: pointer;
   border-radius: 5%;
-  padding: 10px;
+  padding: 20px;
   background-color: #4c494c;
 }
-.box:hover {
+/* .box:hover {
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
-}
+} */
 
 .box1 {
   /* margin-top: 50px; */
@@ -47,12 +64,12 @@
 .animated-button {
   text-decoration: none;
   display: inline-block;
-  margin: 10px 20px;
+  margin: 10px 10px;
   padding: 15px 30px;
   overflow: hidden;
   border: 2px solid;
   border-bottom-width: 4px;
-  font-family: "Montserrat", sans-serif;
+  /* font-family: "Montserrat", sans-serif; */
   text-transform: uppercase;
   font-weight: bold;
   letter-spacing: 2px;
@@ -84,9 +101,7 @@
     background-position: 50px 0;
   }
 }
-.buttonDiv {
-  text-align: center;
-}
+
 /* ------------------------------- */
 
 footer {

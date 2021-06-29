@@ -1,86 +1,72 @@
+import Zak from "../../images/Zak.jpeg";
+
 export default function ScrollBar() {
   return (
-    <div>
-      <div
-        class="uk-position-relative uk-visible-toggle uk-light"
-        tabindex="-1"
-        uk-slider="sets: true"
-      >
-        <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@m">
-          <li>
-            <img src="" alt="" />
-            <div class="uk-position-center uk-panel">
-              <div class="uk-h1">1</div>
-            </div>
-          </li>
-          <li>
-            <img src="/demo/img/slider2.jpg" alt="" />
-            <div class="uk-position-center uk-panel">
-              <div class="uk-h1">2</div>
-            </div>
-          </li>
-          <li>
-            <img src="/demo/img/slider3.jpg" alt="" />
-            <div class="uk-position-center uk-panel">
-              <div class="uk-h1">3</div>
-            </div>
-          </li>
-          <li>
-            <img src="/demo/img/slider4.jpg" alt="" />
-            <div class="uk-position-center uk-panel">
-              <div class="uk-h1">4</div>
-            </div>
-          </li>
-          <li>
-            <img src="/demo/img/slider5.jpg" alt="" />
-            <div class="uk-position-center uk-panel">
-              <div class="uk-h1">5</div>
-            </div>
-          </li>
-          <li>
-            <img src="/demo/img/slider1.jpg" alt="" />
-            <div class="uk-position-center uk-panel">
-              <div class="uk-h1">6</div>
-            </div>
-          </li>
-          <li>
-            <img src="/demo/img/slider2.jpg" alt="" />
-            <div class="uk-position-center uk-panel">
-              <div class="uk-h1">7</div>
-            </div>
-          </li>
-          <li>
-            <img src="/demo/img/slider3.jpg" alt="" />
-            <div class="uk-position-center uk-panel">
-              <div class="uk-h1">8</div>
-            </div>
-          </li>
-          <li>
-            <img src="/demo/img/slider4.jpg" alt="" />
-            <div class="uk-position-center uk-panel">
-              <div class="uk-h1">9</div>
-            </div>
-          </li>
-          <li>
-            <img src="/demo/img/slider5.jpg" alt="" />
-            <div class="uk-position-center uk-panel">
-              <div class="uk-h1">10</div>
-            </div>
-          </li>
-        </ul>
-        <a
-          class="uk-position-center-left uk-position-small uk-hidden-hover"
-          href="#"
-          uk-slidenav-previous
-          uk-slider-item="previous"
-        ></a>
-        <a
-          class="uk-position-center-right uk-position-small uk-hidden-hover"
-          href="#"
-          uk-slidenav-next
-          uk-slider-item="next"
-        ></a>
-      </div>
+    <div
+      className="uk-position-relative uk-visible-toggle uk-light"
+      tabindex="-1"
+      uk-slider="sets: true"
+    >
+      <ul className="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-light">
+        <li className="uk-transition-toggle" tabindex="0">
+          <img src={Zak} alt="" />
+          <div className="uk-position-center uk-panel">
+            <div className="uk-h1 uk-transition-slide-bottom-small">1</div>
+          </div>
+        </li>
+        <li className="uk-transition-toggle" tabindex="0">
+          <img src={Zak} alt="" />
+          <div className="uk-position-center uk-panel">
+            <div uk-icon="icon: chevron-left; ratio: 2"></div>
+            <div className="uk-h1 uk-transition-slide-bottom-small">1</div>
+          </div>
+        </li>
+        <li className="uk-transition-toggle" tabindex="0">
+          <img src={Zak} alt="" />
+          <div className="uk-position-center uk-panel">
+            <div className="uk-h1 uk-transition-slide-bottom-small">1</div>
+          </div>
+        </li>
+        <li className="uk-transition-toggle" tabindex="0">
+          <img src={Zak} alt="" />
+          <div className="uk-position-center uk-panel">
+            <div className="uk-h1 uk-transition-slide-bottom-small">1</div>
+          </div>
+        </li>
+        <li className="uk-transition-toggle" tabindex="0">
+          <img src={Zak} alt="" />
+          <div className="uk-position-center uk-panel">
+            <div className="uk-h1 uk-transition-slide-bottom-small">1</div>
+          </div>
+        </li>
+        <li className="uk-transition-toggle" tabindex="0">
+          <img src={Zak} alt="" />
+          <div className="uk-position-center uk-panel">
+            <div className="uk-h1 uk-transition-slide-bottom-small">1</div>
+          </div>
+        </li>
+        <li className="uk-transition-toggle" tabindex="0">
+          <img src={Zak} alt="" />
+          <div className="uk-position-center uk-panel">
+            <div className="uk-h1 uk-transition-slide-bottom-small">1</div>
+          </div>
+        </li>
+      </ul>
+      <a
+        className="uk-position-center-left uk-position-small uk-hidden-hover"
+        href="#"
+        uk-slidenav-previous
+        uk-slider-item="previous"
+        uk-icon="icon: chevron-left; ratio: 2"
+      ></a>
+      <a
+        className="uk-position-center-right uk-position-small uk-hidden-hover"
+        href="#"
+        uk-slidenav-next
+        uk-slider-item="next"
+        uk-icon="icon: chevron-right; ratio: 2"
+      ></a>
+      <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
     </div>
   );
 }

@@ -111,9 +111,10 @@ export default function SpringModal() {
   const [show, setShow] = useState(false);
   const [second, setSecond] = useState(true);
   const [base, setBase] = useState({});
-  const [allUserFilms, setAllUserFilms] = useState([])
+  
   const dispatch = useDispatch();
-  console.log(base);
+  // console.log(base);
+  // console.log(value);
   // console.log(base.genre);
 
   useEffect(() => {
@@ -127,9 +128,13 @@ export default function SpringModal() {
   };
 
   const handleClose = () => {
+   
+    setValue((prev)=>({...prev, jenre: userJenre}));
+
     setOpen(false);
     setShow(false);
     setSecond(true);
+    console.log(value);
    dispatch(initFilmsAC(value))
     // axios.post('http://localhost:8080/api/v1/compilation', value).then(res=>setAllUserFilms(res.data))
     setUserJenre({});
@@ -143,10 +148,11 @@ export default function SpringModal() {
   const handleChange = (e) => {
   
     setValue((prev) => ({ ...prev, [e.target.name]: e.target.value  }));
-    setValue((prev)=>({...prev, jenre: userJenre}));
+   
+    console.log(value);
 
   };
-  // console.log(value);
+
 
   const handleShow = () => {
     setShow(true);
@@ -155,11 +161,9 @@ export default function SpringModal() {
     setSecond(false);
   };
   const handleJenre = (e) => {
-    console.log(e);
     setUserJenre((prev) => [...prev, e.target.value]);
+    setValue((prev)=>({...prev, jenre: userJenre}));
   };
-
-  console.log(userJenre);
 
   return (
     <div>
@@ -200,8 +204,9 @@ export default function SpringModal() {
                         <Typography variant="body2" component="p">
                           <br />
                           <RadioGroup
+                           name="mood"
                             aria-label="Variant"
-                            onChange={handleJenre}
+                            onChange={handleChange}
                             className={classes.content}
                           >
                             {base?.mood?.map((item) => (
@@ -241,7 +246,7 @@ export default function SpringModal() {
                           <br />
                           <RadioGroup
                             aria-label="Variant"
-                            name="mood"
+                            name="withWhom"
                             onChange={handleChange}
                             className={classes.content}
                           >
@@ -286,7 +291,6 @@ export default function SpringModal() {
                         <br />
                         <RadioGroup
                           aria-label="Variant"
-                          name="withWhom"
                           onChange={handleChange}
                           className={classes.content}
                         >
