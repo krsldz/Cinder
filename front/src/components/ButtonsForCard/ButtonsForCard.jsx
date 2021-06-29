@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
@@ -35,8 +35,11 @@ function ButtonsForCard() {
   const [superLikeEvent, setsuperLike] = useState([]);
 
   const onSwipe = (direction) => {
-    console.log("You swiped: " + direction);
-  };
+  console.log('You swiped: ' + direction)
+}
+useEffect(()=>{
+ 
+},[allFilms])
 
   const onCardLeftScreen = (myIdentifier) => {
     console.log(myIdentifier + " left the screen");
