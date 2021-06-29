@@ -139,7 +139,7 @@ const onCardLeftScreen = (myIdentifier) => {
           </div>
         </footer>
       </div>
-      <div><h3>Подборка для юзера:</h3> {allFilms?.map(film => <CardSolo id={film.idKP} />)}</div>
+      <div><h3>Подборка для юзера:</h3> {allFilms?.map((film, ind) => <div id={'layer'+ind}><CardSolo id={film.idKP} /></div>)}</div>
     </>
   );
 }

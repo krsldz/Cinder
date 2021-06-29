@@ -44,3 +44,30 @@
 }
 
 /* ----------------------------------- */
+
+#layer0, #layer1, #layer2, #layer3, #layer4, #layer5, #layer6, #layer7, #layer8, #layer9, #layer10, #layer11 {
+  position: relative; /* Относительное позиционирование */
+ }
+
+ #layer1 {
+   top: -655px; /* Сдвигаем текст вверх */
+   left: 10px;
+ }
+
+ #layer2 {
+  top: -855px; /* Сдвигаем текст вверх */
+  left: 10px;
+}
+
+ #layer0 {z-index: 1;}
+ #layer1 {z-index: 2;}
+ #layer2 {z-index: 3;}
+ #layer3 {z-index: 4;}
+ #layer4 {z-index: 5;}
+ #layer5 {z-index: 6;}
+ #layer6 {z-index: 7;}
+ #layer7 {z-index: 8;}
+ #layer8 {z-index: 9;}
+ #layer9 {z-index: 10;}
+ #layer10 {z-index: 11;}
+ #layer11 {z-index: 12;}

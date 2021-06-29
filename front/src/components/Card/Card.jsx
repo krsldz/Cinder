@@ -34,7 +34,7 @@ export default function CardSolo({id}) {
 
   const movieInfo = (id) => {
     fetch(
-      `https://api.kinopoisk.cloud/movies/${id}/token/00f3d50d121e8e9511efb17c44b334fb`
+      `https://api.kinopoisk.cloud/movies/${id}/token/5569de70790cb3817d9437a804ee0bac`
     )
       .then((res) => res.json())
       .then((data) => setInfoAboutMovie(data));
@@ -49,15 +49,10 @@ export default function CardSolo({id}) {
   console.log('You swiped: ' + direction)
 }
 
-const onCardLeftScreen = (myIdentifier) => {
-  console.log(myIdentifier + ' left the screen')
-}
-
-
 
   return (
   <>
-    <TinderCard onSwipe={onSwipe}  preventSwipe={['right', 'left']}> aaaaaaa 
+    <TinderCard onSwipe={onSwipe}  > aaaaaaa 
     <div className="card">
       <div className="dws-wrapper">
         <a>
