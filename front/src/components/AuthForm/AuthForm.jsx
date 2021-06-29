@@ -6,10 +6,9 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import { signIn} from "../../redux/actions/user";
-import "../RegisterForm/RegisterForm";
-import GoogleButton from 'react-google-button';
+import { signIn } from "../../redux/actions/user";
 
+import GoogleButton from "react-google-button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AuthForm() {
-
   const classes = useStyles();
   const [userSignIn, setUserSignIn] = useState({
     email: "",
@@ -39,7 +37,6 @@ export default function AuthForm() {
 
   const dispatch = useDispatch();
 
-
   const submitHandler = (e) => {
     e.preventDefault();
     let payload = Object.entries(userSignIn).filter((el) =>
@@ -53,45 +50,53 @@ export default function AuthForm() {
 
   return (
     <div className="divReg">
-      <form
-        onSubmit={submitHandler}
-        className={classes.root}
-        noValidate
-        autoComplete="off"
-      >
-        <h4>Войдите, чтобы выбрать фильм на вечер и не только</h4>
-        <div>
-          <TextField
-            id="outlined-textarea"
-            label="Электронная почта"
-            name="email"
-            onChange={changeHandler}
-            value={userSignIn.email}
-            multiline
-            variant="outlined"
-          />
-        </div>
-        <div>
-          <TextField
-            id="outlined-textarea"
-            label="Пароль"
-            name="password"
-            onChange={changeHandler}
-            value={userSignIn.password}
-            multiline
-            variant="outlined"
-          />
-        </div>
-        <Button type="submit" variant="outlined" color="primary">
-          Продолжить
-        </Button>
-        <div>
-          <a href="http://localhost:8080/auth/google"><GoogleButton type="light" label='Войти через Google' /></a>
-        </div>
-      </form>
-      <div>Еще нет учетной записи?</div>
       <div>
-        <Link to="/register"> Зарегистрируйтесь </Link>
+        <form
+          onSubmit={submitHandler}
+          className={classes.root}
+          noValidate
+          autoComplete="off"
+        >
+          <h4>Войдите, чтобы выбрать фильм на вечер и не только</h4>
+          <div>
+            <TextField
+              id="outlined-textarea"
+              label="Электронная почта"
+              name="email"
+              onChange={changeHandler}
+              value={userSignIn.email}
+              multiline
+              variant="outlined"
+            />
+          </div>
+          <div>
+            <TextField
+              id="outlined-textarea"
+              label="Пароль"
+              name="password"
+              onChange={changeHandler}
+              value={userSignIn.password}
+              multiline
+              variant="outlined"
+            />
+          </div>
+          <Button type="submit" variant="outlined" color="primary">
+            Продолжить
+          </Button>
+          <div>
+            <a href="http://localhost:8080/auth/google">
+              <GoogleButton
+                type="light"
+                label="Войти через Google"
+                className="googleBut"
+              />
+            </a>
+          </div>
+        </form>
+        <div>Еще нет учетной записи?</div>
+        <div>
+          <Link to="/register"> Зарегистрируйтесь </Link>
+        </div>
       </div>
     </div>
   );

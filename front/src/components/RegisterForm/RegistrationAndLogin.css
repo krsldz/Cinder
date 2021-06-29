@@ -1,4 +1,10 @@
 .divReg {
   text-align: center;
-  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+.googleBut {
+  background-color: red;
+  margin: auto;
+  margin-top: 10px;
 }

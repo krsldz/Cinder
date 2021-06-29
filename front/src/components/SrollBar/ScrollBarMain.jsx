@@ -1,8 +1,8 @@
 import ric from "../../images/ric.jpeg";
 import zak from "../../images/Zak.jpeg";
 import quin from "../../images/quin.jpeg";
-import chel  from "../../images/chel.jpeg";
-
+import chel from "../../images/chel.jpeg";
+import "./Scroll.css";
 
 export default function ScrollBarMain() {
   return (
@@ -10,10 +10,10 @@ export default function ScrollBarMain() {
       <div
         class="uk-position-relative uk-visible-toggle uk-light"
         tabindex="-1"
-        uk-slider="center: true"
+        uk-slider="center: true; clsActivated: uk-transition-active"
       >
         <ul
-          class="uk-slider-items uk-grid uk-grid-match"
+          class="uk-slider-items uk-grid uk-grid-match "
           uk-height-viewport="offset-top: true; 
                             offset-bottom: 30
                             "
@@ -21,8 +21,8 @@ export default function ScrollBarMain() {
           <li class="uk-width-3-4 uk-transition-toggle">
             <div class="uk-cover-container">
               <img src={ric} alt="" uk-cover />
-              <div class="uk-position-center uk-panel">
-                <div class="uk-h1 uk-transition-slide-bottom-small">
+              <div className="uk-position-center uk-panel">
+                <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
                   Для просмотра с братом
                 </div>
               </div>
@@ -32,8 +32,8 @@ export default function ScrollBarMain() {
           <li class="uk-width-3-4 uk-transition-toggle">
             <div class="uk-cover-container">
               <img src={zak} alt="" uk-cover />
-              <div class="uk-position-center uk-panel">
-                <div class="uk-h1 uk-transition-slide-bottom-small">
+              <div className="uk-position-center uk-panel">
+                <div className="uk-h1 uk-transition-slide-bottom-small">
                   Для просмотра с мамой
                 </div>
               </div>
@@ -43,8 +43,8 @@ export default function ScrollBarMain() {
           <li class="uk-width-3-4 uk-transition-toggle">
             <div class="uk-cover-container">
               <img src={quin} alt="" uk-cover />
-              <div class="uk-position-center uk-panel">
-                <div class="uk-h1 uk-transition-slide-bottom-small">
+              <div className="uk-position-center uk-panel">
+                <div className="uk-h1 uk-transition-slide-bottom-small">
                   Для просмотра в компании
                 </div>
               </div>
@@ -53,8 +53,8 @@ export default function ScrollBarMain() {
           <li class="uk-width-3-4 uk-transition-toggle">
             <div class="uk-cover-container">
               <img src={chel} alt="" uk-cover />
-              <div class="uk-position-center uk-panel">
-                <div class="uk-h1 uk-transition-slide-bottom-small">
+              <div className="uk-position-center uk-panel">
+                <div className="uk-h1 uk-transition-slide-bottom-small">
                   Для просмотра со своей половинкой
                 </div>
               </div>
