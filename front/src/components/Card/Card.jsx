@@ -36,7 +36,7 @@ export default function CardSolo({id}) {
 
   const movieInfo = (id) => {
     fetch(
-      `https://api.kinopoisk.cloud/movies/${id}/token/76cf037e01db02ca1036a7cf5e350b1c`
+      `https://api.kinopoisk.cloud/movies/${id}/token/00f3d50d121e8e9511efb17c44b334fb`
     )
       .then((res) => res.json())
       .then((data) => setInfoAboutMovie(data));
