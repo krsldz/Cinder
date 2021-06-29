@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CardSolo from "../Card/Card";
 import "./ButtonsForCard.css";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
+import TinderCard from 'react-tinder-card';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,6 +36,14 @@ function ButtonsForCard() {
 
   const [likeEvent, setLikeEvent] = useState([])
   const [superLikeEvent, setsuperLike] = useState([])
+
+  const onSwipe = (direction) => {
+  console.log('You swiped: ' + direction)
+}
+
+const onCardLeftScreen = (myIdentifier) => {
+  console.log(myIdentifier + ' left the screen')
+}
 
   function removeItemOnce(arr, value) {
     let index = arr.indexOf(value);
@@ -130,7 +139,7 @@ function ButtonsForCard() {
           </div>
         </footer>
       </div>
-      <div><h3>Подборка для юзера:</h3> {allFilms.map(film => <CardSolo id={film.idKP} />)}</div>
+      <div><h3>Подборка для юзера:</h3> {allFilms?.map(film => <CardSolo id={film.idKP} />)}</div>
     </>
   );
 }

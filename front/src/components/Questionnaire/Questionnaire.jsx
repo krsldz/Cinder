@@ -114,6 +114,7 @@ export default function SpringModal() {
   const [allUserFilms, setAllUserFilms] = useState([])
   const dispatch = useDispatch();
   console.log(base);
+  console.log(value);
   // console.log(base.genre);
 
   useEffect(() => {
@@ -127,6 +128,9 @@ export default function SpringModal() {
   };
 
   const handleClose = () => {
+   
+    setValue((prev)=>({...prev, jenre: userJenre}));
+
     setOpen(false);
     setShow(false);
     setSecond(true);
@@ -143,7 +147,8 @@ export default function SpringModal() {
   const handleChange = (e) => {
   
     setValue((prev) => ({ ...prev, [e.target.name]: e.target.value  }));
-    setValue((prev)=>({...prev, jenre: userJenre}));
+   
+    console.log(value);
 
   };
   // console.log(value);
@@ -157,6 +162,7 @@ export default function SpringModal() {
   const handleJenre = (e) => {
     console.log(e);
     setUserJenre((prev) => [...prev, e.target.value]);
+    setValue((prev)=>({...prev, jenre: userJenre}));
   };
 
   console.log(userJenre);
@@ -200,8 +206,9 @@ export default function SpringModal() {
                         <Typography variant="body2" component="p">
                           <br />
                           <RadioGroup
+                           name="mood"
                             aria-label="Variant"
-                            onChange={handleJenre}
+                            onChange={handleChange}
                             className={classes.content}
                           >
                             {base?.mood?.map((item) => (
@@ -241,7 +248,7 @@ export default function SpringModal() {
                           <br />
                           <RadioGroup
                             aria-label="Variant"
-                            name="mood"
+                            name="withWhom"
                             onChange={handleChange}
                             className={classes.content}
                           >
@@ -286,7 +293,6 @@ export default function SpringModal() {
                         <br />
                         <RadioGroup
                           aria-label="Variant"
-                          name="withWhom"
                           onChange={handleChange}
                           className={classes.content}
                         >
