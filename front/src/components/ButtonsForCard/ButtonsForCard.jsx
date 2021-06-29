@@ -5,8 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CardSolo from "../Card/Card";
 import "./ButtonsForCard.css";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
-import TinderCard from 'react-tinder-card';
-
+import TinderCard from "react-tinder-card";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,13 +28,11 @@ const useStyles = makeStyles((theme) => ({
 
 function ButtonsForCard() {
   const classes = useStyles();
-  
 
+  let allFilms = useSelector((state) => state.films);
 
-  let allFilms = useSelector(state => state.films)
-
-  const [likeEvent, setLikeEvent] = useState([])
-  const [superLikeEvent, setsuperLike] = useState([])
+  const [likeEvent, setLikeEvent] = useState([]);
+  const [superLikeEvent, setsuperLike] = useState([]);
 
   const onSwipe = (direction) => {
   console.log('You swiped: ' + direction)
@@ -44,9 +41,9 @@ useEffect(()=>{
  
 },[allFilms])
 
-const onCardLeftScreen = (myIdentifier) => {
-  console.log(myIdentifier + ' left the screen')
-}
+  const onCardLeftScreen = (myIdentifier) => {
+    console.log(myIdentifier + " left the screen");
+  };
 
   function removeItemOnce(arr, value) {
     let index = arr.indexOf(value);
@@ -57,43 +54,28 @@ const onCardLeftScreen = (myIdentifier) => {
   }
 
   const dislikeHandler = (id) => {
-    let dislikeFilm = allFilms.filter(film=>film.id===id );
+    let dislikeFilm = allFilms.filter((film) => film.id === id);
     allFilms = removeItemOnce(allFilms, dislikeFilm);
-
-
-   
-
-  }
+  };
 
   const dontKnowHandler = (id) => {
-   let dontKnowFilm = allFilms.filter(film=>film.id===id );
-  allFilms = removeItemOnce(allFilms, dontKnowFilm);
-  allFilms.push(dontKnowFilm);
-
-
-
-
-
-  }
+    let dontKnowFilm = allFilms.filter((film) => film.id === id);
+    allFilms = removeItemOnce(allFilms, dontKnowFilm);
+    allFilms.push(dontKnowFilm);
+  };
 
   const likeHandler = (id) => {
-    let likeFilm = allFilms.filter(film=>film.id==id);
+    let likeFilm = allFilms.filter((film) => film.id == id);
     allFilms = removeItemOnce(allFilms, likeFilm);
-    setLikeEvent(prev=>[...prev, likeFilm ])
-    
-
-
-  }
+    setLikeEvent((prev) => [...prev, likeFilm]);
+  };
 
   const superLikeHandler = (id) => {
-
-    let superLikeFilm = allFilms.filter(film=>film.id==id);
+    let superLikeFilm = allFilms.filter((film) => film.id == id);
     allFilms = removeItemOnce(allFilms, superLikeFilm);
 
-
-    setsuperLike(prev=>[...prev, superLikeFilm])
-
-  }
+    setsuperLike((prev) => [...prev, superLikeFilm]);
+  };
 
   return (
     <>
@@ -101,48 +83,48 @@ const onCardLeftScreen = (myIdentifier) => {
         <div className="divWithButtons">
           <div className="divBut">
             <img
-     
-
               className="swing"
-              src="https://img.icons8.com/ios/100/000000/thumbs-down.png" alt=""
+              src="https://img.icons8.com/ios/100/000000/thumbs-down.png"
+              alt=""
             />
             <img
               className="swing"
-              src="https://img.icons8.com/ios/100/000000/question-mark--v1.png" alt=""
+              src="https://img.icons8.com/ios/100/000000/question-mark--v1.png"
+              alt=""
             />
           </div>
 
           <div className="boxGame">
-            <CardSolo />
+            {allFilms?.map((film) => (
+              <CardSolo id={film.idKP} />
+            ))}
           </div>
 
           <div className="divBut">
             <img
-                //  onClick={likeHandler}
-                
+              //  onClick={likeHandler}
+
               className="swing"
-              src="https://img.icons8.com/ios/100/000000/thumb-up--v1.png" alt=""
+              src="https://img.icons8.com/ios/100/000000/thumb-up--v1.png"
+              alt=""
             />
             <img
               className="swing"
-              src="https://img.icons8.com/windows/100/000000/filled-heart.png" alt=""
+              src="https://img.icons8.com/windows/100/000000/filled-heart.png"
+              alt=""
             />
           </div>
         </div>
         <hr />
         <footer>
           <SvgIconsColor />
-          <div >
-           
-            <a href="https://icons8.com/icon/aId5rVASLwDE/сердечко-с-заливкой" >
+          <div>
+            <a href="https://icons8.com/icon/aId5rVASLwDE/сердечко-с-заливкой">
               icon by Icons8
             </a>
-
-          
           </div>
         </footer>
       </div>
-      <div><h3>Подборка для юзера:</h3> {allFilms?.map(film => <CardSolo id={film.idKP} />)}</div>
     </>
   );
 }
