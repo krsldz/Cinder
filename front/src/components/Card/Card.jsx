@@ -19,7 +19,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CardSolo({id}) {
+export default function CardSolo() {
   const classes = useStyles();
   const [films, setFilms] = useState([]);
   let movies= useSelector(state=>state.films);
