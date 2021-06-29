@@ -9,6 +9,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Trailer from '../Trailer/Trailer';
+import { useSelector, useDispatch } from "react-redux";
 import "./Card.css";
 const useStyles = makeStyles({
   border: {
@@ -27,20 +28,32 @@ export default function CardSolo() {
   const trailerButtonClickHandler = () => {
     setTrailer(!trailer);
   }
+  const [films, setFilms] = useState([]);
+  let movies= useSelector(state=>state.films);
+  console.log(movies);
+  // console.log(id)
+  useEffect(()=>{
+    axios.get('http://localhost:8080/api/v1/compilation').then(res=>setFilms(res.data))
+  },[]) 
+
+
+
 
   const [infoAboutMovie, setInfoAboutMovie] = useState({});
   const movieInfo = (id) => {
     fetch(
-      `https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`
+      `https://api.kinopoisk.cloud/movies/${id}/token/dbe6c6c687384869b64e1ea5479766ab`
     )
       .then((res) => res.json())
       .then((data) => setInfoAboutMovie(data));
     //const currMovie = response.json()
     //return currMovie
-  };
-  // useEffect(() => {
-  //   movieInfo(1143242);
-  // }, []);
+  }
+//  useEffect(() => {
+//   movieInfo(id)
+//  }, [])
+ 
+
 
   return (
     <div className="card">

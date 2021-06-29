@@ -1,40 +1,39 @@
 const { Router } = require('express');
 // const fs = require('fs');
-// const upload  = require('../controlers/uploaders');
-// const User = require('../models/user');
-// const Images = require('../models/images');
+const upload  = require('../controlers/uploaders');
+const User = require('../models/user');
+const Images = require('../models/images');
 const router = Router();
 const multer = require('multer');
-// const moment = require('moment');
+const moment = require('moment');
 
 // const {promisify}= require('util');
 // const pipeline = promisify(require('stream').pipeline)
 
-// const date = moment().format('DDMMYYYY-HHmmss_SSS')
+const date = moment().format('DDMMYYYY-HHmmss_SSS')
 
 
-// async function addToDb(file, userId) {
-//   const user = await User.findById(userId);
+async function addToDb(file, userId) {
+  const user = await User.findById(userId);
 
-//     const filename = file.filename;
-//     console.log(filename);
-//     const image = await Images.create({ filename });
-//     console.log('----->');
-//     user.profileFotos?.unshift(image);
-//     await user.save();
-//   }
+    const filename = file.name;
+    
+    const image = await Images.create({ filename });
+    console.log('----->');
+    user.profileFotos?.unshift(image);
+    await user.save();
+  }
 
-  const upload = multer();
+
 
 
 
 
 
 router.post('/fotos', upload.single('file'), async (req, res)=>{
-const {file} = req;
-console.log(file);
+console.log(req.files.file);
 
-console.log(req.files);
+addToDb(req.files.file,'60d74958b07f65f73efdce08')
 
 // if(file.detectedFileExtension != '.jpg') next(new Error('invalid file type'));
 // const fileName = req.files.file.name+ date + file.detectedFileExtension;
