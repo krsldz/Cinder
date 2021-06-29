@@ -8,6 +8,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import Trailer from '../Trailer/Trailer';
 import "./Card.css";
 const useStyles = makeStyles({
   border: {
@@ -19,7 +20,13 @@ const useStyles = makeStyles({
 });
 
 export default function CardSolo() {
+  console.log('render');
   const classes = useStyles();
+  const [trailer, setTrailer] = useState(false);
+
+  const trailerButtonClickHandler = () => {
+    setTrailer(!trailer);
+  }
 
   const [infoAboutMovie, setInfoAboutMovie] = useState({});
   const movieInfo = (id) => {
@@ -31,14 +38,13 @@ export default function CardSolo() {
     //const currMovie = response.json()
     //return currMovie
   };
-  useEffect(() => {
-    movieInfo(1143242);
-  }, []);
+  // useEffect(() => {
+  //   movieInfo(1143242);
+  // }, []);
 
   return (
     <div className="card">
       <div className="dws-wrapper">
-        <a>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -58,14 +64,14 @@ export default function CardSolo() {
               </p>
             </div>
           </CardActionArea>
-        </a>
       </div>
-      <Button size="small" marginRight="10px" className={classes.border}>
+      <Button onClick={() => trailerButtonClickHandler()} size="small" marginRight="10px" className={classes.border}>
         Трейлер
       </Button>
       <Button size="small" align="rigth" className={classes.border}>
         Комментарии
       </Button>
+      {trailer && <Trailer />}
     </div>
   );
 }
