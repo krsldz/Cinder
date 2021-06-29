@@ -24,7 +24,7 @@ export default function CardSolo() {
   const [films, setFilms] = useState([]);
   let movies= useSelector(state=>state.films);
   console.log(movies);
-  console.log(id)
+  // console.log(id)
   useEffect(()=>{
     axios.get('http://localhost:8080/api/v1/compilation').then(res=>setFilms(res.data))
   },[]) 
@@ -43,7 +43,7 @@ export default function CardSolo() {
     //return currMovie
   }
  useEffect(() => {
-  movieInfo(id)
+  movieInfo(1143242)
  }, [])
  
 
@@ -51,7 +51,6 @@ export default function CardSolo() {
   return (
     <div className="card">
       <div className="dws-wrapper">
-        <a>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -71,7 +70,6 @@ export default function CardSolo() {
               </p>
             </div>
           </CardActionArea>
-        </a>
       </div>
       <Button size="small" marginRight="10px" className={classes.border}>
         Трейлер
