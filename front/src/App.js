@@ -8,8 +8,11 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
 import Profile from './components/Profile/Profile';
 import LoginSuccess from './components/LoginSuccess/LoginSuccess';
+
 function App() {
   return (
+
+   
     <>
     <Router>
       <AppBar />

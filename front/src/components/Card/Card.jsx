@@ -7,8 +7,9 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 // import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-// import Typography from "@material-ui/core/Typography";
-import { useSelector } from "react-redux";
+import Typography from "@material-ui/core/Typography";
+import { useSelector, useDispatch } from "react-redux";
+import TinderCard from 'react-tinder-card';
 import "./Card.css";
 const useStyles = makeStyles({
   border: {
@@ -22,6 +23,7 @@ const useStyles = makeStyles({
 export default function CardSolo({id}) {
   const classes = useStyles();
   const [films, setFilms] = useState([]);
+  const [infoAboutMovie, setInfoAboutMovie] = useState({});
   let movies= useSelector(state=>state.films);
   useEffect(()=>{
     axios.get('http://localhost:8080/api/v1/compilation').then(res=>setFilms(res.data))
@@ -30,10 +32,9 @@ export default function CardSolo({id}) {
 
 
 
-  const [infoAboutMovie, setInfoAboutMovie] = useState({});
   const movieInfo = (id) => {
     fetch(
-      `https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`
+      `https://api.kinopoisk.cloud/movies/${id}/token/00f3d50d121e8e9511efb17c44b334fb`
     )
       .then((res) => res.json())
       .then((data) => setInfoAboutMovie(data));
@@ -44,9 +45,19 @@ export default function CardSolo({id}) {
   movieInfo(id)
  }, [])
  
+ const onSwipe = (direction) => {
+  console.log('You swiped: ' + direction)
+}
+
+const onCardLeftScreen = (myIdentifier) => {
+  console.log(myIdentifier + ' left the screen')
+}
+
 
 
   return (
+  <>
+    <TinderCard onSwipe={onSwipe}  preventSwipe={['right', 'left']}> aaaaaaa 
     <div className="card">
       <div className="dws-wrapper">
         <a>
@@ -78,5 +89,7 @@ export default function CardSolo({id}) {
         Комментарии
       </Button>
     </div>
+    </TinderCard>
+     </>
   );
 }

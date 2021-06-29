@@ -32,7 +32,7 @@ export const signUp = (payload, history) => async (dispatch) => {
       const user = await response.json()
       if (user) {
         dispatch(setUser(user))
-        history.replace('/test');
+        history.replace('/');
       }
     } else {
       history.replace('/register');
