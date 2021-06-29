@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
-import FormGroup from "@material-ui/core/FormGroup";
+// import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { useSelector } from "react-redux";
@@ -60,7 +60,7 @@ export default function Profile() {
     sex: "",
     id: user._id,
   });
-  console.log(userUpdate);
+ 
 
   const [drag, setDrag] = useState(false);
 
@@ -78,8 +78,6 @@ export default function Profile() {
     e.preventDefault();
     let files = [...e.dataTransfer.files];
     const formData = new FormData();
-    console.log(files);
-    console.log(formData);
     formData.append("file", files[0]);
 
     axios.post("http://localhost:8080/api/v1/fotos", formData);

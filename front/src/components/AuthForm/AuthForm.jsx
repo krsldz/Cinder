@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router";
-import { signIn, setUser } from "../../redux/actions/user";
+import { signIn} from "../../redux/actions/user";
 import "../RegisterForm/RegisterForm";
 import GoogleButton from 'react-google-button';
 

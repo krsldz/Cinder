@@ -48,7 +48,6 @@ export default function MainPage() {
         </div>
       </div>
       <hr />
-
       <footer>
         <SvgIconsColor />
       </footer>
