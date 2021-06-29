@@ -1,7 +1,6 @@
-body {
+* body {
   margin: 0;
-    background-color: #2D283E;
-    color: #D1D7E0;
-    font-family: 'Libre Baskerville', serif;
+  background-color: #2d283e;
+  color: #d1d7e0;
+  font-family: "Libre Baskerville", serif;
 }
-

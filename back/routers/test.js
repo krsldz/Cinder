@@ -5,9 +5,9 @@ const User = require('../models/user');
 
 
 router.get('/test', async (req, res)=>{
-  console.log('sasasasasasasa');
+  // console.log('sasasasasasasa');
   const test = await Test.findOne();
-  console.log(test);
+  // console.log(test);
    res.json(test);
 
   

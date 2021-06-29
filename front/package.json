@@ -22,6 +22,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
     "uikit": "^3.6.22",
+    "uikit-react": "^3.1.0",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

@@ -15,6 +15,7 @@ import Radio from "@material-ui/core/Radio";
 import ShareButton from "../ShareButton/ShareButton";
 import TabPanel from "../LikedFilmsList/LikedFilmsList";
 import "./Profile.css";
+import SvgIconsColor from "../FooterIcons/FooterIcons";
 
 axios.defaults.withCredentials = true;
 
@@ -96,118 +97,125 @@ export default function Profile() {
   };
 
   return (
-    <div className="twoComp">
-      <div className="divReg">
-        <h4>Изменить личные данные</h4>
-        <div>
-          {drag ? (
-            <div
-              onDragLeave={(e) => dragStartHandler(e)}
-              onDragStart={(e) => dragLeaveHandler(e)}
-              onDragOver={(e) => dragStartHandler(e)}
-              onDrop={(e) => onDropHandler(e)}
-            >
-              Отпустите фото, чтобы его загрузить
-            </div>
-          ) : (
-            <div
-              onDragLeave={(e) => dragStartHandler(e)}
-              onDragStart={(e) => dragLeaveHandler(e)}
-              onDragOver={(e) => dragStartHandler(e)}
-            >
-              Перетащите сюда фото, чтобы его загрузить
-            </div>
-          )}
+    <div>
+      <div className="twoComp">
+        <div className="divReg">
+          <h4>Изменить личные данные</h4>
+          <div>
+            {drag ? (
+              <div
+                onDragLeave={(e) => dragStartHandler(e)}
+                onDragStart={(e) => dragLeaveHandler(e)}
+                onDragOver={(e) => dragStartHandler(e)}
+                onDrop={(e) => onDropHandler(e)}
+              >
+                Отпустите фото, чтобы его загрузить
+              </div>
+            ) : (
+              <div
+                onDragLeave={(e) => dragStartHandler(e)}
+                onDragStart={(e) => dragLeaveHandler(e)}
+                onDragOver={(e) => dragStartHandler(e)}
+              >
+                Перетащите сюда фото, чтобы его загрузить
+              </div>
+            )}
+          </div>
+
+          <form
+            onSubmit={submitHandl}
+            className={classes.root}
+            noValidate
+            autoComplete="off"
+          >
+            <FormControl component="fieldset" className={classes.formControl}>
+              <div>
+                <TextField
+                  onChange={changeHandler}
+                  name="username"
+                  id="outlined-textarea"
+                  label="Ваше имя"
+                  multiline
+                  variant="outlined"
+                />
+              </div>
+
+              <TextField
+                onChange={changeHandler}
+                name="userLastName"
+                id="outlined-textarea"
+                label="Ваша фамилия"
+                multiline
+                variant="outlined"
+              />
+
+              <div>
+                <TextField
+                  onChange={changeHandler}
+                  id="outlined-textarea"
+                  name="email"
+                  // value={userSignUp.email}
+                  label="Электронная почта"
+                  multiline
+                  variant="outlined"
+                  className={classes.text}
+                />
+              </div>
+              <div>
+                <TextField
+                  onChange={changeHandler}
+                  id="date"
+                  name="date"
+                  label="день рождение"
+                  type="date"
+                  // defaultValue="1995-05-24"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </div>
+              <div>
+                <TextField
+                  onChange={changeHandler}
+                  id="outlined-textarea"
+                  name="nickname"
+                  label="Ник нейм"
+                  multiline
+                  variant="outlined"
+                />
+              </div>
+
+              <RadioGroup aria-label="quiz" name="sex" onChange={changeHandler}>
+                <FormControlLabel
+                  value="мужской"
+                  control={<Radio />}
+                  label="Мужской"
+                />
+                <FormControlLabel
+                  value="женский"
+                  control={<Radio />}
+                  label="Женский"
+                />
+                <FormControlLabel
+                  value="не указано"
+                  control={<Radio />}
+                  label="Не указано"
+                />
+              </RadioGroup>
+
+              <Button type="submit" variant="outlined" color="primary">
+                Продолжить
+              </Button>
+            </FormControl>
+          </form>
+          <ShareButton />
         </div>
-
-        <form
-          onSubmit={submitHandl}
-          className={classes.root}
-          noValidate
-          autoComplete="off"
-        >
-          <FormControl component="fieldset" className={classes.formControl}>
-            <div>
-              <TextField
-                onChange={changeHandler}
-                name="username"
-                id="outlined-textarea"
-                label="Ваше имя"
-                multiline
-                variant="outlined"
-              />
-            </div>
-
-            <TextField
-              onChange={changeHandler}
-              name="userLastName"
-              id="outlined-textarea"
-              label="Ваша фамилия"
-              multiline
-              variant="outlined"
-            />
-
-            <div>
-              <TextField
-                onChange={changeHandler}
-                id="outlined-textarea"
-                name="email"
-                // value={userSignUp.email}
-                label="Электронная почта"
-                multiline
-                variant="outlined"
-                className={classes.text}
-              />
-            </div>
-            <div>
-              <TextField
-                onChange={changeHandler}
-                id="date"
-                name="date"
-                label="день рождение"
-                type="date"
-                // defaultValue="1995-05-24"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-            </div>
-            <div>
-              <TextField
-                onChange={changeHandler}
-                id="outlined-textarea"
-                name="nickname"
-                label="Ник нейм"
-                multiline
-                variant="outlined"
-              />
-            </div>
-
-            <RadioGroup aria-label="quiz" name="sex" onChange={changeHandler}>
-              <FormControlLabel
-                value="мужской"
-                control={<Radio />}
-                label="Мужской"
-              />
-              <FormControlLabel
-                value="женский"
-                control={<Radio />}
-                label="Женский"
-              />
-              <FormControlLabel
-                value="не указано"
-                control={<Radio />}
-                label="Не указано"
-              />
-            </RadioGroup>
-
-            <Button type="submit" variant="outlined" color="primary">
-              Продолжить
-            </Button>
-          </FormControl>
-        </form>
+        <TabPanel />
       </div>
-      <TabPanel />
+      <hr />
+      <footer>
+        <SvgIconsColor />
+      </footer>
     </div>
   );
 }

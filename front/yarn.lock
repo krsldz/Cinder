@@ -11076,6 +11076,13 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
+uikit-react@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/uikit-react/-/uikit-react-3.1.0.tgz#19e7d179c88d76e0e57c2513296d046f5429fc0d"
+  integrity sha512-uxpGSk5NyRVuOw0bp9zjrYwmGoeMOwYLm4sSI6DkYQnnzREWKe9xQLVYVLsJVr5b19v7aBP6v+EeGmdUPUf7DA==
+  dependencies:
+    classnames "^2.2.5"
+
 uikit@^3.6.22:
   version "3.6.22"
   resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.6.22.tgz#bbf3d64f9715ec09b3dead80845f2784447d7048"
