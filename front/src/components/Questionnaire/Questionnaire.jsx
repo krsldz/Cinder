@@ -103,18 +103,17 @@ export default function SpringModal() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState({
-    jenre: [],
+    jenre: '',
     withWhom: "",
     mood: "",
   });
-  const [userJenre, setUserJenre] = useState([]);
   const [show, setShow] = useState(false);
   const [second, setSecond] = useState(true);
   const [base, setBase] = useState({});
-  const [allUserFilms, setAllUserFilms] = useState([])
+  
   const dispatch = useDispatch();
-  console.log(base);
-  console.log(value);
+  // console.log(base);
+  // console.log(value);
   // console.log(base.genre);
 
   useEffect(() => {
@@ -129,16 +128,16 @@ export default function SpringModal() {
 
   const handleClose = () => {
    
-    setValue((prev)=>({...prev, jenre: userJenre}));
+  
 
     setOpen(false);
     setShow(false);
     setSecond(true);
+    console.log(value);
    dispatch(initFilmsAC(value))
     // axios.post('http://localhost:8080/api/v1/compilation', value).then(res=>setAllUserFilms(res.data))
-    setUserJenre({});
     setValue({
-      jenre: [],
+      jenre: '',
     withWhom: '',
     mood: ''
     })
@@ -148,10 +147,11 @@ export default function SpringModal() {
   
     setValue((prev) => ({ ...prev, [e.target.name]: e.target.value  }));
    
-    console.log(value);
+
 
   };
-  // console.log(value);
+ 
+
 
   const handleShow = () => {
     setShow(true);
@@ -159,13 +159,6 @@ export default function SpringModal() {
   const secondShow = () => {
     setSecond(false);
   };
-  const handleJenre = (e) => {
-    console.log(e);
-    setUserJenre((prev) => [...prev, e.target.value]);
-    setValue((prev)=>({...prev, jenre: userJenre}));
-  };
-
-  console.log(userJenre);
 
   return (
     <div>
@@ -214,10 +207,12 @@ export default function SpringModal() {
                             {base?.mood?.map((item) => (
                              <FormGroup row>
                              <FormControlLabel
-                               value={item}
-                               control={<Radio />}
-                               label={item}
-                             />
+                                 value={item}
+                                 control={<Radio
+                                  icon={<FavoriteBorder />}
+                                  checkedIcon={<Favorite />} />}
+                                  label={item}
+                                />
                              </FormGroup>
                             ))}
                           </RadioGroup>
@@ -242,21 +237,23 @@ export default function SpringModal() {
                           color="textSecondary"
                           gutterBottom
                         >
-                          С кем будете смотреть?
+                        Укажите интересующие жанры
                         </Typography>
                         <Typography variant="body2" component="p">
                           <br />
                           <RadioGroup
                             aria-label="Variant"
-                            name="withWhom"
+                            name='jenre'
                             onChange={handleChange}
                             className={classes.content}
                           >
-                            {base?.withWhom?.map((item) => (
+                            {base?.genre?.map((item) => (
                               <FormGroup row>
                                 <FormControlLabel
-                                  value={item}
-                                  control={<Radio />}
+                                 value={item}
+                                 control={<Radio
+                                  icon={<FavoriteBorder />}
+                                  checkedIcon={<Favorite />} />}
                                   label={item}
                                 />
                               </FormGroup>
@@ -287,30 +284,28 @@ export default function SpringModal() {
                         color="textSecondary"
                         gutterBottom
                       >
-                        Жанр
+                      С кем будете смотреть?
                       </Typography>
                       <Typography variant="body2" component="p">
                         <br />
                         <RadioGroup
+                        name = 'withWhom'
                           aria-label="Variant"
                           onChange={handleChange}
                           className={classes.content}
                         >
-                          {base?.genre?.map((item) => (
+                          {base?.withWhom?.map((item) => (
                               <FormGroup row>
                                 <FormControlLabel
-                                  onChange={handleJenre}
-                                  value={item}
-                                  control={
-                                    <Checkbox
-                                      icon={<FavoriteBorder />}
-                                      checkedIcon={<Favorite />}
-                                      name="checkedH"
-                                    />
-                                  }
-                                  label={item}
-                                />
-                              </FormGroup>
+                                 
+      
+                               value={item}
+                               control={<Radio
+                                icon={<FavoriteBorder />}
+                                checkedIcon={<Favorite />} />}
+                               label={item}
+                             />
+                             </FormGroup>
                             ))}
                         </RadioGroup>
                       </Typography>

@@ -7,10 +7,13 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../redux/actions/user";
 import "./RegistrationAndLogin.css";
+import { useSelector } from "react-redux";
 
 export default function RegisterForm() {
   let history = useHistory();
   const dispatch = useDispatch();
+
+  const loader = useSelector(state => state.loader)
 
   const [userSignUp, setUserSignUp] = useState({
     username: "",
@@ -35,7 +38,7 @@ export default function RegisterForm() {
 
   const classes = useStyles();
 
-  // console.log(userSignUp);
+
 
   return (
     <div className="divReg">
