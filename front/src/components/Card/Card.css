@@ -26,6 +26,7 @@
 }
 .dws-text h2 {
   font-size: 40px;
+  color: white
 }
 .dws-text p {
   font-size: 14px;
@@ -62,3 +63,7 @@
 .dws-wrapper:hover .dws-text {
   opacity: 1;
 } 
+
+.numbers {
+  color: yellow
+}
