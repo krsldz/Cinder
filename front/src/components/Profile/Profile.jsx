@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from "axios";
 import { useState, useEffect } from "react";
-import {  useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -19,6 +18,7 @@ import TabPanel from "../LikedFilmsList/LikedFilmsList";
 import "./Profile.css";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
 import {initLikedFilms} from '../../redux/actions/userLikesFilmCreator';
+import {initSuperLikedFilms} from '../../redux/actions/userSuperlikesCreator';
 import { editUserThunk } from "../../redux/actions/user";
 
 axios.defaults.withCredentials = true;
@@ -54,7 +54,7 @@ const GreenCheckbox = withStyles({
 
  function Profile() {
   const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+  
 
   const [editUserFlag, setEditUserFlag] = useState(false);
   
@@ -77,6 +77,9 @@ const GreenCheckbox = withStyles({
   useEffect(()=>{
 
     dispatch(initLikedFilms())
+    dispatch(initSuperLikedFilms())
+
+    
   },[])
 
   function dragStartHandler(e) {

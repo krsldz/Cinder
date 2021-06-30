@@ -5,12 +5,6 @@ import {useEffect} from 'react';
 
 export default function ScrollBar() {
 
-  const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch(initLikedFilms())
-    
-  },[])
-  const likeFilms = useSelector(state=> state.likes);
   
   return (
     <div
