@@ -2,6 +2,7 @@
 .topnav {
   background-color: #564f6f;
   overflow: hidden;
+  height: 60px;
 }
 
 .topnav2 {
@@ -16,7 +17,7 @@
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 .topnav2 a {
@@ -55,4 +56,10 @@
 }
 .switch {
   margin-top: 8px;
+}
+.topnav img {
+  max-width: 40px;
+  max-height: 40px;
+  border-radius: 10px;
+  margin-right: 5px;
 }
