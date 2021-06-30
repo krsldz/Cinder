@@ -10,8 +10,9 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useSelector, useDispatch } from "react-redux";
 import TinderCard from 'react-tinder-card';
+import {initLikedFilms, updateLikedFilms,  } from '../../redux/actions/userLikesFilmCreator';
+import {initSuperLikedFilms, updateSuperLikedFilms,  } from '../../redux/actions/userSuperlikesCreator';
 import "./Card.css";
-
 
 const useStyles = makeStyles({
   border: {
@@ -31,15 +32,18 @@ export default function CardSolo({id}) {
   let allFilms = useSelector(state => state.films)
   const [updateAllFilms, setUpgateAllFilms] = useState([])
   const [showAllFilmsOrUpdateAllFilms, setshowAllFilmsOrUpdateAllFilms] = useState(false)
+  const dispatch = useDispatch();
 
+  
 
   useEffect(()=>{
-    axios.get('http://localhost:8080/api/v1/compilation').then(res=>setFilms(res.data))
+    axios.get('http://localhost:8080/api/v1/compilation').then(res=>setFilms(res.data));
+    // dispatch(initLikedFilms())
   },[]) 
 
   const movieInfo = (id) => {
     fetch(
-      `https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`
+      `https://api.kinopoisk.cloud/movies/${id}/token/46e46d631c0842c4c46a9f58109e4df7`
     )
       .then((res) => res.json())
       .then((data) => setInfoAboutMovie(data));
@@ -48,8 +52,8 @@ export default function CardSolo({id}) {
   }
  
   useEffect(() => {
-    // 1143242
-  movieInfo(1143242)
+  movieInfo(id);
+  
  }, [])
 
 
@@ -63,9 +67,7 @@ export default function CardSolo({id}) {
 }
 
 
-useEffect(() => {
 
-}, [updateAllFilms])
 
 
  
@@ -79,15 +81,16 @@ useEffect(() => {
   if(direction === 'right') {
     let currLikeFilm = allFilms.find(film => film.idKP == id);
     allFilms = removeItemOnce(allFilms, currLikeFilm);
-    setLikeFilms(prev=>[...prev, currLikeFilm])
+    console.log(currLikeFilm);
+    dispatch(updateLikedFilms(currLikeFilm));
   }
 
   if(direction === 'up') { 
     let currSuperLikeFilm = allFilms.find(film => film.idKP == id);
     allFilms = removeItemOnce(allFilms, currSuperLikeFilm);
-    setsuperLikeFilms(prev=>[...prev, currSuperLikeFilm])
+  
+    dispatch(updateSuperLikedFilms(currSuperLikeFilm));
   }
-
   if(direction === 'down') {
   console.log('ya down', id)
   let dontKnowFilm = allFilms.find(film => film.idKP === id );

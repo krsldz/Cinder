@@ -2,6 +2,8 @@ const initState = {
   user: null,
   loader: false,
   films: [],
+  superLikes:[],
+  likes: []
   
 }
 

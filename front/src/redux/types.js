@@ -6,3 +6,13 @@ export const INIT_FILMS = "INIT_FILMS"; // чтобы показывать по�
 
 export const ENABLE_LOADER = 'ACTIVATE_LOADER'
 export const DISABLE_LOADER = 'DISABLE_LOADER'
+
+
+
+
+export const UPDATE_LIKES_USER = "UPDATE_LIKES_USER";
+export const GET_LIKES_USER = "GET_LIKES_USER";
+
+
+export const GET_SUPERLIKES_USER = "GET_SUPERLIKES_USER";
+export const UPDATE_SUPERLIKES_USER = "UPDATE_SUPERLIKES_USER";
