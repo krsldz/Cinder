@@ -20,10 +20,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.text.secondary,
   },
-  button: {
-    background: `url(${"/front/src/images/22222.jpeg"})`,
-    backgroundColor: "hotpink",
-  },
 }));
 
 function ButtonsForCard() {
@@ -31,16 +27,13 @@ function ButtonsForCard() {
 
   let allFilms = useSelector((state) => state.films);
 
-  const [likeEvent, setLikeEvent] = useState([])
-  const [superLikeEvent, setsuperLike] = useState([])
-  
+  const [likeEvent, setLikeEvent] = useState([]);
+  const [superLikeEvent, setsuperLike] = useState([]);
 
   const onSwipe = (direction) => {
-  console.log('You swiped: ' + direction)
-}
-useEffect(()=>{
- 
-},[allFilms])
+    console.log("You swiped: " + direction);
+  };
+  useEffect(() => {}, [allFilms]);
 
   const onCardLeftScreen = (myIdentifier) => {
     console.log(myIdentifier + " left the screen");
@@ -57,19 +50,19 @@ useEffect(()=>{
   const dislikeHandler = (id) => {
     let dislikeFilm = allFilms.filter((film) => film.id === id);
     allFilms = removeItemOnce(allFilms, dislikeFilm);
-  }
+  };
 
   const dontKnowHandler = (id) => {
-   let dontKnowFilm = allFilms.filter(film=>film.id===id );
-  allFilms = removeItemOnce(allFilms, dontKnowFilm);
-  allFilms.push(dontKnowFilm);
-  }
+    let dontKnowFilm = allFilms.filter((film) => film.id === id);
+    allFilms = removeItemOnce(allFilms, dontKnowFilm);
+    allFilms.push(dontKnowFilm);
+  };
 
   const likeHandler = (id) => {
     let likeFilm = allFilms.filter((film) => film.id == id);
     allFilms = removeItemOnce(allFilms, likeFilm);
-    setLikeEvent(prev=>[...prev, likeFilm ])
-  }
+    setLikeEvent((prev) => [...prev, likeFilm]);
+  };
 
   const superLikeHandler = (id) => {
     let superLikeFilm = allFilms.filter((film) => film.id == id);
@@ -126,15 +119,18 @@ useEffect(()=>{
           </div>
         </footer>
       </div>
-      <div><h3>Подборка для юзера:</h3> 
-      {allFilms.length !==0 ? <div>
-
-        {allFilms?.map(film => <CardSolo id={film.idKP} />)}
+      <div>
+        <h3>Подборка для юзера:</h3>
+        {allFilms.length !== 0 ? (
+          <div>
+            {allFilms?.map((film) => (
+              <CardSolo id={film.idKP} />
+            ))}
+          </div>
+        ) : (
+          <h1>Ой! Подходящих фильмов нет, пройдите тест еще раз</h1>
+        )}
       </div>
-      : <h1>Ой! Подходящих фильмов нет, пройдите тест еще раз</h1>
-      }
-      </div>
-      
     </>
   );
 }

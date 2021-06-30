@@ -11,6 +11,8 @@ import Typography from "@material-ui/core/Typography";
 import { useSelector, useDispatch } from "react-redux";
 import TinderCard from 'react-tinder-card';
 import "./Card.css";
+
+
 const useStyles = makeStyles({
   border: {
     border: "1px solid black",

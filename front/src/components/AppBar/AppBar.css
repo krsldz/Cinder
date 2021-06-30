@@ -36,7 +36,7 @@
 
 .topnav2 a:hover {
   background-color: rgba(174, 151, 175, 0.63);
-  color:#ee82ee;
+  color: #ee82ee;
 }
 
 /* Добавить цвет для активной/текущей ссылки */
@@ -52,4 +52,7 @@
 
 .right {
   float: right;
+}
+.switch {
+  margin-top: 8px;
 }
