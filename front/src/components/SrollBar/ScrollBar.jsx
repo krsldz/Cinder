@@ -38,7 +38,7 @@ movieInfo2()
       tabindex="-1"
       uk-slider="sets: false"
     >
-      <ul className="uk-slider-items  uk-child-width-1-4@m ">
+      <ul className="uk-slider-items  uk-child-width-1-4@m uk-grid-small ">
         <li className="uk-transition-toggle" tabindex="0">
           <img src={infoAboutFilm.poster} alt="" />
           <div className="uk-position-center uk-panel">

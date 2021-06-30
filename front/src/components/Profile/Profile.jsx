@@ -239,7 +239,7 @@ const GreenCheckbox = withStyles({
             </FormControl>
           </form>}
 
-          <ShareButton />
+
         </div>
         <TabPanel />
       </div>
