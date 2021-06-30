@@ -58,7 +58,6 @@ function LinkTab(props) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: "#2D283E",
 
   },
   bar: {

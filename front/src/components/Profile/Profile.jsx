@@ -30,11 +30,10 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(3),
   },
-  button: {
-    margin: theme.spacing(1, 1, 0, 0),
-  },
-  text: {
-    color: "red",
+
+  but: {
+    color: "purple",
+    border: "2px solid purple",
   },
 }));
 const GreenCheckbox = withStyles({
@@ -60,7 +59,6 @@ export default function Profile() {
     sex: "",
     id: user._id,
   });
- 
 
   const [drag, setDrag] = useState(false);
 
@@ -97,7 +95,7 @@ export default function Profile() {
   return (
     <div>
       <div className="twoComp">
-        <div className="divReg">
+        <div className="divProfile">
           <h4>Изменить личные данные</h4>
           <div>
             {drag ? (
@@ -201,7 +199,7 @@ export default function Profile() {
                 />
               </RadioGroup>
 
-              <Button type="submit" variant="outlined" color="primary">
+              <Button type="submit" variant="outlined" className={classes.but}>
                 Продолжить
               </Button>
             </FormControl>
