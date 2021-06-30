@@ -82,11 +82,11 @@ h5 {
   animation: stripes 0.75s infinite linear;
   background: linear-gradient(
     45deg,
-    #802bb1 25%,
+    rgba(30, 255, 188, 1) 25%,
     rgba(255, 255, 255, 1) 25%,
     rgba(255, 255, 255, 1) 50%,
-    #802bb1 50%,
-    #802bb1 75%,
+    rgba(30, 255, 188, 1) 50%,
+    rgba(30, 255, 188, 1) 75%,
     rgba(255, 255, 255, 1) 75%,
     rgba(255, 255, 255, 1)
   );

@@ -13,7 +13,7 @@ export default function RegisterForm() {
   let history = useHistory();
   const dispatch = useDispatch();
 
-  const loader = useSelector(state => state.loader)
+  const loader = useSelector((state) => state.loader);
 
   const [userSignUp, setUserSignUp] = useState({
     username: "",
@@ -22,6 +22,7 @@ export default function RegisterForm() {
   });
 
   const changeHandler = (e) => {
+    e.persist();
     setUserSignUp((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -38,8 +39,6 @@ export default function RegisterForm() {
 
   const classes = useStyles();
 
-
-
   return (
     <div className="divReg">
       <form
@@ -48,7 +47,9 @@ export default function RegisterForm() {
         noValidate
         autoComplete="off"
       >
-        <h4>Зарегистрируйтесь, чтобы выбрать фильм на вечер и не только</h4>
+        <h4>
+          Зарегистрируйтесь, чтобы выбрать фильм <br /> на вечер и не только
+        </h4>
         <div>
           <TextField
             onChange={changeHandler}
@@ -80,7 +81,7 @@ export default function RegisterForm() {
             variant="outlined"
           />
         </div>
-        <Button type="submit" variant="outlined" color="primary">
+        <Button type="submit" variant="outlined" className={classes.but}>
           Продолжить
         </Button>
       </form>
@@ -94,5 +95,9 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
       width: "25ch",
     },
+  },
+  but: {
+    color: "purple",
+    border: "2px solid purple",
   },
 }));

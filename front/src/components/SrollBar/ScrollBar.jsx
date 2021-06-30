@@ -16,9 +16,9 @@ export default function ScrollBar() {
     <div
       className="uk-position-relative uk-visible-toggle uk-light"
       tabindex="-1"
-      uk-slider="sets: true"
+      uk-slider="sets: false"
     >
-      <ul className="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-light">
+      <ul className="uk-slider-items  uk-child-width-1-4@m ">
         <li className="uk-transition-toggle" tabindex="0">
           <img src={Zak} alt="" />
           <div className="uk-position-center uk-panel">

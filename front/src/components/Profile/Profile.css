@@ -1,11 +1,23 @@
 .divReg {
   text-align: center;
   margin-top: 100px;
-  margin-right: 50px;
-  margin-left: 50px;
+  max-width: 500px;
+  min-height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5%;
+}
+h4 {
+  margin-top: 50px;
 }
 
 .twoComp {
   display: flex;
   justify-content: center;
+}
+
+.divProfile {
+  background-color: #564f6f;
+  min-width: 350px;
+  min-height: 500px;
 }
