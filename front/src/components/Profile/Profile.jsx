@@ -55,7 +55,7 @@ const GreenCheckbox = withStyles({
   const dispatch = useDispatch();
 
   const [editUserFlag, setEditUserFlag] = useState(false);
-
+  
   const [userUpdate, setUserUpdate] = useState({
     username: user.username || '',
     userLastName: user.userLastName || '',
@@ -66,9 +66,9 @@ const GreenCheckbox = withStyles({
     sex: user.sex || '',
     id: user?._id,
   }); 
-
+  
   const [drag, setDrag] = useState(false);
-
+  
   const classes = useStyles();
 
   function dragStartHandler(e) {
@@ -97,7 +97,8 @@ const GreenCheckbox = withStyles({
 
   const submitHandl = (e) => {
     e.preventDefault();
-    dispatch(editUserThunk(userUpdate))
+    dispatch(editUserThunk(userUpdate));
+    setEditUserFlag(false);
   };
 
   console.log(userUpdate);
