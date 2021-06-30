@@ -1,6 +1,9 @@
 import quin from "../../images/quin.jpeg";
+import {useSelector} from 'react-redux';
 
 export default function ScrollBar2() {
+ 
+
   return (
     <div
       className="uk-position-relative uk-visible-toggle uk-light"
@@ -12,7 +15,7 @@ export default function ScrollBar2() {
           <img src={quin} alt="" />
           <div className="uk-position-center uk-panel">
             <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-              1
+              
             </div>
           </div>
         </li>

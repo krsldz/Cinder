@@ -9,9 +9,11 @@ import Box from "@material-ui/core/Box";
 import ScrollBar from "../SrollBar/ScrollBar";
 import ScrollBar2 from "../SrollBar/ScrollBar2";
 import ScrollBarViewed from "../SrollBar/ScrollBarViewed";
+import {useSelector} from 'react-redux';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
+
 
   return (
     <div
@@ -70,6 +72,9 @@ export default function LikedFilmsList() {
   const classes = useStyles();
   const [initValue, setInitValue] = React.useState(true);
   const [value, setValue] = React.useState(0);
+  
+ 
+
 
   const handleChange = (event, newValue) => {
     setInitValue(true);
@@ -77,6 +82,8 @@ export default function LikedFilmsList() {
   };
 
   return (
+  
+    
     <div className={classes.root}>
       <AppBar position="static" className={classes.bar}>
         <Tabs
@@ -93,9 +100,15 @@ export default function LikedFilmsList() {
       {initValue ? (
         <>
           <TabPanel value={value} index={0}>
-            <ScrollBar />
+         
+      
+
+            {/* <ScrollBar /> */}
           </TabPanel>
           <TabPanel value={value} index={1}>
+
+
+            
             <ScrollBar2 />
           </TabPanel>
           <TabPanel value={value} index={2}>

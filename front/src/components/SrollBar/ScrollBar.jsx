@@ -1,6 +1,17 @@
 import Zak from "../../images/Zak.jpeg";
+import {initLikedFilms} from '../../redux/actions/userLikesFilmCreator';
+import { useSelector, useDispatch } from "react-redux";
+import {useEffect} from 'react';
 
 export default function ScrollBar() {
+
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(initLikedFilms())
+    
+  },[])
+  const likeFilms = useSelector(state=> state.likes);
+  
   return (
     <div
       className="uk-position-relative uk-visible-toggle uk-light"

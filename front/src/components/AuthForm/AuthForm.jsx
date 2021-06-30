@@ -32,6 +32,7 @@ export default function AuthForm() {
   let { from } = location.state || { from: { pathname: "/" } };
 
   const changeHandler = (e) => {
+    e.persist();
     setUserSignIn((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -39,6 +40,7 @@ export default function AuthForm() {
 
   const submitHandler = (e) => {
     e.preventDefault();
+   
     let payload = Object.entries(userSignIn).filter((el) =>
       el[1] ? el[1].trim() : el[1]
     );
