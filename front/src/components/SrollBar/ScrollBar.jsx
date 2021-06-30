@@ -1,17 +1,37 @@
 import Zak from "../../images/Zak.jpeg";
-import {initLikedFilms} from '../../redux/actions/userLikesFilmCreator';
-import { useSelector, useDispatch } from "react-redux";
-import {useEffect} from 'react';
+import React, { useEffect, useState } from "react";
 
 export default function ScrollBar() {
 
-  const dispatch = useDispatch();
-  useEffect(()=>{
-    dispatch(initLikedFilms())
-    
-  },[])
-  const likeFilms = useSelector(state=> state.likes);
-  
+  const [infoAboutFilm, setInfoAboutFilm] = useState({});
+  const [infoAboutFilm2, setInfoAboutFilm2] = useState({});
+
+  const movieInfo = () => {
+    fetch(
+      `https://api.kinopoisk.cloud/movies/1108577/token/efcf5da3f88fef737921b0cd9182b8d6`
+    )
+      .then((res) => res.json())
+      .then((data) => setInfoAboutFilm(data));
+  }
+ 
+  useEffect(() => {
+  movieInfo()
+ }, [])
+
+ const movieInfo2 = () => {
+  fetch(
+    `https://api.kinopoisk.cloud/movies/558/token/efcf5da3f88fef737921b0cd9182b8d6`
+  )
+    .then((res) => res.json())
+    .then((data) => setInfoAboutFilm2(data));
+}
+
+useEffect(() => {
+movieInfo2()
+}, [])
+
+ 
+
   return (
     <div
       className="uk-position-relative uk-visible-toggle uk-light"
@@ -20,18 +40,20 @@ export default function ScrollBar() {
     >
       <ul className="uk-slider-items  uk-child-width-1-4@m ">
         <li className="uk-transition-toggle" tabindex="0">
-          <img src={Zak} alt="" />
+          <img src={infoAboutFilm.poster} alt="" />
           <div className="uk-position-center uk-panel">
             <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-              1
+            <p>Рейтинг <br/>
+            {infoAboutFilm.rating_kinopoisk}
+              </p>
             </div>
           </div>
         </li>
         <li className="uk-transition-toggle" tabindex="0">
-          <img src={Zak} alt="" />
+          <img src={infoAboutFilm2.poster} alt="" />
           <div className="uk-position-center uk-panel">
             <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-              1
+            {infoAboutFilm2.rating_kinopoisk}
             </div>
           </div>
         </li>

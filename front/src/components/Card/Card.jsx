@@ -52,8 +52,8 @@ export default function CardSolo({id}) {
   }
  
   useEffect(() => {
-  movieInfo(id);
-  
+    // 1143242
+  movieInfo(id)
  }, [])
 
 

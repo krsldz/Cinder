@@ -1,6 +1,35 @@
 import quin from "../../images/quin.jpeg";
+import React, { useEffect, useState } from "react";
 
 export default function ScrollBarViewed() {
+
+  const [infoAboutFilm, setInfoAboutFilm] = useState({});
+  const [infoAboutFilm2, setInfoAboutFilm2] = useState({});
+
+  const movieInfo = () => {
+    fetch(
+      `https://api.kinopoisk.cloud/movies/1108577/token/de2e011c57a2199d24402bc642e73394`
+    )
+      .then((res) => res.json())
+      .then((data) => setInfoAboutFilm(data));
+  }
+ 
+  useEffect(() => {
+  movieInfo()
+ }, [])
+
+ const movieInfo2 = () => {
+  fetch(
+    `https://api.kinopoisk.cloud/movies/558/token/de2e011c57a2199d24402bc642e73394`
+  )
+    .then((res) => res.json())
+    .then((data) => setInfoAboutFilm2(data));
+}
+
+useEffect(() => {
+movieInfo2()
+}, [])
+
   return (
     <div
       className="uk-position-relative uk-visible-toggle uk-light"
@@ -9,15 +38,19 @@ export default function ScrollBarViewed() {
     >
       <ul className="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-light">
         <li className="uk-transition-toggle" tabindex="0">
-          <img src={quin} alt="" />
+          <img src={infoAboutFilm.poster} alt="" />
           <div className="uk-position-center uk-panel">
-            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">1</div>
+            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
+            {infoAboutFilm.rating_kinopoisk}
+              </div>
           </div>
         </li>
         <li className="uk-transition-toggle" tabindex="0">
-          <img src={quin} alt="" />
+          <img src={infoAboutFilm2.poster} alt="" />
           <div className="uk-position-center uk-panel">
-            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">1</div>
+            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
+            {infoAboutFilm2.rating_kinopoisk}
+              </div>
           </div>
         </li>
         <li className="uk-transition-toggle" tabindex="0">
