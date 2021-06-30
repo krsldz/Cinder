@@ -58,7 +58,7 @@ const onCardLeftScreen = (myIdentifier) => {
 
   return (
   <>
-    <TinderCard onSwipe={onSwipe}  preventSwipe={['right', 'left']}> aaaaaaa 
+    <TinderCard onSwipe={onSwipe}  > aaaaaaa 
     <div className="card">
       <div className="dws-wrapper">
           <CardActionArea>

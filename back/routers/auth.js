@@ -20,7 +20,7 @@ router.post('/signup', async (req, res) => {
         id: newUser._id,
         name: newUser.name,
       }
-      return res.json({ _id: newUser._id, name: newUser.username })
+      return res.json({ _id: newUser._id, name: newUser.username, email: newUser.email })
     } catch (error) {
       return res.sendStatus(500)
     }
@@ -59,10 +59,10 @@ router.get('/signout', async (req, res) => {
   })
 });
 
-router.get('/user', async (req, res) => {
-  const { id } = req.params
-  const currentUser = await User.findById(id)
-    res.json(currentUser)
-});
+// router.get('/user', async (req, res) => {
+//   const { id } = req.params
+//   const currentUser = await User.findById(id)
+//     res.json(currentUser)
+// });
 
 module.exports = router;

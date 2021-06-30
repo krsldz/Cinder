@@ -11,16 +11,23 @@ router.get('/test', async (req, res)=>{
   
 })
 
-router.post('/userupdate', async (req,res)=>{
-let {id, username, userLastName, date, email,  nickname, sex} = req.body;
-let userName = await User.findByIdAndUpdate(id, {username:username}, );
-let userLast = await User.findByIdAndUpdate(id, {userLastName:userLastName}, );
-let userDate = await User.findByIdAndUpdate(id, {birthday:date}, );
-let emailUser = await User.findByIdAndUpdate(id, {email:email}, );
-let userLniast = await User.findByIdAndUpdate(id, {nickname:nickname}, );
-let fdd = await User.findByIdAndUpdate(id, {sex:sex}, );
+router.post('/userupdate', async (req, res)=> {
+const {id, username, userLastName, date, email,  nickname, sex} = req.body;
+await User.findByIdAndUpdate(id, {username, userLastName, birthday:date, email, nickname, sex});
 
+const updatedUser = {
+  _id: id,
+  username,
+  email,
+  userLastName,
+  birthday: date,
+  nickname,
+  sex
+}
 
+console.log(updatedUser);
+
+res.json(updatedUser);
 
  })
 
