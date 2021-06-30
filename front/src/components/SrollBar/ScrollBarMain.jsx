@@ -10,7 +10,7 @@ export default function ScrollBarMain() {
       <div
         class="uk-position-relative uk-visible-toggle uk-light"
         tabindex="-1"
-        uk-slider="center: true; clsActivated: uk-transition-active"
+        uk-slider="center: true; clsActivated: uk-transition-active; autoplay: true; autoplay-interval: 2000"
         autoplay
       >
         <ul
