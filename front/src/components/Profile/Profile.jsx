@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from "axios";
 import { useState, useEffect } from "react";
-import {  useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -72,12 +71,11 @@ const GreenCheckbox = withStyles({
   const [drag, setDrag] = useState(false);
   
   const classes = useStyles();
-  const dispatch = useDispatch();
 
   useEffect(()=>{
 
     dispatch(initLikedFilms())
-  },[])
+  },[dispatch])
 
   function dragStartHandler(e) {
     e.preventDefault();
