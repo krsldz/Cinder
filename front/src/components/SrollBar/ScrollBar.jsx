@@ -43,7 +43,9 @@ movieInfo2()
           <img src={infoAboutFilm.poster} alt="" />
           <div className="uk-position-center uk-panel">
             <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
+            <p>Рейтинг <br/>
             {infoAboutFilm.rating_kinopoisk}
+              </p>
             </div>
           </div>
         </li>
