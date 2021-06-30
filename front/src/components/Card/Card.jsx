@@ -27,11 +27,9 @@ export default function CardSolo({id}) {
   const classes = useStyles();
   const [films, setFilms] = useState([]);
   const [infoAboutMovie, setInfoAboutMovie] = useState({});
-  const [superLikeFilms, setsuperLikeFilms] = useState([])
-  const [likeFilms, setLikeFilms] = useState([])
   let allFilms = useSelector(state => state.films)
   const [updateAllFilms, setUpgateAllFilms] = useState([])
-  const [showAllFilmsOrUpdateAllFilms, setshowAllFilmsOrUpdateAllFilms] = useState(false)
+
   const dispatch = useDispatch();
 
   
