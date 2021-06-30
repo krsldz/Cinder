@@ -109,6 +109,10 @@ footer {
   justify-content: center;
   /* background-color: rgb(10, 10, 10); */
 }
+hr {
+  margin-top: 100px;
+}
+
 .footerText {
   color: rgba(255, 255, 255, 0.411);
 }

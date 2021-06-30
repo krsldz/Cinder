@@ -20,51 +20,58 @@ import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import Checkbox from "@material-ui/core/Checkbox";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import {initFilmsAC} from '../../redux/actions/filmsCreator';
+import { initFilmsAC } from "../../redux/actions/filmsCreator";
 axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    // maxHeight: "300px",
-  },
   modal: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+ 
   },
   root: {
-    fontSize: 30,
-    backgroundColor: "#4c494c",
+    backgroundColor: "#564f6f",
     color: "white",
     border: "1px solid #802bb1",
+
   },
   paper: {
-    backgroundColor: "#564f6f",
+    backgroundColor: "#4c494c",
     minWidth: 125,
-    maxWidth: 700,
-    minHeight: 300,
+    maxWidth: 800,
+    minHeight: 450,
     border: "3px solid #802bb1",
     borderRadius: "10px",
-    // boxShadow: theme.shadows[1],
-    padding: theme.spacing(2, 4, 3),
+    boxShadow: theme.shadows[1],
+    padding: theme.spacing(2, 3, 3),
+
   },
   content: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
-  },
+    minHeight: "300px",
 
+  },
   title: {
     fontSize: 20,
     color: "white",
     textAlign: "center",
+
+
+  },
+  text:{
+
   },
   pos: {
     marginBottom: 2,
+
   },
   button: {
     margin: "0 auto",
     backgroundColor: "#564f6f",
+
   },
 }));
 
@@ -103,14 +110,14 @@ export default function SpringModal() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState({
-    jenre: '',
+    jenre: "",
     withWhom: "",
     mood: "",
   });
   const [show, setShow] = useState(false);
   const [second, setSecond] = useState(true);
   const [base, setBase] = useState({});
-  
+
   const dispatch = useDispatch();
   // console.log(base);
   // console.log(value);
@@ -127,31 +134,22 @@ export default function SpringModal() {
   };
 
   const handleClose = () => {
-   
-  
-
     setOpen(false);
     setShow(false);
     setSecond(true);
     console.log(value);
-   dispatch(initFilmsAC(value))
+    dispatch(initFilmsAC(value));
     // axios.post('http://localhost:8080/api/v1/compilation', value).then(res=>setAllUserFilms(res.data))
     setValue({
-      jenre: '',
-    withWhom: '',
-    mood: ''
-    })
+      jenre: "",
+      withWhom: "",
+      mood: "",
+    });
   };
 
   const handleChange = (e) => {
-  
-    setValue((prev) => ({ ...prev, [e.target.name]: e.target.value  }));
-   
-
-
+    setValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
- 
-
 
   const handleShow = () => {
     setShow(true);
@@ -175,13 +173,15 @@ export default function SpringModal() {
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
+        
         }}
+        
       >
         <Fade in={open}>
           <div className={classes.paper}>
             <h2 id="spring-modal-title">
               {" "}
-              Выберете для себя важные параметры  фильма{" "}
+              Выберете для себя важные параметры фильма{" "}
             </h2>
             <div>
               {second ? (
@@ -199,21 +199,26 @@ export default function SpringModal() {
                         <Typography variant="body2" component="p">
                           <br />
                           <RadioGroup
-                           name="mood"
+                            name="mood"
                             aria-label="Variant"
                             onChange={handleChange}
                             className={classes.content}
                           >
                             {base?.mood?.map((item) => (
-                             <FormGroup row>
-                             <FormControlLabel
-                                 value={item}
-                                 control={<Radio
-                                  icon={<FavoriteBorder />}
-                                  checkedIcon={<Favorite />} />}
+                              <FormGroup row >
+                                <FormControlLabel
+                          
+                                  value={item}
+                                  control={
+                                    <Radio
+                                      icon={<FavoriteBorder />}
+                                      checkedIcon={<Favorite />}
+                                      className={classes.text}
+                                    />
+                                  }
                                   label={item}
                                 />
-                             </FormGroup>
+                              </FormGroup>
                             ))}
                           </RadioGroup>
                         </Typography>
@@ -237,23 +242,26 @@ export default function SpringModal() {
                           color="textSecondary"
                           gutterBottom
                         >
-                        Укажите интересующие жанры
+                          Укажите интересующие жанры
                         </Typography>
                         <Typography variant="body2" component="p">
                           <br />
                           <RadioGroup
                             aria-label="Variant"
-                            name='jenre'
+                            name="jenre"
                             onChange={handleChange}
                             className={classes.content}
                           >
                             {base?.genre?.map((item) => (
                               <FormGroup row>
                                 <FormControlLabel
-                                 value={item}
-                                 control={<Radio
-                                  icon={<FavoriteBorder />}
-                                  checkedIcon={<Favorite />} />}
+                                  value={item}
+                                  control={
+                                    <Radio
+                                      icon={<FavoriteBorder />}
+                                      checkedIcon={<Favorite />}
+                                    />
+                                  }
                                   label={item}
                                 />
                               </FormGroup>
@@ -284,29 +292,30 @@ export default function SpringModal() {
                         color="textSecondary"
                         gutterBottom
                       >
-                      С кем будете смотреть?
+                        С кем будете смотреть?
                       </Typography>
                       <Typography variant="body2" component="p">
                         <br />
                         <RadioGroup
-                        name = 'withWhom'
+                          name="withWhom"
                           aria-label="Variant"
                           onChange={handleChange}
                           className={classes.content}
                         >
                           {base?.withWhom?.map((item) => (
-                              <FormGroup row>
-                                <FormControlLabel
-                                 
-      
-                               value={item}
-                               control={<Radio
-                                icon={<FavoriteBorder />}
-                                checkedIcon={<Favorite />} />}
-                               label={item}
-                             />
-                             </FormGroup>
-                            ))}
+                            <FormGroup row>
+                              <FormControlLabel
+                                value={item}
+                                control={
+                                  <Radio
+                                    icon={<FavoriteBorder />}
+                                    checkedIcon={<Favorite />}
+                                  />
+                                }
+                                label={item}
+                              />
+                            </FormGroup>
+                          ))}
                         </RadioGroup>
                       </Typography>
                     </CardContent>
@@ -330,12 +339,6 @@ export default function SpringModal() {
           </div>
         </Fade>
       </Modal>
-    
     </div>
   );
 }
-
-
-
-
-

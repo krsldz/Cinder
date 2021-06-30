@@ -7,7 +7,7 @@ export default function ScrollBar2() {
       tabindex="-1"
       uk-slider="sets: false"
     >
-      <ul className="uk-slider-items uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-4@m uk-light">
+      <ul className="uk-slider-items  uk-child-width-1-4@m uk-light uk-grid-small">
         <li className="uk-transition-toggle" tabindex="0">
           <img src={quin} alt="" />
           <div className="uk-position-center uk-panel">
