@@ -6,6 +6,7 @@ import { Link, NavLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Switch from "@material-ui/core/Switch";
+import logo from "../../images/Cinder.jpg";
 
 export default function AppBar() {
   const user = useSelector((state) => state.user);
@@ -22,7 +23,10 @@ export default function AppBar() {
   return (
     <nav>
       <div className={theme.checkedA ? "topnav" : "topnav2"}>
-        <Link to="/">Cinder</Link>
+        <Link to="/">
+          <img src={logo} alt="" srcset="" />
+          Cinder
+        </Link>
         <div className="" id="navbarNav">
           <div className="">
             {user ? (
