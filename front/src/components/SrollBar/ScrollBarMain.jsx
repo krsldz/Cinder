@@ -10,7 +10,7 @@ export default function ScrollBarMain() {
       <div
         class="uk-position-relative uk-visible-toggle uk-light"
         tabindex="-1"
-        uk-slider="center: true; clsActivated: uk-transition-active; autoplay: true; autoplay-interval: 2000"
+        uk-slider="center: true; clsActivated: uk-transition-active; autoplay: true; autoplay-interval: 3000"
         autoplay
       >
         <ul
@@ -34,7 +34,7 @@ export default function ScrollBarMain() {
             <div class="uk-cover-container">
               <img src={zak} alt="" uk-cover />
               <div className="uk-position-center uk-panel">
-                <div className="uk-h1 uk-transition-slide-bottom-small">
+                <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
                   Для просмотра с мамой
                 </div>
               </div>
@@ -45,7 +45,7 @@ export default function ScrollBarMain() {
             <div class="uk-cover-container">
               <img src={quin} alt="" uk-cover />
               <div className="uk-position-center uk-panel">
-                <div className="uk-h1 uk-transition-slide-bottom-small">
+                <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
                   Для просмотра в компании
                 </div>
               </div>
@@ -55,7 +55,7 @@ export default function ScrollBarMain() {
             <div class="uk-cover-container">
               <img src={chel} alt="" uk-cover />
               <div className="uk-position-center uk-panel">
-                <div className="uk-h1 uk-transition-slide-bottom-small">
+                <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
                   Для просмотра со своей половинкой
                 </div>
               </div>
