@@ -34,6 +34,7 @@ export default function AuthForm() {
   let { from } = location.state || { from: { pathname: "/" } };
 
   const changeHandler = (e) => {
+    e.persist();
     setUserSignIn((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
