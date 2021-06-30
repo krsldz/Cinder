@@ -6,3 +6,6 @@ export const INIT_FILMS = "INIT_FILMS"; // чтобы показывать по�
 
 export const ENABLE_LOADER = 'ACTIVATE_LOADER'
 export const DISABLE_LOADER = 'DISABLE_LOADER'
+
+
+export const DELETE_FILMS = 'DELETE_FILMS'

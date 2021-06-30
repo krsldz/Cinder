@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 // import Card from "@material-ui/core/Card";
@@ -24,35 +24,83 @@ export default function CardSolo({id}) {
   const classes = useStyles();
   const [films, setFilms] = useState([]);
   const [infoAboutMovie, setInfoAboutMovie] = useState({});
-  let movies= useSelector(state=>state.films);
+  const [superLikeFilms, setsuperLikeFilms] = useState([])
+  const [likeFilms, setLikeFilms] = useState([])
+  let allFilms = useSelector(state => state.films)
+  const [updateAllFilms, setUpgateAllFilms] = useState([])
+  const [showAllFilmsOrUpdateAllFilms, setshowAllFilmsOrUpdateAllFilms] = useState(false)
+
+
   useEffect(()=>{
     axios.get('http://localhost:8080/api/v1/compilation').then(res=>setFilms(res.data))
   },[]) 
-
-
-
-
-  const movieInfo = (id) => {
+console.log(allFilms);
+  const movieInfo = useCallback((id) => {
     fetch(
-      `https://api.kinopoisk.cloud/movies/${id}/token/5569de70790cb3817d9437a804ee0bac`
+      `https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`
     )
       .then((res) => res.json())
       .then((data) => setInfoAboutMovie(data));
     //const currMovie = response.json()
     //return currMovie
-  }
- useEffect(() => {
+  }, []);
+ 
+  useEffect(() => {
   movieInfo(id)
  }, [])
+
+
+
+ function removeItemOnce(arr, value) {
+  let index = arr.indexOf(value);
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+  return arr;
+}
+
+
+useEffect(() => {
+
+}, [updateAllFilms])
+
+
  
  const onSwipe = (direction) => {
-  console.log('You swiped: ' + direction)
+  if(direction === 'left') {
+    let dislikeFilm = allFilms.find(film => film.idKP == id );
+    allFilms = removeItemOnce(allFilms, dislikeFilm);
+    console.log(allFilms);
+  }
+
+  if(direction === 'right') {
+    let currLikeFilm = allFilms.find(film => film.idKP == id);
+    allFilms = removeItemOnce(allFilms, currLikeFilm);
+    setLikeFilms(prev=>[...prev, currLikeFilm])
+  }
+
+  if(direction === 'up') { 
+    let currSuperLikeFilm = allFilms.find(film => film.idKP == id);
+    allFilms = removeItemOnce(allFilms, currSuperLikeFilm);
+    setsuperLikeFilms(prev=>[...prev, currSuperLikeFilm])
+  }
+
+  if(direction === 'down') {
+  console.log('ya down', id)
+  let dontKnowFilm = allFilms.find(film => film.idKP === id );
+  allFilms = removeItemOnce(allFilms, dontKnowFilm);
+  setUpgateAllFilms(prev => [...prev, dontKnowFilm]);
+  }
 }
+
+console.log(allFilms)
 
 
   return (
   <>
-    <TinderCard onSwipe={onSwipe}  preventSwipe={['right', 'left']}>
+    {allFilms.length === 0 ?
+    <h3>Фильмы закончились,  вы слишком привередливые :)</h3>: 
+     <TinderCard  className="swipe" onSwipe={onSwipe} > 
     <div className="card">
       <div className="dws-wrapper">
         <a>
@@ -85,6 +133,8 @@ export default function CardSolo({id}) {
       </Button>
     </div>
     </TinderCard>
+}
+    
      </>
   );
 }

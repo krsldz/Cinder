@@ -30,16 +30,20 @@ function ButtonsForCard() {
   const classes = useStyles();
 
   let allFilms = useSelector((state) => state.films);
+  const [tinderFilms, setTinderFilms] = useState(allFilms);
 
-  const [likeEvent, setLikeEvent] = useState([]);
-  const [superLikeEvent, setsuperLike] = useState([]);
+  const [likeEvent, setLikeEvent] = useState([])
+  const [superLikeEvent, setsuperLike] = useState([])
+
 
   const onSwipe = (direction) => {
-  console.log('You swiped: ' + direction)
-}
-useEffect(()=>{
- 
-},[allFilms])
+    console.log('You swiped: ' + direction)
+  }
+  useEffect(() => {
+
+  }, [allFilms])
+console.log(tinderFilms);
+
 
   const onCardLeftScreen = (myIdentifier) => {
     console.log(myIdentifier + " left the screen");
@@ -56,19 +60,19 @@ useEffect(()=>{
   const dislikeHandler = (id) => {
     let dislikeFilm = allFilms.filter((film) => film.id === id);
     allFilms = removeItemOnce(allFilms, dislikeFilm);
-  };
+  }
 
   const dontKnowHandler = (id) => {
-    let dontKnowFilm = allFilms.filter((film) => film.id === id);
+    let dontKnowFilm = allFilms.filter(film => film.id === id);
     allFilms = removeItemOnce(allFilms, dontKnowFilm);
     allFilms.push(dontKnowFilm);
-  };
+  }
 
   const likeHandler = (id) => {
     let likeFilm = allFilms.filter((film) => film.id == id);
     allFilms = removeItemOnce(allFilms, likeFilm);
-    setLikeEvent((prev) => [...prev, likeFilm]);
-  };
+    setLikeEvent(prev => [...prev, likeFilm])
+  }
 
   const superLikeHandler = (id) => {
     let superLikeFilm = allFilms.filter((film) => film.id == id);
@@ -95,9 +99,12 @@ useEffect(()=>{
           </div>
 
           <div className="boxGame">
-            {allFilms?.map((film, ind) => (
-              <div id={'layer'+ind}><CardSolo id={film.idKP} /></div>
-            ))}
+            {allFilms.length !== 0 ? <div>
+
+              {allFilms?.map((film, ind) => <CardSolo setTinderFilms={setTinderFilms} ind={ind} id={film.idKP} />)}
+            </div>
+              : <h1>Ой! Подходящих фильмов нет, пройдите тест еще раз</h1>
+            }
           </div>
 
           <div className="divBut">
@@ -125,7 +132,6 @@ useEffect(()=>{
           </div>
         </footer>
       </div>
-      {/* <div><h3>Подборка для юзера:</h3> {allFilms?.map((film, ind) => <div id={'layer'+ind}><CardSolo id={film.idKP} /></div>)}</div> */}
     </>
   );
 }

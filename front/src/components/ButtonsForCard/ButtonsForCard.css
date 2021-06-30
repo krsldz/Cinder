@@ -1,3 +1,7 @@
+body {
+  /* display: grid; */
+}
+
 .wrapper {
   padding-top: 40px;
 }
@@ -18,7 +22,11 @@
   padding-left: 30px;
   padding-right: 30px;
   padding-bottom: 10px;
-  background-color: #4c494c;
+  min-width: 30vw;
+  max-width: 30vw;
+  min-height: 20vh;
+  min-height: 80vh;
+
 }
 
 .divWithButtons {
@@ -44,62 +52,3 @@
 }
 
 /* ----------------------------------- */
-
-#layer0, #layer1, #layer2, #layer3, #layer4, #layer5, #layer6, #layer7, #layer8, #layer9, #layer10, #layer11 {
-  position: relative; /* Относительное позиционирование */
- }
-
- #layer0 {
-  top: 200px; /* Сдвигаем текст вверх */
-  left: 10px;
-}
-
- #layer1 {
-   top: -600px; /* Сдвигаем текст вверх */
-   left: 10px;
- }
-
- #layer2 {
-  top: -1200px; /* Сдвигаем текст вверх */
-  left: 10px;
-}
-
-#layer3 {
-  top: -1770px; /* Сдвигаем текст вверх */
-  left: 10px;
-}
-
-#layer4 {
-  top: -2350px; /* Сдвигаем текст вверх */
-  left: 10px;
-}
-
-#layer5 {
-  top: -2950px; /* Сдвигаем текст вверх */
-  left: 10px;
-}
-
-#layer6 {
-  top: -3200px; /* Сдвигаем текст вверх */
-  left: 10px;
-}
-
-#layer7 {
-  top: -3600px; /* Сдвигаем текст вверх */
-  left: 10px;
-}
-
-
-
- #layer0 {z-index: 1;}
- #layer1 {z-index: 2;}
- #layer2 {z-index: 3;}
- #layer3 {z-index: 4;}
- #layer4 {z-index: 5;}
- #layer5 {z-index: 6;}
- #layer6 {z-index: 7;}
- #layer7 {z-index: 8;}
- #layer8 {z-index: 9;}
- #layer9 {z-index: 10;}
- #layer10 {z-index: 11;}
- #layer11 {z-index: 12;}

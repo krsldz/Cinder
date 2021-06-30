@@ -1,9 +1,17 @@
 body {
   margin: 0;
-  color: #d1d7e0;
-  font-family: "Libre Baskerville", serif;
+    
+    color: #D1D7E0;
+    font-family: 'Libre Baskerville', serif;
 }
-html {
-  background-color: #2d283e;
-}
+
+ html {
+  background-color: #2D283E;
+ }
+
+ .hahah {
+   color: pink
+ }
+
+
 
