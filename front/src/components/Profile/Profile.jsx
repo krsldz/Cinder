@@ -17,8 +17,7 @@ import ShareButton from "../ShareButton/ShareButton";
 import TabPanel from "../LikedFilmsList/LikedFilmsList";
 import "./Profile.css";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
-import {initLikedFilms} from '../../redux/actions/userLikesFilmCreator';
-import {initSuperLikedFilms} from '../../redux/actions/userSuperlikesCreator';
+
 import { editUserThunk } from "../../redux/actions/user";
 
 axios.defaults.withCredentials = true;
@@ -74,13 +73,7 @@ const GreenCheckbox = withStyles({
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-
-    dispatch(initLikedFilms())
-    dispatch(initSuperLikedFilms())
-
-    
-  },[])
+ 
 
   function dragStartHandler(e) {
     e.preventDefault();

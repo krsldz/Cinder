@@ -7,7 +7,7 @@ const SuperLike = require('../models/superlike');
 router.get('/superlikedFilm', async (req, res)=>{
   const result = await SuperLike.find();
   
-   res.json(result);
+   res.json(result.movie);
 
   
 })
@@ -23,9 +23,9 @@ router.post('/superlikedFilm', async(req,res)=>{
   if (newSuperLikesFilms){
     console.log('ti loh');
 
-    newSuperLikesFilms.movie.push(result);
-  await newSuperLikesFilms.save();
-  res.json(newSuperLikesFilms);
+  let movies =  newSuperLikesFilms.movie.push(result);
+  await newSuperLikesFilms.updateOne({movie:movies})
+ 
 
   }
   else {
@@ -34,9 +34,9 @@ router.post('/superlikedFilm', async(req,res)=>{
       movie: newArr,
 
     })
-    res.json(newSuperLikesFilms.movie);
-
+    
   }
+  res.json(result);
 
 
 
@@ -53,7 +53,7 @@ router.post('/superlikedFilm', async(req,res)=>{
 router.get('/likedFilm', async (req, res)=>{
   const result = await Like.find();
   
-   res.json(result);
+   res.json(result.movie);
 
   
 })
@@ -69,9 +69,9 @@ router.post('/likedFilm', async(req,res)=>{
   if (newLikesFilms){
     console.log('ti loh');
 
-    newLikesFilms.movie.push(result);
-  await newLikesFilms.save();
-  res.json(newLikesFilms);
+    let movies =  newLikesFilms.movie.push(result);
+    await newLikesFilms.updateOne({movie:movies});
+    
 
   }
   else {
@@ -80,11 +80,11 @@ router.post('/likedFilm', async(req,res)=>{
       movie: newArr,
 
     })
-    res.json(newLikesFilms.movie);
-
+    
   }
-
-
+  
+  
+  res.json(result);
   
 
   
