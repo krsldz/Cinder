@@ -52,7 +52,7 @@ export default function CardSolo({id}) {
 
   return (
   <>
-    <TinderCard onSwipe={onSwipe}  > aaaaaaa 
+    <TinderCard onSwipe={onSwipe}  preventSwipe={['right', 'left']}>
     <div className="card">
       <div className="dws-wrapper">
         <a>
