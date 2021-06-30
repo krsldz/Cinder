@@ -25,7 +25,8 @@ async function addToDb(file, userId) {
   }
 
 router.post('/fotos', upload.single('file'), async (req, res)=>{
-console.log(req.files.file);
+
+
 
 addToDb(req.files.file,'60d74958b07f65f73efdce08')
 

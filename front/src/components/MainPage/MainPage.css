@@ -13,15 +13,11 @@ h5 {
 }
 
 .wrapper {
-  /* display: grid;
-  padding-top: 40px;
-  padding-right: 200px;
-  padding-left: 200px;
-  grid-template-columns: 1fr 1fr 1fr; */
-  /* grid-auto-rows: minmax(500px, auto); */
-  /* grid-gap: 40px; */
-  max-width: 550px;
-  max-height: 600px;
+
+
+  /* max-height: 600px; */
+  max-width: 40vw;
+  max-height: 75vh;
   margin-bottom: 20px;
 }
 

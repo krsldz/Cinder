@@ -44,6 +44,7 @@ export default function AuthForm() {
 
   const submitHandler = (e) => {
     e.preventDefault();
+   
     let payload = Object.entries(userSignIn).filter((el) =>
       el[1] ? el[1].trim() : el[1]
     );

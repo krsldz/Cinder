@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -17,6 +17,8 @@ import ShareButton from "../ShareButton/ShareButton";
 import TabPanel from "../LikedFilmsList/LikedFilmsList";
 import "./Profile.css";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
+import {initLikedFilms} from '../../redux/actions/userLikesFilmCreator';
+import {initSuperLikedFilms} from '../../redux/actions/userSuperlikesCreator';
 import { editUserThunk } from "../../redux/actions/user";
 
 axios.defaults.withCredentials = true;
@@ -52,7 +54,7 @@ const GreenCheckbox = withStyles({
 
  function Profile() {
   const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+  
 
   const [editUserFlag, setEditUserFlag] = useState(false);
   
@@ -70,6 +72,15 @@ const GreenCheckbox = withStyles({
   const [drag, setDrag] = useState(false);
   
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+
+    dispatch(initLikedFilms())
+    dispatch(initSuperLikedFilms())
+
+    
+  },[])
 
   function dragStartHandler(e) {
     e.preventDefault();
@@ -228,7 +239,7 @@ const GreenCheckbox = withStyles({
             </FormControl>
           </form>}
 
-          <ShareButton />
+
         </div>
         <TabPanel />
       </div>
