@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CardSolo() {
+export default function CardSolo({id}) {
   const classes = useStyles();
   const [films, setFilms] = useState([]);
   const [infoAboutMovie, setInfoAboutMovie] = useState({});
