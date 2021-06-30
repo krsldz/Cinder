@@ -60,7 +60,6 @@ export default function Profile() {
     sex: "",
     id: user._id,
   });
- 
 
   const [drag, setDrag] = useState(false);
 
@@ -97,7 +96,7 @@ export default function Profile() {
   return (
     <div>
       <div className="twoComp">
-        <div className="divReg">
+        <div className="divProfile">
           <h4>Изменить личные данные</h4>
           <div>
             {drag ? (
