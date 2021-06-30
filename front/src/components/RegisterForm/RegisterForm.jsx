@@ -22,6 +22,7 @@ export default function RegisterForm() {
   });
 
   const changeHandler = (e) => {
+    e.persist();
     setUserSignUp((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 

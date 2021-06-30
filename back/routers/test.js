@@ -3,26 +3,9 @@ const Test = require('../models/test');
 const router = Router();
 const User = require('../models/user');
 
-
-router.get('/test', async (req, res)=>{
+router.get('/test', async (req, res) => {
   const test = await Test.findOne();
-   res.json(test);
-
-  
-})
-
-router.post('/userupdate', async (req,res)=>{
-let {id, username, userLastName, date, email,  nickname, sex} = req.body;
-let userName = await User.findByIdAndUpdate(id, {username:username}, );
-let userLast = await User.findByIdAndUpdate(id, {userLastName:userLastName}, );
-let userDate = await User.findByIdAndUpdate(id, {birthday:date}, );
-let emailUser = await User.findByIdAndUpdate(id, {email:email}, );
-let userLniast = await User.findByIdAndUpdate(id, {nickname:nickname}, );
-let fdd = await User.findByIdAndUpdate(id, {sex:sex}, );
-
-
-
- })
-
+  res.json(test);
+});
 
 module.exports = router;

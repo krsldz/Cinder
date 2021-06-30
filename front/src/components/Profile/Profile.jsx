@@ -1,3 +1,4 @@
+import React from 'react';
 import axios from "axios";
 import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,7 +9,7 @@ import { green } from "@material-ui/core/colors";
 // import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import FormControl from "@material-ui/core/FormControl";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
@@ -16,6 +17,7 @@ import ShareButton from "../ShareButton/ShareButton";
 import TabPanel from "../LikedFilmsList/LikedFilmsList";
 import "./Profile.css";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
+import { editUserThunk } from "../../redux/actions/user";
 
 axios.defaults.withCredentials = true;
 
@@ -36,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
     border: "2px solid purple",
   },
 }));
+
 const GreenCheckbox = withStyles({
   root: {
     color: green[400],
@@ -46,19 +49,23 @@ const GreenCheckbox = withStyles({
   checked: {},
 })((props) => <Checkbox color="default" {...props} />);
 
-export default function Profile() {
+
+ function Profile() {
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const [editUserFlag, setEditUserFlag] = useState(false);
 
   const [userUpdate, setUserUpdate] = useState({
-    username: "",
-    userLastName: "",
-    date: "",
-    email: "",
-    password: "",
-    nickname: "",
-    sex: "",
-    id: user._id,
-  });
+    username: user.username || '',
+    userLastName: user.userLastName || '',
+    date: user.birthday || '',
+    email: user.email || '',
+    // password: "",
+    nickname: user.nickname || '',
+    sex: user.sex || '',
+    id: user?._id,
+  }); 
 
   const [drag, setDrag] = useState(false);
 
@@ -84,13 +91,16 @@ export default function Profile() {
   }
 
   const changeHandler = (e) => {
+    e.persist();
     setUserUpdate((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const submitHandl = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8080/api/v1/userupdate", userUpdate);
+    dispatch(editUserThunk(userUpdate))
   };
+
+  console.log(userUpdate);
 
   return (
     <div>
@@ -118,7 +128,11 @@ export default function Profile() {
             )}
           </div>
 
-          <form
+          <Button type="submit" variant="outlined" color="primary" onClick={() => setEditUserFlag(!editUserFlag)}>
+          {editUserFlag ? 'Скрыть редактирование' : 'Редактировать профиль'}
+              </Button>
+
+          {editUserFlag && <form
             onSubmit={submitHandl}
             className={classes.root}
             noValidate
@@ -133,6 +147,7 @@ export default function Profile() {
                   label="Ваше имя"
                   multiline
                   variant="outlined"
+                  value={userUpdate.username}
                 />
               </div>
 
@@ -143,6 +158,7 @@ export default function Profile() {
                 label="Ваша фамилия"
                 multiline
                 variant="outlined"
+                value={userUpdate.userLastName}
               />
 
               <div>
@@ -155,6 +171,7 @@ export default function Profile() {
                   multiline
                   variant="outlined"
                   className={classes.text}
+                  value={userUpdate.email}
                 />
               </div>
               <div>
@@ -168,6 +185,7 @@ export default function Profile() {
                   InputLabelProps={{
                     shrink: true,
                   }}
+                  value={userUpdate.date}
                 />
               </div>
               <div>
@@ -178,6 +196,7 @@ export default function Profile() {
                   label="Ник нейм"
                   multiline
                   variant="outlined"
+                  value={userUpdate.nickname}
                 />
               </div>
 
@@ -186,16 +205,19 @@ export default function Profile() {
                   value="мужской"
                   control={<Radio />}
                   label="Мужской"
+                  checked={userUpdate.sex === 'мужской' && 'checked'}
                 />
                 <FormControlLabel
                   value="женский"
                   control={<Radio />}
                   label="Женский"
+                  checked={userUpdate.sex === 'женский' && 'checked'}
                 />
                 <FormControlLabel
                   value="не указано"
                   control={<Radio />}
                   label="Не указано"
+                  checked={userUpdate.sex === 'не указано' && 'checked'}
                 />
               </RadioGroup>
 
@@ -203,7 +225,8 @@ export default function Profile() {
                 Продолжить
               </Button>
             </FormControl>
-          </form>
+          </form>}
+
           <ShareButton />
         </div>
         <TabPanel />
@@ -215,3 +238,5 @@ export default function Profile() {
     </div>
   );
 }
+
+export default React.memo(Profile);
