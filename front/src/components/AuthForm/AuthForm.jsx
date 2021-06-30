@@ -17,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
       width: "25ch",
     },
   },
+  but: {
+    color: "purple",
+    border: "2px solid purple",
+  },
 }));
 
 export default function AuthForm() {
@@ -57,7 +61,10 @@ export default function AuthForm() {
           noValidate
           autoComplete="off"
         >
-          <h4>Войдите, чтобы выбрать фильм на вечер и не только</h4>
+          <h4>
+            Войдите, чтобы выбрать фильм <br />
+            на вечер и не только
+          </h4>
           <div>
             <TextField
               id="outlined-textarea"
@@ -78,9 +85,10 @@ export default function AuthForm() {
               value={userSignIn.password}
               multiline
               variant="outlined"
+              color="red"
             />
           </div>
-          <Button type="submit" variant="outlined" color="primary">
+          <Button type="submit" variant="outlined" className={classes.but}>
             Продолжить
           </Button>
           <div>

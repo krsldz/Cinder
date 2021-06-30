@@ -11,6 +11,7 @@ export default function ScrollBarMain() {
         class="uk-position-relative uk-visible-toggle uk-light"
         tabindex="-1"
         uk-slider="center: true; clsActivated: uk-transition-active"
+        autoplay
       >
         <ul
           class="uk-slider-items uk-grid uk-grid-match "
@@ -66,14 +67,14 @@ export default function ScrollBarMain() {
           href="#"
           uk-slidenav-previous
           uk-slider-item="previous"
-          uk-icon="icon: chevron-left; ratio: 2"
+          uk-icon="icon: chevron-left; ratio: 3"
         ></a>
         <a
           class="uk-position-center-right uk-position-small uk-hidden-hover"
           href="#"
           uk-slidenav-next
           uk-slider-item="next"
-          uk-icon="icon: chevron-right; ratio: 2"
+          uk-icon="icon: chevron-right; ratio: 3"
         ></a>
       </div>
     </div>

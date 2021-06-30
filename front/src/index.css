@@ -1,17 +1,18 @@
 body {
   margin: 0;
-    
-    color: #D1D7E0;
-    font-family: 'Libre Baskerville', serif;
+
+  color: #d1d7e0;
+  /* font-family: "Montserrat", sans-serif; */
 }
 
- html {
-  background-color: #2D283E;
- }
+html {
+  background-color: #2d283e;
+}
 
- .hahah {
-   color: pink
- }
+.hahah {
+  color: pink;
+}
 
-
-
+* {
+  font-family: "Montserrat", sans-serif !important;
+}
