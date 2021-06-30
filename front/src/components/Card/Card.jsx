@@ -157,6 +157,11 @@ console.log(allFilms)
               <p variant="body2" component="p">
                 {infoAboutMovie?.description}
               </p>
+              <div>
+              Рейтинг Кинопоиска: <nobr className="numbers">{infoAboutMovie?.rating_kinopoisk}</nobr>
+              <br/>
+              Рейтинг IMDB: <nobr className="numbers">{infoAboutMovie?.rating_imdb}</nobr>
+              </div>
             </div>
           </CardActionArea>
         </a>
