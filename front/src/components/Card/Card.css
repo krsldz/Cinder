@@ -59,4 +59,8 @@
 }
 .dws-wrapper:hover .dws-text {
   opacity: 1;
+} 
+
+.numbers {
+  color: yellow
 }
