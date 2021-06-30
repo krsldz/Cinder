@@ -48,7 +48,8 @@ export default function CardSolo({id}) {
   }
  
   useEffect(() => {
-  movieInfo(id)
+    // 1143242
+  movieInfo(1143242)
  }, [])
 
 
@@ -106,7 +107,6 @@ console.log(allFilms)
     <TinderCard onSwipe={onSwipe} > 
     <div className="card">
       <div className="dws-wrapper">
-        <a>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -126,7 +126,6 @@ console.log(allFilms)
               </p>
             </div>
           </CardActionArea>
-        </a>
       </div>
       <Button size="small" marginRight="10px" className={classes.border}>
         Трейлер
@@ -141,7 +140,6 @@ console.log(allFilms)
      <TinderCard onSwipe={onSwipe} > 
     <div className="card">
       <div className="dws-wrapper">
-        <a>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -166,7 +164,6 @@ console.log(allFilms)
               </div>
             </div>
           </CardActionArea>
-        </a>
       </div>
       <Button size="small" marginRight="10px" className={classes.border}>
         Трейлер
