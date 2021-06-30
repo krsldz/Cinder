@@ -49,7 +49,7 @@ export default function CardSolo({id}) {
  
   useEffect(() => {
     // 1143242
-  movieInfo(1143242)
+  movieInfo(id)
  }, [])
 
 
