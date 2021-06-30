@@ -129,7 +129,7 @@ const GreenCheckbox = withStyles({
             )}
           </div>
 
-          <Button type="submit" variant="outlined" color="primary" onClick={() => setEditUserFlag(!editUserFlag)}>
+          <Button type="submit" variant="outlined" color="primary" className={classes.but} onClick={() => setEditUserFlag(!editUserFlag)}>
           {editUserFlag ? 'Скрыть редактирование' : 'Редактировать профиль'}
               </Button>
 
