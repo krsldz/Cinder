@@ -64,6 +64,7 @@ function LinkTab(props) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    width: "75vw"
 
   },
   bar: {

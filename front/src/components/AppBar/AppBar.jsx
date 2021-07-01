@@ -30,8 +30,7 @@ export default function AppBar() {
     <nav>
       <div className={theme ? "topnav" : "topnav2"}>
         <Link to="/">
-          
-          Cinder
+          CINDER
         </Link>
         <div className="" id="navbarNav">
           <div className="">
@@ -50,7 +49,7 @@ export default function AppBar() {
               </>
             ) : (
               <>
-                <span className="">
+                <span className="right">
                   <NavLink exact to="/login" className="">
                     Войти
                   </NavLink>
