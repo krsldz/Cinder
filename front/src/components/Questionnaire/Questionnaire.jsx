@@ -129,7 +129,7 @@ export default function SpringModal() {
     axios
       .get("http://localhost:8080/api/v1/test")
       .then((res) => setBase(res.data));
-  }, [base]);
+  }, []);
 
   const handleOpen = () => {
     setOpen(true);

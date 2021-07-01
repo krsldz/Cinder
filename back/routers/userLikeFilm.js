@@ -5,7 +5,7 @@ const SuperLike = require('../models/superlike');
 
 
 router.get('/superlikedFilm', async (req, res)=>{
-  const result = await SuperLike.find();
+  const result = await SuperLike.find({id:req.session.user.id});
   
    res.json(result);
 
@@ -44,7 +44,7 @@ router.post('/superlikedFilm', async(req,res)=>{
 
 
 router.get('/likedFilm', async (req, res)=>{
-  const result = await Like.find();
+  const result = await Like.find({id:req.session.user.id});
   
    res.json(result);
 
