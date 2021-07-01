@@ -7,6 +7,8 @@ import "./ButtonsForCard.css";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
 import TinderCard from "react-tinder-card";
 import Loader from "../Loader/Loader";
+import Button from "@material-ui/core/Button";
+import Comments from "../Comments/Comments";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,11 +34,16 @@ function ButtonsForCard() {
 
   const [likeEvent, setLikeEvent] = useState([]);
   const [superLikeEvent, setsuperLike] = useState([]);
+  const [comments, setComments] = useState(false);
+
+  const commentsHandler = () => {
+    setComments(prev => !prev)
+  }
 
   const onSwipe = (direction) => {
     console.log("You swiped: " + direction);
   };
-  useEffect(() => {}, [allFilms]);
+  useEffect(() => { }, [allFilms]);
 
   const onCardLeftScreen = (myIdentifier) => {
     console.log(myIdentifier + " left the screen");
@@ -92,14 +99,18 @@ function ButtonsForCard() {
           </div>
 
           <div className="boxGame">
-            {loader ? <Loader /> : allFilms.length !== 0 ? <div>
-
-              {allFilms?.map((film, ind) => <CardSolo setTinderFilms={setTinderFilms} ind={ind} id={film.idKP} />)}
+            {loader ? <Loader /> : allFilms.length !== 0 ? <div className="but">
+              {allFilms?.map((film, ind) => <><CardSolo setTinderFilms={setTinderFilms} ind={ind} id={film.idKP} />  </>)}
+              <Button size="small" marginRight="10px">
+                Food
+              </Button>
+                <Button size="small" align="rigth" onClick={commentsHandler}>
+                  Комментарии
+                </Button>
             </div>
               : <h1>Ой! Подходящих фильмов нет, пройдите тест еще раз</h1>
             }
           </div>
-
           <div className="divBut">
             <img
               //  onClick={likeHandler}
@@ -115,6 +126,7 @@ function ButtonsForCard() {
             />
           </div>
         </div>
+               {comments ? <Comments/> : null}
         <hr />
         <footer>
           <SvgIconsColor />

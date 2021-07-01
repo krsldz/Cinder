@@ -13,7 +13,8 @@ import TinderCard from 'react-tinder-card';
 import {initLikedFilms, updateLikedFilms,  } from '../../redux/actions/userLikesFilmCreator';
 import {initSuperLikedFilms, updateSuperLikedFilms,  } from '../../redux/actions/userSuperlikesCreator';
 import "./Card.css";
-import Loader from '../Loader/Loader'
+import Loader from '../Loader/Loader';
+import Comments from "../Comments/Comments";
 
 const useStyles = makeStyles({
   border: {
@@ -34,7 +35,11 @@ export default function CardSolo({id}) {
 
   const dispatch = useDispatch();
 
-  
+  // const [comments, setComments] = useState(false);
+
+  // const commentsHandler = () => {
+  //   setComments(prev => !prev)
+  // }
 
   useEffect(()=>{
     axios.get('http://localhost:8080/api/v1/compilation').then(res=>setFilms(res.data));
@@ -54,7 +59,7 @@ console.log(allFilms);
   useEffect(() => {
     // 1143242
   movieInfo(id)
- }, [])
+ }, [id])
 
 
 
@@ -66,11 +71,6 @@ console.log(allFilms);
   return arr;
 }
 
-
-
-
-
- 
  const onSwipe = (direction) => {
   if(direction === 'left') {
     let dislikeFilm = allFilms.find(film => film.idKP == id );
@@ -109,6 +109,7 @@ console.log(allFilms)
      <TinderCard  className="swipe" onSwipe={onSwipe} > 
     <div className="card">
       <div className="dws-wrapper">
+        <a>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -133,16 +134,18 @@ console.log(allFilms)
               </div>
             </div>
           </CardActionArea>
+          </a>
       </div>
-      <Button size="small" marginRight="10px" className={classes.border}>
+      {/* <Button size="small" marginRight="10px" className={classes.border}>
         Трейлер
       </Button>
-      <Button size="small" align="rigth" className={classes.border}>
+      <Button size="small" align="rigth" className={classes.border} onClick={commentsHandler}>
         Комментарии
-      </Button>
+      </Button> */}
     </div>
     </TinderCard>
 }
+      {/* {comments ? <Comments/> : null} */}
     
      </>
   );

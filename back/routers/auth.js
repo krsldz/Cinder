@@ -85,4 +85,11 @@ router.post('/userupdate', async (req, res) => {
   res.json(updatedUser);
 });
 
+router.get('/user', async (req, res) => {
+  const id = req.session?.user?.id;
+  const currentUser = await User.findById(id);
+  console.log(currentUser);
+    res.json(currentUser);
+});
+
 module.exports = router;
