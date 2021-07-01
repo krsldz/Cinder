@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router";
+import axios from 'axios'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,29 +22,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Comments() {
+export default function Comments({id}) {
   const classes = useStyles();
-  const [userSignIn, setUserSignIn] = useState({
+  const [addComments, setAddComments] = useState({
+    comment:'',
+    user:'',
+    date: '',
+    film: id,
   });
 
   const changeHandler = (e) => {
-    e.persist();
-    setUserSignIn((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setAddComments((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const dispatch = useDispatch();
+  console.log(id);
 
   const submitHandler = (e) => {
     e.preventDefault();
-   
-    let payload = Object.entries(userSignIn).filter((el) =>
-      el[1] ? el[1].trim() : el[1]
-    );
-    if (payload.length) {
-      payload = Object.fromEntries(payload);
-      // dispatch(signIn(payload, history, from));
-    }
-  };
+    axios
+      .post('http://localhost:8080/api/v1/comments', addComments)
+      .then(console.log);
+};
+
 
   return (
     <div className="divReg">
@@ -58,9 +58,9 @@ export default function Comments() {
             <TextField
               id="outlined-textarea"
               label="Комментарий"
-              name="text"
+              name="comment"
               onChange={changeHandler}
-              value={userSignIn.email}
+              value={addComments.comment}
               multiline
               variant="outlined"
             />
