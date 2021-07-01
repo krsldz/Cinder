@@ -5,7 +5,8 @@ const filmSchema = new mongoose.Schema({
   genre: Array,
   withWom: Array,
   mood: Array,
-  idKP: Number
+  idKP: Number,
+  comments: Array,
 });
 
 module.exports = mongoose.model('Film', filmSchema);

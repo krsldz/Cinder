@@ -9,18 +9,6 @@ export default function ScrollBar({id}) {
   const superLikes = useSelector(state=> state.superLikes);
 
 
-  const movieInfo = (id) => {
-    fetch(
-      `https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`
-    )
-      .then((res) => res.json())
-      .then((data) => setInfoAboutFilm(data));
-  }
- 
-  useEffect(() => {
-  movieInfo(id)
- }, [])
-
  
 
   return (

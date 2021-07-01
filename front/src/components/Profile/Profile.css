@@ -9,13 +9,15 @@
 }
 
 h4 {
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 .twoComp {
   display: flex;
   justify-content: center;
 }
+
+
 
 .profileInfo {
   margin-top: 25px;
