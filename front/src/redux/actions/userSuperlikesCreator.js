@@ -1,4 +1,4 @@
-import {UPDATE_SUPERLIKES_USER, GET_SUPERLIKES_USER} from '../types' 
+import {UPDATE_SUPERLIKES_USER, GET_SUPERLIKES_USER, DELETE_SUPERLIKES_USER} from '../types' 
 import axios from 'axios';
 
 import {enableLoader, disableLoader} from './loader';
@@ -6,7 +6,11 @@ import {enableLoader, disableLoader} from './loader';
 axios.defaults.withCredentials = true;
 
 
+export const deletedUserSuperLikedFilm = (film) =>({
 
+  type: DELETE_SUPERLIKES_USER,
+  payload: film
+})
 
 
 
@@ -39,4 +43,9 @@ export const updateSuperLikedFilms = (newFilm) => async(dispatch) =>{
     }
     
   };
+
+  export const deleteSuperLikedFilm = (film) => async(dispatch) =>{
+    const response = await axios.post('http://localhost:8080/api/v1/user/view/superlike', film)
+    dispatch(deletedUserSuperLikedFilm(response.data));
+  }
 

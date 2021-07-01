@@ -8,6 +8,9 @@ import { useDispatch } from "react-redux";
 import { signUp } from "../../redux/actions/user";
 import "./RegistrationAndLogin.css";
 import { useSelector } from "react-redux";
+import SvgIconsColor from "../FooterIcons/FooterIcons";
+
+
 
 export default function RegisterForm() {
   let history = useHistory();
@@ -42,51 +45,63 @@ export default function RegisterForm() {
   const classes = useStyles();
 
   return (
-    <div className="divReg">
-      <form
-        onSubmit={submitHandler}
-        className={classes.root}
-        noValidate
-        autoComplete="off"
-      >
-        <h4>
-          Зарегистрируйтесь, чтобы выбрать фильм <br /> на вечер и не только
-        </h4>
-        <div>
-          <TextField
-            onChange={changeHandler}
-            name="username"
-            id="outlined-textarea"
-            label="Ваше имя"
-            multiline
-            variant="outlined"
-          />
-        </div>
-        <div>
-          <TextField
-            onChange={changeHandler}
-            id="outlined-textarea"
-            name="email"
-            value={userSignUp.email}
-            label="Электронная почта"
-            multiline
-            variant="outlined"
-          />
-        </div>
-        <div>
-          <TextField
-            onChange={changeHandler}
-            id="outlined-textarea"
-            name="password"
-            label="Пароль"
-            multiline
-            variant="outlined"
-          />
-        </div>
-        <Button type="submit" variant="outlined" className={classes.but}>
-          Продолжить
-        </Button>
-      </form>
+    <div>
+      <div className="divReg">
+        <form
+          onSubmit={submitHandler}
+          className={classes.root}
+          noValidate
+          autoComplete="off"
+        >
+          <h4>
+            Зарегистрируйтесь, чтобы выбрать фильм <br /> на вечер и не только
+          </h4>
+          <div>
+            <TextField
+              onChange={changeHandler}
+              name="username"
+              id="outlined-textarea"
+              label="Ваше имя"
+              multiline
+              variant="outlined"
+            />
+          </div>
+          <div>
+            <TextField
+              onChange={changeHandler}
+              id="outlined-textarea"
+              name="email"
+              value={userSignUp.email}
+              label="Электронная почта"
+              multiline
+              variant="outlined"
+            />
+          </div>
+          <div>
+            <TextField
+              onChange={changeHandler}
+              id="outlined-textarea"
+              name="password"
+              label="Пароль"
+              multiline
+              variant="outlined"
+            />
+          </div>
+          <br/>
+          <Button type="submit" variant="outlined" className={classes.but}>
+            Продолжить
+          </Button>
+          <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        </form>
+      </div>
+      <hr />
+      <footer>
+        <SvgIconsColor />
+      </footer>
     </div>
   );
 }
@@ -99,7 +114,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   but: {
-    color: "purple",
-    border: "2px solid purple",
+    color: 'white',
+    background: '#dc143c',
+    //border: '2px solid #dc143c',
   },
 }));

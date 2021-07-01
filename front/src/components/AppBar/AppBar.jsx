@@ -33,13 +33,12 @@ export default function AppBar() {
   // const handleChange = (event) => {
   //   setTheme({ ...theme, [event.target.name]: event.target.checked });
   // };
-//console.log(theme);
+  //console.log(theme);
   return (
     <nav>
       <div className={theme ? "topnav" : "topnav2"}>
         <Link to="/">
-          
-          Cinder
+          CINDER
         </Link>
         <div className="" id="navbarNav">
           <div className="">
@@ -58,7 +57,7 @@ export default function AppBar() {
               </>
             ) : (
               <>
-                <span className="">
+                <span className="right">
                   <NavLink exact to="/login" className="">
                     Войти
                   </NavLink>

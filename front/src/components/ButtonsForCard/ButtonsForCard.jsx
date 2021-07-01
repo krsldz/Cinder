@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ButtonsForCard() {
-  const loader = useSelector(state => state.loader);
+  const loader = useSelector((state) => state.loader);
   const classes = useStyles();
 
   let allFilms = useSelector((state) => state.films);
@@ -53,7 +53,7 @@ function ButtonsForCard() {
   const onSwipe = (direction) => {
     console.log("You swiped: " + direction);
   };
-  useEffect(() => { }, [allFilms]);
+  useEffect(() => {}, [allFilms]);
 
   const onCardLeftScreen = (myIdentifier) => {
     console.log(myIdentifier + " left the screen");
@@ -97,6 +97,13 @@ function ButtonsForCard() {
   return (
     <>
       <div>
+        <div className="topSwing">
+          <img
+            className="swing"
+            src="https://img.icons8.com/windows/100/000000/filled-heart.png"
+            alt=""
+          />
+        </div>
         <div className="divWithButtons">
           <div className="divBut">
             <img
@@ -104,19 +111,33 @@ function ButtonsForCard() {
               src="https://img.icons8.com/ios/100/000000/thumbs-down.png"
               alt=""
             />
-            <img
-              className="swing"
-              src="https://img.icons8.com/ios/100/000000/question-mark--v1.png"
-              alt=""
-            />
           </div>
 
           <div className="boxGame">
-            {loader ? <Loader /> : allFilms.length !== 0 ? <div className="but">
-              {allFilms?.map((film, ind) => <><CardSolo setComments={setComments} commentsHandler={commentsHandler} setTinderFilms={setTinderFilms} ind={ind} id={film.idKP} />  </>)}
-            </div>
-              : <h1>Ой! Подходящих фильмов нет, пройдите тест еще раз</h1>
-            }
+            {loader ? (
+              <Loader />
+            ) : allFilms.length !== 0 ? (
+              <div className="but">
+                {allFilms?.map((film, ind) => (
+                  <>
+                    <CardSolo
+                      setTinderFilms={setTinderFilms}
+                      ind={ind}
+                      id={film.idKP}
+                      setComments={setComments} commentsHandler={commentsHandler}
+                    />{" "}
+                  </>
+                ))}
+                {/* <Button size="small" marginRight="10px">
+                  Food
+                </Button>
+                <Button size="small" align="rigth" onClick={commentsHandler}>
+                  Комментарии
+                </Button> */}
+              </div>
+            ) : (
+              <h1>Ой! Подходящих фильмов нет, пройдите тест еще раз</h1>
+            )}
           </div>
           <div className="divBut">
             <img
@@ -126,14 +147,16 @@ function ButtonsForCard() {
               src="https://img.icons8.com/ios/100/000000/thumb-up--v1.png"
               alt=""
             />
-            <img
-              className="swing"
-              src="https://img.icons8.com/windows/100/000000/filled-heart.png"
-              alt=""
-            />
           </div>
         </div>
-               {comments ? <Comments id={idFilm}/> : null}
+              
+        <div className="topSwing">
+          <img
+            className="swing"
+            src="https://img.icons8.com/dotty/100/000000/cinema-.png"
+          />
+        </div>
+        {comments ? <Comments id={idFilm}/> : null}
         <hr />
         <footer>
           <SvgIconsColor />

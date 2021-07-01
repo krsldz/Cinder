@@ -1,12 +1,11 @@
-.divReg {
+.divProfile {
   text-align: center;
-  margin-top: 100px;
-  max-width: 500px;
-  min-height: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 5%;
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color: #564f6f;
 }
+
 h4 {
   margin-top: 50px;
 }
@@ -18,6 +17,21 @@ h4 {
 
 .divProfile {
   background-color: #564f6f;
-  min-width: 350px;
-  min-height: 500px;
+  width: 25vw;
+  height: 100vh;
+}
+
+.profileInfo {
+  margin-top: 25px;
+  font-size: 20px;
+}
+
+.spanOfProfile {
+  color: orange;
+  padding: 10px;
+}
+
+.spanTwo {
+  color: white;
+  font-size: 18px;
 }

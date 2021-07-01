@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from "react";
 import {useSelector, useDispatch} from 'react-redux';
+import Button from '@material-ui/core/Button';
 import "./Scroll.css";
+import {deleteLikedFilm} from '../../redux/actions/userLikesFilmCreator'
+import axios from 'axios';
+axios.defaults.withCredentials= true;
+
 
 export default function Element({id}){
 
   const [infoAboutFilm, setInfoAboutFilm] = useState({});
-;
+  let likes = useSelector(state=> state.likes);
+  const dispatch = useDispatch();
+
+
+
+
   console.log(id);
 
 
@@ -23,6 +33,20 @@ export default function Element({id}){
  console.log('--->', infoAboutFilm);
 
 
+const changerState =() =>{
+
+  let like = likes.find((film)=> film.movie.find((movies)=> id== movies.idKP))
+  dispatch(deleteLikedFilm(like))
+
+  
+
+  
+}
+ 
+
+  
+
+
  return(
    
 
@@ -32,9 +56,14 @@ export default function Element({id}){
     <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
     <p>Рейтинг <br/>
     {infoAboutFilm.rating_kinopoisk}
+
+    <Button onClick ={changerState}> Добавить в буду смотреть </Button>
+     
+      <Button > Комментарии </Button>
       </p>
     </div>
   </div>
+  
 </li>
  )
 }
