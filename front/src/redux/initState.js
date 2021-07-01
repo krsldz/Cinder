@@ -3,7 +3,8 @@ const initState = {
   loader: false,
   films: [],
   superLikes:[],
-  likes: []
+  likes: [],
+  views: [],
   
 }
 
