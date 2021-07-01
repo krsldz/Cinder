@@ -6,6 +6,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+
 import LiForFirstScroll from '../SrollBar/LiForFirstScroll';
 import LiForSuperLikes from '../SrollBar/LiForSuperlikes';
 import ScrollBarViewed from "../SrollBar/ScrollBarViewed";
@@ -104,8 +105,8 @@ console.log('movies',superLikes);
           onChange={handleChange}
           aria-label="nav tabs example"
         >
-          <LinkTab label="Решу потом" />
           <LinkTab label="Буду смотреть" />
+          <LinkTab label="Решу потом" />
           <LinkTab label="Просмотренное" />
         </Tabs>
       </AppBar>
@@ -120,7 +121,8 @@ console.log('movies',superLikes);
       uk-slider="sets: false"
     >
           <ul className="uk-slider-items  uk-child-width-1-4@m uk-grid-small ">
-          {superLikes?.map((film)=>  film?.movie?.map((movie)=> <LiForSuperLikes id={movie.idKP} />))}
+          {superLikes?.map((film)=>  film?.movie?.map((movie)=> <LiForSuperLikes id={movie.idKP} key=
+          {movie._id} />))}
           </ul>
           <a
         className="uk-position-center-left uk-position-small uk-hidden-hover"
@@ -147,7 +149,9 @@ console.log('movies',superLikes);
       uk-slider="sets: false"
     >
           <ul className="uk-slider-items  uk-child-width-1-4@m uk-grid-small ">
-          {likes?.map((film)=>  film?.movie?.map((movie)=> <LiForFirstScroll id={movie.idKP} />))}
+          {likes?.map((film)=>  film?.movie?.map((movie)=> <LiForFirstScroll id={movie.idKP} key=
+          {movie._id} /> 
+          ))}
           </ul>
           <a
         className="uk-position-center-left uk-position-small uk-hidden-hover"
