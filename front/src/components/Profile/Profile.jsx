@@ -268,7 +268,7 @@ function Profile() {
             </form>
           )}
 
-          <ShareButton />
+
         </div>
         <TabPanel />
       </div>

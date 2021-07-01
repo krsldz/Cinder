@@ -19,25 +19,18 @@ router.post('/superlikedFilm', async(req,res)=>{
   console.log(req.body);
   newArr.push(result);
   
-  let newSuperLikesFilms = await SuperLike.findOne( {id:req.session.user.id});
-  if (newSuperLikesFilms){
-    console.log('ti loh');
+ 
+  let newSuperLikesFilms = await SuperLike.create({
+  id: req.session.user.id,
+  movie: newArr,
 
-    newSuperLikesFilms.movie.push(result);
-  await newSuperLikesFilms.save();
-  res.json(newSuperLikesFilms);
+})
+ 
 
-  }
-  else {
-    newSuperLikesFilms = await SuperLike.create({
-      id: req.session.user.id,
-      movie: newArr,
-
-    })
-    res.json(newSuperLikesFilms.movie);
-
-  }
-
+  
+  
+  
+  res.json(result);
 
 
 
@@ -65,26 +58,18 @@ router.post('/likedFilm', async(req,res)=>{
   console.log(req.body);
   newArr.push(result);
   
-  let newLikesFilms = await Like.findOne( {id:req.session.user.id});
-  if (newLikesFilms){
-    console.log('ti loh');
-
-    newLikesFilms.movie.push(result);
-  await newLikesFilms.save();
-  res.json(newLikesFilms);
-
-  }
-  else {
-    newLikesFilms = await SuperLike.create({
+  
+ 
+   let newLikesFilms = await Like.create({
       id: req.session.user.id,
       movie: newArr,
 
     })
-    res.json(newLikesFilms.movie);
+    
 
-  }
-
-
+  
+  
+  res.json(result);
   
 
   
