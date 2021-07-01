@@ -39,10 +39,18 @@ export default function Comments({id}) {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    setAddComments({
+      comment:'',
+      user:'',
+      date: '',
+      film: id,
+    })
     axios
       .post('http://localhost:8080/api/v1/comments', addComments)
-      .then(console.log);
+      // .then(console.log);
 };
+
+console.log(addComments);
 
 
   return (
