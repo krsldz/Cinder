@@ -23,33 +23,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Comments() {
   const classes = useStyles();
-  const [userSignIn, setUserSignIn] = useState({
+  const [addComments, setAddComments] = useState({
+    comment:'',
+    user:'',
+    date: '',
   });
 
-  const changeHandler = (e) => {
-    e.persist();
-    setUserSignIn((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  const changeHandler = (response) => {
+    setAddComments((prev) => [...prev, response.data]);
   };
 
-  const dispatch = useDispatch();
+  console.log(addComments);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-   
-    let payload = Object.entries(userSignIn).filter((el) =>
-      el[1] ? el[1].trim() : el[1]
-    );
-    if (payload.length) {
-      payload = Object.fromEntries(payload);
-      // dispatch(signIn(payload, history, from));
-    }
-  };
+  
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post("http://localhost:8080/api/v1/todos", { text: newTodoName })
+  //     .then(updateTodosFromServer);
+  // };
 
   return (
     <div className="divReg">
       <div>
         <form
-          onSubmit={submitHandler}
+          // onSubmit={submitHandler}
           className={classes.root}
           noValidate
           autoComplete="off"
@@ -58,9 +56,9 @@ export default function Comments() {
             <TextField
               id="outlined-textarea"
               label="Комментарий"
-              name="text"
+              name="comment"
               onChange={changeHandler}
-              value={userSignIn.email}
+              value={addComments.comment}
               multiline
               variant="outlined"
             />
