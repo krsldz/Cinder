@@ -6,6 +6,7 @@ import CardSolo from "../Card/Card";
 import "./ButtonsForCard.css";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
 import TinderCard from "react-tinder-card";
+import Loader from "../Loader/Loader";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,9 +24,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ButtonsForCard() {
+  const loader = useSelector(state => state.loader);
   const classes = useStyles();
 
   let allFilms = useSelector((state) => state.films);
+  const [tinderFilms, setTinderFilms] = useState(allFilms);
 
   const [likeEvent, setLikeEvent] = useState([]);
   const [superLikeEvent, setsuperLike] = useState([]);
@@ -89,9 +92,12 @@ function ButtonsForCard() {
           </div>
 
           <div className="boxGame">
-            {allFilms?.map((film) => (
-              <CardSolo id={film.idKP} />
-            ))}
+            {loader ? <Loader /> : allFilms.length !== 0 ? <div>
+
+              {allFilms?.map((film, ind) => <CardSolo setTinderFilms={setTinderFilms} ind={ind} id={film.idKP} />)}
+            </div>
+              : <h1>Ой! Подходящих фильмов нет, пройдите тест еще раз</h1>
+            }
           </div>
 
           <div className="divBut">
@@ -118,18 +124,6 @@ function ButtonsForCard() {
             </a>
           </div>
         </footer>
-      </div>
-      <div>
-        <h3>Подборка для юзера:</h3>
-        {allFilms.length !== 0 ? (
-          <div>
-            {allFilms?.map((film) => (
-              <CardSolo id={film.idKP} />
-            ))}
-          </div>
-        ) : (
-          <h1>Ой! Подходящих фильмов нет, пройдите тест еще раз</h1>
-        )}
       </div>
     </>
   );

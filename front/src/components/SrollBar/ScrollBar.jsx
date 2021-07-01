@@ -1,34 +1,24 @@
 import Zak from "../../images/Zak.jpeg";
 import React, { useEffect, useState } from "react";
+import {useSelector, useDispatch} from 'react-redux';
 
-export default function ScrollBar() {
+export default function ScrollBar({id}) {
 
   const [infoAboutFilm, setInfoAboutFilm] = useState({});
-  const [infoAboutFilm2, setInfoAboutFilm2] = useState({});
+  const superLikes = useSelector(state=> state.superLikes);
 
-  const movieInfo = () => {
+
+  const movieInfo = (id) => {
     fetch(
-      `https://api.kinopoisk.cloud/movies/1108577/token/efcf5da3f88fef737921b0cd9182b8d6`
+      `https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`
     )
       .then((res) => res.json())
       .then((data) => setInfoAboutFilm(data));
   }
  
   useEffect(() => {
-  movieInfo()
+  movieInfo(id)
  }, [])
-
- const movieInfo2 = () => {
-  fetch(
-    `https://api.kinopoisk.cloud/movies/558/token/efcf5da3f88fef737921b0cd9182b8d6`
-  )
-    .then((res) => res.json())
-    .then((data) => setInfoAboutFilm2(data));
-}
-
-useEffect(() => {
-movieInfo2()
-}, [])
 
  
 
@@ -38,65 +28,18 @@ movieInfo2()
       tabindex="-1"
       uk-slider="sets: false"
     >
-      <ul className="uk-slider-items  uk-child-width-1-4@m uk-grid-small ">
-        <li className="uk-transition-toggle" tabindex="0">
-          <img src={infoAboutFilm.poster} alt="" />
-          <div className="uk-position-center uk-panel">
-            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-            <p>Рейтинг <br/>
-            {infoAboutFilm.rating_kinopoisk}
-              </p>
-            </div>
-          </div>
-        </li>
-        <li className="uk-transition-toggle" tabindex="0">
-          <img src={infoAboutFilm2.poster} alt="" />
-          <div className="uk-position-center uk-panel">
-            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-            {infoAboutFilm2.rating_kinopoisk}
-            </div>
-          </div>
-        </li>
-        <li className="uk-transition-toggle" tabindex="0">
-          <img src={Zak} alt="" />
-          <div className="uk-position-center uk-panel">
-            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-              1
-            </div>
-          </div>
-        </li>
-        <li className="uk-transition-toggle" tabindex="0">
-          <img src={Zak} alt="" />
-          <div className="uk-position-center uk-panel">
-            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-              1
-            </div>
-          </div>
-        </li>
-        <li className="uk-transition-toggle" tabindex="0">
-          <img src={Zak} alt="" />
-          <div className="uk-position-center uk-panel">
-            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-              1
-            </div>
-          </div>
-        </li>
-        <li className="uk-transition-toggle" tabindex="0">
-          <img src={Zak} alt="" />
-          <div className="uk-position-center uk-panel">
-            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-              1
-            </div>
-          </div>
-        </li>
-        <li className="uk-transition-toggle" tabindex="0">
-          <img src={Zak} alt="" />
-          <div className="uk-position-center uk-panel">
-            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-              1
-            </div>
-          </div>
-        </li>
+      <ul className="uk-slider-items  uk-child-width-1-4@m ">
+
+       
+      
+        
+        
+       
+      
+       
+        
+        
+        
       </ul>
       <a
         className="uk-position-center-left uk-position-small uk-hidden-hover"

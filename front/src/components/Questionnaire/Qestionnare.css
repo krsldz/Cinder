@@ -1,15 +1,25 @@
 .popup-fade:before {
-	content: '';
-	background: #000;
-	position: fixed; 
-	left: 0;
-	top: 0;
-	width: 100%; 
-	height: 100%;
-	opacity: 0.7;
-	z-index: 9999;
+  content: "";
+  background: #000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+  z-index: 9999;
 }
 
+.MuiTypography-body1 {
+  font-size: unset !important;
+  -webkit-text-stroke: 1px black;
+
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
+    -1px 1px 0 #000, 1px 1px 0 #000;
+}
+.MuiTypography-root {
+  font-size: unset !important;
+}
 /* .sss:hover {
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);

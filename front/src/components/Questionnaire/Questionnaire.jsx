@@ -12,14 +12,14 @@ import FormGroup from "@material-ui/core/FormGroup";
 import Typography from "@material-ui/core/Typography";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Radio from "@material-ui/core/Radio";
 import { useState, useEffect } from "react";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import Checkbox from "@material-ui/core/Checkbox";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { initFilmsAC } from "../../redux/actions/filmsCreator";
 import "./Qestionnare.css";
 axios.defaults.withCredentials = true;
@@ -53,18 +53,30 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "300px",
   },
   title: {
-    fontSize: 20,
+    fontSize: "25px !important",
     color: "white",
     textAlign: "center",
   },
-  text: {},
+  titleMain: {
+    fontSize: "35px !important",
+    color: "orange !important",
+    textAlign: "center",
+  },
+  text: {
+    fontSize: "30px !important",
+  },
+  icon: {
+    fontSize: "45px !important",
+  },
   pos: {
     marginBottom: 2,
   },
   button: {
     margin: "0 auto",
     backgroundColor: "#564f6f",
-    textDecoration:"none"
+    textDecoration: "none",
+    paddingLeft: "20px",
+    paddingRight: "20px",
   },
 }));
 
@@ -101,6 +113,8 @@ Fade.propTypes = {
 
 export default function SpringModal() {
   const classes = useStyles();
+  const history = useHistory();
+  const user = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState({
     jenre: "",
@@ -144,16 +158,25 @@ export default function SpringModal() {
     setValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const handleRedirect = () => {
+    history.push("/login");
+  };
+
   const handleShow = () => {
     setShow(true);
   };
   const secondShow = () => {
     setSecond(false);
   };
+  console.log(base);
 
   return (
     <div>
-      <button type="button" className="animated-button" onClick={handleOpen}>
+      <button
+        type="button"
+        className="animated-button"
+        onClick={user ? handleOpen : handleRedirect}
+      >
         Выбрать фильм
       </button>
       <Modal
@@ -170,7 +193,7 @@ export default function SpringModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="spring-modal-title">
+            <h2 className={classes.titleMain} id="spring-modal-title">
               {" "}
               Выберете для себя важные параметры фильма{" "}
             </h2>
@@ -180,11 +203,7 @@ export default function SpringModal() {
                   {show ? (
                     <Card className={classes.root}>
                       <CardContent>
-                        <Typography
-                          className={classes.title}
-                          color="textSecondary"
-                          gutterBottom
-                        >
+                        <Typography className={classes.title} gutterBottom>
                           Ваше настроение?
                         </Typography>
                         <Typography variant="body2" component="p">
@@ -196,14 +215,19 @@ export default function SpringModal() {
                             className={classes.content}
                           >
                             {base?.mood?.map((item) => (
-                              <FormGroup row>
+                              <FormGroup className={classes.text} row>
                                 <FormControlLabel
                                   value={item}
                                   control={
                                     <Radio
-                                      icon={<FavoriteBorder />}
-                                      checkedIcon={<Favorite />}
-                                      className={classes.text}
+                                      icon={
+                                        <FavoriteBorder
+                                          className={classes.icon}
+                                        />
+                                      }
+                                      checkedIcon={
+                                        <Favorite className={classes.icon} />
+                                      }
                                     />
                                   }
                                   label={item}
@@ -243,13 +267,19 @@ export default function SpringModal() {
                             className={classes.content}
                           >
                             {base?.genre?.map((item) => (
-                              <FormGroup row>
+                              <FormGroup className={classes.text} row>
                                 <FormControlLabel
                                   value={item}
                                   control={
                                     <Radio
-                                      icon={<FavoriteBorder />}
-                                      checkedIcon={<Favorite />}
+                                      icon={
+                                        <FavoriteBorder
+                                          className={classes.icon}
+                                        />
+                                      }
+                                      checkedIcon={
+                                        <Favorite className={classes.icon} />
+                                      }
                                     />
                                   }
                                   label={item}
@@ -293,13 +323,19 @@ export default function SpringModal() {
                           className={classes.content}
                         >
                           {base?.withWhom?.map((item) => (
-                            <FormGroup row>
+                            <FormGroup className={classes.text} row>
                               <FormControlLabel
                                 value={item}
                                 control={
                                   <Radio
-                                    icon={<FavoriteBorder />}
-                                    checkedIcon={<Favorite />}
+                                    icon={
+                                      <FavoriteBorder
+                                        className={classes.icon}
+                                      />
+                                    }
+                                    checkedIcon={
+                                      <Favorite className={classes.icon} />
+                                    }
                                   />
                                 }
                                 label={item}
@@ -310,7 +346,11 @@ export default function SpringModal() {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Link to="/game" className="link" className={classes.button}>
+                      <Link
+                        to="/game"
+                        className="link"
+                        className={classes.button}
+                      >
                         <Button
                           size="small"
                           variant="contained"
