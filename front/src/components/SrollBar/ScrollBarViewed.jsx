@@ -1,10 +1,12 @@
 import quin from "../../images/quin.jpeg";
 import React, { useEffect, useState } from "react";
+import Comments from "../Comments/Comments";
 
 export default function ScrollBarViewed() {
 
   const [infoAboutFilm, setInfoAboutFilm] = useState({});
   const [infoAboutFilm2, setInfoAboutFilm2] = useState({});
+  // const [comments, setComments] = useState(false);
 
   const movieInfo = () => {
     fetch(
@@ -29,6 +31,12 @@ export default function ScrollBarViewed() {
 useEffect(() => {
 movieInfo2()
 }, [])
+
+// const commentsHandler = (id) => {
+//   // selectFilm(e);
+//   setIdFilm(id)
+//   setComments(prev => !prev)
+// }
 
   return (
     <div
@@ -77,6 +85,7 @@ movieInfo2()
         uk-icon="icon: chevron-right; ratio: 3"
       ></a>
       <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+      {/* {comments ? <Comments /> : null} */}
     </div>
   );
 }
