@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 // import Card from "@material-ui/core/Card";
@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CardSolo({id}) {
+export default function CardSolo({id, commentsHandler, setComments}) {
   const classes = useStyles();
   const [films, setFilms] = useState([]);
   const loader = useSelector(state => state.loader)
@@ -40,12 +40,13 @@ export default function CardSolo({id}) {
   // const commentsHandler = () => {
   //   setComments(prev => !prev)
   // }
+  const card = useRef();
 
   useEffect(()=>{
     axios.get('http://localhost:8080/api/v1/compilation').then(res=>setFilms(res.data));
     // dispatch(initLikedFilms())
   },[]) 
-console.log(allFilms);
+// console.log(allFilms);
   const movieInfo = useCallback((id) => {
     fetch(
       `https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`
@@ -76,6 +77,7 @@ console.log(allFilms);
     let dislikeFilm = allFilms.find(film => film.idKP == id );
     allFilms = removeItemOnce(allFilms, dislikeFilm);
     console.log(allFilms);
+    setComments(prev => !prev)
   }
 
   if(direction === 'right') {
@@ -83,31 +85,33 @@ console.log(allFilms);
     allFilms = removeItemOnce(allFilms, currLikeFilm);
     console.log(currLikeFilm);
     dispatch(updateLikedFilms(currLikeFilm));
+    setComments(prev => !prev)
   }
 
   if(direction === 'up') { 
     let currSuperLikeFilm = allFilms.find(film => film.idKP == id);
     allFilms = removeItemOnce(allFilms, currSuperLikeFilm);
-  
     dispatch(updateSuperLikedFilms(currSuperLikeFilm));
+    setComments(prev => !prev)
   }
   if(direction === 'down') {
   console.log('ya down', id)
   let dontKnowFilm = allFilms.find(film => film.idKP === id );
   allFilms = removeItemOnce(allFilms, dontKnowFilm);
   setUpgateAllFilms(prev => [...prev, dontKnowFilm]);
+  setComments(prev => !prev)
   }
 }
 
-console.log(allFilms)
+// console.log(allFilms)
 
 
   return (
   <>
     {loader ? <Loader /> : allFilms.length === 0 ?
     <h3>Фильмы закончились,  вы слишком привередливые :)</h3>: 
-     <TinderCard  className="swipe" onSwipe={onSwipe} > 
-    <div className="card">
+     <TinderCard className="swipe" onSwipe={onSwipe} > 
+    <div id={id} className="card">
       <div className="dws-wrapper">
         <a>
           <CardActionArea>
@@ -132,16 +136,17 @@ console.log(allFilms)
               <br/>
               Рейтинг IMDB: <nobr className="numbers">{infoAboutMovie?.rating_imdb}</nobr>
               </div>
+              
             </div>
           </CardActionArea>
           </a>
       </div>
-      {/* <Button size="small" marginRight="10px" className={classes.border}>
+      <Button size="small" marginRight="10px" className={classes.border}>
         Трейлер
       </Button>
-      <Button size="small" align="rigth" className={classes.border} onClick={commentsHandler}>
+      <Button size="small" align="rigth" className={classes.border} onClick={() => commentsHandler(id)}>
         Комментарии
-      </Button> */}
+      </Button>
     </div>
     </TinderCard>
 }

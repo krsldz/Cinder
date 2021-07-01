@@ -35,10 +35,20 @@ function ButtonsForCard() {
   const [likeEvent, setLikeEvent] = useState([]);
   const [superLikeEvent, setsuperLike] = useState([]);
   const [comments, setComments] = useState(false);
+  const [idFilm, setIdFilm] = useState()
 
-  const commentsHandler = () => {
+
+  const commentsHandler = (id) => {
+    // selectFilm(e);
+    setIdFilm(id)
     setComments(prev => !prev)
   }
+
+  // function selectFilm (e) {
+  //   const id = e?.target?.parentElement?.previousElementSibling?.firstElementChild?.id
+  //   setIdFilm(id)
+  // }
+  console.log(idFilm);
 
   const onSwipe = (direction) => {
     console.log("You swiped: " + direction);
@@ -81,6 +91,9 @@ function ButtonsForCard() {
     setsuperLike((prev) => [...prev, superLikeFilm]);
   };
 
+ 
+
+
   return (
     <>
       <div>
@@ -100,13 +113,7 @@ function ButtonsForCard() {
 
           <div className="boxGame">
             {loader ? <Loader /> : allFilms.length !== 0 ? <div className="but">
-              {allFilms?.map((film, ind) => <><CardSolo setTinderFilms={setTinderFilms} ind={ind} id={film.idKP} />  </>)}
-              <Button size="small" marginRight="10px">
-                Food
-              </Button>
-                <Button size="small" align="rigth" onClick={commentsHandler}>
-                  Комментарии
-                </Button>
+              {allFilms?.map((film, ind) => <><CardSolo setComments={setComments} commentsHandler={commentsHandler} setTinderFilms={setTinderFilms} ind={ind} id={film.idKP} />  </>)}
             </div>
               : <h1>Ой! Подходящих фильмов нет, пройдите тест еще раз</h1>
             }
@@ -126,7 +133,7 @@ function ButtonsForCard() {
             />
           </div>
         </div>
-               {comments ? <Comments/> : null}
+               {comments ? <Comments id={idFilm}/> : null}
         <hr />
         <footer>
           <SvgIconsColor />

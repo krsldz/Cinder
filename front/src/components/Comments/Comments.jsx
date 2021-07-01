@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router";
+import axios from 'axios'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -21,33 +22,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Comments() {
+export default function Comments({id}) {
   const classes = useStyles();
   const [addComments, setAddComments] = useState({
     comment:'',
     user:'',
     date: '',
+    film: id,
   });
 
-  const changeHandler = (response) => {
-    setAddComments((prev) => [...prev, response.data]);
+  const changeHandler = (e) => {
+    setAddComments((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  console.log(addComments);
+  console.log(id);
 
-  
-  // const submitHandler = (e) => {
-  //   e.preventDefault();
-  //   axios
-  //     .post("http://localhost:8080/api/v1/todos", { text: newTodoName })
-  //     .then(updateTodosFromServer);
-  // };
+  const submitHandler = (e) => {
+    e.preventDefault();
+    axios
+      .post('http://localhost:8080/api/v1/comments', addComments)
+      .then(console.log);
+};
+
 
   return (
     <div className="divReg">
       <div>
         <form
-          // onSubmit={submitHandler}
+          onSubmit={submitHandler}
           className={classes.root}
           noValidate
           autoComplete="off"
