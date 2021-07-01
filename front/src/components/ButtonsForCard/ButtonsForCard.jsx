@@ -9,6 +9,7 @@ import TinderCard from "react-tinder-card";
 import Loader from "../Loader/Loader";
 import Button from "@material-ui/core/Button";
 import Comments from "../Comments/Comments";
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,7 +37,7 @@ function ButtonsForCard() {
   const [superLikeEvent, setsuperLike] = useState([]);
   const [comments, setComments] = useState(false);
   const [idFilm, setIdFilm] = useState()
-
+  const [allComments, setAllComments] = useState([])
 
   const commentsHandler = (id) => {
     // selectFilm(e);
@@ -48,7 +49,7 @@ function ButtonsForCard() {
   //   const id = e?.target?.parentElement?.previousElementSibling?.firstElementChild?.id
   //   setIdFilm(id)
   // }
-  console.log(idFilm);
+  console.log(allComments);
 
   const onSwipe = (direction) => {
     console.log("You swiped: " + direction);

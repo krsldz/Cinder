@@ -87,7 +87,6 @@ export default function LikedFilmsList() {
     dispatch(initLikedFilms())
     dispatch(initSuperLikedFilms())
 
-    
   },[])
 
  

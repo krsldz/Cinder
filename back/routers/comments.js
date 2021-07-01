@@ -5,27 +5,29 @@ const router = Router();
 
 router.post('/comments', async (req, res) => {
   const {user, comment, date, film} = req.body;
+  const currUser = await User.findById(req.session.user.id)
+  const currFilm = await Film.findOne({idKP: film})
+
   const filmComment = {
-    user: req.session.user.id,
+    user: currUser.username,
     date: new Date().toLocaleString(),
     comment: comment,
   }
   const userComment = {
     date: new Date().toLocaleString(),
     comment: comment,
-    film: film,
+    film: currFilm.title,
   }
-  const currUser = await User.findById(req.session.user.id)
   currUser.comments.push(userComment);
   currUser.save();
-  const currFilm = await Film.findOne({idKP: film})
   currFilm.comments.push(filmComment);
   currFilm.save();
-  res.sendStatus(200);
+  res.json(filmComment);
 });
 
-router.get('/comments', (req, res)=> {
-  console.log(req.body);
+router.get('/comments/:id', async (req, res)=> {
+  const film = await Film.findOne({idKP: req.params.id})
+  res.json(film.comments)
 })
 
 module.exports = router;
