@@ -120,7 +120,7 @@ console.log('movies',superLikes);
       uk-slider="sets: false"
     >
           <ul className="uk-slider-items  uk-child-width-1-4@m uk-grid-small ">
-          {likes?.map((film)=>  film.movie.map((movie)=> <LiForFirstScroll id={movie.idKP} />))}
+          {likes?.map((film)=>  film?.movie?.map((movie)=> <LiForFirstScroll id={movie.idKP} />))}
           </ul>
           <a
         className="uk-position-center-left uk-position-small uk-hidden-hover"
@@ -147,7 +147,7 @@ console.log('movies',superLikes);
       uk-slider="sets: false"
     >
           <ul className="uk-slider-items  uk-child-width-1-4@m uk-grid-small ">
-          {superLikes?.map((film)=>  film.movie.map((movie)=> <LiForSuperLikes id={movie.idKP} />))}
+          {superLikes?.map((film)=>  film?.movie?.map((movie)=> <LiForSuperLikes id={movie.idKP} />))}
           </ul>
           <a
         className="uk-position-center-left uk-position-small uk-hidden-hover"

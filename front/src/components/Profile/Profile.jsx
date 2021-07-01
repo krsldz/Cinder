@@ -57,7 +57,6 @@ function Profile() {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    console.log('useEffect');
     if (user === null) {
       dispatch(getUserFromServer());
     }
@@ -89,6 +88,7 @@ function Profile() {
   const [drag, setDrag] = useState(false);
 
   const classes = useStyles();
+
 
   useEffect(() => {
     dispatch(initLikedFilms());
