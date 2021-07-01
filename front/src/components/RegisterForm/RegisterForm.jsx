@@ -10,6 +10,8 @@ import "./RegistrationAndLogin.css";
 import { useSelector } from "react-redux";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
 
+
+
 export default function RegisterForm() {
   let history = useHistory();
   const dispatch = useDispatch();
@@ -85,9 +87,15 @@ export default function RegisterForm() {
               variant="outlined"
             />
           </div>
+          <br/>
           <Button type="submit" variant="outlined" className={classes.but}>
             Продолжить
           </Button>
+          <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         </form>
       </div>
       <hr />
@@ -106,7 +114,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   but: {
-    color: "purple",
-    border: "2px solid purple",
+    color: 'white',
+    background: '#dc143c',
+    //border: '2px solid #dc143c',
   },
 }));
