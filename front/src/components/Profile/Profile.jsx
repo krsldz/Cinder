@@ -24,6 +24,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { useThemeContext } from "../../context/context";
 
 axios.defaults.withCredentials = true;
 
@@ -72,6 +73,8 @@ function Profile() {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user);
+
+  const {theme, setTheme, anotherThemeSet} = useThemeContext()
 
   useEffect(() => {
     if (user === null) {
@@ -149,7 +152,7 @@ function Profile() {
   return (
     <div>
       <div className='twoComp'>
-        <div className='divProfile'>
+        <div className={theme ? "divProfile" : "divProfile2"}>
           <h4>Изменить личные данные</h4>
           <div>
             {drag ? (
