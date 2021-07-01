@@ -89,6 +89,7 @@ function Profile() {
 
   const classes = useStyles();
 
+
   useEffect(() => {
     dispatch(initLikedFilms());
     dispatch(initSuperLikedFilms());
