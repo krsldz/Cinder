@@ -12,14 +12,14 @@ import FormGroup from "@material-ui/core/FormGroup";
 import Typography from "@material-ui/core/Typography";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Radio from "@material-ui/core/Radio";
 import { useState, useEffect } from "react";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import Checkbox from "@material-ui/core/Checkbox";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { initFilmsAC } from "../../redux/actions/filmsCreator";
 axios.defaults.withCredentials = true;
 
@@ -108,6 +108,8 @@ Fade.propTypes = {
 
 export default function SpringModal() {
   const classes = useStyles();
+  const history = useHistory();
+  const user = useSelector(state => state.user);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState({
     jenre: "",
@@ -127,7 +129,7 @@ export default function SpringModal() {
     axios
       .get("http://localhost:8080/api/v1/test")
       .then((res) => setBase(res.data));
-  }, []);
+  }, [base]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -151,16 +153,21 @@ export default function SpringModal() {
     setValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const handleRedirect = () => {
+    history.push('/login')
+  }
+
   const handleShow = () => {
     setShow(true);
   };
   const secondShow = () => {
     setSecond(false);
   };
+  console.log(base);
 
   return (
     <div>
-      <button type="button" className="animated-button" onClick={handleOpen}>
+      <button type="button" className="animated-button" onClick={user ? handleOpen : handleRedirect}>
         Выбрать фильм
       </button>
       <Modal

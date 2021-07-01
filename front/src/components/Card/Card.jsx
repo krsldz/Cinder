@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 // import Card from "@material-ui/core/Card";
@@ -13,6 +13,7 @@ import TinderCard from 'react-tinder-card';
 import {initLikedFilms, updateLikedFilms,  } from '../../redux/actions/userLikesFilmCreator';
 import {initSuperLikedFilms, updateSuperLikedFilms,  } from '../../redux/actions/userSuperlikesCreator';
 import "./Card.css";
+import Loader from '../Loader/Loader'
 
 const useStyles = makeStyles({
   border: {
@@ -26,6 +27,7 @@ const useStyles = makeStyles({
 export default function CardSolo({id}) {
   const classes = useStyles();
   const [films, setFilms] = useState([]);
+  const loader = useSelector(state => state.loader)
   const [infoAboutMovie, setInfoAboutMovie] = useState({});
   let allFilms = useSelector(state => state.films)
   const [updateAllFilms, setUpgateAllFilms] = useState([])
@@ -38,8 +40,8 @@ export default function CardSolo({id}) {
     axios.get('http://localhost:8080/api/v1/compilation').then(res=>setFilms(res.data));
     // dispatch(initLikedFilms())
   },[]) 
-
-  const movieInfo = (id) => {
+console.log(allFilms);
+  const movieInfo = useCallback((id) => {
     fetch(
       `https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`
     )
@@ -47,7 +49,7 @@ export default function CardSolo({id}) {
       .then((data) => setInfoAboutMovie(data));
     //const currMovie = response.json()
     //return currMovie
-  }
+  }, []);
  
   useEffect(() => {
     // 1143242
@@ -102,43 +104,9 @@ console.log(allFilms)
 
   return (
   <>
-    {allFilms.length === 0 ?
-    updateAllFilms.map((movie) => 
-    <div>
-    <TinderCard onSwipe={onSwipe} > 
-    <div className="card">
-      <div className="dws-wrapper">
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              alt="fucking card"
-              height="100%"
-              image={movie?.poster}
-              title="Contemplative Reptile"
-            />
-
-            <div className="dws-text">
-              <h2 gutterBottom variant="h5" component="h2">
-                {movie?.title}
-              </h2>
-              <hr />
-              <p variant="body2" component="p">
-                {movie?.description}
-              </p>
-            </div>
-          </CardActionArea>
-      </div>
-      <Button size="small" marginRight="10px" className={classes.border}>
-        Трейлер
-      </Button>
-      <Button size="small" align="rigth" className={classes.border}>
-        Комментарии
-      </Button>
-    </div>
-    </TinderCard>
-    </div>
-     ) : 
-     <TinderCard onSwipe={onSwipe} > 
+    {loader ? <Loader /> : allFilms.length === 0 ?
+    <h3>Фильмы закончились,  вы слишком привередливые :)</h3>: 
+     <TinderCard  className="swipe" onSwipe={onSwipe} > 
     <div className="card">
       <div className="dws-wrapper">
           <CardActionArea>
