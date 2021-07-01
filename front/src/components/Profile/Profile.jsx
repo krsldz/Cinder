@@ -294,11 +294,11 @@ function Profile() {
           
           {!editUserFlag && (
             <div className='profileInfo'>
-             <span className='spanOfProfile'>{userUpdate.username} {userUpdate.userLastName}</span><br/><br/>
-             <span className='spanOfProfile'>Email:</span><span className='spanTwo'>{userUpdate.email}</span><br/><br/>
-             <span className='spanOfProfile'>Дата рождения:</span> <span className='spanTwo'>{userUpdate.date}</span><br/><br/>
-             <span className='spanOfProfile'>Никнейм:</span> <span className='spanTwo'>{userUpdate.nickname}</span><br/><br/>
-             <span className='spanOfProfile'>Пол:</span> <span className='spanTwo'>{userUpdate.sex}</span><br/><br/>
+             <span className={theme ? "spanOfProfile" : "spanOfProfile2"}>{userUpdate.username} {userUpdate.userLastName}</span><br/><br/>
+             <span className={theme ? "spanOfProfile" : "spanOfProfile2"}>Email:</span><span className='spanTwo'>{userUpdate.email}</span><br/><br/>
+             <span className={theme ? "spanOfProfile" : "spanOfProfile2"}>Дата рождения:</span> <span className='spanTwo'>{userUpdate.date}</span><br/><br/>
+             <span className={theme ? "spanOfProfile" : "spanOfProfile2"}>Никнейм:</span> <span className='spanTwo'>{userUpdate.nickname}</span><br/><br/>
+             <span className={theme ? "spanOfProfile" : "spanOfProfile2"}>Пол:</span> <span className='spanTwo'>{userUpdate.sex}</span><br/><br/>
             </div>
           )}
 
