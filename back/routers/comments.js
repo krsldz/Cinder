@@ -24,4 +24,8 @@ router.post('/comments', async (req, res) => {
   res.sendStatus(200);
 });
 
+router.get('/comments', (req, res)=> {
+  console.log(req.body);
+})
+
 module.exports = router;

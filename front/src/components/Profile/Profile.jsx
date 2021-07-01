@@ -302,6 +302,7 @@ function Profile() {
 
         </div>
         <TabPanel />
+        
       </div>
       <hr />
       <footer>

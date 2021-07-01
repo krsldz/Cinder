@@ -26,31 +26,31 @@ const uploadOne = multer({
 }).single("file"); 
 
 
-app.post("/fotos", (req, res) => {
-  try {
-    // console.log(req.user.id);
-    let imagePath = "abc";
-    uploadOne(req, res, (err) => {
-      if (err) {
-        res.status(300).send(err);
-        console.log(err);
-      } else {
-        if (req.file == undefined) {
-          res.status(301).send("image upload failed.");
-        } else {
-          const user = await User.findById(req.session.user.id);
-          const image = await Images.create({ filename });
+// app.post("/fotos", async(req, res) => {
+//   try {
+//     // console.log(req.user.id);
+//     let imagePath = "abc";
+//     uploadOne(req, res, (err) => {
+//       if (err) {
+//         res.status(300).send(err);
+//         console.log(err);
+//       } else {
+//         if (req.file == undefined) {
+//           res.status(301).send("image upload failed.");
+//         } else {
+//           const user = await User.findById(req.session.user.id);
+//           const image = await Images.create({ filename });
           
           
           
           
-        }
-      }
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
+//         }
+//       }
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
 
 
