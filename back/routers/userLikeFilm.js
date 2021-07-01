@@ -7,7 +7,7 @@ const SuperLike = require('../models/superlike');
 router.get('/superlikedFilm', async (req, res)=>{
   const result = await SuperLike.find();
   
-   res.json(result.movie);
+   res.json(result);
 
   
 })
@@ -19,25 +19,18 @@ router.post('/superlikedFilm', async(req,res)=>{
   console.log(req.body);
   newArr.push(result);
   
-  let newSuperLikesFilms = await SuperLike.findOne( {id:req.session.user.id});
-  if (newSuperLikesFilms){
-    console.log('ti loh');
+ 
+  let newSuperLikesFilms = await SuperLike.create({
+  id: req.session.user.id,
+  movie: newArr,
 
-  let movies =  newSuperLikesFilms.movie.push(result);
-  await newSuperLikesFilms.updateOne({movie:movies})
+})
  
 
-  }
-  else {
-    newSuperLikesFilms = await SuperLike.create({
-      id: req.session.user.id,
-      movie: newArr,
-
-    })
-    
-  }
+  
+  
+  
   res.json(result);
-
 
 
 
@@ -53,7 +46,7 @@ router.post('/superlikedFilm', async(req,res)=>{
 router.get('/likedFilm', async (req, res)=>{
   const result = await Like.find();
   
-   res.json(result.movie);
+   res.json(result);
 
   
 })
@@ -65,23 +58,15 @@ router.post('/likedFilm', async(req,res)=>{
   console.log(req.body);
   newArr.push(result);
   
-  let newLikesFilms = await Like.findOne( {id:req.session.user.id});
-  if (newLikesFilms){
-    console.log('ti loh');
-
-    let movies =  newLikesFilms.movie.push(result);
-    await newLikesFilms.updateOne({movie:movies});
-    
-
-  }
-  else {
-    newLikesFilms = await SuperLike.create({
+  
+ 
+   let newLikesFilms = await Like.create({
       id: req.session.user.id,
       movie: newArr,
 
     })
     
-  }
+
   
   
   res.json(result);
