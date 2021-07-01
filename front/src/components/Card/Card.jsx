@@ -157,14 +157,13 @@ export default function CardSolo({ id }) {
                 </div>
               </CardActionArea>
             </div>
-            <Button
+            <button
+              class="gradient-button"
               onClick={() => trailerButtonClickHandler()}
-              size='medium'
-              marginRight='10px'
-              className={classes.border}
+              
             >
               Трейлер
-            </Button>
+            </button>
             {trailerPreview && (
               <iframe
                 width='560'
