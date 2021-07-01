@@ -27,11 +27,9 @@ export default function CardSolo({id}) {
   const classes = useStyles();
   const [films, setFilms] = useState([]);
   const [infoAboutMovie, setInfoAboutMovie] = useState({});
-  const [superLikeFilms, setsuperLikeFilms] = useState([])
-  const [likeFilms, setLikeFilms] = useState([])
   let allFilms = useSelector(state => state.films)
   const [updateAllFilms, setUpgateAllFilms] = useState([])
-  const [showAllFilmsOrUpdateAllFilms, setshowAllFilmsOrUpdateAllFilms] = useState(false)
+
   const dispatch = useDispatch();
 
   
@@ -54,7 +52,7 @@ export default function CardSolo({id}) {
   useEffect(() => {
     // 1143242
   movieInfo(id)
- }, [])
+ }, [id])
 
 
 
@@ -66,11 +64,6 @@ export default function CardSolo({id}) {
   return arr;
 }
 
-
-
-
-
- 
  const onSwipe = (direction) => {
   if(direction === 'left') {
     let dislikeFilm = allFilms.find(film => film.idKP == id );

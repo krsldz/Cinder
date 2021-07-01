@@ -72,3 +72,13 @@ export const editUserThunk = (userUpdate) => async (dispatch) => {
   console.log(updatedUser);
   dispatch(setUser(updatedUser));
 }
+
+export const getUserFromServer = () => async (dispatch) => {
+  dispatch(enableLoader());
+  const response = await fetch('http://localhost:8080/api/v1/auth/user', {credentials: 'include'})
+  if (response.status === 200) {
+    const currentUser = await response.json()
+    dispatch(setUser(currentUser))
+  }
+  dispatch(disableLoader())
+} 
