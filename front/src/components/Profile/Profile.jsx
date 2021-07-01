@@ -36,8 +36,9 @@ const useStyles = makeStyles((theme) => ({
   },
 
   but: {
-    color: 'purple',
-    border: '2px solid purple',
+    color: '#dc143c',
+    background: 'orange',
+    border: '2px solid #dc143c',
   },
 }));
 
@@ -156,7 +157,7 @@ function Profile() {
 
           <Button
             type='submit'
-            variant='outlined'
+            variant='contained'
             color='primary'
             className={classes.but}
             onClick={() => setEditUserFlag(!editUserFlag)}
