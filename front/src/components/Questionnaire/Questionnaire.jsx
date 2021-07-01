@@ -21,6 +21,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { initFilmsAC } from "../../redux/actions/filmsCreator";
+import "./Qestionnare.css";
 axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
@@ -28,50 +29,42 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
- 
   },
   root: {
     backgroundColor: "#564f6f",
     color: "white",
     border: "1px solid #802bb1",
-
   },
   paper: {
     backgroundColor: "#4c494c",
-    minWidth: 125,
-    maxWidth: 800,
-    minHeight: 450,
+    minWidth: "10vw",
+    maxWidth: "60vw",
+    minHeight: "40vh",
+
     border: "3px solid #802bb1",
     borderRadius: "10px",
     boxShadow: theme.shadows[1],
     padding: theme.spacing(2, 3, 3),
-
   },
   content: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
     minHeight: "300px",
-
   },
   title: {
     fontSize: 20,
     color: "white",
     textAlign: "center",
-
-
   },
-  text:{
-
-  },
+  text: {},
   pos: {
     marginBottom: 2,
-
   },
   button: {
     margin: "0 auto",
     backgroundColor: "#564f6f",
-
+    textDecoration:"none"
   },
 }));
 
@@ -173,9 +166,7 @@ export default function SpringModal() {
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
-        
         }}
-        
       >
         <Fade in={open}>
           <div className={classes.paper}>
@@ -205,9 +196,8 @@ export default function SpringModal() {
                             className={classes.content}
                           >
                             {base?.mood?.map((item) => (
-                              <FormGroup row >
+                              <FormGroup row>
                                 <FormControlLabel
-                          
                                   value={item}
                                   control={
                                     <Radio
@@ -320,7 +310,7 @@ export default function SpringModal() {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Link to="/game" className="link">
+                      <Link to="/game" className="link" className={classes.button}>
                         <Button
                           size="small"
                           variant="contained"

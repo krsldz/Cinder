@@ -1,5 +1,6 @@
 import quin from "../../images/quin.jpeg";
 import React, { useEffect, useState } from "react";
+import Test from "./test"
 
 export default function ScrollBar2() {
 
@@ -38,62 +39,14 @@ movieInfo2()
       uk-slider="sets: false"
     >
       <ul className="uk-slider-items  uk-child-width-1-4@m uk-light uk-grid-small">
-        <li className="uk-transition-toggle" tabindex="0">
-          <img src={infoAboutFilm.poster} alt="" />
-          <div className="uk-position-center uk-panel">
-            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-            {infoAboutFilm.rating_kinopoisk}
-            </div>
-          </div>
-        </li>
-        <li className="uk-transition-toggle" tabindex="0">
-          <img src={infoAboutFilm2.poster} alt="" />
-          <div className="uk-position-center uk-panel">
-            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-            {infoAboutFilm2.rating_kinopoisk}
-            </div>
-          </div>
-        </li>
-        <li className="uk-transition-toggle" tabindex="0">
-          <img src={quin} alt="" />
-          <div className="uk-position-center uk-panel">
-            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-              1
-            </div>
-          </div>
-        </li>
-        <li className="uk-transition-toggle" tabindex="0">
-          <img src={quin} alt="" />
-          <div className="uk-position-center uk-panel">
-            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-              1
-            </div>
-          </div>
-        </li>
-        <li className="uk-transition-toggle" tabindex="0">
-          <img src={quin} alt="" />
-          <div className="uk-position-center uk-panel">
-            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-              1
-            </div>
-          </div>
-        </li>
-        <li className="uk-transition-toggle" tabindex="0">
-          <img src={quin} alt="" />
-          <div className="uk-position-center uk-panel">
-            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-              1
-            </div>
-          </div>
-        </li>
-        <li className="uk-transition-toggle" tabindex="0">
-          <img src={quin} alt="" />
-          <div className="uk-position-center uk-panel">
-            <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-              1
-            </div>
-          </div>
-        </li>
+<Test/>
+<Test/>
+<Test/>
+<Test/>
+<Test/>
+<Test/>
+
+   
       </ul>
       <a
         className="uk-position-center-left uk-position-small uk-hidden-hover"
