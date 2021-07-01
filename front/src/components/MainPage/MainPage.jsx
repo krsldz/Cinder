@@ -16,7 +16,7 @@ export default function MainPage() {
   return (
     <div>
       <div className="devider">
-        <div>
+        <div className="textonMain">
           {" "}
           <h1>
             ФИЛЬМЫ НА ЛЮБОЙ ВКУС <br /> ДЛЯ ТЕБЯ И ТВОИХ БЛИЗКИХ{" "}

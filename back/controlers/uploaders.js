@@ -4,32 +4,20 @@ const path = require('path');
 
 
 
+
 const storage = multer.diskStorage({
-  destination: function(req,file, cb){
-    cb(null,'../uploads/')
-  },
-  filename: function(req,file,cb){
+  //Путь сохранения файла
+  destination: "../uploads/",
+  filename: function (req, file, cb) {
     const date = moment().format('DDMMYYYY-HHmmss_SSS')
-    console.log(file.originalname,'-------------------------------------');
-    cb(null,`${date}-${file.originalname}`)
-  }
-})
+    cb(
+      null,
+      file.fieldname + "-" + date + path.extname(file.originalname)
+    );
+  },
+});
 
-const fileFilter =()=>{
-  const fileTypes = /jpeg|jpg|png|gif/;
-  
-  const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
-  const mimetype = fileTypes.test(file.mimetype);
-  if (mimetype && extname) {
-    return cb(null, true);
-  } else {
-    cb('Error: Images Only!');
-  }
-
-}
-const limits ={
-  fileSize:1024*1024*100
-}
-
-let upload = multer({ storage,fileFilter, limits})
-module.exports = upload;
+const uploadOne = multer({
+  storage: storage,
+  limits: { fileSize: 100000000000 },
+}).single("image"); 

@@ -4,6 +4,7 @@ import userReducer from "./userReducer";
 import loaderReducer from './loaderReducer';
 import SuperLikesFilmsReducer from './SuperLikesFilmsReducer';
 import LikesFilmsReducer from './LikesFilmsReducer'
+import viewFilmReducer from './ViewFilmsReducer'
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   films: filmReducer,
    superLikes: SuperLikesFilmsReducer,
   likes: LikesFilmsReducer,
+  views: viewFilmReducer,
 
 })
 

@@ -4,6 +4,8 @@ const initState = {
   films: [],
   superLikes:[],
   likes: [],
+  views: [],
+  
 }
 
 // const getInitState = () => {

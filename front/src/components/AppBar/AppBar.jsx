@@ -25,15 +25,7 @@ export default function AppBar() {
   
   const {theme, setTheme, anotherThemeSet} = useThemeContext()
 
-  // const [theme, setTheme] = React.useState({
-  //   checkedA: true,
-  //   checkedB: true,
-  // });
-
-  // const handleChange = (event) => {
-  //   setTheme({ ...theme, [event.target.name]: event.target.checked });
-  // };
-  //console.log(theme);
+ 
   return (
     <nav>
       <div className={theme ? "topnav" : "topnav2"}>

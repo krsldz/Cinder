@@ -7,28 +7,100 @@ const router = Router();
 const multer = require('multer');
 const moment = require('moment');
 
-// const {promisify}= require('util');
-// const pipeline = promisify(require('stream').pipeline)
 
-const date = moment().format('DDMMYYYY-HHmmss_SSS')
+const storage = multer.diskStorage({
+  //Путь сохранения файла
+  destination: "../uploads/",
+  filename: function (req, file, cb) {
+    const date = moment().format('DDMMYYYY-HHmmss_SSS')
+    cb(
+      null,
+      file.fieldname + "-" + date + path.extname(file.originalname)
+    );
+  },
+});
+
+const uploadOne = multer({
+  storage: storage,
+  limits: { fileSize: 100000000000 },
+}).single("file"); 
 
 
-async function addToDb(file, userId) {
-  const user = await User.findById(userId);
+// app.post("/fotos", async(req, res) => {
+//   try {
+//     // console.log(req.user.id);
+//     let imagePath = "abc";
+//     uploadOne(req, res, (err) => {
+//       if (err) {
+//         res.status(300).send(err);
+//         console.log(err);
+//       } else {
+//         if (req.file == undefined) {
+//           res.status(301).send("image upload failed.");
+//         } else {
+//           const user = await User.findById(req.session.user.id);
+//           const image = await Images.create({ filename });
+          
+          
+          
+          
+//         }
+//       }
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
-    const filename = file.name;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // const {promisify}= require('util');
+// // const pipeline = promisify(require('stream').pipeline)
+
+// const date = moment().format('DDMMYYYY-HHmmss_SSS')
+
+
+// async function addToDb(file, userId) {
+//   const user = await User.findById(userId);
+
+//     const filename = file.name;
     
-    const image = await Images.create({ filename });
-    console.log('----->');
-    user.profileFotos?.unshift(image);
-    await user.save();
-  }
+//     const image = await Images.create({ filename });
+//     console.log('----->');
+//     user.profileFotos?.unshift(image);
+//     await user.save();
+//   }
 
-router.post('/fotos', upload.single('file'), async (req, res)=>{
+// router.post('/fotos', upload.single('file'), async (req, res)=>{
 
 
 
-addToDb(req.files.file,'60d74958b07f65f73efdce08')
+// addToDb(req.files.file,'60d74958b07f65f73efdce08')
 
 // if(file.detectedFileExtension != '.jpg') next(new Error('invalid file type'));
 // const fileName = req.files.file.name+ date + file.detectedFileExtension;
@@ -44,14 +116,10 @@ addToDb(req.files.file,'60d74958b07f65f73efdce08')
 
         
           
-        });
 
 
 
  
-
-  
-// })
 
 
 

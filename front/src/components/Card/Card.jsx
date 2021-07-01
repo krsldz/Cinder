@@ -118,7 +118,7 @@ export default function CardSolo({ id, setComments, commentsHandler }) {
     console.log(trailerLink);
   };
 
-  console.log(allFilms);
+  // console.log(allFilms);
 
   return (
     <>
