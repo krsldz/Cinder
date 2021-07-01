@@ -8,6 +8,16 @@
   height: 100vh;
 }
 
+.divProfile2 {
+  text-align: center;
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color: #ff6781;
+  width: 25vw;
+  height: 100vh;
+}
+
 h4 {
   margin-top: 50px;
 }
@@ -18,11 +28,6 @@ h4 {
 }
 
 
-/* .divProfile2 {
-  background-color: #ff6781;
-  min-width: 350px;
-  min-height: 500px;
-} */
 
 .profileInfo {
   margin-top: 25px;
