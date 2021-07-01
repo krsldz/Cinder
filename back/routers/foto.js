@@ -6,6 +6,8 @@ const Images = require('../models/images');
 const router = Router();
 const multer = require('multer');
 const moment = require('moment');
+const path = require('path');
+
 
 
 const storage = multer.diskStorage({
@@ -15,6 +17,7 @@ const storage = multer.diskStorage({
     const date = moment().format('DDMMYYYY-HHmmss_SSS')
     cb(
       null,
+      console.log('------------>'),
       file.fieldname + "-" + date + path.extname(file.originalname)
     );
   },
@@ -26,31 +29,49 @@ const uploadOne = multer({
 }).single("file"); 
 
 
-// app.post("/fotos", async(req, res) => {
-//   try {
-//     // console.log(req.user.id);
-//     let imagePath = "abc";
-//     uploadOne(req, res, (err) => {
-//       if (err) {
-//         res.status(300).send(err);
-//         console.log(err);
-//       } else {
-//         if (req.file == undefined) {
-//           res.status(301).send("image upload failed.");
-//         } else {
-//           const user = await User.findById(req.session.user.id);
-//           const image = await Images.create({ filename });
+router.post("/fotos", (req, res) => {
+  console.log(req.files);
+  console.log(req.session.user.id);
+   req.files.file.mv("../uploads/" + req.files.file.name, function(err) {
+    if (err)
+      return res.status(500).send(err);
+
+    res.json(`/home/olehandros/elbrus/Final Project/Cinder/back/uploads" + ${req.files.file.name}`);
+  });
+  try {
+    // console.log(req.user.id);
+    let imagePath = "abc";
+    uploadOne(req, res, (err) => {
+      if (err) {
+        res.status(300).send(err);
+        console.log(err);
+      } else {
+        if (req.files == undefined) {
+          res.status(301).send("image upload failed.");
+        } else {
+        
+          
+
+   
+          User.findById(req.session?.user?.id).then((r) => {
+            r.profileFotos = "/avatar/" + req.files.filename;
+            r.save().then(() => res.status(200).json());
+            console.log('ssddsdsds');
+          });
+     
+         
+        
+
           
           
           
-          
-//         }
-//       }
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
+        }
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 
 
@@ -189,4 +210,4 @@ module.exports = router;
 //     }
 //     res.end();
 //   });
-// module.exports = router;
+        

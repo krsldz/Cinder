@@ -129,8 +129,13 @@ function Profile() {
     let files = [...e.dataTransfer.files];
     const formData = new FormData();
     formData.append('file', files[0]);
+    
 
-    axios.post('http://localhost:8080/api/v1/fotos', formData);
+    axios.post('http://localhost:8080/api/v1/fotos', formData, {
+      headers: {
+        "Content-type" : 'multipart/form-data'
+      },
+    });
 
     setDrag(false);
   }
@@ -185,6 +190,8 @@ function Profile() {
           >
             {editUserFlag ? 'Скрыть редактирование' : 'Редактировать профиль'}
           </Button>
+
+         
           <br/>
 
           {editUserFlag && (
