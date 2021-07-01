@@ -15,9 +15,10 @@ import {useSelector, useDispatch} from 'react-redux';
 import {initLikedFilms} from '../../redux/actions/userLikesFilmCreator';
 import {initSuperLikedFilms} from '../../redux/actions/userSuperlikesCreator';
 import {useEffect} from 'react';
+import Comments from "../Comments/Comments";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
+  
 
   return (
     <div
@@ -70,13 +71,16 @@ const useStyles = makeStyles((theme) => ({
   bar: {
     backgroundColor: "#802bb1",
   },
+  
 }));
 
 export default function LikedFilmsList() {
   const classes = useStyles();
+  const [comments, setComments] = React.useState(false);
   const [initValue, setInitValue] = React.useState(true);
   const [value, setValue] = React.useState(0);
   const dispatch = useDispatch();
+  
 
   useEffect(()=>{
 
@@ -91,14 +95,21 @@ const likes= useSelector(state=> state.likes);
 const superLikes= useSelector(state=> state.superLikes);
 const views = useSelector(state=> state.views);
 
+const commentsHandler = (id) => {
+  // selectFilm(e);
+  // setIdFilm(id)
+  setComments(prev => !prev)
+}
+
 console.log(likes);
 
   const handleChange = (event, newValue) => {
     setInitValue(true);
     setValue(newValue);
   };
-console.log('movies',superLikes);
-  return (
+
+  
+return (
   
     
     <div className={classes.root}>
@@ -181,7 +192,7 @@ console.log('movies',superLikes);
       uk-slider="sets: false"
     >
           <ul className="uk-slider-items  uk-child-width-1-4@m uk-grid-small ">
-          {views?.map((film)=>  film?.movie?.map((movie)=> <ViewedLi id={movie.idKP} key=
+          {views?.map((film)=>  film?.movie?.map((movie)=> <ViewedLi commentsHandler={commentsHandler} id={movie.idKP} key=
           {movie._id} /> 
           ))}
           </ul>
@@ -202,6 +213,7 @@ console.log('movies',superLikes);
       <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
           </div>
           </TabPanel>
+      {comments ? <Comments /> : null}
         </>
       ) : null}
     </div>

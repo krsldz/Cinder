@@ -170,7 +170,7 @@ export default function SpringModal() {
   const secondShow = () => {
     setSecond(false);
   };
-  // console.log(base);
+  console.log(base);
 
   return (
     <div>

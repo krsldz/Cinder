@@ -60,7 +60,7 @@ router.post("/fotos", (req, res) => {
           });
      
          
-
+        
 
           
           
@@ -210,4 +210,4 @@ module.exports = router;
 //     }
 //     res.end();
 //   });
-// module.exports = router;
+        
