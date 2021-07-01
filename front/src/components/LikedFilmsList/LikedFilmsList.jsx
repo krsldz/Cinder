@@ -15,9 +15,11 @@ import {useSelector, useDispatch} from 'react-redux';
 import {initLikedFilms} from '../../redux/actions/userLikesFilmCreator';
 import {initSuperLikedFilms} from '../../redux/actions/userSuperlikesCreator';
 import {useEffect} from 'react';
+
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
+  
 
   return (
     <div
@@ -70,6 +72,7 @@ const useStyles = makeStyles((theme) => ({
   bar: {
     backgroundColor: "#802bb1",
   },
+  
 }));
 
 export default function LikedFilmsList() {
@@ -77,6 +80,7 @@ export default function LikedFilmsList() {
   const [initValue, setInitValue] = React.useState(true);
   const [value, setValue] = React.useState(0);
   const dispatch = useDispatch();
+  
 
   useEffect(()=>{
 
@@ -97,8 +101,9 @@ console.log(likes);
     setInitValue(true);
     setValue(newValue);
   };
-console.log('movies',superLikes);
-  return (
+
+  
+return (
   
     
     <div className={classes.root}>
