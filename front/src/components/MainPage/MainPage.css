@@ -8,8 +8,17 @@ h4,
 h5 {
   color: white;
 }
-h5 {
+
+/* h5 {
   color: #d5c5e0;
+} */
+
+.h51 {
+  color: #d5c5e0;
+} 
+
+.h52 {
+  color: #ff6781;
 }
 
 .wrapper {

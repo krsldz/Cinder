@@ -10,7 +10,7 @@ import { green } from "@material-ui/core/colors";
 // import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import FormControl from "@material-ui/core/FormControl";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
@@ -72,7 +72,7 @@ const GreenCheckbox = withStyles({
   const [drag, setDrag] = useState(false);
   
   const classes = useStyles();
-  const dispatch = useDispatch();
+
 
   useEffect(()=>{
 

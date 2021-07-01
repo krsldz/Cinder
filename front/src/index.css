@@ -5,13 +5,22 @@ body {
   /* font-family: "Montserrat", sans-serif; */
 }
 
-html {
+/* html {
+  background-color: #2d283e;
+} */
+
+/* html {
+  background-color: pink;
+}  */
+
+.App1 {
   background-color: #2d283e;
 }
 
-.hahah {
-  color: pink;
+.App2 {
+  background-color: #ffc0cb;
 }
+
 
 * {
   font-family: "Montserrat", sans-serif !important;

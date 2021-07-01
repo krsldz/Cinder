@@ -102,7 +102,7 @@ export default function LikedFilmsList() {
          
       
 
-            {/* <ScrollBar /> */}
+            <ScrollBar />
           </TabPanel>
           <TabPanel value={value} index={1}>
 

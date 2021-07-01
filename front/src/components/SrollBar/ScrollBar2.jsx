@@ -8,7 +8,7 @@ export default function ScrollBar2() {
 
   const movieInfo = () => {
     fetch(
-      `https://api.kinopoisk.cloud/movies/1108577/token/de2e011c57a2199d24402bc642e73394`
+      `https://api.kinopoisk.cloud/movies/1108577/token/efcf5da3f88fef737921b0cd9182b8d6`
     )
       .then((res) => res.json())
       .then((data) => setInfoAboutFilm(data));
@@ -20,7 +20,7 @@ export default function ScrollBar2() {
 
  const movieInfo2 = () => {
   fetch(
-    `https://api.kinopoisk.cloud/movies/558/token/de2e011c57a2199d24402bc642e73394`
+    `https://api.kinopoisk.cloud/movies/558/token/efcf5da3f88fef737921b0cd9182b8d6`
   )
     .then((res) => res.json())
     .then((data) => setInfoAboutFilm2(data));
