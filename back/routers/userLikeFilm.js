@@ -10,37 +10,36 @@ router.get('/superlikedFilm', async (req, res)=>{
   
    res.json(result);
 
-  
 })
 
-router.post('/superlikedFilm', async(req,res)=>{
+router.post('/superlikedFilm', async (req, res) => {
   let newArr = [];
   const result = req.body;
   console.log(req.session.user.id);
   console.log(req.body);
   newArr.push(result);
-  
- 
+
+
   let newSuperLikesFilms = await SuperLike.create({
-  id: req.session.user.id,
-  movie: newArr,
+    id: req.session.user.id,
+    movie: newArr,
 
-})
- 
+  })
 
-  
-  
-  
+
+
+
+
   res.json(result);
 
 
 
-  
-  
-  
 
 
-  
+
+
+
+
 })
 
 
@@ -50,10 +49,9 @@ router.get('/likedFilm', async (req, res)=>{
   
    res.json(result);
 
-  
 })
 
-router.post('/likedFilm', async(req,res)=>{
+router.post('/likedFilm', async (req, res) => {
   let newArr = [];
   const result = req.body;
   console.log(req.session.user.id);

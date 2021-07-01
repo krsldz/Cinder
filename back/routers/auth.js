@@ -53,7 +53,7 @@ router.get('/signout', async (req, res) => {
   req.session.destroy((err) => {
     if (err) return res.sendStatus(500)
 
-    res.clearCookie(req.app.get('cookieName'))
+    res.clearCookie(req.app.get('cookieName'));
 
     return res.sendStatus(200)
   })
@@ -83,6 +83,12 @@ router.post('/userupdate', async (req, res) => {
   console.log(updatedUser);
 
   res.json(updatedUser);
+});
+
+router.get('/user', async (req, res) => {
+  const id = req.session?.user?.id;
+  const currentUser = await User.findById(id);
+    res.json(currentUser);
 });
 
 module.exports = router;
