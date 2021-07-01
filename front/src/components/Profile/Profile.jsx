@@ -57,7 +57,6 @@ function Profile() {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    console.log('useEffect');
     if (user === null) {
       dispatch(getUserFromServer());
     }
