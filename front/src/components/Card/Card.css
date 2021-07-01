@@ -1,9 +1,35 @@
-.card {
-  text-align: center;
+body {
+  /* display: grid; */
 }
+.swipe {
+  position: absolute;
+  top:50%;
+  left: 10%;
+}
+
+.card {
+  min-width: 20vw;
+  max-width: 60vw;
+  min-height: 80vh;
+  text-align: center;
+
+  position: relative;
+  left: 46%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+
+  font-family: sans-serif;
+  transition: transform 200ms;
+
+}
+
+
 .dws-wrapper {
-  border-radius: 5%;  
-  max-width: 400px;
+  border-radius: 5%;
+  width: 30vw;
+  height: 75vh;
   background-color: rgb(89, 67, 93);
   position: relative;
   background: linear-gradient(20deg, rgb(159, 147, 161), rgb(62, 3, 172));
@@ -25,10 +51,11 @@
   transition: 0.5s ease;
 }
 .dws-text h2 {
-  font-size: 70px;
+  font-size: 35px;
+  color: white;
 }
 .dws-text p {
-  font-size: 25px;
+  font-size: 12px;
 }
 .dws-wrapper a:before,
 .dws-wrapper a:after {
@@ -37,8 +64,6 @@
   width: 300%;
   height: 300%;
   transition: 0.5s ease-in-out;
-
-;
 }
 .dws-wrapper a:before {
   right: 0;
@@ -51,7 +76,6 @@
   top: -150%;
   background: rgba(0, 0, 0, 0.8);
   transform: skew(135deg) translateX(-100%);
-
 }
 .dws-wrapper:hover a:before {
   transform: skew(-45deg) translateX(0%);
@@ -62,3 +86,25 @@
 .dws-wrapper:hover .dws-text {
   opacity: 1;
 } 
+
+.layer0,
+.layer1 {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative; /* Относительное позиционирование */
+}
+
+.layer1 {
+  top: -600px;
+  left: 10px
+}
+
+#layer0 {
+  z-index: 1;
+}
+#layer1 {
+  z-index: 2;
+}
+.numbers {
+  color: yellow
+}

@@ -6,10 +6,10 @@ import MovieIcon from "@material-ui/icons/Movie";
 import MovieFilterIcon from "@material-ui/icons/MovieFilter";
 import HighQualityIcon from "@material-ui/icons/HighQuality";
 import Typography from "@material-ui/core/Typography";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import ButtomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import useState from "react";
+// import BottomNavigation from "@material-ui/core/BottomNavigation";
+// import ButtomNavigationAction from "@material-ui/core/BottomNavigationAction";
+// import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+// import useState from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,10 +31,8 @@ function HomeIcon(props) {
 export default function SvgIconsColor() {
   const classes = useStyles();
 
-
   return (
     <div className="footerText">
-     
       <div className={classes.root}>
         <MovieFilterIcon />
         <MovieIcon />

@@ -7,10 +7,16 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUp } from "../../redux/actions/user";
 import "./RegistrationAndLogin.css";
+import { useSelector } from "react-redux";
+import SvgIconsColor from "../FooterIcons/FooterIcons";
+
+
 
 export default function RegisterForm() {
   let history = useHistory();
   const dispatch = useDispatch();
+
+  const loader = useSelector((state) => state.loader);
 
   const [userSignUp, setUserSignUp] = useState({
     username: "",
@@ -19,8 +25,11 @@ export default function RegisterForm() {
   });
 
   const changeHandler = (e) => {
+    e.persist();
     setUserSignUp((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
+  console.log(userSignUp);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -35,52 +44,64 @@ export default function RegisterForm() {
 
   const classes = useStyles();
 
-  // console.log(userSignUp);
-
   return (
-    <div className="divReg">
-      <form
-        onSubmit={submitHandler}
-        className={classes.root}
-        noValidate
-        autoComplete="off"
-      >
-        <h4>Зарегистрируйтесь, чтобы выбрать фильм на вечер и не только</h4>
-        <div>
-          <TextField
-            onChange={changeHandler}
-            name="username"
-            id="outlined-textarea"
-            label="Ваше имя"
-            multiline
-            variant="outlined"
-          />
-        </div>
-        <div>
-          <TextField
-            onChange={changeHandler}
-            id="outlined-textarea"
-            name="email"
-            value={userSignUp.email}
-            label="Электронная почта"
-            multiline
-            variant="outlined"
-          />
-        </div>
-        <div>
-          <TextField
-            onChange={changeHandler}
-            id="outlined-textarea"
-            name="password"
-            label="Пароль"
-            multiline
-            variant="outlined"
-          />
-        </div>
-        <Button type="submit" variant="outlined" color="primary">
-          Продолжить
-        </Button>
-      </form>
+    <div>
+      <div className="divReg">
+        <form
+          onSubmit={submitHandler}
+          className={classes.root}
+          noValidate
+          autoComplete="off"
+        >
+          <h4>
+            Зарегистрируйтесь, чтобы выбрать фильм <br /> на вечер и не только
+          </h4>
+          <div>
+            <TextField
+              onChange={changeHandler}
+              name="username"
+              id="outlined-textarea"
+              label="Ваше имя"
+              multiline
+              variant="outlined"
+            />
+          </div>
+          <div>
+            <TextField
+              onChange={changeHandler}
+              id="outlined-textarea"
+              name="email"
+              value={userSignUp.email}
+              label="Электронная почта"
+              multiline
+              variant="outlined"
+            />
+          </div>
+          <div>
+            <TextField
+              onChange={changeHandler}
+              id="outlined-textarea"
+              name="password"
+              label="Пароль"
+              multiline
+              variant="outlined"
+            />
+          </div>
+          <br/>
+          <Button type="submit" variant="outlined" className={classes.but}>
+            Продолжить
+          </Button>
+          <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        </form>
+      </div>
+      <hr />
+      <footer>
+        <SvgIconsColor />
+      </footer>
     </div>
   );
 }
@@ -91,5 +112,10 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
       width: "25ch",
     },
+  },
+  but: {
+    color: 'white',
+    background: '#dc143c',
+    //border: '2px solid #dc143c',
   },
 }));

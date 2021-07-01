@@ -5,8 +5,10 @@ const User = require('../models/user');
 const router = Router();
 
 router.post('/signup', async (req, res) => {
-  const { username, password, email } = req.body
-  if (username && password && email) {
+  const checkExistingUsers = await User.findOne({ email: req.body.email });
+  
+  const { username, password, email } = req.body;
+  if (username && password && email && !checkExistingUsers) {
     try {
       const hashPassword = await bcrypt.hash(password, 11)
       const newUser = await User.create({
@@ -18,7 +20,7 @@ router.post('/signup', async (req, res) => {
         id: newUser._id,
         name: newUser.name,
       }
-      return res.json({ _id: newUser._id, name: newUser.username })
+      return res.json(newUser)
     } catch (error) {
       return res.sendStatus(500)
     }
@@ -36,7 +38,7 @@ router.post('/signin', async (req, res) => {
           id: currentUser._id,
           name: currentUser.name,
         }
-        return res.json({ _id: currentUser._id, name: currentUser.userName })
+        return res.json(currentUser)
       }
       return res.sendStatus(401)
     } catch (error) {
@@ -51,10 +53,42 @@ router.get('/signout', async (req, res) => {
   req.session.destroy((err) => {
     if (err) return res.sendStatus(500)
 
-    res.clearCookie(req.app.get('cookieName'))
+    res.clearCookie(req.app.get('cookieName'));
 
     return res.sendStatus(200)
   })
+});
+
+router.post('/userupdate', async (req, res) => {
+  const { id, username, userLastName, date, email, nickname, sex } = req.body;
+  await User.findByIdAndUpdate(id, {
+    username,
+    userLastName,
+    birthday: date,
+    email,
+    nickname,
+    sex,
+  });
+
+  const updatedUser = {
+    _id: id,
+    username,
+    email,
+    userLastName,
+    birthday: date,
+    nickname,
+    sex,
+  };
+
+  console.log(updatedUser);
+
+  res.json(updatedUser);
+});
+
+router.get('/user', async (req, res) => {
+  const id = req.session?.user?.id;
+  const currentUser = await User.findById(id);
+    res.json(currentUser);
 });
 
 module.exports = router;
