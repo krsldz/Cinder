@@ -6,6 +6,8 @@ const Images = require('../models/images');
 const router = Router();
 const multer = require('multer');
 const moment = require('moment');
+const path = require('path');
+
 
 
 const storage = multer.diskStorage({
@@ -15,6 +17,7 @@ const storage = multer.diskStorage({
     const date = moment().format('DDMMYYYY-HHmmss_SSS')
     cb(
       null,
+      console.log('------------>'),
       file.fieldname + "-" + date + path.extname(file.originalname)
     );
   },
@@ -189,4 +192,4 @@ module.exports = router;
 //     }
 //     res.end();
 //   });
-// module.exports = router;
+

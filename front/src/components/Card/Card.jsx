@@ -2,32 +2,33 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 // import Card from "@material-ui/core/Card";
-import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActionArea from "@material-ui/core/CardActionArea";
 // import CardActions from "@material-ui/core/CardActions";
 // import CardContent from "@material-ui/core/CardContent";
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import { useSelector, useDispatch } from 'react-redux';
-import TinderCard from 'react-tinder-card';
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import { useSelector, useDispatch } from "react-redux";
+import TinderCard from "react-tinder-card";
 import {
   initLikedFilms,
   updateLikedFilms,
-} from '../../redux/actions/userLikesFilmCreator';
+} from "../../redux/actions/userLikesFilmCreator";
 import {
   initSuperLikedFilms,
   updateSuperLikedFilms,
-} from '../../redux/actions/userSuperlikesCreator';
-import './Card.css';
-import Loader from '../Loader/Loader';
-import Comments from '../Comments/Comments';
+} from "../../redux/actions/userSuperlikesCreator";
+import "./Card.css";
+import Loader from "../Loader/Loader";
+import Comments from "../Comments/Comments";
+import ModalTraler from "../ModalTraler/ModalTraler";
 
 const useStyles = makeStyles({
   border: {
-    border: '1px solid black',
-    color: 'black;',
-    marginTop: '2px',
-    padding: '4px',
+    border: "1px solid black",
+    color: "black;",
+    marginTop: "2px",
+    padding: "4px",
   },
 });
 
@@ -52,11 +53,11 @@ export default function CardSolo({ id, setComments, commentsHandler }) {
 
   useEffect(() => {
     axios
-      .get('http://localhost:8080/api/v1/compilation')
+      .get("http://localhost:8080/api/v1/compilation")
       .then((res) => setFilms(res.data));
     // dispatch(initLikedFilms())
-  },[]) 
-// console.log(allFilms);
+  }, []);
+  // console.log(allFilms);
   const movieInfo = useCallback((id) => {
     fetch(
       `https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`
@@ -81,43 +82,43 @@ export default function CardSolo({ id, setComments, commentsHandler }) {
   }
 
   const onSwipe = (direction) => {
-    if (direction === 'left') {
+    if (direction === "left") {
       let dislikeFilm = allFilms.find((film) => film.idKP == id);
       allFilms = removeItemOnce(allFilms, dislikeFilm);
       // console.log(allFilms);
-      setComments(false)
+      setComments(false);
     }
 
-    if (direction === 'right') {
+    if (direction === "right") {
       let currLikeFilm = allFilms.find((film) => film.idKP == id);
       allFilms = removeItemOnce(allFilms, currLikeFilm);
       console.log(currLikeFilm);
       dispatch(updateLikedFilms(currLikeFilm));
-      setComments(false)
+      setComments(false);
     }
 
-    if (direction === 'up') {
+    if (direction === "up") {
       let currSuperLikeFilm = allFilms.find((film) => film.idKP == id);
       allFilms = removeItemOnce(allFilms, currSuperLikeFilm);
       dispatch(updateSuperLikedFilms(currSuperLikeFilm));
-      setComments(false)
+      setComments(false);
     }
-    if (direction === 'down') {
+    if (direction === "down") {
     }
   };
 
   const trailerButtonClickHandler = () => {
-    setTrailer(!trailerPreview);
+    // setTrailer(!trailerPreview);
     console.log(id);
     fetch(
       `https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`
     )
       .then((res) => res.json())
       .then((data) => setTrailerLink(data.trailer));
-      console.log(trailerLink);
+    console.log(trailerLink);
   };
 
-  console.log(allFilms);
+  // console.log(allFilms);
 
   return (
     <>
@@ -126,64 +127,56 @@ export default function CardSolo({ id, setComments, commentsHandler }) {
       ) : allFilms.length === 0 ? (
         <h3>Фильмы закончились, вы слишком привередливые :)</h3>
       ) : (
-        <TinderCard className='swipe' onSwipe={onSwipe}>
-          <div className='card'>
-            <div className='dws-wrapper'>
-              <CardActionArea>
-                <CardMedia
-                  component='img'
-                  alt='fucking card'
-                  height='100%'
-                  image={infoAboutMovie?.poster}
-                  title='Contemplative Reptile'
-                />
+        <TinderCard className="swipe" onSwipe={onSwipe}>
+          <div className="card">
+            <div className="dws-wrapper">
+              <a>
+                <CardActionArea>
+                  <CardMedia
+                    component="img"
+                    alt="fucking card"
+                    height="100%"
+                    image={infoAboutMovie?.poster}
+                    title="Contemplative Reptile"
+                  />
 
-                <div className='dws-text'>
-                  <h2 gutterBottom variant='h5' component='h2'>
-                    {infoAboutMovie?.title}
-                  </h2>
-                  <hr />
-                  <p variant='body2' component='p'>
-                    {infoAboutMovie?.description}
-                  </p>
-                  <div>
-                    Рейтинг Кинопоиска:{' '}
-                    <nobr className='numbers'>
-                      {infoAboutMovie?.rating_kinopoisk}
-                    </nobr>
-                    <br />
-                    Рейтинг IMDB:{' '}
-                    <nobr className='numbers'>
-                      {infoAboutMovie?.rating_imdb}
-                    </nobr>
+                  <div className="dws-text">
+                    <h2 gutterBottom variant="h5" component="h2">
+                      {infoAboutMovie?.title}
+                    </h2>
+                    <hr />
+                    <p variant="body2" component="p">
+                      {infoAboutMovie?.description}
+                    </p>
+                    <div>
+                      Рейтинг Кинопоиска:{" "}
+                      <nobr className="numbers">
+                        {infoAboutMovie?.rating_kinopoisk}
+                      </nobr>
+                      <br />
+                      Рейтинг IMDB:{" "}
+                      <nobr className="numbers">
+                        {infoAboutMovie?.rating_imdb}
+                      </nobr>
+                    </div>
                   </div>
-                </div>
-              </CardActionArea>
+                </CardActionArea>
+              </a>
             </div>
-            <button
-              class="gradient-button"
-              onClick={() => trailerButtonClickHandler()}
-              
+
+            <ModalTraler
+              trailerButtonClickHandler={trailerButtonClickHandler}
+              trailerLink={trailerLink}
+            />
+
+            <Button
+              size="small"
+              align="rigth"
+              className={classes.border}
+              onClick={() => commentsHandler(id)}
             >
-              Трейлер
-            </button>
-            {trailerPreview && (
-              <iframe
-                width='560'
-                height='315'
-                src={trailerLink}
-                title='YouTube video player'
-                frameborder='0'
-                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-                allowfullscreen
-              ></iframe>
-            )}
-            {/* <Button size="small" marginRight="10px" className={classes.border}>
-        Трейлер
-      </Button> */}
-      <Button size="small" align="rigth" className={classes.border} onClick={() => commentsHandler(id)}>
-        Комментарии
-      </Button>
+              Комментарии
+            </Button>
           </div>
         </TinderCard>
       )}

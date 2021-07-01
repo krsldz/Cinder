@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router";
 import axios from 'axios'
@@ -30,6 +30,7 @@ export default function Comments({id}) {
     date: '',
     film: id,
   });
+  const [allComments, setAllComments] = useState([])
 
   const changeHandler = (e) => {
     setAddComments((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -37,12 +38,28 @@ export default function Comments({id}) {
 
   console.log(id);
 
+  useEffect((id) => {
+    axios
+      .get("http://localhost:8080/api/v1/comments", id)
+      .then((res) => setAllComments(res.data));
+  }, []);
+
+  console.log(allComments);
+
   const submitHandler = (e) => {
     e.preventDefault();
+    setAddComments({
+      comment:'',
+      user:'',
+      date: '',
+      film: id,
+    })
     axios
       .post('http://localhost:8080/api/v1/comments', addComments)
-      .then(console.log);
+      // .then(console.log);
 };
+
+console.log(addComments);
 
 
   return (
