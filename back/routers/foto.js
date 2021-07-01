@@ -32,11 +32,11 @@ const uploadOne = multer({
 router.post("/fotos", (req, res) => {
   console.log(req.files);
   console.log(req.session.user.id);
-   req.files.file.mv("../uploads/" + req.files.file.name, function(err) {
+   req.files.file.mv("/Users/kuolly/elbrus/Cinder/back/uploads" + req.files.file.name, function(err) {
     if (err)
       return res.status(500).send(err);
 
-    res.json(`/home/olehandros/elbrus/Final Project/Cinder/back/uploads" + ${req.files.file.name}`);
+    res.json(`/Users/kuolly/elbrus/Cinder/back/uploads/${req.files.file.name}`);
   });
   try {
     // console.log(req.user.id);
