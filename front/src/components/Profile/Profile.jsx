@@ -176,7 +176,7 @@ function Profile() {
           <Button
             type='submit'
             variant='contained'
-            color='primary'
+            
             className={classes.but}
             onClick={() => setEditUserFlag(!editUserFlag)}
           >

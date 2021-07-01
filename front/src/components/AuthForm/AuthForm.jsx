@@ -18,8 +18,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   but: {
-    color: "purple",
-    border: "2px solid purple",
+    color: 'white',
+    background: '#dc143c',
+    //border: '2px solid #dc143c',
   },
 }));
 
@@ -90,9 +91,12 @@ export default function AuthForm() {
               color="red"
             />
           </div>
-          <Button type="submit" variant="outlined" className={classes.but}>
+          <br/>
+          <Button type="submit" variant='contained' className={classes.but}>
             Продолжить
           </Button>
+          <br/>
+          <br/>
           <div>
             <a href="http://localhost:8080/auth/google">
               <GoogleButton
@@ -102,11 +106,14 @@ export default function AuthForm() {
               />
             </a>
           </div>
+          <br/>
         </form>
         <div>Еще нет учетной записи?</div>
+        <br/>
         <div>
           <Link to="/register"> Зарегистрируйтесь </Link>
         </div>
+        <br/>
       </div>
     </div>
   );
