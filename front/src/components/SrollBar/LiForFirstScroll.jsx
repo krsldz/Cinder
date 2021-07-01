@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import "./Scroll.css";
 import {deleteLikedFilm} from '../../redux/actions/userLikesFilmCreator'
 import axios from 'axios';
+import { initSuperLikedFilms } from "../../redux/actions/userSuperlikesCreator";
 axios.defaults.withCredentials= true;
 
 
@@ -37,6 +38,9 @@ const changerState =() =>{
 
   let like = likes.find((film)=> film.movie.find((movies)=> id== movies.idKP))
   dispatch(deleteLikedFilm(like))
+ 
+  dispatch(initSuperLikedFilms())
+
 
   
 
