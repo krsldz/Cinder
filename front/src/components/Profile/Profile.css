@@ -4,6 +4,8 @@
   margin-left: 50px;
   margin-right: 50px;
   background-color: #564f6f;
+  width: 25vw;
+  height: 100vh;
 }
 
 h4 {
@@ -13,12 +15,6 @@ h4 {
 .twoComp {
   display: flex;
   justify-content: center;
-}
-
-.divProfile {
-  background-color: #564f6f;
-  width: 25vw;
-  height: 100vh;
 }
 
 .profileInfo {
