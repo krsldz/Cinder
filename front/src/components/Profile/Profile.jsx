@@ -20,6 +20,10 @@ import SvgIconsColor from '../FooterIcons/FooterIcons';
 import { initLikedFilms } from '../../redux/actions/userLikesFilmCreator';
 import { initSuperLikedFilms } from '../../redux/actions/userSuperlikesCreator';
 import { editUserThunk, getUserFromServer } from '../../redux/actions/user';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 axios.defaults.withCredentials = true;
 
@@ -28,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
       width: '25ch',
+      
     },
   },
 
@@ -36,9 +41,21 @@ const useStyles = makeStyles((theme) => ({
   },
 
   but: {
-    color: 'purple',
-    border: '2px solid purple',
+    color: 'white',
+    background: '#dc143c',
+    //border: '2px solid #dc143c',
   },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  }
 }));
 
 const GreenCheckbox = withStyles({
@@ -88,6 +105,7 @@ function Profile() {
   const [drag, setDrag] = useState(false);
 
   const classes = useStyles();
+  const bull = <span className={classes.bullet}>•</span>;
 
 
   useEffect(() => {
@@ -125,6 +143,7 @@ function Profile() {
     setEditUserFlag(false);
   };
 
+
   console.log(userUpdate);
 
   return (
@@ -152,16 +171,18 @@ function Profile() {
               </div>
             )}
           </div>
+          <br/>
 
           <Button
             type='submit'
-            variant='outlined'
-            color='primary'
+            variant='contained'
+            
             className={classes.but}
             onClick={() => setEditUserFlag(!editUserFlag)}
           >
             {editUserFlag ? 'Скрыть редактирование' : 'Редактировать профиль'}
           </Button>
+          <br/>
 
           {editUserFlag && (
             <form
@@ -211,7 +232,7 @@ function Profile() {
                     onChange={changeHandler}
                     id='date'
                     name='date'
-                    label='день рождение'
+                    label='Дата рождения'
                     type='date'
                     // defaultValue="1995-05-24"
                     InputLabelProps={{
@@ -225,7 +246,7 @@ function Profile() {
                     onChange={changeHandler}
                     id='outlined-textarea'
                     name='nickname'
-                    label='Ник нейм'
+                    label='Никнейм'
                     multiline
                     variant='outlined'
                     value={userUpdate.nickname}
@@ -266,6 +287,16 @@ function Profile() {
                 </Button>
               </FormControl>
             </form>
+          )}
+          
+          {!editUserFlag && (
+            <div className='profileInfo'>
+             <span className='spanOfProfile'>{userUpdate.username} {userUpdate.userLastName}</span><br/><br/>
+             <span className='spanOfProfile'>Email:</span><span className='spanTwo'>{userUpdate.email}</span><br/><br/>
+             <span className='spanOfProfile'>Дата рождения:</span> <span className='spanTwo'>{userUpdate.date}</span><br/><br/>
+             <span className='spanOfProfile'>Никнейм:</span> <span className='spanTwo'>{userUpdate.nickname}</span><br/><br/>
+             <span className='spanOfProfile'>Пол:</span> <span className='spanTwo'>{userUpdate.sex}</span><br/><br/>
+            </div>
           )}
 
 
