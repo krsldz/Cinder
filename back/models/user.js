@@ -30,7 +30,9 @@ const usersSchema = new mongoose.Schema({
   nickname:{
     type: String,
   },
-
+  comments: {
+    type: Array
+  }
 });
 
 module.exports = mongoose.model('users', usersSchema);

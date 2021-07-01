@@ -22,6 +22,7 @@ const authRouter = require('./routers/auth');
 const fotosRouter = require('./routers/foto');
 const compilationRouter = require('./routers/compilation');
 const userLikesFilmRouter = require('./routers/userLikeFilm');
+const commentsRouter = require('./routers/comments');
 
 
 const app = express();
@@ -56,6 +57,7 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1', testRouter);
 app.use('/api/v1', fotosRouter);
 app.use('/api/v1', compilationRouter);
+app.use('/api/v1', commentsRouter);
 app.use('/api/v1/user', userLikesFilmRouter);
 
 app.get('/auth/google',
