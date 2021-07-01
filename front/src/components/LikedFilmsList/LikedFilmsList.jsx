@@ -10,6 +10,7 @@ import Box from "@material-ui/core/Box";
 import LiForFirstScroll from '../SrollBar/LiForFirstScroll';
 import LiForSuperLikes from '../SrollBar/LiForSuperlikes';
 import ScrollBarViewed from "../SrollBar/ScrollBarViewed";
+import ViewedLi from '../SrollBar/ViewedLi';
 import {useSelector, useDispatch} from 'react-redux';
 import {initLikedFilms} from '../../redux/actions/userLikesFilmCreator';
 import {initSuperLikedFilms} from '../../redux/actions/userSuperlikesCreator';
@@ -88,6 +89,8 @@ export default function LikedFilmsList() {
  
 const likes= useSelector(state=> state.likes);
 const superLikes= useSelector(state=> state.superLikes);
+const views = useSelector(state=> state.views);
+
 console.log(likes);
 
   const handleChange = (event, newValue) => {
@@ -172,7 +175,32 @@ console.log('movies',superLikes);
           </div>
           </TabPanel>
           <TabPanel value={value} index={2}>
-            <ScrollBarViewed />
+          <div
+      className="uk-position-relative uk-visible-toggle uk-light"
+      tabindex="-1"
+      uk-slider="sets: false"
+    >
+          <ul className="uk-slider-items  uk-child-width-1-4@m uk-grid-small ">
+          {views?.map((film)=>  film?.movie?.map((movie)=> <ViewedLi id={movie.idKP} key=
+          {movie._id} /> 
+          ))}
+          </ul>
+          <a
+        className="uk-position-center-left uk-position-small uk-hidden-hover"
+        href="#"
+        uk-slidenav-previous
+        uk-slider-item="previous"
+        uk-icon="icon: chevron-left; ratio: 3"
+      ></a>
+      <a
+        className="uk-position-center-right uk-position-small uk-hidden-hover"
+        href="#"
+        uk-slidenav-next
+        uk-slider-item="next"
+        uk-icon="icon: chevron-right; ratio: 3"
+      ></a>
+      <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+          </div>
           </TabPanel>
         </>
       ) : null}
