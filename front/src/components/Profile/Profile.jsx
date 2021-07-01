@@ -24,6 +24,7 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { useThemeContext } from "../../context/context";
 
 axios.defaults.withCredentials = true;
 
@@ -72,6 +73,8 @@ function Profile() {
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.user);
+
+  const {theme, setTheme, anotherThemeSet} = useThemeContext()
 
   useEffect(() => {
     if (user === null) {
@@ -149,7 +152,7 @@ function Profile() {
   return (
     <div>
       <div className='twoComp'>
-        <div className='divProfile'>
+        <div className={theme ? "divProfile" : "divProfile2"}>
           <h4>Изменить личные данные</h4>
           <div>
             {drag ? (
@@ -291,11 +294,11 @@ function Profile() {
           
           {!editUserFlag && (
             <div className='profileInfo'>
-             <span className='spanOfProfile'>{userUpdate.username} {userUpdate.userLastName}</span><br/><br/>
-             <span className='spanOfProfile'>Email:</span><span className='spanTwo'>{userUpdate.email}</span><br/><br/>
-             <span className='spanOfProfile'>Дата рождения:</span> <span className='spanTwo'>{userUpdate.date}</span><br/><br/>
-             <span className='spanOfProfile'>Никнейм:</span> <span className='spanTwo'>{userUpdate.nickname}</span><br/><br/>
-             <span className='spanOfProfile'>Пол:</span> <span className='spanTwo'>{userUpdate.sex}</span><br/><br/>
+             <span className={theme ? "spanOfProfile" : "spanOfProfile2"}>{userUpdate.username} {userUpdate.userLastName}</span><br/><br/>
+             <span className={theme ? "spanOfProfile" : "spanOfProfile2"}>Email:</span><span className='spanTwo'>{userUpdate.email}</span><br/><br/>
+             <span className={theme ? "spanOfProfile" : "spanOfProfile2"}>Дата рождения:</span> <span className='spanTwo'>{userUpdate.date}</span><br/><br/>
+             <span className={theme ? "spanOfProfile" : "spanOfProfile2"}>Никнейм:</span> <span className='spanTwo'>{userUpdate.nickname}</span><br/><br/>
+             <span className={theme ? "spanOfProfile" : "spanOfProfile2"}>Пол:</span> <span className='spanTwo'>{userUpdate.sex}</span><br/><br/>
             </div>
           )}
 
