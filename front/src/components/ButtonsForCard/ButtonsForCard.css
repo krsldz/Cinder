@@ -1,3 +1,7 @@
+body {
+  /* display: grid; */
+}
+
 .wrapper {
   padding-top: 40px;
 }
@@ -18,7 +22,11 @@
   padding-left: 30px;
   padding-right: 30px;
   padding-bottom: 10px;
-  background-color: #4c494c;
+  min-width: 30vw;
+  max-width: 30vw;
+  min-height: 20vh;
+  min-height: 80vh;
+
 }
 
 .divWithButtons {
