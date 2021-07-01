@@ -21,3 +21,20 @@ h4 {
   min-width: 350px;
   min-height: 500px;
 }
+
+.profileInfo {
+  margin-top: 25px;
+  font-size: 20px;
+  
+}
+
+.spanOfProfile{
+  /* color: #dc143c; */
+color: orange;
+  padding: 10px;
+}
+
+.spanTwo{
+  color: white;
+  font-size: 18px;
+}
