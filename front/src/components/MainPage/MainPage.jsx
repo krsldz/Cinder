@@ -7,8 +7,12 @@ import LikedFilmsList from "../LikedFilmsList/LikedFilmsList";
 import ButtonsForCard from "../ButtonsForCard/ButtonsForCard";
 import { Link } from "react-router-dom";
 import ScrollBarMain from "../SrollBar/ScrollBarMain";
+import { useThemeContext } from "../../context/context";
+
 
 export default function MainPage() {
+  const { theme, setTheme, anotherThemeSet } = useThemeContext()
+
   return (
     <div>
       <div className="devider">
@@ -21,7 +25,7 @@ export default function MainPage() {
           <div className="buttonDiv">
             <SpringModal />
           </div>
-          <h5>
+          <h5 className={theme ? "h51" : "h52"}>
             Присоединяйтесь, чтобы выбирать фильмы, тратя на это меньше своего
             времени
           </h5>
