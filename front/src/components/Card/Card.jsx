@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import axios from 'axios';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import axios from "axios";
+import { makeStyles } from "@material-ui/core/styles";
 // import Card from "@material-ui/core/Card";
 import CardActionArea from '@material-ui/core/CardActionArea';
 // import CardActions from "@material-ui/core/CardActions";
@@ -31,7 +31,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function CardSolo({ id }) {
+export default function CardSolo({ id, setComments, commentsHandler }) {
   const classes = useStyles();
   const [films, setFilms] = useState([]);
   const loader = useSelector((state) => state.loader);
@@ -48,14 +48,15 @@ export default function CardSolo({ id }) {
   // const commentsHandler = () => {
   //   setComments(prev => !prev)
   // }
+  const card = useRef();
 
   useEffect(() => {
     axios
       .get('http://localhost:8080/api/v1/compilation')
       .then((res) => setFilms(res.data));
     // dispatch(initLikedFilms())
-  }, []);
-  console.log(allFilms);
+  },[]) 
+// console.log(allFilms);
   const movieInfo = useCallback((id) => {
     fetch(
       `https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`
@@ -83,7 +84,8 @@ export default function CardSolo({ id }) {
     if (direction === 'left') {
       let dislikeFilm = allFilms.find((film) => film.idKP == id);
       allFilms = removeItemOnce(allFilms, dislikeFilm);
-      console.log(allFilms);
+      // console.log(allFilms);
+      setComments(false)
     }
 
     if (direction === 'right') {
@@ -91,13 +93,14 @@ export default function CardSolo({ id }) {
       allFilms = removeItemOnce(allFilms, currLikeFilm);
       console.log(currLikeFilm);
       dispatch(updateLikedFilms(currLikeFilm));
+      setComments(false)
     }
 
     if (direction === 'up') {
       let currSuperLikeFilm = allFilms.find((film) => film.idKP == id);
       allFilms = removeItemOnce(allFilms, currSuperLikeFilm);
-
       dispatch(updateSuperLikedFilms(currSuperLikeFilm));
+      setComments(false)
     }
     if (direction === 'down') {
     }
@@ -177,10 +180,10 @@ export default function CardSolo({ id }) {
             )}
             {/* <Button size="small" marginRight="10px" className={classes.border}>
         Трейлер
-      </Button>
-      <Button size="small" align="rigth" className={classes.border} onClick={commentsHandler}>
-        Комментарии
       </Button> */}
+      <Button size="small" align="rigth" className={classes.border} onClick={() => commentsHandler(id)}>
+        Комментарии
+      </Button>
           </div>
         </TinderCard>
       )}
