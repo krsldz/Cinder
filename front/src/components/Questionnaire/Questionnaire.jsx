@@ -77,6 +77,8 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     paddingLeft: "20px",
     paddingRight: "20px",
+    paddingTop: "10px",
+    paddingBottom: "10px",
   },
 }));
 

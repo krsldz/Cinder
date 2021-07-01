@@ -2,16 +2,25 @@ body {
   margin: 0;
 
   color: #d1d7e0;
-  /* font-family: "Montserrat", sans-serif; */
+  font-family: "Montserrat", sans-serif;
 }
 
-html {
+/* html {
+  background-color: #ffc0cb;
+} */
+
+/* html {
+  background-color: pink;
+}  */
+
+.App1 {
   background-color: #2d283e;
 }
 
-.hahah {
-  color: pink;
+.App2 {
+  background-color: #ffc0cb;
 }
+
 
 * {
   font-family: "Montserrat", sans-serif !important;

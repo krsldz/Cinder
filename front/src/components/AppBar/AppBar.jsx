@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./AppBar.css";
 // import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -6,26 +6,28 @@ import { Link, NavLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Switch from "@material-ui/core/Switch";
-import logo from "../../images/Cinder.jpg";
+import logo from "../../images/f3c53784587e4e0cb9154ad3a52b8342 copy.png";
+import { useThemeContext } from "../../context/context";
 
 export default function AppBar() {
   const user = useSelector((state) => state.user);
 
-  const [theme, setTheme] = React.useState({
-    checkedA: true,
-    checkedB: true,
-  });
+  const { theme, setTheme, anotherThemeSet } = useThemeContext();
 
-  const handleChange = (event) => {
-    setTheme({ ...theme, [event.target.name]: event.target.checked });
-  };
+  // const [theme, setTheme] = React.useState({
+  //   checkedA: true,
+  //   checkedB: true,
+  // });
 
+  // const handleChange = (event) => {
+  //   setTheme({ ...theme, [event.target.name]: event.target.checked });
+  // };
+  //console.log(theme);
   return (
     <nav>
-      <div className={theme.checkedA ? "topnav" : "topnav2"}>
+      <div className={theme ? "topnav" : "topnav2"}>
         <Link to="/">
-          <img src={logo} alt="" srcset="" />
-          Cinder
+          CINDER
         </Link>
         <div className="" id="navbarNav">
           <div className="">
@@ -53,7 +55,7 @@ export default function AppBar() {
             )}
             <Switch
               checked={theme.checkedA}
-              onChange={handleChange}
+              onChange={anotherThemeSet}
               name="checkedA"
               inputProps={{ "aria-label": "secondary checkbox" }}
               className="right switch  "

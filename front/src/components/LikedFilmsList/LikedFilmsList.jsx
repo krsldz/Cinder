@@ -6,8 +6,8 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import ScrollBar from "../SrollBar/ScrollBar";
-import ScrollBar2 from "../SrollBar/ScrollBar2";
+import LiForFirstScroll from '../SrollBar/LiForFirstScroll';
+import LiForSuperLikes from '../SrollBar/LiForSuperlikes';
 import ScrollBarViewed from "../SrollBar/ScrollBarViewed";
 import {useSelector, useDispatch} from 'react-redux';
 import {initLikedFilms} from '../../redux/actions/userLikesFilmCreator';
@@ -82,6 +82,7 @@ export default function LikedFilmsList() {
 
     
   },[])
+
  
 const likes= useSelector(state=> state.likes);
 const superLikes= useSelector(state=> state.superLikes);
@@ -91,7 +92,7 @@ console.log(likes);
     setInitValue(true);
     setValue(newValue);
   };
-
+console.log('movies',superLikes);
   return (
   
     
@@ -113,12 +114,57 @@ console.log(likes);
           <TabPanel value={value} index={0}>
          
       
-        {likes?.map((film)=> <ScrollBar2 id={film.idKP} />)}
+          <div
+      className="uk-position-relative uk-visible-toggle uk-light"
+      tabindex="-1"
+      uk-slider="sets: false"
+    >
+          <ul className="uk-slider-items  uk-child-width-1-4@m uk-grid-small ">
+          {likes?.map((film)=>  film?.movie?.map((movie)=> <LiForFirstScroll id={movie.idKP} />))}
+          </ul>
+          <a
+        className="uk-position-center-left uk-position-small uk-hidden-hover"
+        href="#"
+        uk-slidenav-previous
+        uk-slider-item="previous"
+        uk-icon="icon: chevron-left; ratio: 3"
+      ></a>
+      <a
+        className="uk-position-center-right uk-position-small uk-hidden-hover"
+        href="#"
+        uk-slidenav-next
+        uk-slider-item="next"
+        uk-icon="icon: chevron-right; ratio: 3"
+      ></a>
+      <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+          </div>
             
           </TabPanel>
           <TabPanel value={value} index={1}>
-
-          {superLikes?.map((film)=> <ScrollBar id={film.idKP} />)}
+          <div
+      className="uk-position-relative uk-visible-toggle uk-light"
+      tabindex="-1"
+      uk-slider="sets: false"
+    >
+          <ul className="uk-slider-items  uk-child-width-1-4@m uk-grid-small ">
+          {superLikes?.map((film)=>  film?.movie?.map((movie)=> <LiForSuperLikes id={movie.idKP} />))}
+          </ul>
+          <a
+        className="uk-position-center-left uk-position-small uk-hidden-hover"
+        href="#"
+        uk-slidenav-previous
+        uk-slider-item="previous"
+        uk-icon="icon: chevron-left; ratio: 3"
+      ></a>
+      <a
+        className="uk-position-center-right uk-position-small uk-hidden-hover"
+        href="#"
+        uk-slidenav-next
+        uk-slider-item="next"
+        uk-icon="icon: chevron-right; ratio: 3"
+      ></a>
+      <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+          </div>
           </TabPanel>
           <TabPanel value={value} index={2}>
             <ScrollBarViewed />
