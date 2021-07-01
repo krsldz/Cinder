@@ -61,7 +61,7 @@ body {
 } */
 
 .dws-wrapper {
-  border-radius: 5%;  
+  border-radius: 5%;
   max-width: 400px;
   background-color: rgb(89, 67, 93);
   position: relative;
@@ -97,8 +97,6 @@ body {
   width: 300%;
   height: 300%;
   transition: 0.5s ease-in-out;
-
-;
 }
 .dws-wrapper a:before {
   right: 0;
@@ -111,7 +109,6 @@ body {
   top: -150%;
   background: rgba(0, 0, 0, 0.8);
   transform: skew(135deg) translateX(-100%);
-
 }
 .dws-wrapper:hover a:before {
   transform: skew(-45deg) translateX(0%);
@@ -140,4 +137,7 @@ body {
 }
 #layer1 {
   z-index: 2;
+}
+.numbers {
+  color: yellow
 }

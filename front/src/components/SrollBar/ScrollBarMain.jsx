@@ -10,7 +10,8 @@ export default function ScrollBarMain() {
       <div
         class="uk-position-relative uk-visible-toggle uk-light"
         tabindex="-1"
-        uk-slider="center: true; clsActivated: uk-transition-active"
+        uk-slider="center: true; clsActivated: uk-transition-active; autoplay: true; autoplay-interval: 3000"
+        autoplay
       >
         <ul
           class="uk-slider-items uk-grid uk-grid-match "
@@ -33,7 +34,7 @@ export default function ScrollBarMain() {
             <div class="uk-cover-container">
               <img src={zak} alt="" uk-cover />
               <div className="uk-position-center uk-panel">
-                <div className="uk-h1 uk-transition-slide-bottom-small">
+                <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
                   Для просмотра с мамой
                 </div>
               </div>
@@ -44,7 +45,7 @@ export default function ScrollBarMain() {
             <div class="uk-cover-container">
               <img src={quin} alt="" uk-cover />
               <div className="uk-position-center uk-panel">
-                <div className="uk-h1 uk-transition-slide-bottom-small">
+                <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
                   Для просмотра в компании
                 </div>
               </div>
@@ -54,7 +55,7 @@ export default function ScrollBarMain() {
             <div class="uk-cover-container">
               <img src={chel} alt="" uk-cover />
               <div className="uk-position-center uk-panel">
-                <div className="uk-h1 uk-transition-slide-bottom-small">
+                <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
                   Для просмотра со своей половинкой
                 </div>
               </div>
@@ -66,14 +67,14 @@ export default function ScrollBarMain() {
           href="#"
           uk-slidenav-previous
           uk-slider-item="previous"
-          uk-icon="icon: chevron-left; ratio: 2"
+          uk-icon="icon: chevron-left; ratio: 3"
         ></a>
         <a
           class="uk-position-center-right uk-position-small uk-hidden-hover"
           href="#"
           uk-slidenav-next
           uk-slider-item="next"
-          uk-icon="icon: chevron-right; ratio: 2"
+          uk-icon="icon: chevron-right; ratio: 3"
         ></a>
       </div>
     </div>

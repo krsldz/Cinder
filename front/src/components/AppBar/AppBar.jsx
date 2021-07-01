@@ -3,9 +3,10 @@ import "./AppBar.css";
 // import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Switch from '@material-ui/core/Switch';
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import Switch from "@material-ui/core/Switch";
+import logo from "../../images/Cinder.jpg";
 
 export default function AppBar() {
   const user = useSelector((state) => state.user);
@@ -22,7 +23,10 @@ export default function AppBar() {
   return (
     <nav>
       <div className={theme.checkedA ? "topnav" : "topnav2"}>
-        <Link to="/">Cinder</Link>
+        <Link to="/">
+          <img src={logo} alt="" srcset="" />
+          Cinder
+        </Link>
         <div className="" id="navbarNav">
           <div className="">
             {user ? (
@@ -44,11 +48,16 @@ export default function AppBar() {
                   <NavLink exact to="/login" className="">
                     Войти
                   </NavLink>
-                  <Switch checked={theme.checkedA} onChange={handleChange} name="checkedA"
-                   inputProps={{ 'aria-label': 'secondary checkbox' }}/>
                 </span>
               </>
             )}
+            <Switch
+              checked={theme.checkedA}
+              onChange={handleChange}
+              name="checkedA"
+              inputProps={{ "aria-label": "secondary checkbox" }}
+              className="right switch  "
+            />
           </div>
         </div>
       </div>

@@ -17,6 +17,10 @@ const useStyles = makeStyles((theme) => ({
       width: "25ch",
     },
   },
+  but: {
+    color: "purple",
+    border: "2px solid purple",
+  },
 }));
 
 export default function AuthForm() {
@@ -32,6 +36,7 @@ export default function AuthForm() {
   let { from } = location.state || { from: { pathname: "/" } };
 
   const changeHandler = (e) => {
+    e.persist();
     setUserSignIn((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -39,6 +44,7 @@ export default function AuthForm() {
 
   const submitHandler = (e) => {
     e.preventDefault();
+   
     let payload = Object.entries(userSignIn).filter((el) =>
       el[1] ? el[1].trim() : el[1]
     );
@@ -57,7 +63,10 @@ export default function AuthForm() {
           noValidate
           autoComplete="off"
         >
-          <h4>Войдите, чтобы выбрать фильм на вечер и не только</h4>
+          <h4>
+            Войдите, чтобы выбрать фильм <br />
+            на вечер и не только
+          </h4>
           <div>
             <TextField
               id="outlined-textarea"
@@ -78,9 +87,10 @@ export default function AuthForm() {
               value={userSignIn.password}
               multiline
               variant="outlined"
+              color="red"
             />
           </div>
-          <Button type="submit" variant="outlined" color="primary">
+          <Button type="submit" variant="outlined" className={classes.but}>
             Продолжить
           </Button>
           <div>

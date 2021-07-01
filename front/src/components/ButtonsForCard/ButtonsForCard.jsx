@@ -6,6 +6,7 @@ import CardSolo from "../Card/Card";
 import "./ButtonsForCard.css";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
 import TinderCard from "react-tinder-card";
+import Loader from "../Loader/Loader";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,30 +21,22 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.text.secondary,
   },
-  button: {
-    background: `url(${"/front/src/images/22222.jpeg"})`,
-    backgroundColor: "hotpink",
-  },
 }));
 
 function ButtonsForCard() {
+  const loader = useSelector(state => state.loader);
   const classes = useStyles();
 
   let allFilms = useSelector((state) => state.films);
   const [tinderFilms, setTinderFilms] = useState(allFilms);
 
-  const [likeEvent, setLikeEvent] = useState([])
-  const [superLikeEvent, setsuperLike] = useState([])
-
+  const [likeEvent, setLikeEvent] = useState([]);
+  const [superLikeEvent, setsuperLike] = useState([]);
 
   const onSwipe = (direction) => {
-    console.log('You swiped: ' + direction)
-  }
-  useEffect(() => {
-
-  }, [allFilms])
-console.log(tinderFilms);
-
+    console.log("You swiped: " + direction);
+  };
+  useEffect(() => {}, [allFilms]);
 
   const onCardLeftScreen = (myIdentifier) => {
     console.log(myIdentifier + " left the screen");
@@ -60,19 +53,19 @@ console.log(tinderFilms);
   const dislikeHandler = (id) => {
     let dislikeFilm = allFilms.filter((film) => film.id === id);
     allFilms = removeItemOnce(allFilms, dislikeFilm);
-  }
+  };
 
   const dontKnowHandler = (id) => {
-    let dontKnowFilm = allFilms.filter(film => film.id === id);
+    let dontKnowFilm = allFilms.filter((film) => film.id === id);
     allFilms = removeItemOnce(allFilms, dontKnowFilm);
     allFilms.push(dontKnowFilm);
-  }
+  };
 
   const likeHandler = (id) => {
     let likeFilm = allFilms.filter((film) => film.id == id);
     allFilms = removeItemOnce(allFilms, likeFilm);
-    setLikeEvent(prev => [...prev, likeFilm])
-  }
+    setLikeEvent((prev) => [...prev, likeFilm]);
+  };
 
   const superLikeHandler = (id) => {
     let superLikeFilm = allFilms.filter((film) => film.id == id);
@@ -99,7 +92,7 @@ console.log(tinderFilms);
           </div>
 
           <div className="boxGame">
-            {allFilms.length !== 0 ? <div>
+            {loader ? <Loader /> : allFilms.length !== 0 ? <div>
 
               {allFilms?.map((film, ind) => <CardSolo setTinderFilms={setTinderFilms} ind={ind} id={film.idKP} />)}
             </div>

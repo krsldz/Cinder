@@ -9,9 +9,13 @@ import Box from "@material-ui/core/Box";
 import ScrollBar from "../SrollBar/ScrollBar";
 import ScrollBar2 from "../SrollBar/ScrollBar2";
 import ScrollBarViewed from "../SrollBar/ScrollBarViewed";
-
+import {useSelector, useDispatch} from 'react-redux';
+import {initLikedFilms} from '../../redux/actions/userLikesFilmCreator';
+import {initSuperLikedFilms} from '../../redux/actions/userSuperlikesCreator';
+import {useEffect} from 'react';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
+
 
   return (
     <div
@@ -58,7 +62,6 @@ function LinkTab(props) {
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: "#2D283E",
 
   },
   bar: {
@@ -70,6 +73,19 @@ export default function LikedFilmsList() {
   const classes = useStyles();
   const [initValue, setInitValue] = React.useState(true);
   const [value, setValue] = React.useState(0);
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+
+    dispatch(initLikedFilms())
+    dispatch(initSuperLikedFilms())
+
+    
+  },[])
+ 
+const likes= useSelector(state=> state.likes);
+const superLikes= useSelector(state=> state.superLikes);
+console.log(likes);
 
   const handleChange = (event, newValue) => {
     setInitValue(true);
@@ -77,6 +93,8 @@ export default function LikedFilmsList() {
   };
 
   return (
+  
+    
     <div className={classes.root}>
       <AppBar position="static" className={classes.bar}>
         <Tabs
@@ -93,10 +111,14 @@ export default function LikedFilmsList() {
       {initValue ? (
         <>
           <TabPanel value={value} index={0}>
-            <ScrollBar />
+         
+      
+        {likes?.map((film)=> <ScrollBar2 id={film.idKP} />)}
+            
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <ScrollBar2 />
+
+          {superLikes?.map((film)=> <ScrollBar id={film.idKP} />)}
           </TabPanel>
           <TabPanel value={value} index={2}>
             <ScrollBarViewed />

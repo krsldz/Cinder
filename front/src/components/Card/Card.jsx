@@ -10,7 +10,11 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useSelector, useDispatch } from "react-redux";
 import TinderCard from 'react-tinder-card';
+import {initLikedFilms, updateLikedFilms,  } from '../../redux/actions/userLikesFilmCreator';
+import {initSuperLikedFilms, updateSuperLikedFilms,  } from '../../redux/actions/userSuperlikesCreator';
 import "./Card.css";
+import Loader from '../Loader/Loader'
+
 const useStyles = makeStyles({
   border: {
     border: "1px solid black",
@@ -23,16 +27,18 @@ const useStyles = makeStyles({
 export default function CardSolo({id}) {
   const classes = useStyles();
   const [films, setFilms] = useState([]);
+  const loader = useSelector(state => state.loader)
   const [infoAboutMovie, setInfoAboutMovie] = useState({});
-  const [superLikeFilms, setsuperLikeFilms] = useState([])
-  const [likeFilms, setLikeFilms] = useState([])
   let allFilms = useSelector(state => state.films)
   const [updateAllFilms, setUpgateAllFilms] = useState([])
-  const [showAllFilmsOrUpdateAllFilms, setshowAllFilmsOrUpdateAllFilms] = useState(false)
 
+  const dispatch = useDispatch();
+
+  
 
   useEffect(()=>{
-    axios.get('http://localhost:8080/api/v1/compilation').then(res=>setFilms(res.data))
+    axios.get('http://localhost:8080/api/v1/compilation').then(res=>setFilms(res.data));
+    // dispatch(initLikedFilms())
   },[]) 
 console.log(allFilms);
   const movieInfo = useCallback((id) => {
@@ -46,6 +52,7 @@ console.log(allFilms);
   }, []);
  
   useEffect(() => {
+    // 1143242
   movieInfo(id)
  }, [])
 
@@ -60,9 +67,7 @@ console.log(allFilms);
 }
 
 
-useEffect(() => {
 
-}, [updateAllFilms])
 
 
  
@@ -76,15 +81,16 @@ useEffect(() => {
   if(direction === 'right') {
     let currLikeFilm = allFilms.find(film => film.idKP == id);
     allFilms = removeItemOnce(allFilms, currLikeFilm);
-    setLikeFilms(prev=>[...prev, currLikeFilm])
+    console.log(currLikeFilm);
+    dispatch(updateLikedFilms(currLikeFilm));
   }
 
   if(direction === 'up') { 
     let currSuperLikeFilm = allFilms.find(film => film.idKP == id);
     allFilms = removeItemOnce(allFilms, currSuperLikeFilm);
-    setsuperLikeFilms(prev=>[...prev, currSuperLikeFilm])
+  
+    dispatch(updateSuperLikedFilms(currSuperLikeFilm));
   }
-
   if(direction === 'down') {
   console.log('ya down', id)
   let dontKnowFilm = allFilms.find(film => film.idKP === id );
@@ -98,12 +104,11 @@ console.log(allFilms)
 
   return (
   <>
-    {allFilms.length === 0 ?
+    {loader ? <Loader /> : allFilms.length === 0 ?
     <h3>Фильмы закончились,  вы слишком привередливые :)</h3>: 
      <TinderCard  className="swipe" onSwipe={onSwipe} > 
     <div className="card">
       <div className="dws-wrapper">
-        <a>
           <CardActionArea>
             <CardMedia
               component="img"
@@ -121,9 +126,13 @@ console.log(allFilms)
               <p variant="body2" component="p">
                 {infoAboutMovie?.description}
               </p>
+              <div>
+              Рейтинг Кинопоиска: <nobr className="numbers">{infoAboutMovie?.rating_kinopoisk}</nobr>
+              <br/>
+              Рейтинг IMDB: <nobr className="numbers">{infoAboutMovie?.rating_imdb}</nobr>
+              </div>
             </div>
           </CardActionArea>
-        </a>
       </div>
       <Button size="small" marginRight="10px" className={classes.border}>
         Трейлер

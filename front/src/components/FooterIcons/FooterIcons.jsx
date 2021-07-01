@@ -31,10 +31,8 @@ function HomeIcon(props) {
 export default function SvgIconsColor() {
   const classes = useStyles();
 
-
   return (
     <div className="footerText">
-     
       <div className={classes.root}>
         <MovieFilterIcon />
         <MovieIcon />
