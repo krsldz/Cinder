@@ -21,12 +21,10 @@ body {
   padding-top: 30px;
   padding-left: 30px;
   padding-right: 30px;
-  padding-bottom: 10px;
   min-width: 30vw;
   max-width: 30vw;
   min-height: 20vh;
   min-height: 80vh;
-
 }
 
 .divWithButtons {
@@ -52,3 +50,13 @@ body {
 }
 
 /* ----------------------------------- */
+
+.but {
+  display: flex;
+  align-items: flex-end;
+
+  justify-content:center;
+  width: 30vw;
+  height: 80vh;
+
+}
