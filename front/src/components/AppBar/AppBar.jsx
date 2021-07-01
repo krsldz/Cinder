@@ -58,7 +58,7 @@ export default function AppBar() {
               </>
             ) : (
               <>
-                <span className="">
+                <span className="right">
                   <NavLink exact to="/login" className="">
                     Войти
                   </NavLink>

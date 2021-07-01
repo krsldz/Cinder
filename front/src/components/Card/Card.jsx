@@ -92,10 +92,7 @@ console.log(allFilms);
     dispatch(updateSuperLikedFilms(currSuperLikeFilm));
   }
   if(direction === 'down') {
-  console.log('ya down', id)
-  let dontKnowFilm = allFilms.find(film => film.idKP === id );
-  allFilms = removeItemOnce(allFilms, dontKnowFilm);
-  setUpgateAllFilms(prev => [...prev, dontKnowFilm]);
+  
   }
 }
 
