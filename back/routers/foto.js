@@ -1,6 +1,6 @@
 const { Router } = require('express');
 // const fs = require('fs');
-const upload  = require('../controlers/uploaders');
+const upload = require('../controlers/uploaders');
 const User = require('../models/user');
 const Images = require('../models/images');
 const router = Router();
@@ -23,34 +23,34 @@ const storage = multer.diskStorage({
 const uploadOne = multer({
   storage: storage,
   limits: { fileSize: 100000000000 },
-}).single("file"); 
+}).single("file");
 
 
-app.post("/fotos", (req, res) => {
-  try {
-    // console.log(req.user.id);
-    let imagePath = "abc";
-    uploadOne(req, res, (err) => {
-      if (err) {
-        res.status(300).send(err);
-        console.log(err);
-      } else {
-        if (req.file == undefined) {
-          res.status(301).send("image upload failed.");
-        } else {
-          const user = await User.findById(req.session.user.id);
-          const image = await Images.create({ filename });
-          
-          
-          
-          
-        }
-      }
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
+// app.post("/fotos", (req, res) => {
+//   try {
+//     // console.log(req.user.id);
+//     let imagePath = "abc";
+//     uploadOne(req, res, (err) => {
+//       if (err) {
+//         res.status(300).send(err);
+//         console.log(err);
+//       } else {
+//         if (req.file == undefined) {
+//           res.status(301).send("image upload failed.");
+//         } else {
+//           const user = await User.findById(req.session.user.id);
+//           const image = await Images.create({ filename });
+
+
+
+
+//         }
+//       }
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
 
 
@@ -89,7 +89,7 @@ app.post("/fotos", (req, res) => {
 //   const user = await User.findById(userId);
 
 //     const filename = file.name;
-    
+
 //     const image = await Images.create({ filename });
 //     console.log('----->');
 //     user.profileFotos?.unshift(image);
@@ -114,12 +114,12 @@ app.post("/fotos", (req, res) => {
 
 
 
-        
-          
 
 
 
- 
+
+
+
 
 
 
