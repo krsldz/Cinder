@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import Comments from "../Comments/Comments";
+import {initViewedFilms} from '../../redux/actions/userViewedFilm';
 
 import Button from '@material-ui/core/Button';
 
@@ -9,7 +10,7 @@ import "./Scroll.css";
 export default function ElementSuperLike({ id, commentsHandler}) {
 
   const [infoAboutFilm, setInfoAboutFilm] = useState({});
-  const superLikes = useSelector(state => state.superLikes);
+  let superLikes = useSelector(state => state.superLikes);
   const dispatch = useDispatch();
 
 
@@ -23,6 +24,7 @@ export default function ElementSuperLike({ id, commentsHandler}) {
 
   useEffect(() => {
     movieInfo(id)
+    dispatch(initViewedFilms())
   }, [])
   console.log('--->', infoAboutFilm);
 

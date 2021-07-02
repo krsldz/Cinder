@@ -13,6 +13,8 @@ router.get('/compilation', (req, res, next) => {
 router.post('/compilation', async (req, res, next) => {
 
   let wither;
+  let genrus = req.body.genre;
+  let feeling = req.body.mood;
 
   if (req.body.withWhom == 'С ним/ней') {
     wither = 'С ним ней';

@@ -34,6 +34,7 @@ export default function Comments({id}) {
 
   const changeHandler = (e) => {
     setAddComments((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    console.log(addComments);
   };
 
   console.log(id);
@@ -47,6 +48,7 @@ export default function Comments({id}) {
   console.log(allComments);
 
   const submitHandler = (e) => {
+    console.log(addComments);
     e.preventDefault();
   // setAllComments(prev => [...prev, addComments])
     axios

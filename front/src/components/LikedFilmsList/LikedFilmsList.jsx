@@ -6,7 +6,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-
+import {initViewedFilms} from '../../redux/actions/userViewedFilm';
 import LiForFirstScroll from '../SrollBar/LiForFirstScroll';
 import LiForSuperLikes from '../SrollBar/LiForSuperlikes';
 import ScrollBarViewed from "../SrollBar/ScrollBarViewed";
@@ -87,6 +87,7 @@ export default function LikedFilmsList() {
 
     dispatch(initLikedFilms())
     dispatch(initSuperLikedFilms())
+    dispatch(initViewedFilms())
 
   },[])
 
