@@ -79,6 +79,7 @@ export default function LikedFilmsList() {
   const [comments, setComments] = React.useState(false);
   const [initValue, setInitValue] = React.useState(true);
   const [value, setValue] = React.useState(0);
+  const [idFilm, setIdFilm] = React.useState();
   const dispatch = useDispatch();
   
 
@@ -96,7 +97,7 @@ const views = useSelector(state=> state.views);
 
 const commentsHandler = (id) => {
   // selectFilm(e);
-  // setIdFilm(id)
+  setIdFilm(id)
   setComments(prev => !prev)
 }
 
@@ -105,6 +106,7 @@ console.log(likes);
   const handleChange = (event, newValue) => {
     setInitValue(true);
     setValue(newValue);
+    setComments(false)
   };
 
   
@@ -135,7 +137,7 @@ return (
       uk-slider="sets: false"
     >
           <ul className="uk-slider-items  uk-child-width-1-4@m uk-grid-small ">
-          {superLikes?.map((film)=>  film?.movie?.map((movie)=> <LiForSuperLikes id={movie.idKP} key=
+          {superLikes?.map((film)=>  film?.movie?.map((movie)=> <LiForSuperLikes commentsHandler={commentsHandler} id={movie.idKP} key=
           {movie._id} />))}
           </ul>
           <a
@@ -163,7 +165,7 @@ return (
       uk-slider="sets: false"
     >
           <ul className="uk-slider-items  uk-child-width-1-4@m uk-grid-small ">
-          {likes?.map((film)=>  film?.movie?.map((movie)=> <LiForFirstScroll id={movie.idKP} key=
+          {likes?.map((film)=>  film?.movie?.map((movie)=> <LiForFirstScroll commentsHandler={commentsHandler} id={movie.idKP} key=
           {movie._id} /> 
           ))}
           </ul>
@@ -212,7 +214,7 @@ return (
       <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
           </div>
           </TabPanel>
-      {comments ? <Comments /> : null}
+      {comments ? <Comments id={idFilm}/> : null}
         </>
       ) : null}
     </div>
