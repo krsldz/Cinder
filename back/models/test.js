@@ -61,13 +61,13 @@ async function  asnwersFabric(){
  await Test.create(tests)
 }
 
-function dbConnect(){
-  mongoose.connect(process.env.DB_CONNECT, options, (err)=>{
-    if(err) return console.log(err)
-    console.log('success connected to mongo');
-    asnwersFabric()
-  })
-}
+// function dbConnect(){
+//   mongoose.connect(process.env.DB_CONNECT, options, (err)=>{
+//     if(err) return console.log(err)
+//     console.log('success connected to mongo');
+//     asnwersFabric()
+//   })
+// }
 // dbConnect()
 
 
