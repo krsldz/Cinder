@@ -13,7 +13,7 @@ body {
   min-height: 80vh;
   text-align: center;
   position: relative;
-  left: 46%;
+  left: 45%;
   transform: translate(-50%, -50%);
   display: grid;
   justify-content: center;
@@ -46,11 +46,11 @@ body {
   transition: 0.5s ease;
 }
 .dws-text h2 {
-  font-size: 35px;
+  font-size: 34px;
   color: white;
 }
 .dws-text p {
-  font-size: 18px;
+  font-size: 17px;
 }
 .dws-wrapper a:before,
 .dws-wrapper a:after {

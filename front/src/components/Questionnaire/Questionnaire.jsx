@@ -119,7 +119,7 @@ export default function SpringModal() {
   const user = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState({
-    jenre: "",
+    genre: "",
     withWhom: "",
     mood: "",
   });
@@ -150,7 +150,7 @@ export default function SpringModal() {
     dispatch(initFilmsAC(value));
     // axios.post('http://localhost:8080/api/v1/compilation', value).then(res=>setAllUserFilms(res.data))
     setValue({
-      jenre: "",
+      genre: "",
       withWhom: "",
       mood: "",
     });
@@ -264,7 +264,7 @@ export default function SpringModal() {
                           <br />
                           <RadioGroup
                             aria-label="Variant"
-                            name="jenre"
+                            name="genre"
                             onChange={handleChange}
                             className={classes.content}
                           >

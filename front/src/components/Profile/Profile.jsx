@@ -74,7 +74,7 @@ function Profile() {
   const user = useSelector((state) => state.user);
 
   const { theme, setTheme, anotherThemeSet } = useThemeContext();
-  const [image, setImage] = useState("")
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     if (user === null) {
@@ -135,7 +135,8 @@ function Profile() {
           "Content-type": "multipart/form-data",
         },
       })
-      .then((res) => { setImage(res.data)
+      .then((res) => {
+        setImage(res.data);
         // console.log(res.data);
       });
 
@@ -160,7 +161,7 @@ function Profile() {
       <div className="twoComp">
         <div className={theme ? "divProfile" : "divProfile2"}>
           <h4>Изменить личные данные</h4>
-          <img src={image} alt=""/>
+          <img src={image} alt="" />
           <div>
             {drag ? (
               <div
@@ -177,7 +178,8 @@ function Profile() {
                 onDragStart={(e) => dragLeaveHandler(e)}
                 onDragOver={(e) => dragStartHandler(e)}
               >
-                Перетащите сюда фото, чтобы его загрузить
+                Перетащите сюда фото,
+                <br /> чтобы его загрузить
               </div>
             )}
           </div>
