@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteSuperLikedFilm } from "../../redux/actions/userSuperlikesCreator";
 import { initViewedFilms } from "../../redux/actions/userViewedFilm";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
+import ShareButton from '../ShareButton/ShareButton';
 
 import "./Scroll.css";
 
@@ -46,6 +47,7 @@ export default function ElementSuperLike({id, commentsHandler}){
               Добавить в  просмотренное{" "}
             </button>
             <button onClick={() => commentsHandler(id)} className="butOfScroll">Комментарии</button>
+            <ShareButton id={id} />
           </p>
         </div>
       </div>

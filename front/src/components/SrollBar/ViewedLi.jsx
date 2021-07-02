@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Comments from "../Comments/Comments";
 import { initViewedFilms } from "../../redux/actions/userViewedFilm";
+import ShareButton from '../ShareButton/ShareButton';
 
 import Button from "@material-ui/core/Button";
 
@@ -40,9 +41,18 @@ export default function ElementSuperLike({ id, commentsHandler }) {
         <div className="uk-position-center uk-panel">
           <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
             <p>
+              {/* {infoAboutFilm.rating_kinopoisk} */}
+              <br />
               <p className="ratingColor">{infoAboutFilm.rating_kinopoisk}</p>
-             
-              <button onClick={() => commentsHandler(id)} className="butOfScroll">Комментарии</button>
+              <button
+                className="butOfScroll"
+                onClick={() => commentsHandler(id)}
+              >
+                Комментарии
+              </button>
+
+              <ShareButton id={id} />
+
             </p>
           </div>
         </div>

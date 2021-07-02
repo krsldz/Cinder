@@ -88,9 +88,6 @@ export default function LikedFilmsList() {
     dispatch(initViewedFilms());
   }, []);
 
-    dispatch(initLikedFilms())
-    dispatch(initSuperLikedFilms())
-    dispatch(initViewedFilms())
   // const likes = useSelector((state) => state.likes);
   // const superLikes = useSelector((state) => state.superLikes);
   // const views = useSelector((state) => state.views);

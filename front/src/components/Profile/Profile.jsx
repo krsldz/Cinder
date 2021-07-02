@@ -40,8 +40,9 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(3),
   },
-  
-
+  // text: {
+  //   color: " white !important"
+  // },ttttt
   but: {
     color: "white",
     background: "#dc143c",
@@ -112,11 +113,11 @@ function Profile() {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
-  useEffect(() => {
-    dispatch(initLikedFilms());
-    dispatch(initSuperLikedFilms());
-    dispatch(initViewedFilms());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(initLikedFilms());
+  //   dispatch(initSuperLikedFilms());
+  //   dispatch(initViewedFilms());
+  // }, []);
 
   function dragStartHandler(e) {
     e.preventDefault();
@@ -216,6 +217,7 @@ function Profile() {
                     multiline
                     variant="outlined"
                     value={userUpdate.username}
+                    className={classes.text}
                   />
                 </div>
 
@@ -240,6 +242,7 @@ function Profile() {
                     variant="outlined"
                     className={classes.text}
                     value={userUpdate.email}
+
                   />
                 </div>
                 <div>

@@ -5,6 +5,7 @@ import "./Scroll.css";
 import { deleteLikedFilm } from "../../redux/actions/userLikesFilmCreator";
 import axios from "axios";
 import { initSuperLikedFilms } from "../../redux/actions/userSuperlikesCreator";
+import ShareButton from '../ShareButton/ShareButton';
 axios.defaults.withCredentials= true;
 
 
@@ -51,7 +52,8 @@ export default function Element({ id, commentsHandler }) {
               Добавить в буду смотреть{" "}
             </button>
 
-            <button onClick={() => commentsHandler(id)} className="butOfScroll">Комментарии</button>
+            <button onClick={() => commentsHandler(id)} className="butOfScroll"> Комментарии </button>
+            <ShareButton id={id} />
           </p>
         </div>
       </div>
