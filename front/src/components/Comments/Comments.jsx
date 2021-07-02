@@ -71,7 +71,7 @@ console.log(addComments);
   return (
     <div className="divCom">
       <div>
-        {allComments.map((el) => <p><h6>Автор: {el.user}Дата: {el.date} </h6>{el.comment}</p>)}
+        {allComments.map((el) => <div className="commentitle"><h6>Автор: {el.user}<br></br>Дата: {el.date}</h6>{el.comment}<br></br></div>)}
         <form
           onSubmit={submitHandler}
           className={classes.root}

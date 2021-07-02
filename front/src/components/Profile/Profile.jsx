@@ -111,11 +111,11 @@ function Profile() {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
-  useEffect(() => {
-    dispatch(initLikedFilms());
-    dispatch(initSuperLikedFilms());
-    dispatch(initViewedFilms());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(initLikedFilms());
+  //   dispatch(initSuperLikedFilms());
+  //   dispatch(initViewedFilms());
+  // }, []);
 
   function dragStartHandler(e) {
     e.preventDefault();

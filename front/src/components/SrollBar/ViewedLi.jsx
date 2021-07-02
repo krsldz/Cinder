@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Comments from "../Comments/Comments";
 import { initViewedFilms } from "../../redux/actions/userViewedFilm";
+import ShareButton from '../ShareButton/ShareButton';
 
 import Button from "@material-ui/core/Button";
 
@@ -48,6 +49,7 @@ export default function ElementSuperLike({ id, commentsHandler }) {
               >
                 Комментарии
               </button>
+              <ShareButton id={id} />
             </p>
           </div>
         </div>

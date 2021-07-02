@@ -2,17 +2,19 @@ import {
   FacebookShareButton,
   VKShareButton,
 } from "react-share";
+import FacebookIcon from '@material-ui/icons/Facebook';
+// import Button from '@material-ui/core/Button';
 
-export default function ShareButton () {
-  let url = "https://github.com/";
+
+export default function ShareButton ({id}) {
+  console.log(id);
+  let url = `https://www.kinopoisk.ru/film/${id}`;
   return (
     <>
     <FacebookShareButton url={url} appId={3890689211157109}>
-      Поделиться в FB
-    </FacebookShareButton> <br/>
-    <VKShareButton url={url}>
-      Поделиться в VK
-    </VKShareButton>
+    {/* <FacebookIcon/> */}
+    <button className="butOfScroll">Поделиться в Facebook</button>
+    </FacebookShareButton>
     </>
   )
 }
