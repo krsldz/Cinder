@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
-import {useSelector, useDispatch} from 'react-redux';
-import {deleteSuperLikedFilm} from '../../redux/actions/userSuperlikesCreator'
-import {initViewedFilms} from '../../redux/actions/userViewedFilm';
-import Button from '@material-ui/core/Button';
+import { useSelector, useDispatch } from "react-redux";
+import { deleteSuperLikedFilm } from "../../redux/actions/userSuperlikesCreator";
+import { initViewedFilms } from "../../redux/actions/userViewedFilm";
+import Button from "@material-ui/core/Button";
 
 import "./Scroll.css";
 
 export default function ElementSuperLike({id, commentsHandler}){
 
   const [infoAboutFilm, setInfoAboutFilm] = useState({});
-  const superLikes = useSelector(state=> state.superLikes);
+  const superLikes = useSelector((state) => state.superLikes);
   const dispatch = useDispatch();
-
 
   const movieInfo = (id) => {
     fetch(
@@ -19,45 +18,37 @@ export default function ElementSuperLike({id, commentsHandler}){
     )
       .then((res) => res.json())
       .then((data) => setInfoAboutFilm(data));
-  }
- 
+  };
+
   useEffect(() => {
-  movieInfo(id)
- }, [])
- console.log('--->', infoAboutFilm);
+    movieInfo(id);
+  }, []);
+  console.log("--->", infoAboutFilm);
 
- const changer =() =>{
+  const changer = () => {
+    let superLike = superLikes?.find((film) =>
+      film.movie?.find((movies) => id == movies.idKP)
+    );
+    console.log(superLike);
+    dispatch(deleteSuperLikedFilm(superLike));
+    dispatch(initViewedFilms());
+  };
 
-  let superLike = superLikes?.find((film)=> film.movie?.find((movies)=> id== movies.idKP))
- console.log(superLike);
-  dispatch(deleteSuperLikedFilm(superLike))
-  dispatch(initViewedFilms())
-
-  
-
-  
-  
- 
-
-  
-
-}
-
- return(
-   
-
-  <li className="uk-transition-toggle" tabindex="0">
-    
-  <img src={infoAboutFilm.poster} alt="" />
-  <div className="uk-position-center uk-panel">
-    <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
-    <p>Рейтинг <br/>
-    {infoAboutFilm.rating_kinopoisk}
-    <Button onClick={changer}> Добавить в просмотренное </Button>
-    <Button onClick={() => commentsHandler(id)}>Комментарии</Button>
-      </p>
-    </div>
-  </div>
-</li>
- )
+  return (
+    <li className="uk-transition-toggle" tabindex="0">
+      <img src={infoAboutFilm.poster} alt="" />
+      <div className="uk-position-center uk-panel">
+        <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
+          <p>
+            {infoAboutFilm.rating_kinopoisk}
+            <button className="butOfScroll" onClick={changer}>
+              {" "}
+              Добавить в  просмотренное{" "}
+            </button>
+            <button onClick={() => commentsHandler(id)} className="butOfScroll">Комментарии</button>
+          </p>
+        </div>
+      </div>
+    </li>
+  );
 }
