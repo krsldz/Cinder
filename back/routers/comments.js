@@ -30,4 +30,9 @@ router.get('/comments/:id', async (req, res)=> {
   res.json(film.comments)
 })
 
+// router.get('/usercomments', async (req, res)=> {
+//   const user = await User.findById(req.session.user.id)
+//   res.json(user.comments)
+// })
+
 module.exports = router;

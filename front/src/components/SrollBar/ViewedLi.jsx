@@ -43,7 +43,7 @@ export default function ElementSuperLike({ id, commentsHandler}) {
             <p>Рейтинг <br />
               {infoAboutFilm.rating_kinopoisk}
 
-              <Button onClick={commentsHandler}>Комментарии</Button>
+              <Button onClick={() => commentsHandler(id)}>Комментарии</Button>
 
             </p>
           </div>

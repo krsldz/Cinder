@@ -8,7 +8,7 @@ import { initSuperLikedFilms } from "../../redux/actions/userSuperlikesCreator";
 axios.defaults.withCredentials= true;
 
 
-export default function Element({id}){
+export default function Element({id, commentsHandler}){
 
   const [infoAboutFilm, setInfoAboutFilm] = useState({});
   let likes = useSelector(state=> state.likes);
@@ -63,7 +63,7 @@ const changerState =() =>{
 
     <Button onClick ={changerState}> Добавить в буду смотреть </Button>
      
-      <Button > Комментарии </Button>
+      <Button onClick={() => commentsHandler(id)}> Комментарии </Button>
       </p>
     </div>
   </div>
