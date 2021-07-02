@@ -40,7 +40,7 @@ export default function ElementSuperLike({id, commentsHandler}){
       <div className="uk-position-center uk-panel">
         <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
           <p>
-            {infoAboutFilm.rating_kinopoisk}
+            <p className="ratingColor">{infoAboutFilm.rating_kinopoisk}</p>
             <button className="butOfScroll" onClick={changer}>
               {" "}
               Добавить в  просмотренное{" "}

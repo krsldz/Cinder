@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import Comments from "../Comments/Comments";
 import "./LikedFilmsList.css";
 import { initViewedFilms } from "../../redux/actions/userViewedFilm";
+import { useThemeContext } from "../../context/context";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -113,10 +114,11 @@ export default function LikedFilmsList() {
     setValue(newValue);
     setComments(false);
   };
+  const {theme, setTheme, anotherThemeSet} = useThemeContext()
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" className="bar">
+      <AppBar position="static" className={theme ? "bar" : "bar2"}>
         <Tabs
           variant="fullWidth"
           value={value}

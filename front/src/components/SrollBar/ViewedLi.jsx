@@ -40,14 +40,9 @@ export default function ElementSuperLike({ id, commentsHandler }) {
         <div className="uk-position-center uk-panel">
           <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
             <p>
-              {infoAboutFilm.rating_kinopoisk}
-              <br />
-              <button
-                className="butOfScroll"
-                onClick={() => commentsHandler(id)}
-              >
-                Комментарии
-              </button>
+              <p className="ratingColor">{infoAboutFilm.rating_kinopoisk}</p>
+             
+              <button onClick={() => commentsHandler(id)} className="butOfScroll">Комментарии</button>
             </p>
           </div>
         </div>
