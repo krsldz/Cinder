@@ -6,7 +6,8 @@ import Button from "@material-ui/core/Button";
 
 import "./Scroll.css";
 
-export default function ElementSuperLike({ id }) {
+export default function ElementSuperLike({id, commentsHandler}){
+
   const [infoAboutFilm, setInfoAboutFilm] = useState({});
   const superLikes = useSelector((state) => state.superLikes);
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ export default function ElementSuperLike({ id }) {
               {" "}
               Добавить в  просмотренное{" "}
             </button>
-            <button className="butOfScroll">Комментарии</button>
+            <button onClick={() => commentsHandler(id)} className="butOfScroll">Комментарии</button>
           </p>
         </div>
       </div>

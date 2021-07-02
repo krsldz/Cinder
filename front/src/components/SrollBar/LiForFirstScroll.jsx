@@ -5,9 +5,11 @@ import "./Scroll.css";
 import { deleteLikedFilm } from "../../redux/actions/userLikesFilmCreator";
 import axios from "axios";
 import { initSuperLikedFilms } from "../../redux/actions/userSuperlikesCreator";
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials= true;
 
-export default function Element({ id }) {
+
+
+export default function Element({ id, commentsHandler }) {
   const [infoAboutFilm, setInfoAboutFilm] = useState({});
   let likes = useSelector((state) => state.likes);
   const dispatch = useDispatch();
@@ -49,7 +51,7 @@ export default function Element({ id }) {
               Добавить в буду смотреть{" "}
             </button>
 
-            <button className="butOfScroll"> Комментарии </button>
+            <button onClick={() => commentsHandler(id)} className="butOfScroll"> Комментарии </button>
           </p>
         </div>
       </div>

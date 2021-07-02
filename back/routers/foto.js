@@ -1,6 +1,6 @@
 const { Router } = require('express');
 // const fs = require('fs');
-const upload  = require('../controlers/uploaders');
+const upload = require('../controlers/uploaders');
 const User = require('../models/user');
 const Images = require('../models/images');
 const router = Router();
@@ -26,52 +26,34 @@ const storage = multer.diskStorage({
 const uploadOne = multer({
   storage: storage,
   limits: { fileSize: 100000000000 },
-}).single("file"); 
+}).single("file");
 
 
-router.post("/fotos", (req, res) => {
-  console.log(req.files);
-  console.log(req.session.user.id);
-   req.files.file.mv("/Users/kuolly/elbrus/Cinder/back/uploads" + req.files.file.name, function(err) {
-    if (err)
-      return res.status(500).send(err);
+// app.post("/fotos", (req, res) => {
+//   try {
+//     // console.log(req.user.id);
+//     let imagePath = "abc";
+//     uploadOne(req, res, (err) => {
+//       if (err) {
+//         res.status(300).send(err);
+//         console.log(err);
+//       } else {
+//         if (req.file == undefined) {
+//           res.status(301).send("image upload failed.");
+//         } else {
+//           const user = await User.findById(req.session.user.id);
+//           const image = await Images.create({ filename });
 
-    res.json(`/Users/kuolly/elbrus/Cinder/back/uploads/${req.files.file.name}`);
-  });
-  try {
-    // console.log(req.user.id);
-    let imagePath = "abc";
-    uploadOne(req, res, (err) => {
-      if (err) {
-        res.status(300).send(err);
-        console.log(err);
-      } else {
-        if (req.files == undefined) {
-          res.status(301).send("image upload failed.");
-        } else {
-        
-          
 
-   
-          User.findById(req.session?.user?.id).then((r) => {
-            r.profileFotos = "/avatar/" + req.files.filename;
-            r.save().then(() => res.status(200).json());
-            console.log('ssddsdsds');
-          });
-     
-         
-        
 
-          
-          
-          
-        }
-      }
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
+
+//         }
+//       }
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
 
 
@@ -110,7 +92,7 @@ router.post("/fotos", (req, res) => {
 //   const user = await User.findById(userId);
 
 //     const filename = file.name;
-    
+
 //     const image = await Images.create({ filename });
 //     console.log('----->');
 //     user.profileFotos?.unshift(image);
@@ -135,12 +117,12 @@ router.post("/fotos", (req, res) => {
 
 
 
-        
-          
 
 
 
- 
+
+
+
 
 
 
@@ -210,4 +192,4 @@ module.exports = router;
 //     }
 //     res.end();
 //   });
-        
+

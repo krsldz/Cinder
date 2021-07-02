@@ -15,7 +15,8 @@ import { initLikedFilms } from "../../redux/actions/userLikesFilmCreator";
 import { initSuperLikedFilms } from "../../redux/actions/userSuperlikesCreator";
 import { useEffect } from "react";
 import Comments from "../Comments/Comments";
-import "./LikedFilmsList.css"
+import "./LikedFilmsList.css";
+import { initViewedFilms } from "../../redux/actions/userViewedFilm";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -77,12 +78,20 @@ export default function LikedFilmsList() {
   const [comments, setComments] = React.useState(false);
   const [initValue, setInitValue] = React.useState(true);
   const [value, setValue] = React.useState(0);
+  const [idFilm, setIdFilm] = React.useState();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(initLikedFilms());
     dispatch(initSuperLikedFilms());
+    dispatch(initViewedFilms());
   }, []);
+
+  // const likes = useSelector((state) => state.likes);
+  // const superLikes = useSelector((state) => state.superLikes);
+  // const views = useSelector((state) => state.views);
+
+  // },[])
 
   const likes = useSelector((state) => state.likes);
   const superLikes = useSelector((state) => state.superLikes);
@@ -90,7 +99,7 @@ export default function LikedFilmsList() {
 
   const commentsHandler = (id) => {
     // selectFilm(e);
-    // setIdFilm(id)
+    setIdFilm(id);
     setComments((prev) => !prev);
   };
 
@@ -99,6 +108,7 @@ export default function LikedFilmsList() {
   const handleChange = (event, newValue) => {
     setInitValue(true);
     setValue(newValue);
+    setComments(false);
   };
 
   return (
@@ -126,7 +136,11 @@ export default function LikedFilmsList() {
               <ul className="uk-slider-items  uk-child-width-1-4@m uk-grid-small ">
                 {superLikes?.map((film) =>
                   film?.movie?.map((movie) => (
-                    <LiForSuperLikes id={movie.idKP} key={movie._id} />
+                    <LiForSuperLikes
+                      commentsHandler={commentsHandler}
+                      id={movie.idKP}
+                      key={movie._id}
+                    />
                   ))
                 )}
               </ul>
@@ -156,7 +170,11 @@ export default function LikedFilmsList() {
               <ul className="uk-slider-items  uk-child-width-1-4@m uk-grid-small ">
                 {likes?.map((film) =>
                   film?.movie?.map((movie) => (
-                    <LiForFirstScroll id={movie.idKP} key={movie._id} />
+                    <LiForFirstScroll
+                      commentsHandler={commentsHandler}
+                      id={movie.idKP}
+                      key={movie._id}
+                    />
                   ))
                 )}
               </ul>
@@ -211,7 +229,7 @@ export default function LikedFilmsList() {
               <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
             </div>
           </TabPanel>
-          {comments ? <Comments /> : null}
+          {comments ? <Comments id={idFilm} /> : null}
         </>
       ) : null}
     </div>

@@ -33,14 +33,16 @@ export default function Comments({id}) {
   const [allComments, setAllComments] = useState([])
 
   const changeHandler = (e) => {
+    e.persist();
+
     setAddComments((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   console.log(id);
 
-  useEffect((id) => {
+  useEffect(() => {
     axios
-      .get("http://localhost:8080/api/v1/comments", id)
+      .get(`http://localhost:8080/api/v1/comments/${id}`)
       .then((res) => setAllComments(res.data));
   }, []);
 
@@ -48,23 +50,25 @@ export default function Comments({id}) {
 
   const submitHandler = (e) => {
     e.preventDefault();
+  // setAllComments(prev => [...prev, addComments])
+    axios
+      .post('http://localhost:8080/api/v1/comments', addComments)
+      .then(res => setAllComments(prev => [...prev, res.data]));
     setAddComments({
       comment:'',
       user:'',
       date: '',
       film: id,
     })
-    axios
-      .post('http://localhost:8080/api/v1/comments', addComments)
-      // .then(console.log);
 };
 
 console.log(addComments);
 
 
   return (
-    <div className="divReg">
+    <div >
       <div>
+        {allComments.map((el) => <p><h4>Автор: {el.user}</h4>Дата: {el.date} {el.comment}</p>)}
         <form
           onSubmit={submitHandler}
           className={classes.root}
