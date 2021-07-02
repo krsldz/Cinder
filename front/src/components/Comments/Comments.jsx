@@ -33,6 +33,8 @@ export default function Comments({id}) {
   const [allComments, setAllComments] = useState([])
 
   const changeHandler = (e) => {
+    e.persist();
+
     setAddComments((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -64,7 +66,7 @@ console.log(addComments);
 
 
   return (
-    <div className="divReg">
+    <div >
       <div>
         {allComments.map((el) => <p><h4>Автор: {el.user}</h4>Дата: {el.date} {el.comment}</p>)}
         <form
