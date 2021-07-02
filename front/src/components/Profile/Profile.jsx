@@ -25,6 +25,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { useThemeContext } from "../../context/context";
+import { initViewedFilms } from "../../redux/actions/userViewedFilm";
 
 axios.defaults.withCredentials = true;
 
@@ -113,7 +114,8 @@ function Profile() {
   useEffect(() => {
     dispatch(initLikedFilms());
     dispatch(initSuperLikedFilms());
-  }, [dispatch]);
+    dispatch(initViewedFilms());
+  }, []);
 
   function dragStartHandler(e) {
     e.preventDefault();

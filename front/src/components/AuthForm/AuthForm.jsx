@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   but: {
-    color: "white",
+    color: "white !important",
     background: "#dc143c",
     //border: '2px solid #dc143c',
   },
@@ -86,11 +86,12 @@ export default function AuthForm() {
                 id="outlined-textarea"
                 label="Пароль"
                 name="password"
+                type="password"
                 onChange={changeHandler}
                 value={userSignIn.password}
                 multiline
                 variant="outlined"
-                color="red"
+
               />
             </div>
             <br />

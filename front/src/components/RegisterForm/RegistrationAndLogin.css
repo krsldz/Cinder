@@ -1,6 +1,7 @@
 .divReg {
   text-align: center;
   display: flex;
+  align-items: center;
   justify-content: center;
   background-color: #564f6f;
   margin-left: auto;
@@ -9,6 +10,7 @@
   width: 35vw;
   height: 62vh;
   margin-top: 100px;
+
 }
 .googleBut {
   background-color: #564f6f !important;
