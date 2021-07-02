@@ -10,8 +10,6 @@ import "./RegistrationAndLogin.css";
 import { useSelector } from "react-redux";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
 
-
-
 export default function RegisterForm() {
   let history = useHistory();
   const dispatch = useDispatch();
@@ -83,19 +81,20 @@ export default function RegisterForm() {
               id="outlined-textarea"
               name="password"
               label="Пароль"
+              type="password"
               multiline
               variant="outlined"
             />
           </div>
-          <br/>
+          <br />
           <Button type="submit" variant="outlined" className={classes.but}>
             Продолжить
           </Button>
-          <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
         </form>
       </div>
       <hr />
@@ -114,8 +113,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   but: {
-    color: 'white',
-    background: '#dc143c',
+    color: "white",
+    background: "#dc143c",
     //border: '2px solid #dc143c',
   },
 }));

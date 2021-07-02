@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router";
 import axios from 'axios'
+import "./Comments.css"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -39,6 +40,7 @@ export default function Comments({id}) {
     e.persist();
 
     setAddComments((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    console.log(addComments);
   };
 
   console.log(id);
@@ -52,6 +54,7 @@ export default function Comments({id}) {
   console.log(allComments);
 
   const submitHandler = (e) => {
+    console.log(addComments);
     e.preventDefault();
   // setAllComments(prev => [...prev, addComments])
     axios
@@ -69,9 +72,9 @@ console.log(addComments);
 
 
   return (
-    <div >
+    <div className="divCom">
       <div>
-        {allComments.map((el) => <p><h4>Автор: {el.user}</h4>Дата: {el.date} {el.comment}</p>)}
+        {allComments.map((el) => <p><h6>Автор: {el.user}Дата: {el.date} </h6>{el.comment}</p>)}
         <form
           onSubmit={submitHandler}
           className={classes.root}
