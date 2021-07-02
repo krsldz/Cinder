@@ -10,7 +10,6 @@ import Loader from "../Loader/Loader";
 import Button from "@material-ui/core/Button";
 import Comments from "../Comments/Comments";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -94,12 +93,19 @@ function ButtonsForCard() {
   return (
     <>
       <div>
-        <div className="topSwing">
-        <a href="https://pngicon.ru/serdce.html"><img src="https://pngicon.ru/file/uploads/serdce-128x119.png" alt="Сердце"/></a>
+        <div className="topSwing swing">
+          <a href="https://pngicon.ru/serdce.html">
+            <img
+              src="https://pngicon.ru/file/uploads/serdce-128x119.png"
+              alt="Сердце"
+            />
+          </a>
         </div>
         <div className="divWithButtons">
-          <div className="divBut">
-          <a target="_blank" href="https://radikal.ru"><img src="https://c.radikal.ru/c05/2107/88/9fe0d492cff9.png" /></a>
+          <div className="divBut swing">
+            <a target="_blank" href="https://radikal.ru">
+              <img src="https://c.radikal.ru/c05/2107/88/9fe0d492cff9.png" />
+            </a>
           </div>
 
           <div className="boxGame">
@@ -129,17 +135,16 @@ function ButtonsForCard() {
               <h1>Ой! Подходящих фильмов нет, пройдите тест еще раз</h1>
             )}
           </div>
-          <div className="divBut">
-          <a target="_blank" href="https://radikal.ru"><img src="https://d.radikal.ru/d17/2107/c6/3671632a0259.png" /></a>
+          <div className="divBut swing">
+            <a target="_blank" href="https://radikal.ru">
+              <img src="https://d.radikal.ru/d17/2107/c6/3671632a0259.png" />
+            </a>
           </div>
         </div>
 
-        <div className="topSwing">
-        <a href="https://pngicon.ru/img-hlopushka-248.html"><img src="https://pngicon.ru/file/uploads/1_2829-128x128.png" alt="хлопушка"/></a>
-        </div>
         {comments ? <Comments id={idFilm} /> : null}
         <hr />
-        
+
         <footer>
           <SvgIconsColor />
           <div>
