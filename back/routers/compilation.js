@@ -12,19 +12,20 @@ router.get('/compilation', (req, res, next) => {
 
 router.post('/compilation', async (req, res, next) => {
 
-  let withWhom;
+  let wither;
 
   if (req.body.withWhom == 'С ним/ней') {
-    withWhom = 'С ним ней';
+    wither = 'С ним ней';
   }
   else if (req.body.withWhom == 'Один/одна') {
-    withWhom = 'Один одна'
+    wither = 'Один одна'
   }
   else {
-    withWhom = req.body.withWhom;
+    wither = req.body.withWhom;
 
   }
 
+  console.log(wither);
   const films = await Films.find();
   console.log(req.body);
   
@@ -37,9 +38,9 @@ router.post('/compilation', async (req, res, next) => {
 
 
   let secondFilter = firstFilter.filter((el) => el.mood.includes(req.body.mood))
-  // console.log(secondFilter);
+  console.log(secondFilter);
 
-  // let thirdFilter = secondFilter.filter((el) => el.withWom.includes(req.body.withWom))
+  let thirdFilter = secondFilter.filter((el) => el.withWom.includes(wither))
   // console.log(thirdFilter);
   // console.log(secondFilter);
   // const thirdFilter = (req, filtrus) => {
@@ -50,7 +51,7 @@ router.post('/compilation', async (req, res, next) => {
   // }
   // let result = thirdFilter(req.body.jenre, secondFilter);
 
-  res.json(secondFilter)
+  res.json(thirdFilter)
 
 })
 
