@@ -13,7 +13,7 @@ export default function ShareButton ({id}) {
     <>
     <FacebookShareButton url={url} appId={3890689211157109}>
     {/* <FacebookIcon/> */}
-    <button className="butOfScroll">Поделиться в Facebook</button>
+    <button className="butOfScroll">Поделиться в FB</button>
     </FacebookShareButton>
     </>
   )

@@ -8,6 +8,13 @@
   height: 100vh;
 }
 
+.MuiInputBase-root {
+  color: unset !important;
+}
+/* .input {
+  color: white !important;
+} */
+
 .divProfile2 {
   text-align: center;
   margin-top: 50px;
@@ -26,8 +33,6 @@ h4 {
   display: flex;
   justify-content: center;
 }
-
-
 
 .profileInfo {
   margin-top: 25px;
