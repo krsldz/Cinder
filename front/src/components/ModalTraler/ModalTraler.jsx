@@ -66,6 +66,13 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "10px",
     paddingBottom: "10px",
   },
+  border: {
+    border: "1px solid #802bb1",
+    color: "#802bb1;",
+    marginTop: "2px",
+    padding: "4px",
+    width: "25vw",
+  },
 }));
 
 const Fade = React.forwardRef(function Fade(props, ref) {
@@ -144,7 +151,7 @@ export default function SpringModal({
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
+      <button className={classes.border} type="button" onClick={handleOpen}>
         ТРЕЙЛЕР
       </button>
       <Modal

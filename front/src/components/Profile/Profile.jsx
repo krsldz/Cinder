@@ -92,7 +92,10 @@ function Profile() {
         id: user?._id,
       });
     }
-  }, [dispatch, user]);
+    // dispatch(initLikedFilms());
+    // dispatch(initSuperLikedFilms());
+    //  dispatch(initViewedFilms());
+  }, [user]);
 
   const [editUserFlag, setEditUserFlag] = useState(false);
 

@@ -6,8 +6,9 @@ const Viewed = require('../models/viewed');
 
 
 router.get('/superlikedFilm', async (req, res)=>{
+  console.log('sssssss');
   const result = await SuperLike.find({id:req.session.user.id});
-  
+  console.log(result);
    res.json(result);
 
 })
@@ -20,7 +21,7 @@ router.post('/superlikedFilm', async (req, res) => {
   newArr.push(result);
 
 
-  let newSuperLikesFilms = await SuperLike.create({
+await SuperLike.create({
     id: req.session.user.id,
     movie: newArr,
 

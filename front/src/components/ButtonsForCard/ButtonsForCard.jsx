@@ -9,7 +9,7 @@ import TinderCard from "react-tinder-card";
 import Loader from "../Loader/Loader";
 import Button from "@material-ui/core/Button";
 import Comments from "../Comments/Comments";
-import axios from 'axios';
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,8 +36,8 @@ function ButtonsForCard() {
   const [likeEvent, setLikeEvent] = useState([]);
   const [superLikeEvent, setsuperLike] = useState([]);
   const [comments, setComments] = useState(false);
-  const [idFilm, setIdFilm] = useState()
-  const [allComments, setAllComments] = useState([])
+  const [idFilm, setIdFilm] = useState();
+  const [allComments, setAllComments] = useState([]);
 
   const commentsHandler = (id) => {
     // selectFilm(e);
@@ -96,7 +96,7 @@ function ButtonsForCard() {
     <>
       <div>
         <div className="topSwing swing">
-          <a href="https://pngicon.ru/serdce.html">
+          <a>
             <img
               src="https://pngicon.ru/file/uploads/serdce-128x119.png"
               alt="Сердце"
@@ -105,7 +105,7 @@ function ButtonsForCard() {
         </div>
         <div className="divWithButtons">
           <div className="divBut swing">
-            <a target="_blank" href="https://radikal.ru">
+            <a target="_blank">
               <img src="https://c.radikal.ru/c05/2107/88/9fe0d492cff9.png" />
             </a>
           </div>
@@ -138,7 +138,7 @@ function ButtonsForCard() {
             )}
           </div>
           <div className="divBut swing">
-            <a target="_blank" href="https://radikal.ru">
+            <a target="_blank">
               <img src="https://d.radikal.ru/d17/2107/c6/3671632a0259.png" />
             </a>
           </div>

@@ -35,7 +35,6 @@ export default function Element({ id, commentsHandler }) {
     );
     dispatch(deleteLikedFilm(like));
 
-    dispatch(initSuperLikedFilms());
   };
 
   return (

@@ -25,10 +25,12 @@ import ModalTraler from "../ModalTraler/ModalTraler";
 
 const useStyles = makeStyles({
   border: {
-    border: "1px solid black",
-    color: "black;",
+    border: "1px solid #802bb1",
+    color: "#802bb1;",
     marginTop: "2px",
     padding: "4px",
+    width: "25vw",
+    marginLeft: "2.5vw",
   },
 });
 
@@ -169,14 +171,14 @@ export default function CardSolo({ id, setComments, commentsHandler }) {
               trailerLink={trailerLink}
             />
 
-            <Button
+            <button
               size="small"
               align="rigth"
               className={classes.border}
               onClick={() => commentsHandler(id)}
             >
               Комментарии
-            </Button>
+            </button>
           </div>
         </TinderCard>
       )}

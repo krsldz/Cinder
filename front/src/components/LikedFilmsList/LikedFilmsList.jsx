@@ -67,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     width: "75vw",
+    height: "100vh"
   },
   bar: {
     backgroundColor: "#802bb1",
@@ -81,11 +82,6 @@ export default function LikedFilmsList() {
   const [idFilm, setIdFilm] = React.useState();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(initLikedFilms());
-    dispatch(initSuperLikedFilms());
-    dispatch(initViewedFilms());
-  }, []);
 
   // const likes = useSelector((state) => state.likes);
   // const superLikes = useSelector((state) => state.superLikes);

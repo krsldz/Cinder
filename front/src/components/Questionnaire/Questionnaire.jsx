@@ -80,6 +80,9 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "10px",
     paddingBottom: "10px",
   },
+  link: {
+    margin: "0 auto",
+  },
 }));
 
 const Fade = React.forwardRef(function Fade(props, ref) {
@@ -206,7 +209,7 @@ export default function SpringModal() {
                     <Card className={classes.root}>
                       <CardContent>
                         <Typography className={classes.title} gutterBottom>
-                          Ваше настроение?
+                          КАКОЕ У ВАС НАСТРОЕНИЕ
                         </Typography>
                         <Typography variant="body2" component="p">
                           <br />
@@ -258,7 +261,7 @@ export default function SpringModal() {
                           color="textSecondary"
                           gutterBottom
                         >
-                          Укажите интересующие жанры
+                          УКАЖИТЕ ИНТЕРЕСУЮЩИЙ ЖАНР
                         </Typography>
                         <Typography variant="body2" component="p">
                           <br />
@@ -314,7 +317,7 @@ export default function SpringModal() {
                         color="textSecondary"
                         gutterBottom
                       >
-                        С кем будете смотреть?
+                        С КЕМ БУДЕТЕ СМОТРЕТЬ?
                       </Typography>
                       <Typography variant="body2" component="p">
                         <br />
@@ -351,7 +354,7 @@ export default function SpringModal() {
                       <Link
                         to="/game"
                         className="link"
-                        className={classes.button}
+                        className={classes.link}
                       >
                         <Button
                           size="small"
