@@ -27,15 +27,20 @@ router.post('/compilation', async (req, res, next) => {
 
   const films = await Films.find();
   console.log(req.body);
+  
 
   //let {jenre, withWhom, mood} = req.body;
-  let firstFilter = films.filter((el) => el.withWom.includes(req.body.withWhom))
+  let firstFilter = films.filter((el) => el.genre.includes(req.body.genre))
+
+  // console.log(firstFilter);
+
+
 
   let secondFilter = firstFilter.filter((el) => el.mood.includes(req.body.mood))
-  console.log(secondFilter);
+  // console.log(secondFilter);
 
-  let thirdFilter = secondFilter.filter((el) => el.genre.includes(req.body.jenre))
-  console.log(thirdFilter);
+  // let thirdFilter = secondFilter.filter((el) => el.withWom.includes(req.body.withWom))
+  // console.log(thirdFilter);
   // console.log(secondFilter);
   // const thirdFilter = (req, filtrus) => {
   //   for (let i = 0; i < req.length; i++) {
@@ -45,7 +50,7 @@ router.post('/compilation', async (req, res, next) => {
   // }
   // let result = thirdFilter(req.body.jenre, secondFilter);
 
-  res.json(thirdFilter)
+  res.json(secondFilter)
 
 })
 
