@@ -12,11 +12,22 @@ router.get('/compilation', (req, res, next) => {
 
 router.post('/compilation', async (req, res, next) => {
 
+  let withWhom;
 
+  if (req.body.withWhom == 'С ним/ней') {
+    withWhom = 'С ним ней';
+  }
+  else if (req.body.withWhom == 'Один/одна') {
+    withWhom = 'Один одна'
+  }
+  else {
+    withWhom = req.body.withWhom;
+
+  }
 
   const films = await Films.find();
   console.log(req.body);
-  if()
+  
 
   //let {jenre, withWhom, mood} = req.body;
   let firstFilter = films.filter((el) => el.genre.includes(req.body.genre))

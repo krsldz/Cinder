@@ -9,6 +9,8 @@ import TinderCard from "react-tinder-card";
 import Loader from "../Loader/Loader";
 import Button from "@material-ui/core/Button";
 import Comments from "../Comments/Comments";
+import axios from 'axios';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,19 +38,19 @@ function ButtonsForCard() {
   const [superLikeEvent, setsuperLike] = useState([]);
   const [comments, setComments] = useState(false);
   const [idFilm, setIdFilm] = useState()
-
+  const [allComments, setAllComments] = useState([])
 
   const commentsHandler = (id) => {
     // selectFilm(e);
-    setIdFilm(id)
-    setComments(prev => !prev)
-  }
+    setIdFilm(id);
+    setComments((prev) => !prev);
+  };
 
   // function selectFilm (e) {
   //   const id = e?.target?.parentElement?.previousElementSibling?.firstElementChild?.id
   //   setIdFilm(id)
   // }
-  console.log(idFilm);
+  console.log(allComments);
 
   const onSwipe = (direction) => {
     console.log("You swiped: " + direction);
@@ -91,9 +93,6 @@ function ButtonsForCard() {
     setsuperLike((prev) => [...prev, superLikeFilm]);
   };
 
- 
-
-
   return (
     <>
       <div>
@@ -116,7 +115,8 @@ function ButtonsForCard() {
                       setTinderFilms={setTinderFilms}
                       ind={ind}
                       id={film.idKP}
-                      setComments={setComments} commentsHandler={commentsHandler}
+                      setComments={setComments}
+                      commentsHandler={commentsHandler}
                     />{" "}
                   </>
                 ))}
@@ -135,12 +135,13 @@ function ButtonsForCard() {
           <a target="_blank" href="https://radikal.ru"><img src="https://d.radikal.ru/d17/2107/c6/3671632a0259.png" /></a>
           </div>
         </div>
-              
+
         <div className="topSwing">
         <a href="https://pngicon.ru/img-hlopushka-248.html"><img src="https://pngicon.ru/file/uploads/1_2829-128x128.png" alt="хлопушка"/></a>
         </div>
-        {comments ? <Comments id={idFilm}/> : null}
+        {comments ? <Comments id={idFilm} /> : null}
         <hr />
+        
         <footer>
           <SvgIconsColor />
           <div>

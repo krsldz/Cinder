@@ -16,7 +16,7 @@ export default function MainPage() {
   return (
     <div>
       <div className="devider">
-        <div>
+        <div className="textonMain">
           {" "}
           <h1>
             ФИЛЬМЫ НА ЛЮБОЙ ВКУС <br /> ДЛЯ ТЕБЯ И ТВОИХ БЛИЗКИХ{" "}
@@ -30,20 +30,7 @@ export default function MainPage() {
             времени
           </h5>
         </div>
-        {/* <div className="wrapper">
-        <div className="box box1" id="1">
-          <CardForMain />
-          <span>Для просмотра с половинкой</span>
-        </div>
-        <div className="box box2" id="2">
-          <CardForMain />
-          <span>Для просмотра с мамой</span>
-        </div>
-        <div className="box box3" id="3">
-          <CardForMain />
-          <span>Для просмотра с семьей</span>
-        </div>
-      </div> */}
+
 
         <div className="wrapper">
           <div className="box box1" id="1">

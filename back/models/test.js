@@ -12,63 +12,63 @@ const options = {
 const testSchema = new Schema({
   genre: Array,
   mood: Array,
-  withWhom : Array,
-  
-  
+  withWhom: Array,
+
+
 });
 const Test = model('test', testSchema);
-async function  asnwersFabric(){
-   
+async function asnwersFabric() {
+
   const tests = {
-   genre: ['Боевик',
-     "Детектив",
-     'Драма',
-     "Исторический",
-     'Биография',
-     "Комедия",
-     'Мелодрама',
-     "Мюзикл",
-     'Экшн',
-     'Сказка',
-     'Триллер',
-     'Фантастика',
-     "Хоррор",
-   'Фильм-катастрофа'],
-   mood: [
-   'Веселое',
-   'Романтичное ',
-   'Сердитое',
-   'Пофигистическое',
-   'Приуныл',
-   'Игривый',
-   'Серьезное',
-   'Плаксивое',
-   'Мотивирующее',
- ],
- withWhom: [
-   'С ним/ней',
-   'С семьей',
-   'С ребенком',
-   'С большой компанией',
-   'Один',
-   'С другом'
- 
- ]
- 
- 
- 
- }
- await Test.create(tests)
+    genre: ['Боевик',
+      "Детектив",
+      'Драма',
+      "Исторический",
+      'Биография',
+      "Комедия",
+      'Мелодрама',
+      "Мюзикл",
+      'Экшн',
+      'Сказка',
+      'Триллер',
+      'Фантастика',
+      "Хоррор",
+      'Фильм-катастрофа'],
+    mood: [
+      'Веселое',
+      'Романтичное ',
+      'Сердитое',
+      'Пофигистическое',
+      'Приуныл',
+      'Игривый',
+      'Серьезное',
+      'Плаксивое',
+      'Мотивирующее',
+    ],
+    withWhom: [
+      'С ним/ней',
+      'С семьей',
+      'С ребенком',
+      'С большой компанией',
+      'Один/одна',
+      'С другом'
+
+    ]
+
+
+
+  }
+  await Test.create(tests)
 }
 
-// function dbConnect(){
-//   mongoose.connect(process.env.DB_CONNECT, options, (err)=>{
-//     if(err) return console.log(err)
-//     console.log('success connected to mongo');
-//     asnwersFabric()
-//   })
-// }
-// dbConnect()
+function dbConnect() {
+  mongoose.connect(process.env.DB_CONNECT, options, (err) => {
+    if (err) return console.log(err)
+    console.log('success connected to mongo');
+    asnwersFabric()
+  })
+}
+dbConnect()
 
 
 module.exports = Test;

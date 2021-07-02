@@ -12,20 +12,15 @@ body {
   max-width: 60vw;
   min-height: 80vh;
   text-align: center;
-
   position: relative;
   left: 46%;
   transform: translate(-50%, -50%);
   display: grid;
   justify-content: center;
   align-items: center;
-
   font-family: sans-serif;
   transition: transform 200ms;
-
 }
-
-
 .dws-wrapper {
   border-radius: 5%;
   width: 30vw;
@@ -55,7 +50,7 @@ body {
   color: white;
 }
 .dws-text p {
-  font-size: 12px;
+  font-size: 18px;
 }
 .dws-wrapper a:before,
 .dws-wrapper a:after {
