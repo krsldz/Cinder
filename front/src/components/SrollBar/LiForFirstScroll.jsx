@@ -44,14 +44,14 @@ export default function Element({ id, commentsHandler }) {
       <div className="uk-position-center uk-panel">
         <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
           <p>
-            {infoAboutFilm.rating_kinopoisk}
+            <p className="ratingColor">{infoAboutFilm.rating_kinopoisk}</p>
 
             <button className="butOfScroll" onClick={changerState}>
               {" "}
               Добавить в буду смотреть{" "}
             </button>
 
-            <button onClick={() => commentsHandler(id)} className="butOfScroll"> Комментарии </button>
+            <button onClick={() => commentsHandler(id)} className="butOfScroll">Комментарии</button>
           </p>
         </div>
       </div>

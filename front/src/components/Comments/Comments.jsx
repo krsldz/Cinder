@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
     color: "purple",
     border: "2px solid purple",
   },
+  fieldinput: {
+    color: "white",
+  }
 }));
 
 export default function Comments({id}) {
@@ -80,6 +83,7 @@ console.log(addComments);
               id="outlined-textarea"
               label="Комментарий"
               name="comment"
+              className={classes.fieldinput}
               onChange={changeHandler}
               value={addComments.comment}
               multiline
