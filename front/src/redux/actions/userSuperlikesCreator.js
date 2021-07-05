@@ -2,6 +2,7 @@ import {UPDATE_SUPERLIKES_USER, GET_SUPERLIKES_USER, DELETE_SUPERLIKES_USER} fro
 import axios from 'axios';
 
 import {enableLoader, disableLoader} from './loader';
+import {initViewedFilms} from './userViewedFilm'
 
 axios.defaults.withCredentials = true;
 
@@ -41,6 +42,7 @@ export const updateSuperLikedFilms = (newFilm) => async(dispatch) =>{
     const response = await axios.post('http://localhost:8080/api/v1/user/superlikedFilm', newFilm);
    
       dispatch(updateUserSuperLikesFilms(response.data))
+      dispatch(initSuperLikedFilms());
     } catch (error) {
       console.log(error)
     }
@@ -50,5 +52,7 @@ export const updateSuperLikedFilms = (newFilm) => async(dispatch) =>{
   export const deleteSuperLikedFilm = (film) => async(dispatch) =>{
     const response = await axios.post('http://localhost:8080/api/v1/user/view/superlike', film)
     dispatch(deletedUserSuperLikedFilm(response.data));
+
+    dispatch(initViewedFilms());
   }
 

@@ -41,6 +41,7 @@ export const updateLikedFilms = (newFilm) => async(dispatch) =>{
     const response = await axios.post('http://localhost:8080/api/v1/user/likedFilm', newFilm);
    
       dispatch(updateUserLikesFilms(response.data))
+      dispatch(initLikedFilms())
     } catch (error) {
       console.log(error)
     }

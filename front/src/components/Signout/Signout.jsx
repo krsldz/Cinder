@@ -12,9 +12,7 @@ const SignOut = () => {
   useEffect(() => {
     dispatch(signOut());
     history.push("/");
-    dispatch(initLikedFilms());
-    dispatch(initSuperLikedFilms());
-    dispatch(initViewedFilms());
+
   }, []);
 
   return null;

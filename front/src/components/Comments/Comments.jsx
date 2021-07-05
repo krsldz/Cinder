@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
     color: "purple",
     border: "2px solid purple",
   },
+  fieldinput: {
+    color: "white",
+  }
 }));
 
 export default function Comments({id}) {
@@ -37,6 +40,7 @@ export default function Comments({id}) {
     e.persist();
 
     setAddComments((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    console.log(addComments);
   };
 
   console.log(id);
@@ -50,6 +54,7 @@ export default function Comments({id}) {
   console.log(allComments);
 
   const submitHandler = (e) => {
+    console.log(addComments);
     e.preventDefault();
   // setAllComments(prev => [...prev, addComments])
     axios
@@ -69,7 +74,7 @@ console.log(addComments);
   return (
     <div className="divCom">
       <div>
-        {allComments.map((el) => <p><h6>Автор: {el.user}Дата: {el.date} </h6>{el.comment}</p>)}
+        {allComments.map((el) => <div className="commentitle"><h6>Автор: {el.user}<br></br>Дата: {el.date}</h6>{el.comment}<br></br></div>)}
         <form
           onSubmit={submitHandler}
           className={classes.root}
@@ -81,6 +86,7 @@ console.log(addComments);
               id="outlined-textarea"
               label="Комментарий"
               name="comment"
+              className={classes.fieldinput}
               onChange={changeHandler}
               value={addComments.comment}
               multiline

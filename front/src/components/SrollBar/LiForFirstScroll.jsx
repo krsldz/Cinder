@@ -5,6 +5,7 @@ import "./Scroll.css";
 import { deleteLikedFilm } from "../../redux/actions/userLikesFilmCreator";
 import axios from "axios";
 import { initSuperLikedFilms } from "../../redux/actions/userSuperlikesCreator";
+import ShareButton from '../ShareButton/ShareButton';
 axios.defaults.withCredentials= true;
 
 
@@ -43,7 +44,7 @@ export default function Element({ id, commentsHandler }) {
       <div className="uk-position-center uk-panel">
         <div className="uk-h1 uk-transition-slide-bottom-small textScroll">
           <p>
-            {infoAboutFilm.rating_kinopoisk}
+            <p className="ratingColor">{infoAboutFilm.rating_kinopoisk}</p>
 
             <button className="butOfScroll" onClick={changerState}>
               {" "}
@@ -51,6 +52,7 @@ export default function Element({ id, commentsHandler }) {
             </button>
 
             <button onClick={() => commentsHandler(id)} className="butOfScroll"> Комментарии </button>
+            <ShareButton id={id} />
           </p>
         </div>
       </div>
