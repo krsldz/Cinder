@@ -1,6 +1,4 @@
-import quin from "../../images/quin.jpeg";
 import React, { useEffect, useState } from "react";
-import {useSelector, useDispatch} from 'react-redux';
 import LiForSuperLikes from './LiForSuperlikes'
 
 export default function ScrollBar2({id}) {

@@ -8,7 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import LiForFirstScroll from "../SrollBar/LiForFirstScroll";
 import LiForSuperLikes from "../SrollBar/LiForSuperlikes";
-import ScrollBarViewed from "../SrollBar/ScrollBarViewed";
 import ViewedLi from "../SrollBar/ViewedLi";
 import { useSelector, useDispatch } from "react-redux";
 import { initLikedFilms } from "../../redux/actions/userLikesFilmCreator";
@@ -103,7 +102,7 @@ export default function LikedFilmsList() {
     setComments((prev) => !prev);
   };
 
-  console.log(likes);
+
 
   const handleChange = (event, newValue) => {
     setInitValue(true);

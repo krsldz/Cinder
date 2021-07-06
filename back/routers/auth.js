@@ -80,8 +80,6 @@ router.post('/userupdate', async (req, res) => {
     sex,
   };
 
-  console.log(updatedUser);
-
   res.json(updatedUser);
 });
 

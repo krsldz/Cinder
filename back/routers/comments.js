@@ -4,7 +4,6 @@ const Film = require('../models/film');
 const router = Router();
 
 router.post('/comments', async (req, res) => {
-  console.log(req.body);
   const {user, comment, date, film} = req.body;
   const currUser = await User.findById(req.session.user.id)
   const currFilm = await Film.findOne({idKP: film})

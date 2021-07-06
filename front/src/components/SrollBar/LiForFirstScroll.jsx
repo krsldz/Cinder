@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Button from "@material-ui/core/Button";
 import "./Scroll.css";
 import { deleteLikedFilm } from "../../redux/actions/userLikesFilmCreator";
 import axios from "axios";
-import { initSuperLikedFilms } from "../../redux/actions/userSuperlikesCreator";
 import ShareButton from '../ShareButton/ShareButton';
 axios.defaults.withCredentials= true;
 
@@ -15,7 +13,7 @@ export default function Element({ id, commentsHandler }) {
   let likes = useSelector((state) => state.likes);
   const dispatch = useDispatch();
 
-  console.log(id);
+
 
   const movieInfo = (id) => {
     fetch(
@@ -28,7 +26,6 @@ export default function Element({ id, commentsHandler }) {
   useEffect(() => {
     movieInfo(id);
   }, []);
-  console.log("--->", infoAboutFilm);
 
   const changerState = () => {
     let like = likes.find((film) =>

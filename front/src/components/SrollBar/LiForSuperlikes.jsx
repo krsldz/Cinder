@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteSuperLikedFilm } from "../../redux/actions/userSuperlikesCreator";
 import { initViewedFilms } from "../../redux/actions/userViewedFilm";
-// import Button from "@material-ui/core/Button";
 import ShareButton from '../ShareButton/ShareButton';
 
 import "./Scroll.css";
@@ -24,13 +23,12 @@ export default function ElementSuperLike({id, commentsHandler}){
   useEffect(() => {
     movieInfo(id);
   }, []);
-  console.log("--->", infoAboutFilm);
+
 
   const changer = () => {
     let superLike = superLikes?.find((film) =>
       film.movie?.find((movies) => id == movies.idKP)
     );
-    console.log(superLike);
     dispatch(deleteSuperLikedFilm(superLike));
     dispatch(initViewedFilms());
   };

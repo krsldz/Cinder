@@ -26,9 +26,7 @@ export const initSuperLikedFilms = () => async (dispatch) => {
   
   dispatch(enableLoader())
   try {
-    console.log('check');
   const response = await axios.get('http://localhost:8080/api/v1/user/superlikedFilm');
- console.log('response.data');
  dispatch({type: GET_SUPERLIKES_USER, payload:response.data})
   } catch (error) {
     console.log(error)

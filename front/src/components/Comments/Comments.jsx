@@ -2,10 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router";
 import axios from 'axios'
 import "./Comments.css"
 
@@ -40,10 +37,9 @@ export default function Comments({id}) {
     e.persist();
 
     setAddComments((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    console.log(addComments);
   };
 
-  console.log(id);
+
 
   useEffect(() => {
     axios
@@ -51,10 +47,10 @@ export default function Comments({id}) {
       .then((res) => setAllComments(res.data));
   }, []);
 
-  console.log(allComments);
+
 
   const submitHandler = (e) => {
-    console.log(addComments);
+    
     e.preventDefault();
   // setAllComments(prev => [...prev, addComments])
     axios
@@ -68,7 +64,7 @@ export default function Comments({id}) {
     })
 };
 
-console.log(addComments);
+
 
 
   return (

@@ -1,6 +1,5 @@
 import quin from "../../images/quin.jpeg";
 import React, { useEffect, useState } from "react";
-import Comments from "../Comments/Comments";
 
 export default function ScrollBarViewed() {
 

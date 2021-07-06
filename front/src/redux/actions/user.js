@@ -69,7 +69,6 @@ export const deleteUser = () => ({
 
 export const editUserThunk = (userUpdate) => async (dispatch) => {
   const updatedUser = await (await axios.post("http://localhost:8080/api/v1/auth/userupdate", userUpdate)).data;
-  console.log(updatedUser);
   dispatch(setUser(updatedUser));
 }
 

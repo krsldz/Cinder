@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Comments from "../Comments/Comments";
 import { initViewedFilms } from "../../redux/actions/userViewedFilm";
 import ShareButton from '../ShareButton/ShareButton';
 
@@ -25,13 +24,7 @@ export default function ElementSuperLike({ id, commentsHandler }) {
     movieInfo(id);
     dispatch(initViewedFilms());
   }, []);
-  console.log("--->", infoAboutFilm);
 
-  // const commentsHandler = (id) => {
-  //   // selectFilm(e);
-  //   // setIdFilm(id)
-  //   setComments(prev => !prev)
-  // }
 
   return (
     <>

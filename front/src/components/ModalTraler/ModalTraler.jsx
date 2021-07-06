@@ -8,20 +8,11 @@ import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
-import FormGroup from "@material-ui/core/FormGroup";
 import Typography from "@material-ui/core/Typography";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { Link, useHistory } from "react-router-dom";
-import Radio from "@material-ui/core/Radio";
+import { useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Favorite from "@material-ui/icons/Favorite";
-import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
-import Checkbox from "@material-ui/core/Checkbox";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { initFilmsAC } from "../../redux/actions/filmsCreator";
-// import "./Qestionnare.css";
 axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
@@ -124,9 +115,7 @@ export default function SpringModal({
   const [base, setBase] = useState({});
 
   const dispatch = useDispatch();
-  // console.log(base);
-  // console.log(value);
-  // console.log(base.genre);
+
 
   useEffect(() => {
     axios

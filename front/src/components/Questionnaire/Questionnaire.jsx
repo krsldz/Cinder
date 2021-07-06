@@ -17,7 +17,6 @@ import Radio from "@material-ui/core/Radio";
 import { useState, useEffect } from "react";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
-import Checkbox from "@material-ui/core/Checkbox";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { initFilmsAC } from "../../redux/actions/filmsCreator";
@@ -131,9 +130,7 @@ export default function SpringModal() {
   const [base, setBase] = useState({});
 
   const dispatch = useDispatch();
-  // console.log(base);
-  // console.log(value);
-  // console.log(base.genre);
+
 
   useEffect(() => {
     axios
@@ -149,7 +146,6 @@ export default function SpringModal() {
     setOpen(false);
     setShow(false);
     setSecond(true);
-    console.log(value);
     dispatch(initFilmsAC(value));
     // axios.post('http://localhost:8080/api/v1/compilation', value).then(res=>setAllUserFilms(res.data))
     setValue({
@@ -173,7 +169,7 @@ export default function SpringModal() {
   const secondShow = () => {
     setSecond(false);
   };
-  console.log(base);
+
 
   return (
     <div>

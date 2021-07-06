@@ -7,7 +7,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 
 
 export default function ShareButton ({id}) {
-  console.log(id);
+
   let url = `https://www.kinopoisk.ru/film/${id}`;
   return (
     <>

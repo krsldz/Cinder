@@ -1,13 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
-// import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-// import CardActions from "@material-ui/core/CardActions";
-// import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import { useSelector, useDispatch } from "react-redux";
 import TinderCard from "react-tinder-card";
 import {
@@ -20,7 +15,6 @@ import {
 } from "../../redux/actions/userSuperlikesCreator";
 import "./Card.css";
 import Loader from "../Loader/Loader";
-import Comments from "../Comments/Comments";
 import ModalTraler from "../ModalTraler/ModalTraler";
 
 const useStyles = makeStyles({
@@ -59,7 +53,6 @@ export default function CardSolo({ id, setComments, commentsHandler }) {
       .then((res) => setFilms(res.data));
     // dispatch(initLikedFilms())
   }, []);
-  // console.log(allFilms);
   const movieInfo = useCallback((id) => {
     fetch(
       `https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`
@@ -87,14 +80,12 @@ export default function CardSolo({ id, setComments, commentsHandler }) {
     if (direction === "left") {
       let dislikeFilm = allFilms.find((film) => film.idKP == id);
       allFilms = removeItemOnce(allFilms, dislikeFilm);
-      // console.log(allFilms);
       setComments(false);
     }
 
     if (direction === "right") {
       let currLikeFilm = allFilms.find((film) => film.idKP == id);
       allFilms = removeItemOnce(allFilms, currLikeFilm);
-      console.log(currLikeFilm);
       dispatch(updateLikedFilms(currLikeFilm));
       setComments(false);
     }
@@ -111,16 +102,14 @@ export default function CardSolo({ id, setComments, commentsHandler }) {
 
   const trailerButtonClickHandler = () => {
     // setTrailer(!trailerPreview);
-    console.log(id);
     fetch(
       `https://api.kinopoisk.cloud/movies/${id}/token/efcf5da3f88fef737921b0cd9182b8d6`
     )
       .then((res) => res.json())
       .then((data) => setTrailerLink(data.trailer));
-    console.log(trailerLink);
   };
 
-  // console.log(allFilms);
+
 
   return (
     <>

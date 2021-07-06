@@ -5,11 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import CardSolo from "../Card/Card";
 import "./ButtonsForCard.css";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
-import TinderCard from "react-tinder-card";
 import Loader from "../Loader/Loader";
-import Button from "@material-ui/core/Button";
 import Comments from "../Comments/Comments";
-import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,7 +46,6 @@ function ButtonsForCard() {
   //   const id = e?.target?.parentElement?.previousElementSibling?.firstElementChild?.id
   //   setIdFilm(id)
   // }
-  console.log(allComments);
 
   const onSwipe = (direction) => {
     console.log("You swiped: " + direction);

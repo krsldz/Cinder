@@ -20,7 +20,7 @@ function CardsList() {
 
 
   let films = useSelector(state => state.films)
-  console.log(films);
+
 
   return (
     <div><h3>Подборка для юзера:</h3> {films.map(film => <CardSolo id={film.idKP} />)}</div>

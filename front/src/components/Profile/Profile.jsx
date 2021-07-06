@@ -6,24 +6,18 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
-// import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { useDispatch, useSelector } from "react-redux";
 import FormControl from "@material-ui/core/FormControl";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Radio from "@material-ui/core/Radio";
-import ShareButton from "../ShareButton/ShareButton";
 import TabPanel from "../LikedFilmsList/LikedFilmsList";
 import "./Profile.css";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
 import { initLikedFilms } from "../../redux/actions/userLikesFilmCreator";
 import { initSuperLikedFilms } from "../../redux/actions/userSuperlikesCreator";
 import { editUserThunk, getUserFromServer } from "../../redux/actions/user";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
 import { useThemeContext } from "../../context/context";
 import { initViewedFilms } from "../../redux/actions/userViewedFilm";
 
@@ -144,7 +138,6 @@ function Profile() {
       })
       .then((res) => {
         setImage(res.data);
-        // console.log(res.data);
       });
 
     setDrag(false);
@@ -161,7 +154,6 @@ function Profile() {
     setEditUserFlag(false);
   };
 
-  console.log(userUpdate);
 
   return (
     <div>

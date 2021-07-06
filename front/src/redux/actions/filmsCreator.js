@@ -21,7 +21,6 @@ export const initFilmsAC = (value) => async (dispatch) => {
   dispatch(enableLoader())
   try {
   const response = await axios.post('http://localhost:8080/api/v1/compilation', value);
-   console.log(response.data);
     dispatch(setAllUserFilms(response.data))
   } catch (error) {
     console.log(error)

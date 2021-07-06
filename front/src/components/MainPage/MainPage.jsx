@@ -1,11 +1,6 @@
 import "./MainPage.css";
-import CardForMain from "../CardForMain/CardForMain";
 import SvgIconsColor from "../FooterIcons/FooterIcons";
 import SpringModal from "../Questionnaire/Questionnaire";
-import ShareButton from "../ShareButton/ShareButton";
-import LikedFilmsList from "../LikedFilmsList/LikedFilmsList";
-import ButtonsForCard from "../ButtonsForCard/ButtonsForCard";
-import { Link } from "react-router-dom";
 import ScrollBarMain from "../SrollBar/ScrollBarMain";
 import { useThemeContext } from "../../context/context";
 

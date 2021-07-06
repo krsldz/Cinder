@@ -27,7 +27,7 @@ export default function RegisterForm() {
     setUserSignUp((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  console.log(userSignUp);
+
 
   const submitHandler = (e) => {
     e.preventDefault();
